@@ -89,7 +89,6 @@ local function init()
         event = "BufRead",
         requires = "kyazdani42/nvim-web-devicons"
     } -- window for showing LSP detected issues in code
-    use {"camspiers/snap"}
     use {
         "folke/todo-comments.nvim",
         config = function()
@@ -133,6 +132,7 @@ local function init()
 
     -- movement
     use "unblevable/quick-scope" -- f F t T improved highlight
+    use {"ggandor/lightspeed.nvim"} -- lightspeed motion
 
     -- quality of life
     use {"hkupty/nvimux"} -- tmux in nvim
@@ -188,7 +188,7 @@ local function init()
         event = "BufRead",
         branch = "lua"
     } -- show indentation
-    use {"dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]]} -- show startup time
+
     -- git
     use {
         "ruifm/gitlinker.nvim",
