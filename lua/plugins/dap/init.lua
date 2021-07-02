@@ -6,6 +6,12 @@ dap.adapters.node2 = {
     args = {os.getenv("HOME") .. "/code/vscode-node-debug2/out/src/nodeDebug.js"}
 }
 
+dap.adapters.chrome = {
+    type = "executable",
+    command = "node",
+    args = {os.getenv("HOME") .. "/code/vscode-chrome-debug/out/src/chromeDebug.js"}
+}
+
 vim.fn.sign_define("DapBreakpoint", {text = "🛑", texthl = "", linehl = "", numhl = ""})
 vim.fn.sign_define("DapStopped", {text = "🟢", texthl = "", linehl = "", numhl = ""})
 
@@ -22,12 +28,15 @@ dap.configurations.typescript = {
 
 dap.configurations.typescriptreact = {
     {
-        type = "node2",
+        type = "chrome",
         request = "attach",
         program = "${file}",
         cwd = vim.fn.getcwd(),
         sourceMaps = true,
-        protocol = "inspector"
+        protocol = "inspector",
+        port = 9222,
+        url = "https://localhost:3000/nx/checkout/com-qs/de",
+        webRoot = "${workspaceFolder}"
     }
 }
 
@@ -39,6 +48,18 @@ dap.configurations.javascript = {
         cwd = vim.fn.getcwd(),
         sourceMaps = true,
         protocol = "inspector"
+    }
+}
+
+dap.configurations.javascriptreact = {
+    {
+        type = "chrome",
+        request = "attach",
+        program = "${file}",
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = "inspector",
+        port = 9222
     }
 }
 

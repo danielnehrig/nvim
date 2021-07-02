@@ -113,7 +113,7 @@ local function init()
     use {
         "nvim-telescope/telescope.nvim",
         opt = true,
-        cmd = "Telescope",
+        cmd = {"Telescope", "Octo"},
         config = function()
             require("plugins.telescope")()
         end,
@@ -190,6 +190,10 @@ local function init()
     } -- show indentation
 
     -- git
+    use {
+        "pwntester/octo.nvim",
+        opt = true
+    }
     use {
         "ruifm/gitlinker.nvim",
         opt = true
