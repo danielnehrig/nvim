@@ -3,7 +3,7 @@ local Func = require("utils")
 vim.g.neomake_open_list = 2
 
 vim.api.nvim_set_var("test#javascript#runnter", "jest")
-vim.api.nvim_set_var("test#javascript#jest#options", "--reporters ~/.dotfiles-darwin/vim-qf-format.js")
+vim.api.nvim_set_var("test#javascript#jest#options", "--reporters ~/dotfiles/vim-qf-format.js")
 vim.api.nvim_set_var("test#strategy", "neomake")
 
 local Make = {

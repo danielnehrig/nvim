@@ -22,7 +22,7 @@ remap("n", "<Leader>fb", ":Telescope buffers<CR>")
 remap("n", "<Leader>fh", ":Telescope help_tags<CR>")
 remap("n", "<Leader>fo", ":Telescope oldfiles<CR>")
 remap("n", "<C-p>", ":Telescope project<CR>")
-remap("n", "<Leader>fd", ":Telescope dotfiles path=" .. home .. "/.dotfiles-darwin/.config<CR>")
+remap("n", "<Leader>fd", ":Telescope dotfiles path=" .. home .. "/dotfiles/.config<CR>")
 remap("n", "<Leader>fn", ":Telescope file_create<CR>")
 
 -- nvim tree

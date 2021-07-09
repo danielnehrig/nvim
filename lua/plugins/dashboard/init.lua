@@ -32,7 +32,7 @@ function config.dashboard()
         },
         find_dotfiles = {
             description = {"  Open Personal dotfiles                  SPC f d"},
-            command = "Telescope dotfiles path=" .. home .. "/.dotfiles-darwin/.config"
+            command = "Telescope dotfiles path=" .. home .. "/dotfiles/.config"
         }
     }
 end

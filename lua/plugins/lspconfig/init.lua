@@ -1,5 +1,4 @@
 local map = require "utils".map
-local map_global = require "utils".map_global
 local augroups = require "utils".nvim_create_augroups
 local autocmd = require "utils".autocmd
 local lsp_status = require("lsp-status")
@@ -8,7 +7,7 @@ local fn = vim.fn
 local setOption = vim.api.nvim_set_option
 local saga = require("lspsaga")
 local globals = require("core.global")
-local sumneko_root_path = os.getenv("HOME") .. "/.dotfiles-darwin/lua-language-server"
+local sumneko_root_path = os.getenv("HOME") .. "/dotfiles/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. globals.os_name .. "/lua-language-server"
 
 -- set omnifunc needed for compe
@@ -27,6 +26,14 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
+local function prequire(...)
+    local status, lib = pcall(require, ...)
+    if (status) then
+        return lib
+    end
+    return nil
+end
+
 -- lsp object for exporting and lazyload
 local lsp = {}
 -- compe setup
@@ -40,15 +47,26 @@ function lsp:compe()
             preselect = "enable",
             throttle_time = 80,
             source_timeout = 200,
+            resolve_timeout = 800,
             incomplete_delay = 400,
             max_abbr_width = 100,
             max_kind_width = 100,
             max_menu_width = 100,
-            documentation = true,
+            documentation = {
+                border = {"", "", "", " ", "", "", "", " "}, -- the border option is the same as `|help nvim_open_win|`
+                winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+                max_width = 120,
+                min_width = 60,
+                max_height = math.floor(vim.o.lines * 0.3),
+                min_height = 1
+            },
             source = {
+                tabnine = true,
+                zsh = true,
                 nvim_lsp = true,
                 nvim_lua = false,
-                snippets_nvim = true,
+                snippets_nvim = false,
+                luasnip = true,
                 path = true,
                 buffer = false,
                 calc = true,
@@ -59,6 +77,42 @@ function lsp:compe()
             }
         }
     )
+
+    local luasnip = prequire("luasnip")
+
+    local t = function(str)
+        return vim.api.nvim_replace_termcodes(str, true, true, true)
+    end
+
+    local check_back_space = function()
+        local col = vim.fn.col(".") - 1
+        if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
+            return true
+        else
+            return false
+        end
+    end
+
+    _G.tab_complete = function()
+        if vim.fn.pumvisible() == 1 then
+            return t "<C-n>"
+        elseif luasnip and luasnip.expand_or_jumpable() then
+            return t "<Plug>luasnip-expand-or-jump"
+        elseif check_back_space() then
+            return t "<Tab>"
+        else
+            return vim.fn["compe#complete"]()
+        end
+    end
+    _G.s_tab_complete = function()
+        if vim.fn.pumvisible() == 1 then
+            return t "<C-p>"
+        elseif luasnip and luasnip.jumpable(-1) then
+            return t "<Plug>luasnip-jump-prev"
+        else
+            return t "<S-Tab>"
+        end
+    end
 end
 
 -- completion menu settings
@@ -129,8 +183,10 @@ local custom_attach = function(client, bufnr)
     map(bufnr, "i", "<C-f>", "<cmd>call compe#scroll({ delta: +4 })<CR>")
     map(bufnr, "i", "<C-d>", "<cmd>call compe#scroll({ delta: -4 })<CR>")
     map(bufnr, "n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
-    map(bufnr, "i", "<c-k>", '<cmd>lua return require"snippets".expand_or_advance(1)')
-    map(bufnr, "i", "<c-j>", '<cmd>lua return require"snippets".advance_snippet(-1)<CR>')
+    map(bufnr, "i", "<Tab>", [[v:lua._G.tab_complete()]], {expr = true})
+    map(bufnr, "s", "<Tab>", [[v:lua._G.tab_complete()]], {expr = true})
+    map(bufnr, "i", "<S-Tab>", [[v:lua._G.s_tab_complete()]], {noremap = true, expr = true})
+    map(bufnr, "s", "<S-Tab>", [[v:lua._G.s_tab_complete()]], {noremap = true, expr = true})
 
     autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
@@ -201,56 +257,13 @@ require("navigator").setup(
             tsserver = {
                 filetypes = {"typescript", "typescriptreact"},
                 on_attach = function(client, bufnr)
-                    vim.cmd [[packadd nvim-lsp-ts-utils]]
-                    local ts_utils = require("nvim-lsp-ts-utils")
-
                     -- disable TS formatting since we use efm
                     client.resolved_capabilities.document_formatting = false
 
-                    -- ts utils code action and file import update
-                    ts_utils.setup {
-                        debug = false,
-                        disable_commands = false,
-                        enable_import_on_completion = false,
-                        import_on_completion_timeout = 5000,
-                        -- eslint
-                        eslint_enable_code_actions = true,
-                        eslint_bin = "eslint_d",
-                        eslint_args = {"-f", "json", "--stdin", "--stdin-filename", "$FILENAME"},
-                        eslint_enable_disable_comments = true,
-                        -- experimental settings!
-                        -- eslint diagnostics
-                        eslint_enable_diagnostics = false,
-                        eslint_diagnostics_debounce = 250,
-                        -- formatting
-                        enable_formatting = false,
-                        formatter = "prettier_d_slim",
-                        formatter_args = {"--stdin-filepath", "$FILENAME"},
-                        format_on_save = true,
-                        no_save_after_format = false,
-                        -- parentheses completion
-                        complete_parens = false,
-                        signature_help_in_parens = false,
-                        -- update imports on file move
-                        update_imports_on_move = true,
-                        require_confirmation_on_move = false,
-                        watch_dir = "/domain"
-                    }
-
-                    ts_utils.setup_client(client)
-                    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gi", ":TSLspImportAll<CR>", {silent = true})
-                    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ae", ":TSLspRenameFile<CR>", {silent = true})
                     custom_attach(client, bufnr)
                 end
             }
-        },
-        on_attach = function(client, _)
-            -- float
-            if not packer_plugins["illuminate"].loaded then
-                vim.cmd [[packadd illuminate]]
-            end
-            require "illuminate".on_attach(client)
-        end
+        }
     }
 )
 

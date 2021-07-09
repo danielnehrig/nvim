@@ -37,7 +37,6 @@ function load()
             file_sorter = require "telescope.sorters".get_generic_sorter,
             file_ignore_patterns = {},
             generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
-            shorten_path = true,
             winblend = 0,
             border = {},
             borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
@@ -57,7 +56,7 @@ function load()
                 case_mode = "smart_case" -- or "ignore_case" or "respect_case"
             },
             project = {
-                base_dir = "~/code",
+                base_dirs = {"~/code"},
                 max_depth = 4
             }
         }
