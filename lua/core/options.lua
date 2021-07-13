@@ -1,4 +1,3 @@
-local M = require("utils")
 local cmd = vim.cmd
 local g, b, opt, go = vim.g, vim.b, vim.opt, vim.go
 local nvim_command = vim.api.nvim_command
@@ -9,6 +8,10 @@ local function load_options()
     -- TODO: make toggleable for pair programming
     opt.number = true
     opt.relativenumber = true
+
+    -- completion menu settings
+    opt.completeopt = "menuone,noselect"
+    opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
     -- Set so that folders are index for find command
     opt.path:append("**/*")
