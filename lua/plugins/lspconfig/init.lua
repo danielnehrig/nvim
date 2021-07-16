@@ -107,7 +107,12 @@ function LSP:init()
         "css",
         "go",
         "docker",
+        "kotlin",
+        "yaml",
+        "bash",
         "ts",
+        "java",
+        "php",
         "efm",
         "c"
     }
