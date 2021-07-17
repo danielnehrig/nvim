@@ -50,27 +50,28 @@ end
 
 local mappings = {
     f = {
-        name = "+file",
+        name = "+File",
         f = {"Find File"},
         g = {"Search in Files"},
         r = {"Open Recent File"},
+        p = {"Projects"},
         n = {"New File"},
-        d = {"Dotfiles"},
         b = {"Buffers"},
         h = {"Help Tags"},
         o = {"Old Files"}
     },
     g = {
-        name = "+LSP Peek",
+        name = "+LSP Additional",
         d = {"Difinition Peek"},
         r = {"Reference Peek"},
+        ['='] = {"LSP Format"},
         t = {"Trouble"},
         w = {"Symbol"},
         W = {"Workspace Symbol"},
         y = {"Git File Link Range"}
     },
     d = {
-        name = "+Debug DAP",
+        name = "+DAP",
         c = {"Continue"},
         b = {"Breakpoint"},
         B = {"Breakpoint Toggle"},
@@ -118,14 +119,18 @@ local mappings = {
     t = {
         name = "+TABLINE",
         t = {"Pick Tab"},
-        one = {"GoTo 1"},
-        two = {"GoTo 2"},
+        ['1'] = {"GoTo 1"},
+        ['2'] = {"GoTo 2"},
         p = {"Previous"},
         n = {"Next"},
         c = {"Close Buffer"},
         a = {"Close All but Current"}
     },
-    equal = "LSP Format"
+    o = {
+        name = "+ORG",
+        c = "Capture",
+        a = "Agenda"
+    }
 }
 
 wk.register(mappings, opts("<leader>"))

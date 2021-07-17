@@ -53,6 +53,7 @@ local function init()
             use {"metakirby5/codi.vim", cmd = {"Codi"}, ft = {"javascript", "typescript", "lua"}} -- code playground in buffer executed
             use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
             use "nvim-treesitter/nvim-treesitter-textobjects" -- custom textobjects
+            use "RRethy/nvim-treesitter-textsubjects"
             use {"windwp/nvim-ts-autotag", ft = {"typescriptreact", "javascriptreact", "html"}} -- autotag <>
             use {
                 "shuntaka9576/preview-swagger.nvim",
@@ -188,9 +189,7 @@ local function init()
             } -- reload nvim config
             use {
                 "glepnir/dashboard-nvim",
-                config = function()
-                    require("plugins.dashboard")
-                end
+                config = require("plugins.dashboard").dashboard
             } -- dashboard
             use {
                 "lukas-reineke/indent-blankline.nvim",
