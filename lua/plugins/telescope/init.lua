@@ -25,15 +25,6 @@ function load()
             selection_strategy = "reset",
             sorting_strategy = "descending",
             layout_strategy = "horizontal",
-            layout_defaults = {
-                horizontal = {
-                    mirror = false,
-                    preview_width = 0.5
-                },
-                vertical = {
-                    mirror = false
-                }
-            },
             file_sorter = require "telescope.sorters".get_generic_sorter,
             file_ignore_patterns = {},
             generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,

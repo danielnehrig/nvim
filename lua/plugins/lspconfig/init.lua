@@ -4,22 +4,6 @@ local fn = vim.fn
 local LSP = {}
 LSP.__index = LSP
 
--- formatting and save
--- Overwrite the formatting handler
-vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
-    if err ~= nil or result == nil then
-        return
-    end
-    if not vim.api.nvim_buf_get_option(bufnr, "modified") then
-        local view = vim.fn.winsaveview()
-        vim.lsp.util.apply_text_edits(result, bufnr)
-        vim.fn.winrestview(view)
-        if bufnr == vim.api.nvim_get_current_buf() then
-            vim.api.nvim_command("noautocmd :update")
-        end
-    end
-end
-
 -- custom attach config for most LSP configs
 function LSP:on_attach(client, bufnr)
     if not packer_plugins["lsp_signature.nvim"].loaded then
@@ -107,7 +91,6 @@ function LSP:init()
         "css",
         "go",
         "docker",
-        "kotlin",
         "yaml",
         "bash",
         "ts",

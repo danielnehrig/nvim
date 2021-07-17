@@ -18,7 +18,7 @@ lspconfig.efm.setup {
         if client.resolved_capabilities.document_formatting then
             local autocmds = {
                 Format = {
-                    {"BufWritePre", "<buffer>", "lua vim.lsp.buf.formatting_sync()"}
+                    {"BufWritePre", "<buffer>", "lua vim.lsp.buf.formatting()"}
                 }
             }
             augroups(autocmds)

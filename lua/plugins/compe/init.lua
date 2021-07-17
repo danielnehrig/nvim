@@ -28,6 +28,7 @@ function compe:init()
             },
             source = {
                 tabnine = false,
+                orgmode = true,
                 nvim_lsp = true,
                 luasnip = true,
                 zsh = true,
@@ -35,8 +36,7 @@ function compe:init()
                 calc = true,
                 nvim_lua = false,
                 snippets_nvim = false,
-                buffer = false,
-                vsnip = false,
+                buffer = true,
                 spell = false,
                 tags = false,
                 treesitter = false
