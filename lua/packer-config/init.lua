@@ -197,14 +197,7 @@ local function init()
             } -- reload nvim config
             use {
                 "glepnir/dashboard-nvim",
-                cmd = {
-                    "Dashboard",
-                    "DashboardNewFile",
-                    "DashboardJumpMarks",
-                    "SessionLoad",
-                    "SessionSave"
-                },
-                setup = require("plugins.dashboard").dashboard
+                config = require("plugins.dashboard").dashboard
             } -- dashboard
             use {
                 "lukas-reineke/indent-blankline.nvim",
@@ -354,8 +347,5 @@ function plugins.load_compile()
     vim.cmd [[autocmd User PackerComplete lua require('packer-config').auto_compile()]]
     vim.cmd [[command! PackerStatus  lua require('packer-config').status()]]
 end
-
-plugins.ensure_plugins()
-plugins.load_compile()
 
 return plugins
