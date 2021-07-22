@@ -41,6 +41,12 @@ remap("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]])
 remap("n", "<Leader>de", [[ <Cmd>lua require'dapui'.eval()<CR>]])
 remap("n", "<Leader>df", [[ <Cmd>lua require'dapui'.float_element()<CR>]])
 
+-- compe
+remap("i", "<C-space>", "compe#complete()", true)
+remap("i", "<C-e>", "compe#close('<C-e>')", true)
+remap("i", "<C-f>", "compe#scroll({ delta: +4 })", true)
+remap("i", "<C-d>", "compe#scroll({ delta: -4 })", true)
+
 -- gitlinker
 remap("n", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):normal()<CR>]])
 remap("v", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):visual()<CR>]])

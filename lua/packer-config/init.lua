@@ -96,19 +96,25 @@ local function init()
             use {
                 "hrsh7th/nvim-compe",
                 event = "InsertEnter",
-                config = require("plugins.compe").init
+                config = require("plugins.compe").init,
+                wants = "LuaSnip",
+                requires = {
+                    {
+                        "L3MON4D3/LuaSnip",
+                        wants = "friendly-snippets",
+                        event = "InsertCharPre",
+                        config = function()
+                            require "plugins.compe.luasnip"
+                        end
+                    },
+                    {
+                        "rafamadriz/friendly-snippets",
+                        event = "InsertCharPre"
+                    }
+                }
             } -- completion engine
             use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
             use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
-
-            -- snip
-            use {"rafamadriz/friendly-snippets"}
-            use {
-                "L3MON4D3/LuaSnip",
-                config = function()
-                    require("plugins.compe.luasnip")
-                end
-            } -- snippets
 
             -- navigation
             use {
@@ -149,7 +155,9 @@ local function init()
                         org_agenda_files = {"~/org/*"},
                         org_default_notes_file = "~/org/refile.org"
                     }
-                end
+                end,
+                after = "nvim-compe",
+                requires = "hrsh7th/nvim-compe"
             }
             use {
                 "kdav5758/HighStr.nvim",
@@ -189,6 +197,13 @@ local function init()
             } -- reload nvim config
             use {
                 "glepnir/dashboard-nvim",
+                cmd = {
+                    "Dashboard",
+                    "DashboardNewFile",
+                    "DashboardJumpMarks",
+                    "SessionLoad",
+                    "SessionSave"
+                },
                 config = require("plugins.dashboard").dashboard
             } -- dashboard
             use {
@@ -339,5 +354,8 @@ function plugins.load_compile()
     vim.cmd [[autocmd User PackerComplete lua require('packer-config').auto_compile()]]
     vim.cmd [[command! PackerStatus  lua require('packer-config').status()]]
 end
+
+plugins.ensure_plugins()
+plugins.load_compile()
 
 return plugins

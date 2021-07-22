@@ -6,6 +6,31 @@
 -- because of lazloading
 local g = vim.g
 
+-- disable plugins
+local disabled_built_ins = {
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "gzip",
+    "zip",
+    "zipPlugin",
+    "tar",
+    "tarPlugin",
+    "getscript",
+    "getscriptPlugin",
+    "vimball",
+    "vimballPlugin",
+    "2html_plugin",
+    "logipat",
+    "rrhelper",
+    "spellfile_plugin"
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+    g["loaded_" .. plugin] = 1
+end
+
 -- check if we are in vscode nvim
 -- if not do not apply plugins
 -- slows down vscode and makes it non usable
@@ -13,11 +38,26 @@ if not g.vscode then
     -- setup conf and lua modules
     require("core.global")
     require("core.options")
-    require("core.mappings")
-    require("core.autocmd")
-
-    -- load packer plugins
-    local pack = require("packer-config")
-    pack.ensure_plugins()
-    pack.load_compile()
+    local modules = {
+        "core.mappings",
+        "core.autocmd",
+        "packer-config"
+    }
+    local async
+    async =
+        vim.loop.new_async(
+        vim.schedule_wrap(
+            function()
+                for i = 1, #modules, 1 do
+                    local ok, res = xpcall(require, debug.traceback, modules[i])
+                    if not (ok) then
+                        print("Error loading module : " .. modules[i])
+                        print(res) -- print stack traceback of the error
+                    end
+                end
+                async:close()
+            end
+        )
+    )
+    async:send()
 end
