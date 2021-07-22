@@ -2,6 +2,7 @@ local config = {}
 
 function config.dashboard()
     local home = os.getenv("HOME")
+    vim.g.dashboard_disable_at_vimenter = 1 -- dashboard is disabled by default
     vim.g.dashboard_footer_icon = "ﬦ "
     vim.g.dashboard_preview_command = "cat"
     vim.g.dashboard_preview_pipeline = "lolcat"

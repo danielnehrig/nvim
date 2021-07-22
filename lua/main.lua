@@ -60,4 +60,5 @@ if not g.vscode then
         )
     )
     async:send()
+    vim.opt.shadafile = ""
 end

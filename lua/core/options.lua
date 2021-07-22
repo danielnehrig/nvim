@@ -4,6 +4,7 @@ local nvim_command = vim.api.nvim_command
 -- local autocmd = require "utils".autocmd
 
 local function load_options()
+    opt.shadafile = "NONE"
     -- activate line numbers
     -- TODO: make toggleable for pair programming
     opt.number = true
