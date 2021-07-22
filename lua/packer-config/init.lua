@@ -204,7 +204,7 @@ local function init()
                     "SessionLoad",
                     "SessionSave"
                 },
-                config = require("plugins.dashboard").dashboard
+                setup = require("plugins.dashboard").dashboard
             } -- dashboard
             use {
                 "lukas-reineke/indent-blankline.nvim",
