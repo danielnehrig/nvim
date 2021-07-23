@@ -61,3 +61,10 @@ it does not offer a out of the box solution like VSCode
 for that case boilerplate configurations like Lunarvim or Lvim are out there  
 even this config would be a great place to start to have IDE like capabilities  
 it's inspired by Lvim though not cloned  
+
+### Nvim Log
+
+*Logs created on*
+- i9 9900k 5Ghz
+- 32GB Ram
+- Arch Linux
