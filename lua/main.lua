@@ -38,27 +38,12 @@ if not g.vscode then
     -- setup conf and lua modules
     require("core.global")
     require("core.options")
-    local modules = {
-        "core.mappings",
-        "core.autocmd",
-        "packer-config"
-    }
-    local async
-    async =
-        vim.loop.new_async(
-        vim.schedule_wrap(
-            function()
-                for i = 1, #modules, 1 do
-                    local ok, res = xpcall(require, debug.traceback, modules[i])
-                    if not (ok) then
-                        print("Error loading module : " .. modules[i])
-                        print(res) -- print stack traceback of the error
-                    end
-                end
-                async:close()
-            end
-        )
-    )
-    async:send()
+    require("core.mappings")
+    require("core.autocmd")
+
+    local pack = require("packer-config")
+    pack.ensure_plugins()
+    pack.load_compile()
+
     vim.opt.shadafile = ""
 end
