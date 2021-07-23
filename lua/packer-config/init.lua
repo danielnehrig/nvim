@@ -60,6 +60,12 @@ local function init()
             use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
             use "nvim-treesitter/nvim-treesitter-textobjects" -- custom textobjects
             use "RRethy/nvim-treesitter-textsubjects"
+            use {
+                "lewis6991/spellsitter.nvim",
+                config = function()
+                    require("spellsitter").setup({captures = {"comment"}})
+                end
+            }
             use {"windwp/nvim-ts-autotag", ft = {"typescriptreact", "javascriptreact", "html"}} -- autotag <>
             use {
                 "shuntaka9576/preview-swagger.nvim",

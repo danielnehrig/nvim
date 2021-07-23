@@ -2,6 +2,7 @@ local Func = require("utils")
 
 local definitions = {
     ft = {
+        {"FileType", "NvimTree,lspsagafinder,dashboard", "let b:cusorword=0"},
         {"FileType", "dashboard", "set showtabline=0"}, -- disable tabline in dashboard
         {"BufNewFile,BufRead", "*", "set showtabline=2"}, -- renable it
         {"TermOpen", "*", "set nonumber"},
