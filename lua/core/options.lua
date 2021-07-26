@@ -13,8 +13,8 @@ local function load_options()
     opt.omnifunc = "v:lua.vim.lsp.omnifunc" -- completion omnifunc
 
     -- Set so that folders are index for find command
-    opt.path:append({"**/*"})
-    opt.wildignore:append({"node_modules", ".git", "dist", ".next"})
+    opt.path = "**/*"
+    opt.wildignore:append({"node_modules", ".git", "dist", ".next", "target", "android", "ios", "coverage", "build"})
 
     g.mapleader = " " -- space leader
 
@@ -50,6 +50,7 @@ local function load_options()
     opt.timeoutlen = 500
     opt.clipboard = "unnamedplus" -- clipboard yank
     opt.wildmenu = true
+    opt.wildmode = "longest,full"
     opt.fileformats = "unix,dos,mac"
 
     -- fast

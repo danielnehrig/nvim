@@ -60,6 +60,7 @@ local function init()
             use {"metakirby5/codi.vim", cmd = {"Codi"}, ft = {"javascript", "typescript", "lua"}} -- code playground in buffer executed
             use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
             use "nvim-treesitter/nvim-treesitter-textobjects" -- custom textobjects
+            use {"nvim-treesitter/playground", cmd = "TSPlaygroundToggle"}
             use "RRethy/nvim-treesitter-textsubjects"
             use {
                 "lewis6991/spellsitter.nvim",
@@ -171,6 +172,31 @@ local function init()
             use {"ggandor/lightspeed.nvim", keys = {"s"}} -- lightspeed motion
 
             -- quality of life
+            use {
+                "abecodes/tabout.nvim",
+                config = function()
+                    require("tabout").setup {
+                        tabkey = "<C-a>", -- key to trigger tabout
+                        act_as_tab = true, -- shift content if tab out is not possible
+                        completion = true, -- if the tabkey is used in a completion pum
+                        tabouts = {
+                            {open = "'", close = "'"},
+                            {open = '"', close = '"'},
+                            {open = "`", close = "`"},
+                            {open = "(", close = ")"},
+                            {open = "[", close = "]"},
+                            {open = "{", close = "}"}
+                        },
+                        ignore_beginning = true --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]],
+                        exclude = {} -- tabout will ignore these filetypes
+                    }
+                end,
+                wants = {"nvim-treesitter"}, -- or require if not used so far
+                after = {"nvim-compe"} -- if a completion plugin is using tabs load it before
+            }
+            use {
+                "ThePrimeagen/refactoring.nvim"
+            }
             use {
                 "hkupty/nvimux",
                 keys = {"<C-a>"},
