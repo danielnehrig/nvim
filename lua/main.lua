@@ -2,16 +2,12 @@
 -- Execution Flow of each loaded configuration
 -- for various plugins
 -- also a lot of configuration for plugins can be found
--- in the packer_config setup
--- because of lazloading
+-- in the packer config setup
+-- because of lazyloading
 local g = vim.g
 
 -- disable plugins
 local disabled_built_ins = {
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
     "gzip",
     "zip",
     "zipPlugin",
@@ -23,17 +19,16 @@ local disabled_built_ins = {
     "vimballPlugin",
     "2html_plugin",
     "logipat",
-    "rrhelper",
-    "spellfile_plugin"
+    "rrhelper"
 }
 
 for _, plugin in pairs(disabled_built_ins) do
     g["loaded_" .. plugin] = 1
 end
 
--- check if we are in vscode nvim
+-- check if we are in VSCode nvim
 -- if not do not apply plugins
--- slows down vscode and makes it non usable
+-- slows down VSCode and makes it non usable
 if not g.vscode then
     -- setup conf and lua modules
     require("core.global")

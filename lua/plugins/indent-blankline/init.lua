@@ -6,25 +6,38 @@ g.indent_blankline_context_patterns = {
     "class",
     "function",
     "method",
-    "^if",
-    "^while",
-    "^for",
-    "^object",
-    "^table",
     "block",
-    "arguments",
-    "return",
-    "const"
+    "list_literal",
+    "selector",
+    "^if",
+    "^table",
+    "if_statement",
+    "while",
+    "for"
 }
 g.indent_blankline_show_end_of_line = true
 g.indent_blankline_use_treesitter = true
 g.indent_blankline_filetype_exclude = {
-    "help",
-    "dashboard",
-    "dashpreview",
-    "NvimTree",
-    "coc-explorer",
     "startify",
+    "dashboard",
+    "dotooagenda",
+    "log",
+    "fugitive",
+    "gitcommit",
+    "packer",
+    "vimwiki",
+    "markdown",
+    "json",
+    "txt",
     "vista",
-    "sagahover"
+    "help",
+    "todoist",
+    "NvimTree",
+    "peekaboo",
+    "git",
+    "TelescopePrompt",
+    "undotree",
+    "flutterToolsOutline",
+    "" -- for all buffers without a file type
 }
+vim.g.indent_blankline_buftype_exclude = {"terminal", "nofile"}

@@ -27,6 +27,7 @@ local function init()
             use {"romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons"} -- bufferline
             use {
                 "norcalli/nvim-colorizer.lua",
+                ft = {"css", "scss", "sass", "javascriptreact", "typescriptreact"},
                 config = function()
                     require("colorizer").setup()
                 end
@@ -149,7 +150,7 @@ local function init()
             -- navigation
             use {
                 "nvim-telescope/telescope.nvim",
-                cmd = {"Telescope"},
+                cmd = {"Telescope", "Octo"},
                 branch = "async_v2",
                 config = require("plugins.telescope"),
                 requires = {

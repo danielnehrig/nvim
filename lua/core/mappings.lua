@@ -1,5 +1,4 @@
 local remap = require("utils").map_global
-local home = require("core.global").home
 
 -- quickfix
 remap("n", "<Leader>qc", ":cclose<CR>")
@@ -15,7 +14,7 @@ remap("n", "<Leader>lo", ":lopen<CR>")
 remap("n", "<Leader>lp", ":lprev<CR>")
 remap("n", "<Leader>la", ":ll<CR>")
 
--- telescope
+-- telescope NOTE: Lazyloaded
 remap("n", "<Leader>ff", ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>")
 remap("n", "<Leader>fg", ":Telescope live_grep find_command=rg,--ignore,--hidden<CR>")
 remap("n", "<Leader>fb", ":Telescope buffers<CR>")
@@ -24,11 +23,11 @@ remap("n", "<Leader>fo", ":Telescope oldfiles<CR>")
 remap("n", "<Leader>fp", ":Telescope project<CR>")
 remap("n", "<Leader>fn", ":Telescope file_create<CR>")
 
--- nvim tree
+-- nvim tree NOTE: Lazyloaded
 remap("n", "<Leader>n", ":NvimTreeFindFile<CR>")
 remap("n", "<C-n>", ":NvimTreeToggle<CR>")
 
--- dap
+-- dap NOTE: Lazyloaded
 remap("n", "<Leader>ds", [[ <Cmd>lua require'dap'.stop()<CR>]])
 remap("n", "<Leader>dd", [[ <Cmd>lua require'dap'.disconnect()<CR>]])
 remap("n", "<Leader>dc", [[ <Cmd>lua require("plugins.dap.attach").attach()<CR>]])
@@ -41,17 +40,17 @@ remap("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]])
 remap("n", "<Leader>de", [[ <Cmd>lua require'dapui'.eval()<CR>]])
 remap("n", "<Leader>df", [[ <Cmd>lua require'dapui'.float_element()<CR>]])
 
--- compe
+-- compe: NOTE: Lazyloaded
 remap("i", "<C-space>", "compe#complete()", true)
 remap("i", "<C-e>", "compe#close('<C-e>')", true)
 remap("i", "<C-f>", "compe#scroll({ delta: +4 })", true)
 remap("i", "<C-d>", "compe#scroll({ delta: -4 })", true)
 
--- gitlinker
+-- gitlinker: NOTE: Lazyloaded
 remap("n", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):normal()<CR>]])
 remap("v", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):visual()<CR>]])
 
--- marker
+-- marker: NOTE: Lazyloaded
 remap("v", "<Leader>1", ":<c-u>HSHighlight 1<CR>")
 remap("v", "<Leader>2", ":<c-u>HSHighlight 2<CR>")
 remap("v", "<Leader>3", ":<c-u>HSHighlight 3<CR>")
