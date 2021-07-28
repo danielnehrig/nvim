@@ -145,7 +145,7 @@ local function init()
                     }
                 }
             } -- completion engine
-            use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
+            use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh8th/nvim-compe"}
             use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
 
             -- navigation
