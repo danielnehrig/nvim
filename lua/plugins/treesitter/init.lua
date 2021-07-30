@@ -18,6 +18,11 @@ require "nvim-treesitter.configs".setup {
             [";"] = "textsubjects-container-outer"
         }
     },
+    context_commentstring = {
+        enable = true,
+        -- This plugin provided an autocommand option
+        enable_autocmd = true
+    },
     textobjects = {
         swap = {
             enable = true,

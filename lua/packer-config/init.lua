@@ -58,7 +58,21 @@ local function init()
                 cmd = "MarkdownPreview"
             } -- markdown previewer
             use {"metakirby5/codi.vim", cmd = {"Codi"}, ft = {"javascript", "typescript", "lua"}} -- code playground in buffer executed
-            use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
+            use {"nvim-treesitter/nvim-treesitter"} -- syntax highlight indent etc
+            use {"JoosepAlviste/nvim-ts-context-commentstring"}
+            use {
+                "winston0410/commented.nvim",
+                keys = {"<space>cc"},
+                config = function()
+                    require("commented").setup(
+                        {
+                            hooks = {
+                                before_comment = require("ts_context_commentstring.internal").update_commentstring
+                            }
+                        }
+                    )
+                end
+            }
             use "nvim-treesitter/nvim-treesitter-textobjects" -- custom textobjects
             use {"nvim-treesitter/playground", cmd = "TSPlaygroundToggle"}
             use "RRethy/nvim-treesitter-textsubjects"
@@ -152,11 +166,10 @@ local function init()
             use {
                 "nvim-telescope/telescope.nvim",
                 cmd = {"Telescope", "Octo"},
-                branch = "async_v2",
                 config = require("plugins.telescope"),
                 requires = {
                     {"nvim-lua/popup.nvim", opt = true},
-                    {"nvim-lua/plenary.nvim", opt = true, branch = "async_jobs_v2"},
+                    {"nvim-lua/plenary.nvim", opt = true},
                     {"nvim-telescope/telescope-project.nvim", opt = true},
                     {"nvim-telescope/telescope-fzf-native.nvim", opt = true, run = "make"}
                 }
@@ -195,8 +208,15 @@ local function init()
                 after = {"nvim-compe"} -- if a completion plugin is using tabs load it before
             }
             use {
-                "ThePrimeagen/refactoring.nvim"
+                "ThePrimeagen/refactoring.nvim",
+                config = require("plugins.refactoring").init,
+                opt = true,
+                requires = {
+                    {"nvim-treesitter/nvim-treesitter"},
+                    {"nvim-lua/plenary.nvim", opt = true}
+                }
             }
+            use {"nvim-lua/plenary.nvim"}
             use {
                 "hkupty/nvimux",
                 keys = {"<C-a>"},
@@ -265,7 +285,7 @@ local function init()
             use {
                 "ruifm/gitlinker.nvim",
                 requires = {
-                    {"nvim-lua/plenary.nvim", opt = true, branch = "async_jobs_v2"}
+                    {"nvim-lua/plenary.nvim", opt = true}
                 },
                 opt = true
             } -- get repo file on remote as url

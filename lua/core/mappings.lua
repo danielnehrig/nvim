@@ -1,5 +1,17 @@
 local remap = require("utils").map_global
 
+-- general
+remap("v", "J", ":m '>+1<CR>gv=gv") -- move lines
+remap("v", "K", ":m '<-2<CR>gv=gv") -- move lines
+remap("v", "<leader>p", '"_dP') -- delete into blackhole and past last yank
+remap("n", "<leader>Y", 'gg"+yG') -- copy hole biffer
+remap("n", "<leader>D", '"_d') -- delete into blackhole register
+remap("v", "<leader>D", '"_d') -- delete into blackhole register
+remap("n", "Y", "y$") -- yank until end
+remap("n", "<C-d>", "<C-d>zz") -- move and center
+remap("n", "<C-u>", "<C-u>zz") -- move and center
+remap("i", "jj", "<ESC>") -- normal mode map
+
 -- quickfix
 remap("n", "<Leader>qc", ":cclose<CR>")
 remap("n", "<Leader>qn", ":cnext<CR>")
@@ -50,7 +62,10 @@ remap("i", "<C-d>", "compe#scroll({ delta: -4 })", true)
 remap("n", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):normal()<CR>]])
 remap("v", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):visual()<CR>]])
 
-remap("v", "<Leader>re", [[ <Cmd>lua require('refactoring').extract()<CR>]])
+-- refactor: NOTE: Lazyloaded
+remap("v", "<Leader>re", [[ <Cmd>lua require('plugins.refactoring').extract()<CR>]])
+remap("v", "<Leader>rf", [[ <Cmd>lua require('plugins.refactoring').extract_to_file()<CR>]])
+remap("v", "<Leader>rt", [[ <Cmd>lua require('plugins.refactoring').telescope()<CR>]])
 
 -- marker: NOTE: Lazyloaded
 remap("v", "<Leader>1", ":<c-u>HSHighlight 1<CR>")
