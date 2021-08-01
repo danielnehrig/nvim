@@ -1,4 +1,7 @@
-function load()
+local M = {}
+M.__index = M
+
+function M.init()
     vim.cmd [[packadd plenary.nvim]]
     vim.cmd [[packadd popup.nvim]]
     vim.cmd [[packadd telescope-project.nvim]]
@@ -58,4 +61,4 @@ function load()
     require "octo".setup()
 end
 
-return load
+return M

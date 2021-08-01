@@ -166,7 +166,7 @@ local function init()
             use {
                 "nvim-telescope/telescope.nvim",
                 cmd = {"Telescope", "Octo"},
-                config = require("plugins.telescope"),
+                config = require("plugins.telescope").init,
                 requires = {
                     {"nvim-lua/popup.nvim", opt = true},
                     {"nvim-lua/plenary.nvim", opt = true},
@@ -185,6 +185,9 @@ local function init()
             use {"ggandor/lightspeed.nvim", keys = {"s"}} -- lightspeed motion
 
             -- quality of life
+            use {
+                "gelguy/wilder.nvim"
+            }
             use {
                 "abecodes/tabout.nvim",
                 config = function()
@@ -216,7 +219,6 @@ local function init()
                     {"nvim-lua/plenary.nvim", opt = true}
                 }
             }
-            use {"nvim-lua/plenary.nvim"}
             use {
                 "hkupty/nvimux",
                 keys = {"<C-a>"},
@@ -263,7 +265,7 @@ local function init()
             use {
                 "famiu/nvim-reload",
                 cmd = {"Reload", "Restart"},
-                config = function()
+                setup = function()
                     vim.cmd [[packadd plenary.nvim]]
                 end
             } -- reload nvim config
