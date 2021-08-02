@@ -27,22 +27,29 @@ local function init()
             use {"romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons"} -- bufferline
             use {
                 "norcalli/nvim-colorizer.lua",
-                ft = {"css", "scss", "sass", "javascriptreact", "typescriptreact"},
+                ft = {"css", "scss", "sass", "javascriptreact", "typescriptreact", "lua"},
                 config = function()
                     require("colorizer").setup()
                 end
             } -- colors hex
             use {
-                "eddyekofo94/gruvbox-flat.nvim",
+                "Murtaza-Udaipurwala/gruvqueen",
                 config = function()
+
                     if not vim.g.neovide then
-                        vim.g.gruvbox_transparent_bg = 1
-                        vim.g.gruvbox_transparent = true
+                      vim.g.gruvqueen_transparent_background = true
+                    else
+                      vim.g.gruvqueen_transparent_background = false
                     end
-                    vim.g.gruvbox_terminal_colors = true
-                    vim.g.gruvbox_flat_style = "dark"
-                    vim.g.gruvbox_flat_style = "hard"
-                    vim.cmd "colorscheme gruvbox-flat" -- :)
+                    vim.g.gruvqueen_background_color = "#10151a"
+                    vim.g.gruvqueen_italic_comments = true
+                    vim.g.gruvqueen_italic_keywords = true
+                    vim.g.gruvqueen_italic_functions = true
+                    vim.g.gruvqueen_italic_variables = true
+                    vim.g.gruvqueen_invert_selection = true
+                    vim.g.gruvqueen_style = "mix" -- possible values: 'original', 'mix', 'material'
+
+                    vim.cmd("colorscheme gruvqueen")
                     require("core.highlights")
                 end
             } -- colorscheme

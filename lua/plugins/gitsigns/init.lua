@@ -12,15 +12,6 @@ local signs = {
     changedelete = {hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn"}
 }
 
--- set signs transparent on terminal app
-if not vim.g.neovide or not vim.g.goneovim or not vim.g.uivonim then
-    cmd("hi SignColumn guibg=none")
-    cmd("hi GruvboxGreenSign ctermbg=none guibg=none")
-    cmd("hi GruvboxRedSign ctermbg=none guibg=none")
-    cmd("hi GruvboxRedSign ctermbg=none guibg=none")
-    cmd("hi GruvboxAquaSign ctermbg=none guibg=none")
-end
-
 require("gitsigns").setup {
     signs = signs,
     numhl = true,

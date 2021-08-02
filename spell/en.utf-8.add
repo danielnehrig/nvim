@@ -5,3 +5,5 @@ lua
 conf
 nvim
 VSCode
+keymap
+luajit
