@@ -2,6 +2,9 @@ local cmd = vim.cmd
 local g, b, opt, go = vim.g, vim.b, vim.opt, vim.go
 
 local function load_options()
+    if vim.g.neovide then
+        g.neovide_cursor_vfx_mode = "railgun"
+    end
     opt.shadafile = "NONE"
     -- activate line numbers
     -- TODO: make toggle for pair programming
