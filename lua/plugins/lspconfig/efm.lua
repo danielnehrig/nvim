@@ -24,9 +24,7 @@ lspconfig.efm.setup {
             augroups(autocmds)
         end
     end,
-    root_dir = function()
-        return vim.fn.getcwd()
-    end,
+    root_dir = require "lspconfig/util".root_pattern("package.json", ".eslintrc", ".git"),
     init_options = {
         documentFormatting = true,
         documentSymbol = false,
