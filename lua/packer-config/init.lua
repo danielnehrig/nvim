@@ -121,7 +121,7 @@ local function init()
                     require("plugins.lspStatus")
                 end
             } -- lsp status
-            use "glepnir/lspsaga.nvim" -- fancy popups lsp
+            use "glepnir/lspsaga.nvim" -- fancy popup lsp
             use {
                 "onsails/lspkind-nvim",
                 config = function()
@@ -132,7 +132,7 @@ local function init()
                 "neovim/nvim-lspconfig",
                 config = require("plugins.lspconfig").init,
                 requires = {"nvim-lua/lsp-status.nvim", after = {"neovim/nvim-lspconfig"}}
-            } -- default configs for lsp and setup lsp
+            } -- default config for lsp and setup lsp
             use {
                 "hrsh7th/nvim-compe",
                 event = "InsertEnter",
@@ -184,7 +184,7 @@ local function init()
                 "kyazdani42/nvim-tree.lua",
                 requires = "kyazdani42/nvim-web-devicons",
                 cmd = {"NvimTreeToggle", "NvimTreeFindFile"}
-            } -- Drawerboard style like nerdtree
+            } -- Drawer board style like nerdtree
 
             -- movement
             use "unblevable/quick-scope" -- f F t T improved highlight
