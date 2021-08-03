@@ -315,7 +315,13 @@ local function init()
                 "vim-test/vim-test",
                 cmd = {"TestFile"},
                 requires = {
-                    {"neomake/neomake", cmd = {"Neomake"}},
+                    {
+                        "neomake/neomake",
+                        cmd = {"Neomake"},
+                        setup = function()
+                            require("plugins.build"):init()
+                        end
+                    },
                     {"tpope/vim-dispatch", cmd = {"Dispatch"}}
                 },
                 wants = {"vim-dispatch", "neomake"}
@@ -339,31 +345,6 @@ local function init()
     }
 end
 
--- bootstrap packer
-local function bootstrap()
-    local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
-    -- check if packer exists or is installed
-    if fn.empty(fn.glob(install_path)) > 0 then
-        -- fetch packer
-        execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-        execute "packadd packer.nvim"
-
-        -- autocmd hook to wait for packer install and then after install load the needed config for plugins
-        vim.cmd "autocmd User PackerComplete ++once lua require('load_config')"
-
-        -- load packer plugins
-        init()
-
-        -- install packer plugins
-        require("packer").sync()
-    else
-        -- add packer and load plugins and config
-        execute "packadd packer.nvim"
-        init()
-        require("load_config")
-    end
-end
-
 local plugins =
     setmetatable(
     {},
@@ -377,8 +358,29 @@ local plugins =
     }
 )
 
-function plugins.ensure_plugins()
-    bootstrap()
+-- Bootstrap Packer and the Plugins
+function plugins.bootstrap()
+    local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+    -- check if packer exists or is installed
+    if fn.empty(fn.glob(install_path)) > 0 then
+        -- fetch packer
+        execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+        execute "packadd packer.nvim"
+
+        -- autocmd hook to wait for packer install and then after install load the needed config for plugins
+        vim.cmd "autocmd User PackerComplete ++once lua require('load_config').init()"
+
+        -- load packer plugins
+        init()
+
+        -- install packer plugins
+        require("packer").sync()
+    else
+        -- add packer and load plugins and config
+        execute "packadd packer.nvim"
+        init()
+        require("load_config").init()
+    end
 end
 
 function plugins.convert_compile_file()
@@ -427,8 +429,10 @@ function plugins.load_compile()
     vim.cmd [[command! PackerUpdate lua require('packer-config').update()]]
     vim.cmd [[command! PackerSync lua require('packer-config').sync()]]
     vim.cmd [[command! PackerClean lua require('packer-config').clean()]]
-    vim.cmd [[autocmd User PackerComplete lua require('packer-config').auto_compile()]]
     vim.cmd [[command! PackerStatus  lua require('packer-config').status()]]
+
+    -- autocompile event
+    vim.cmd [[autocmd User PackerComplete lua require('packer-config').auto_compile()]]
 end
 
 return plugins

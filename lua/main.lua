@@ -37,7 +37,7 @@ if not g.vscode then
     require("core.autocmd")
 
     local pack = require("packer-config")
-    pack.ensure_plugins()
+    pack.bootstrap()
     pack.load_compile()
 
     vim.opt.shadafile = ""

@@ -1,11 +1,5 @@
 local Func = require("utils")
 
-vim.g.neomake_open_list = 2
-
-vim.api.nvim_set_var("test#javascript#runnter", "jest")
-vim.api.nvim_set_var("test#javascript#jest#options", "--reporters ~/dotfiles/vim-qf-format.js")
-vim.api.nvim_set_var("test#strategy", "neomake")
-
 local Make = {
     failed = false,
     success = false,
@@ -19,6 +13,22 @@ function Make:new(o)
     o = o or {}
     setmetatable(o, Make)
     return o
+end
+
+function Make:init()
+    vim.g.neomake_open_list = 2
+    vim.api.nvim_set_var("test#javascript#runnter", "jest")
+    vim.api.nvim_set_var("test#javascript#jest#options", "--reporters ~/dotfiles/vim-qf-format.js")
+    vim.api.nvim_set_var("test#strategy", "neomake")
+
+    local autocmds = {
+        neomake_hook = {
+            {"User", "NeomakeJobFinished", "lua require('plugins.build'):Finished()"},
+            {"User", "NeomakeJobStarted", "lua require('plugins.build'):Start()"}
+        }
+    }
+
+    Func.nvim_create_augroups(autocmds)
 end
 
 function Make:Status()
@@ -59,14 +69,5 @@ function Make:GetRunning()
 end
 
 local make = Make:new()
-
-local autocmds = {
-    neomake_hook = {
-        {"User", "NeomakeJobFinished", "lua require('plugins.build'):Finished()"},
-        {"User", "NeomakeJobStarted", "lua require('plugins.build'):Start()"}
-    }
-}
-
-Func.nvim_create_augroups(autocmds)
 
 return make
