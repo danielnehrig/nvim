@@ -12,6 +12,9 @@ local function init()
         {
             compile_path = packer_compiled,
             disable_commands = true,
+            display = {
+                open_fn = require("packer.util").float
+            },
             git = {clone_timeout = 120}
         }
     )
