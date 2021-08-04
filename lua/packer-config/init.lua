@@ -187,7 +187,7 @@ local function init()
 
     -- movement
     use "unblevable/quick-scope" -- f F t T improved highlight
-    use {"ggandor/lightspeed.nvim", keys = {"s"}} -- lightspeed motion
+    use {"ggandor/lightspeed.nvim", keys = {"s", "S", "t", "f", "T", "F"}} -- lightspeed motion
 
     -- quality of life
     use {
