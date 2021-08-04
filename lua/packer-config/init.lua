@@ -280,7 +280,8 @@ local function init()
     } -- dashboard
     use {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufRead"
+        config = require("plugins.indent-blankline").init
+        -- event = "BufRead"
     } -- show indentation
 
     -- git
