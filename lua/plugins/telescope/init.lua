@@ -8,7 +8,8 @@ function M.init()
     vim.cmd [[packadd telescope-fzf-native.nvim]]
     vim.cmd [[packadd octo.nvim]]
 
-    require("telescope").setup {
+    local telescope = require("telescope")
+    telescope.setup {
         defaults = {
             vimgrep_arguments = {
                 "rg",
@@ -54,10 +55,10 @@ function M.init()
             }
         }
     }
-    require("telescope").load_extension("fzf")
-    require("telescope").load_extension("project")
-    require("telescope").load_extension("dotfiles")
-    require("telescope").load_extension("file_create")
+    telescope.load_extension("fzf")
+    telescope.load_extension("project")
+    telescope.load_extension("dotfiles")
+    telescope.load_extension("file_create")
     require "octo".setup()
 end
 
