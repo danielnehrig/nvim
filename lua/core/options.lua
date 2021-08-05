@@ -68,10 +68,6 @@ local function load_options()
     -- spell
     -- opt.spelllang = "en,de"
     -- opt.spell = true
-    vim.cmd [[
-      set efm+=%.%#\ at\ %f:%l:%c,%.%#\ at\ %.%#(%f:%l:%c)
-      set efm+=%.%#\ at\ %.%#(%f:%l:%c),%-G%.%#
-    ]]
 end
 
 load_options()
