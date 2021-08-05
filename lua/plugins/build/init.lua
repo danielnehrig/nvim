@@ -40,18 +40,9 @@ function Make:init()
     vim.api.nvim_set_var("test#typescript#runner", "jest")
     vim.api.nvim_set_var("test#typescriptreact#runner", "jest")
     vim.api.nvim_set_var("test#python#pytest#options", "--color=yes")
-    vim.api.nvim_set_var(
-        "test#javascript#jest#options",
-        "--color=yes --reporters " .. global.home .. "/dotfiles/vim-qf-format.js"
-    )
-    vim.api.nvim_set_var(
-        "test#typescript#jest#options",
-        "--color=yes --reporters " .. global.home .. "/dotfiles/vim-qf-format.js"
-    )
-    vim.api.nvim_set_var(
-        "test#typescriptreact#jest#options",
-        "--color=yes --reporters " .. global.home .. "/dotfiles/vim-qf-format.js"
-    )
+    vim.api.nvim_set_var("test#javascript#jest#options", "--color=yes")
+    vim.api.nvim_set_var("test#typescript#jest#options", "--color=yes")
+    vim.api.nvim_set_var("test#typescriptreact#jest#options", "--color=yes")
 
     vim.api.nvim_set_var("test#strategy", "neomake")
 
