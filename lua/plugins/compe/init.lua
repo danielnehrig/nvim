@@ -27,9 +27,9 @@ function compe:init()
                 min_height = 1
             },
             source = {
-                tabnine = true,
-                orgmode = true,
                 nvim_lsp = true,
+                orgmode = true,
+                tabnine = true,
                 luasnip = true,
                 zsh = true,
                 path = true,

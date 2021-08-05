@@ -4,7 +4,8 @@ local Make = {
     failed = false,
     success = false,
     running = false,
-    status = "Make"
+    status = "Make",
+    notify = nil
 }
 
 Make.__index = Make
@@ -13,6 +14,19 @@ function Make:new(o)
     o = o or {}
     setmetatable(o, Make)
     return o
+end
+
+function Make:Report(msg)
+    vim.cmd [[packadd nvim-notify]]
+    local info = vim.g.neomake_hook_context.jobinfo
+    local notify = require("notify")
+    if info.exit_code == 0 then
+        notify("Job Finished Successfully")
+    elseif info.exit_code == 1 then
+        notify("Job Failed", "error")
+    else
+        notify("Job Started", "log")
+    end
 end
 
 function Make:init()
@@ -24,13 +38,16 @@ function Make:init()
     local autocmds = {
         neomake_hook = {
             {"User", "NeomakeJobFinished", "lua require('plugins.build'):Finished()"},
-            {"User", "NeomakeJobStarted", "lua require('plugins.build'):Start()"}
+            {"User", "NeomakeJobFinished", "lua require('plugins.build'):Report()"},
+            {"User", "NeomakeJobStarted", "lua require('plugins.build'):Start()"},
+            {"User", "NeomakeJobStarted", "lua require('plugins.build'):Report()"}
         }
     }
 
     Func.nvim_create_augroups(autocmds)
 end
 
+-- For Statusline gets called every tick
 function Make:Status()
     return self.status
 end
@@ -56,14 +73,17 @@ function Make:Start()
     self.success = false
 end
 
+-- For Statusline gets called every tick
 function Make:GetFailed()
     return self.failed
 end
 
+-- For Statusline gets called every tick
 function Make:GetSuccess()
     return self.success
 end
 
+-- For Statusline gets called every tick
 function Make:GetRunning()
     return self.running
 end

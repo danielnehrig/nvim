@@ -194,6 +194,10 @@ local function init()
         "gelguy/wilder.nvim"
     }
     use {
+        "rcarriga/nvim-notify",
+        opt = true
+    }
+    use {
         "abecodes/tabout.nvim",
         config = function()
             require("tabout").setup {
