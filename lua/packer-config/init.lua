@@ -53,7 +53,6 @@ local function init()
     } -- colorscheme
 
     -- language
-    use {"HerringtonDarkholme/yats.vim", ft = {"typescript", "typescriptreact"}} -- ts syntax
     use {"folke/lua-dev.nvim", opt = true} -- lua nvim setup
     use {"rust-lang/rust.vim", ft = {"rust", "rs"}} -- rust language tools
     use {
@@ -315,16 +314,14 @@ local function init()
     use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff", "Gblame", "Glog"}} -- git integration
 
     -- testing / building
+    use {"rcarriga/vim-ultest", requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins"}
     use {
         "vim-test/vim-test",
         cmd = {"TestFile"},
         requires = {
             {
                 "neomake/neomake",
-                cmd = {"Neomake"},
-                setup = function()
-                    require("plugins.build"):init()
-                end
+                cmd = {"Neomake"}
             },
             {"tpope/vim-dispatch", cmd = {"Dispatch"}}
         },

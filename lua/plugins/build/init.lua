@@ -1,4 +1,5 @@
 local Func = require("utils")
+local global = require("core.global")
 
 local Make = {
     failed = false,
@@ -18,21 +19,40 @@ end
 
 function Make:Report(msg)
     vim.cmd [[packadd nvim-notify]]
+    local opt = {
+        title = "Neomake"
+    }
     local info = vim.g.neomake_hook_context.jobinfo
     local notify = require("notify")
     if info.exit_code == 0 then
-        notify("Job Finished Successfully")
+        notify("Job Finished Successfully", _, opt)
     elseif info.exit_code == 1 then
-        notify("Job Failed", "error")
+        notify("Job Failed", "error", opt)
     else
-        notify("Job Started", "log")
+        notify("Job Started", "log", opt)
     end
 end
 
 function Make:init()
+    print("init neomake")
     vim.g.neomake_open_list = 2
-    vim.api.nvim_set_var("test#javascript#runnter", "jest")
-    vim.api.nvim_set_var("test#javascript#jest#options", "--reporters ~/dotfiles/vim-qf-format.js")
+    vim.api.nvim_set_var("test#javascript#runner", "jest")
+    vim.api.nvim_set_var("test#typescript#runner", "jest")
+    vim.api.nvim_set_var("test#typescriptreact#runner", "jest")
+    vim.api.nvim_set_var("test#python#pytest#options", "--color=yes")
+    vim.api.nvim_set_var(
+        "test#javascript#jest#options",
+        "--color=yes --reporters " .. global.home .. "/dotfiles/vim-qf-format.js"
+    )
+    vim.api.nvim_set_var(
+        "test#typescript#jest#options",
+        "--color=yes --reporters " .. global.home .. "/dotfiles/vim-qf-format.js"
+    )
+    vim.api.nvim_set_var(
+        "test#typescriptreact#jest#options",
+        "--color=yes --reporters " .. global.home .. "/dotfiles/vim-qf-format.js"
+    )
+
     vim.api.nvim_set_var("test#strategy", "neomake")
 
     local autocmds = {
