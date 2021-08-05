@@ -314,7 +314,7 @@ local function init()
     use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff", "Gblame", "Glog"}} -- git integration
 
     -- testing / building
-    use {"rcarriga/vim-ultest", cmd = {"Ultest"}, wants = {"vim-test/vim-test"}}
+    use {"rcarriga/vim-ultest", cmd = {"Ultest"}, wants = {"vim-test"}}
     use {
         "vim-test/vim-test",
         cmd = {"TestFile"},
