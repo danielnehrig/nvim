@@ -99,7 +99,7 @@ local function init()
     use {
         "folke/lsp-trouble.nvim",
         config = function()
-            require("plugins.trouble")
+            require("trouble").setup()
         end,
         cmd = {"LspTrouble"},
         event = "BufRead",

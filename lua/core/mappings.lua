@@ -78,3 +78,5 @@ remap("v", "<Leader>7", ":<c-u>HSHighlight 7<CR>")
 remap("v", "<Leader>8", ":<c-u>HSHighlight 8<CR>")
 remap("v", "<Leader>9", ":<c-u>HSHighlight 9<CR>")
 remap("v", "<Leader>0", ":<c-u>HSRmHighlight<CR>")
+
+remap("n", "<Leader>gt", ":LspTroubleToggle<CR>")
