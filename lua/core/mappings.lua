@@ -27,8 +27,8 @@ remap("n", "<Leader>lp", ":lprev<CR>")
 remap("n", "<Leader>la", ":ll<CR>")
 
 -- telescope NOTE: Lazyloaded
-remap("n", "<Leader>ff", ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>")
-remap("n", "<Leader>fg", ":Telescope live_grep find_command=rg,--ignore,--hidden<CR>")
+remap("n", "<Leader>ff", ":Telescope find_files<CR>")
+remap("n", "<Leader>fg", ":Telescope live_grep<CR>")
 remap("n", "<Leader>fb", ":Telescope buffers<CR>")
 remap("n", "<Leader>fh", ":Telescope help_tags<CR>")
 remap("n", "<Leader>fo", ":Telescope oldfiles<CR>")
