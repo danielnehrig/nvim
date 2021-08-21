@@ -1,5 +1,4 @@
 local Func = require("utils")
-local global = require("core.global")
 
 local Make = {
     failed = false,

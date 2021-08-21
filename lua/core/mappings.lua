@@ -7,7 +7,6 @@ remap("v", "<leader>p", '"_dP') -- delete into blackhole and past last yank
 remap("n", "<leader>Y", 'gg"+yG') -- copy hole biffer
 remap("n", "<leader>D", '"_d') -- delete into blackhole register
 remap("v", "<leader>D", '"_d') -- delete into blackhole register
-remap("n", "Y", "y$") -- yank until end
 remap("n", "<C-d>", "<C-d>zz") -- move and center
 remap("n", "<C-u>", "<C-u>zz") -- move and center
 remap("i", "jj", "<ESC>") -- normal mode map
