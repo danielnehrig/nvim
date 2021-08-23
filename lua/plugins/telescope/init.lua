@@ -3,7 +3,6 @@ M.__index = M
 
 function M.init()
     vim.cmd [[packadd plenary.nvim]]
-    vim.cmd [[packadd popup.nvim]]
     vim.cmd [[packadd telescope-project.nvim]]
     vim.cmd [[packadd telescope-fzf-native.nvim]]
     vim.cmd [[packadd octo.nvim]]

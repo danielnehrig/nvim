@@ -172,7 +172,6 @@ local function init()
         cmd = {"Telescope", "Octo"},
         config = require("plugins.telescope").init,
         requires = {
-            {"nvim-lua/popup.nvim", opt = true},
             {"nvim-lua/plenary.nvim", opt = true},
             {"nvim-telescope/telescope-project.nvim", opt = true},
             {"nvim-telescope/telescope-fzf-native.nvim", opt = true, run = "make"}
@@ -284,8 +283,7 @@ local function init()
             require("plugins.gitsigns")
         end,
         requires = {
-            {"nvim-lua/plenary.nvim", after = "gitsigns.nvim"},
-            {"nvim-lua/popup.nvim", after = "gitsigns.nvim"}
+            {"nvim-lua/plenary.nvim", after = "gitsigns.nvim"}
         }
     } -- like gitgutter shows hunks etc on sign column
     use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff", "Gblame", "Glog"}} -- git integration
