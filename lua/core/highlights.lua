@@ -1,5 +1,6 @@
 local cmd = vim.cmd
 
+cmd("autocmd ColorScheme * highlight Normal guibg = none guifg = #e2cca9")
 cmd("autocmd ColorScheme * highlight LineNr guibg = none")
 cmd("autocmd ColorScheme * highlight SignColumn guibg = none")
 cmd("autocmd ColorScheme * highlight VertSplit guibg = none")
