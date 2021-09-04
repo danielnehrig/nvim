@@ -132,11 +132,11 @@ local function init()
         requires = {"nvim-lua/lsp-status.nvim", after = {"neovim/nvim-lspconfig"}}
     } -- default configs for lsp and setup lsp
     use {
-        "hrsh7th/nvim-compe",
-        event = "InsertEnter",
+        "hrsh7th/nvim-cmp",
         config = require("plugins.compe").init,
-        wants = {"LuaSnip"},
+        wants = {"LuaSnip", "cmp_luasnip"},
         requires = {
+            {"saadparwaiz1/cmp_luasnip"},
             {
                 "L3MON4D3/LuaSnip",
                 wants = "friendly-snippets",
@@ -159,12 +159,12 @@ local function init()
                 end,
                 keys = {"<space>oc", "<space>oa"},
                 ft = {"org"},
-                wants = "nvim-compe"
+                wants = "nvim-cmp"
             }
         }
-    } -- completion engine
-    use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh8th/nvim-compe"}
-    use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
+    }
+    use {"tzachar/compe-tabnine", after = "nvim-cmp", run = "./install.sh", requires = "hrsh7th/nvim-cmp"}
+    use {"tamago324/compe-zsh", after = "nvim-cmp", requires = "hrsh7th/nvim-cmp"}
 
     -- navigation
     use {
