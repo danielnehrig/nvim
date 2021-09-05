@@ -1,5 +1,6 @@
 local map = require "utils".map
 local autocmd = require "utils".autocmd
+local lsp_status = require("plugins.lspStatus").lsp_status
 local fn = vim.fn
 local LSP = {}
 LSP.__index = LSP
@@ -10,7 +11,7 @@ function LSP:on_attach(client, bufnr)
         vim.cmd [[packadd lsp_signature.nvim]]
     end
 
-    require("lsp-status").on_attach(client)
+    lsp_status.on_attach(client)
 
     map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
     map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
