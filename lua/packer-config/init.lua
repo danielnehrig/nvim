@@ -244,13 +244,6 @@ local function init()
     -- misc
     use {"windwp/nvim-projectconfig", disable = true} -- project dependable cfg
     use {
-        "famiu/nvim-reload",
-        cmd = {"Reload", "Restart"},
-        setup = function()
-            vim.cmd [[packadd plenary.nvim]]
-        end
-    } -- reload nvim config
-    use {
         "glepnir/dashboard-nvim",
         setup = require("plugins.dashboard").dashboard
     } -- dashboard
