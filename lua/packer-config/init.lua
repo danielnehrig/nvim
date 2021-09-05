@@ -161,8 +161,6 @@ local function init()
             }
         }
     }
-    use {"tzachar/compe-tabnine", after = "nvim-cmp", run = "./install.sh", requires = "hrsh7th/nvim-cmp"}
-    use {"tamago324/compe-zsh", after = "nvim-cmp", requires = "hrsh7th/nvim-cmp"}
 
     -- navigation
     use {
