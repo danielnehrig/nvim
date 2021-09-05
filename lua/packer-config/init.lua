@@ -134,16 +134,14 @@ local function init()
     use {
         "hrsh7th/nvim-cmp",
         config = require("plugins.compe").init,
-        wants = {"LuaSnip", "cmp_luasnip"},
+        wants = {"LuaSnip"},
         requires = {
+            {"hrsh7th/cmp-nvim-lsp"},
             {"saadparwaiz1/cmp_luasnip"},
             {
                 "L3MON4D3/LuaSnip",
                 wants = "friendly-snippets",
-                event = "InsertCharPre",
-                config = function()
-                    require "plugins.compe.luasnip"
-                end
+                event = "InsertCharPre"
             },
             {
                 "rafamadriz/friendly-snippets",

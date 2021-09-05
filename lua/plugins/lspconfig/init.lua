@@ -34,10 +34,6 @@ function LSP:on_attach(client, bufnr)
     map(bufnr, "n", "<space>ai", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
     map(bufnr, "n", "<space>ao", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
     map(bufnr, "n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
-    map(bufnr, "i", "<Tab>", [[v:lua._G.tab_complete()]], {expr = true})
-    map(bufnr, "s", "<Tab>", [[v:lua._G.tab_complete()]], {expr = true})
-    map(bufnr, "i", "<S-Tab>", [[v:lua._G.s_tab_complete()]], {noremap = true, expr = true})
-    map(bufnr, "s", "<S-Tab>", [[v:lua._G.s_tab_complete()]], {noremap = true, expr = true})
 
     autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 

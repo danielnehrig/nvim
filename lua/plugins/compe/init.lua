@@ -28,6 +28,7 @@ function compe:init()
                 )
             },
             sources = {
+                {name = "nvim_lsp"},
                 {name = "orgmode"},
                 {name = "luasnip"}
             }
