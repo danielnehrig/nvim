@@ -114,10 +114,7 @@ local function init()
         cmd = {"TodoQuickFix", "TodoTrouble", "TodoTelescope"}
     } -- show todos in qf
     use {
-        "nvim-lua/lsp-status.nvim",
-        config = function()
-            require("plugins.lspStatus")
-        end
+        "nvim-lua/lsp-status.nvim"
     } -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use {
