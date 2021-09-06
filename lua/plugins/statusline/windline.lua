@@ -1,10 +1,24 @@
 local windline = require("windline")
 local helper = require("windline.helpers")
 local b_components = require("windline.components.basic")
+local animation = require("wlanimation")
+local efffects = require("wlanimation.effects")
+local make = require("plugins.build")
 local state = _G.WindLine.state
 
 local lsp_comps = require("windline.components.lsp")
 local git_comps = require("windline.components.git")
+
+local blue_colors = {
+    "#90CAF9",
+    "#64B5F6",
+    "#42A5F5",
+    "#2196F3",
+    "#1E88E5",
+    "#1976D2",
+    "#1565C0",
+    "#0D47A1"
+}
 
 local hl_list = {
     Black = {"white", "black"},
@@ -125,6 +139,35 @@ basic.git = {
     end
 }
 
+basic.make = {
+    name = "make",
+    hl_colors = {
+        green = {"green", "black"}
+    },
+    width = breakpoint_width,
+    text = function()
+        if lsp_comps.check_lsp() then
+            return {{" ", ""}, {make:Status(), "green"}}
+        end
+        return ""
+    end
+}
+
+basic.lsp_workspace = {
+    name = "lsp_workspace",
+    hl_colors = {
+        green = {"green", "black"}
+    },
+    width = breakpoint_width,
+    text = function()
+        if lsp_comps.check_lsp() then
+            local lsp_status = require("plugins.lspStatus").lsp_status
+            return {{" ", ""}, {lsp_status.status(), "green"}}
+        end
+        return ""
+    end
+}
+
 local quickfix = {
     filetypes = {"qf", "Trouble"},
     active = {
@@ -167,6 +210,8 @@ local default = {
         basic.divider,
         basic.file_right,
         {lsp_comps.lsp_name(), {"magenta", "black"}, breakpoint_width},
+        basic.lsp_workspace,
+        basic.make,
         basic.git,
         {git_comps.git_branch(), {"magenta", "black"}, breakpoint_width},
         {" ", hl_list.Black},
@@ -187,6 +232,22 @@ windline.setup(
         colors_name = function(colors)
             -- print(vim.inspect(colors))
             -- ADD MORE COLOR HERE ----
+            colors.FilenameFg = colors.white_light
+            colors.FilenameBg = colors.black_light
+
+            colors.wavedefault = colors.white_light
+            colors.waveleft1 = colors.wavedefault
+            colors.waveleft2 = colors.wavedefault
+            colors.waveleft3 = colors.wavedefault
+            colors.waveleft4 = colors.wavedefault
+            colors.waveleft5 = colors.wavedefault
+
+            colors.waveright1 = colors.wavedefault
+            colors.waveright2 = colors.wavedefault
+            colors.waveright3 = colors.wavedefault
+            colors.waveright4 = colors.wavedefault
+            colors.waveright5 = colors.wavedefault
+
             return colors
         end,
         statuslines = {
@@ -194,5 +255,36 @@ windline.setup(
             quickfix,
             explorer
         }
+    }
+)
+
+animation.stop_all()
+animation.animation(
+    {
+        data = {
+            {"waveleft1", efffects.list_color(blue_colors, 6)},
+            {"waveleft2", efffects.list_color(blue_colors, 5)},
+            {"waveleft3", efffects.list_color(blue_colors, 4)},
+            {"waveleft4", efffects.list_color(blue_colors, 3)},
+            {"waveleft5", efffects.list_color(blue_colors, 2)}
+        },
+        timeout = 100,
+        delay = 200,
+        interval = 150
+    }
+)
+
+animation.animation(
+    {
+        data = {
+            {"waveright1", efffects.list_color(blue_colors, 2)},
+            {"waveright2", efffects.list_color(blue_colors, 3)},
+            {"waveright3", efffects.list_color(blue_colors, 4)},
+            {"waveright4", efffects.list_color(blue_colors, 5)},
+            {"waveright5", efffects.list_color(blue_colors, 6)}
+        },
+        timeout = 100,
+        delay = 200,
+        interval = 150
     }
 )
