@@ -53,7 +53,7 @@ local function init()
     } -- colorscheme
 
     -- language
-    use {"folke/lua-dev.nvim", opt = true} -- lua nvim setup
+    use {"folke/lua-dev.nvim"} -- lua nvim setup
     use {"rust-lang/rust.vim", ft = {"rust", "rs"}} -- rust language tools
     use {
         "iamcco/markdown-preview.nvim",
@@ -123,6 +123,25 @@ local function init()
             require("lspkind").init({File = " "})
         end
     } -- lsp extensions stuff
+    use {
+        "jghauser/mkdir.nvim",
+        config = function()
+            require("mkdir")
+        end
+    }
+    use {
+        "folke/lsp-colors.nvim",
+        config = function()
+            require("lsp-colors").setup(
+                {
+                    Error = "#db4b4b",
+                    Warning = "#e0af68",
+                    Information = "#0db9d7",
+                    Hint = "#10B981"
+                }
+            )
+        end
+    }
     use {
         "neovim/nvim-lspconfig",
         config = require("plugins.lspconfig").init,
