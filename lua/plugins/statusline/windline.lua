@@ -1,5 +1,6 @@
 local windline = require("windline")
 local helper = require("windline.helpers")
+local sep = helper.separators
 local b_components = require("windline.components.basic")
 local animation = require("wlanimation")
 local efffects = require("wlanimation.effects")
@@ -142,14 +143,28 @@ basic.git = {
 basic.make = {
     name = "make",
     hl_colors = {
-        green = {"green", "black"}
+        green = {"green", "black"},
+        wave_blue1 = {"waveright1", "wavedefault"},
+        wave_blue2 = {"waveright2", "waveright1"},
+        wave_blue3 = {"waveright3", "waveright2"},
+        wave_blue4 = {"waveright4", "waveright3"},
+        wave_blue5 = {"waveright5", "waveright4"},
+        wave_blue6 = {"black", "waveright5"}
     },
     width = breakpoint_width,
     text = function()
-        if lsp_comps.check_lsp() then
-            return {{" ", ""}, {make:Status(), "green"}}
+        if make:GetRunning() then
+            return {
+                {" " .. sep.left_rounded, "wave_blue1"},
+                {" " .. sep.left_rounded, "wave_blue2"},
+                {" " .. sep.left_rounded, "wave_blue3"},
+                {" " .. sep.left_rounded, "wave_blue4"},
+                {" " .. sep.left_rounded, "wave_blue5"},
+                {" " .. sep.left_rounded, "wave_blue6"},
+                {make:Status(), "green"}
+            }
         end
-        return ""
+        return {{make:Status(), "green"}}
     end
 }
 
