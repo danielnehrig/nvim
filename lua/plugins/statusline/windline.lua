@@ -22,6 +22,7 @@ local anim_colors = {
 }
 
 local hl_list = {
+    Normal = {"NormalFg", "NormalBg"},
     Black = {"white", "black"},
     White = {"black", "white"},
     Inactive = {"InactiveFg", "InactiveBg"},
@@ -60,7 +61,8 @@ basic.lsp_diagnos = {
     hl_colors = {
         red = {"red", "black"},
         yellow = {"yellow", "black"},
-        blue = {"blue", "black"}
+        blue = {"blue", "black"},
+        trans = {"transparent", "transparent"}
     },
     width = breakpoint_width,
     text = function()
@@ -69,7 +71,8 @@ basic.lsp_diagnos = {
                 {" ", "red"},
                 {lsp_comps.lsp_error({format = " %s", show_zero = true}), "red"},
                 {lsp_comps.lsp_warning({format = "  %s", show_zero = true}), "yellow"},
-                {lsp_comps.lsp_hint({format = "  %s", show_zero = true}), "blue"}
+                {lsp_comps.lsp_hint({format = "  %s", show_zero = true}), "blue"},
+                {" ", "trans"}
             }
         end
         return ""
@@ -219,10 +222,7 @@ local explorer = {
 local dashboard = {
     filetypes = {"dashboard"},
     active = {
-        {"  ", {"white", "black"}},
-        {helper.separators.slant_right, {"black", "black_light"}},
-        {b_components.divider, ""},
-        {b_components.file_name(""), {"white", "black_light"}}
+        {" ", {"transparent", "transparent"}}
     },
     show_in_active = true,
     show_last_status = true
@@ -262,6 +262,7 @@ windline.setup(
             -- ADD MORE COLOR HERE ----
             colors.FilenameFg = colors.white_light
             colors.FilenameBg = colors.black_light
+            colors.transparent = "none"
 
             colors.wavedefault = colors.black
             colors.waveleft1 = colors.wavedefault
