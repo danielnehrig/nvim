@@ -10,7 +10,7 @@ local state = _G.WindLine.state
 local lsp_comps = require("windline.components.lsp")
 local git_comps = require("windline.components.git")
 
-local blue_colors = {
+local anim_colors = {
     "#90CAF9",
     "#64B5F6",
     "#42A5F5",
@@ -144,23 +144,23 @@ basic.make = {
     name = "make",
     hl_colors = {
         green = {"green", "black"},
-        wave_blue1 = {"waveright1", "wavedefault"},
-        wave_blue2 = {"waveright2", "waveright1"},
-        wave_blue3 = {"waveright3", "waveright2"},
-        wave_blue4 = {"waveright4", "waveright3"},
-        wave_blue5 = {"waveright5", "waveright4"},
-        wave_blue6 = {"black", "waveright5"}
+        wave_anim1 = {"waveright1", "wavedefault"},
+        wave_anim2 = {"waveright2", "waveright1"},
+        wave_anim3 = {"waveright3", "waveright2"},
+        wave_anim4 = {"waveright4", "waveright3"},
+        wave_anim5 = {"waveright5", "waveright4"},
+        wave_anim6 = {"black", "waveright5"}
     },
     width = breakpoint_width,
     text = function()
         if make:GetRunning() then
             return {
-                {" " .. sep.left_rounded, "wave_blue1"},
-                {" " .. sep.left_rounded, "wave_blue2"},
-                {" " .. sep.left_rounded, "wave_blue3"},
-                {" " .. sep.left_rounded, "wave_blue4"},
-                {" " .. sep.left_rounded, "wave_blue5"},
-                {" " .. sep.left_rounded, "wave_blue6"},
+                {" " .. sep.left_rounded, "wave_anim1"},
+                {" " .. sep.left_rounded, "wave_anim2"},
+                {" " .. sep.left_rounded, "wave_anim3"},
+                {" " .. sep.left_rounded, "wave_anim4"},
+                {" " .. sep.left_rounded, "wave_anim5"},
+                {" " .. sep.left_rounded, "wave_anim6"},
                 {make:Status(), "green"}
             }
         end
@@ -215,6 +215,19 @@ local explorer = {
     show_in_active = true,
     show_last_status = true
 }
+
+local dashboard = {
+    filetypes = {"dashboard"},
+    active = {
+        {"  ", {"white", "black"}},
+        {helper.separators.slant_right, {"black", "black_light"}},
+        {b_components.divider, ""},
+        {b_components.file_name(""), {"white", "black_light"}}
+    },
+    show_in_active = true,
+    show_last_status = true
+}
+
 local default = {
     filetypes = {"default"},
     active = {
@@ -250,7 +263,7 @@ windline.setup(
             colors.FilenameFg = colors.white_light
             colors.FilenameBg = colors.black_light
 
-            colors.wavedefault = colors.white_light
+            colors.wavedefault = colors.black
             colors.waveleft1 = colors.wavedefault
             colors.waveleft2 = colors.wavedefault
             colors.waveleft3 = colors.wavedefault
@@ -268,7 +281,8 @@ windline.setup(
         statuslines = {
             default,
             quickfix,
-            explorer
+            explorer,
+            dashboard
         }
     }
 )
@@ -277,11 +291,11 @@ animation.stop_all()
 animation.animation(
     {
         data = {
-            {"waveleft1", efffects.list_color(blue_colors, 6)},
-            {"waveleft2", efffects.list_color(blue_colors, 5)},
-            {"waveleft3", efffects.list_color(blue_colors, 4)},
-            {"waveleft4", efffects.list_color(blue_colors, 3)},
-            {"waveleft5", efffects.list_color(blue_colors, 2)}
+            {"waveleft1", efffects.list_color(anim_colors, 6)},
+            {"waveleft2", efffects.list_color(anim_colors, 5)},
+            {"waveleft3", efffects.list_color(anim_colors, 4)},
+            {"waveleft4", efffects.list_color(anim_colors, 3)},
+            {"waveleft5", efffects.list_color(anim_colors, 2)}
         },
         timeout = 100,
         delay = 200,
@@ -292,11 +306,11 @@ animation.animation(
 animation.animation(
     {
         data = {
-            {"waveright1", efffects.list_color(blue_colors, 2)},
-            {"waveright2", efffects.list_color(blue_colors, 3)},
-            {"waveright3", efffects.list_color(blue_colors, 4)},
-            {"waveright4", efffects.list_color(blue_colors, 5)},
-            {"waveright5", efffects.list_color(blue_colors, 6)}
+            {"waveright1", efffects.list_color(anim_colors, 2)},
+            {"waveright2", efffects.list_color(anim_colors, 3)},
+            {"waveright3", efffects.list_color(anim_colors, 4)},
+            {"waveright4", efffects.list_color(anim_colors, 5)},
+            {"waveright5", efffects.list_color(anim_colors, 6)}
         },
         timeout = 100,
         delay = 200,
