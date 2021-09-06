@@ -205,6 +205,7 @@ local function init()
     use {"ggandor/lightspeed.nvim", keys = {"s", "S", "t", "f", "T", "F"}} -- lightspeed motion
 
     -- quality of life
+    use {"kevinhwang91/nvim-bqf"}
     use {
         "gelguy/wilder.nvim"
     }
@@ -276,6 +277,16 @@ local function init()
     } -- show indentation
 
     -- git
+    use {
+        "tanvirtin/vgit.nvim",
+        cmd = {"VGit"},
+        config = function()
+            require("vgit").setup()
+        end,
+        requires = {
+            "nvim-lua/plenary.nvim"
+        }
+    }
     use {
         "pwntester/octo.nvim",
         requires = {"nvim-telescope/telescope.nvim"},
