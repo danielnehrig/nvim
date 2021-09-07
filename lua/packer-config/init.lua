@@ -281,7 +281,7 @@ local function init()
         "tanvirtin/vgit.nvim",
         cmd = {"VGit"},
         config = function()
-            require("vgit").setup()
+            require("plugins.vgit")
         end,
         requires = {
             "nvim-lua/plenary.nvim"
