@@ -23,8 +23,43 @@ dap.adapters.cppdbg = {
     command = "~/code/cpptools/extension/debugAdapters/OpenDebugAD7"
 }
 
+dap.adapters.dart = {
+    type = "executable",
+    command = "node",
+    args = {"<path-to-Dart-Code>/out/dist/debug.js", "flutter"}
+}
+
+dap.adapters.go = {
+    type = "executable",
+    command = "node",
+    args = {os.getenv("HOME") .. "/code/golang/vscode-go/dist/debugAdapter.js"}
+}
+
 vim.fn.sign_define("DapBreakpoint", {text = "🛑", texthl = "", linehl = "", numhl = ""})
 vim.fn.sign_define("DapStopped", {text = "🟢", texthl = "", linehl = "", numhl = ""})
+
+dap.configurations.go = {
+    {
+        type = "go",
+        name = "Debug",
+        request = "launch",
+        showLog = false,
+        program = "${file}",
+        dlvToolPath = vim.fn.exepath("dlv") -- Adjust to where delve is installed
+    }
+}
+
+dap.configurations.dart = {
+    {
+        type = "dart",
+        request = "launch",
+        name = "Launch flutter",
+        dartSdkPath = os.getenv("HOME") .. "/flutter/bin/cache/dart-sdk/",
+        flutterSdkPath = os.getenv("HOME") .. "/flutter",
+        program = "${workspaceFolder}/lib/main.dart",
+        cwd = "${workspaceFolder}"
+    }
+}
 
 dap.configurations.typescript = {
     {
@@ -103,5 +138,22 @@ dap.configurations.cpp = {
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
+
+-- overwrite program
+dap.configurations.rust[1].program = function()
+    -- root path
+    local rootPath = vim.fn.getcwd() .. "/target/debug/"
+    -- the actuall file name get from the root path looped and checked for exec in folder
+    local file = ""
+
+    -- check if file exists
+    -- TODO: make it right
+    local fileExists = vim.fn.executable(rootPath .. file)
+    if false then
+        return rootPath .. file
+    end
+
+    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/")
+end
 
 require("dapui").setup()

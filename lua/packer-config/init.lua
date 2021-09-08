@@ -22,7 +22,6 @@ local function init()
     local use = packer.use
 
     -- theme
-    -- use {"glepnir/galaxyline.nvim", branch = "main", requires = "kyazdani42/nvim-web-devicons"} -- statusbar
     use {
         "windwp/windline.nvim",
         config = function()

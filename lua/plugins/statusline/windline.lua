@@ -229,7 +229,7 @@ local dashboard = {
 }
 
 local default = {
-    filetypes = {"default"},
+    filetypes = {"default", "terminal"},
     active = {
         basic.square_mode,
         basic.vi_mode,
@@ -245,13 +245,18 @@ local default = {
         {" ", hl_list.Black},
         basic.square_mode
     },
+    show_in_active = true,
+    show_last_status = true,
     in_active = {
-        {b_components.full_file_name, hl_list.Inactive},
-        basic.file_name_inactive,
+        basic.square_mode,
+        basic.vi_mode,
+        basic.file,
         basic.divider,
-        basic.divider,
-        {b_components.line_col, hl_list.Inactive},
-        {b_components.progress, hl_list.Inactive}
+        basic.file_right,
+        basic.git,
+        {git_comps.git_branch(), {"magenta", "black"}, breakpoint_width},
+        {" ", hl_list.Black},
+        basic.square_mode
     }
 }
 
