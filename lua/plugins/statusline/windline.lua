@@ -193,7 +193,7 @@ basic.dap = {
     },
     width = breakpoint_width,
     text = function()
-        local status =  require("plugins.dap.attach").getStatus()
+        local status = require("plugins.dap.attach").getStatus()
         return {{" ", ""}, {status, "green"}}
     end
 }
@@ -216,7 +216,7 @@ local quickfix = {
         {helper.separators.slant_right, {"InactiveBg", "black"}},
         {"🧛 ", {"white", "black"}}
     },
-    show_in_active = true
+    always_active = true
 }
 
 local explorer = {
@@ -227,7 +227,7 @@ local explorer = {
         {b_components.divider, ""},
         {b_components.file_name(""), {"white", "black_light"}}
     },
-    show_in_active = true,
+    always_active = true,
     show_last_status = true
 }
 
@@ -236,7 +236,7 @@ local dashboard = {
     active = {
         {" ", {"transparent", "transparent"}}
     },
-    show_in_active = true,
+    always_active = true,
     show_last_status = true
 }
 
@@ -258,9 +258,9 @@ local default = {
         {" ", hl_list.Black},
         basic.square_mode
     },
-    show_in_active = true,
+    always_active = true,
     show_last_status = true,
-    in_active = {
+    inactive = {
         basic.square_mode,
         basic.vi_mode,
         basic.file,
