@@ -186,6 +186,18 @@ basic.lsp_workspace = {
     end
 }
 
+basic.dap = {
+    name = "dap",
+    hl_colors = {
+        green = {"green", "black"}
+    },
+    width = breakpoint_width,
+    text = function()
+        local status =  require("plugins.dap.attach").getStatus()
+        return {{" ", ""}, {status, "green"}}
+    end
+}
+
 local quickfix = {
     filetypes = {"qf", "Trouble"},
     active = {
@@ -240,6 +252,7 @@ local default = {
         {lsp_comps.lsp_name(), {"magenta", "black"}, breakpoint_width},
         basic.lsp_workspace,
         basic.make,
+        basic.dap,
         basic.git,
         {git_comps.git_branch(), {"magenta", "black"}, breakpoint_width},
         {" ", hl_list.Black},
