@@ -210,7 +210,6 @@ local function init()
     }
     use {
         "rcarriga/nvim-notify",
-        commit = "2ee19cd937c98d4d40d77ae729c70fe0923a2b8c",
         opt = true
     }
     use {

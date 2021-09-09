@@ -42,6 +42,10 @@ local colors_mode = {
     Command = {"magenta", "black"}
 }
 
+local util_color = {
+    trans = {"transparent", "transparent"}
+}
+
 basic.vi_mode = {
     name = "vi_mode",
     hl_colors = colors_mode,
@@ -81,6 +85,7 @@ basic.lsp_diagnos = {
         return ""
     end
 }
+
 basic.file = {
     name = "file",
     hl_colors = {
@@ -92,6 +97,8 @@ basic.file = {
         if width > breakpoint_width then
             return {
                 {b_components.cache_file_size(), "default"},
+                {" ", ""},
+                {b_components.cache_file_icon({default = ""}), "default"},
                 {" ", ""},
                 {b_components.cache_file_name("[No Name]", ""), "magenta"},
                 {b_components.line_col, "white"},
@@ -201,7 +208,7 @@ basic.lsp_workspace = {
             return {
                 {helper.separators.slant_left, "sep"},
                 {" ", "spacer"},
-                {lsp_status.status(), "green"}
+                {" " .. lsp_status.status(), "green"}
             }
         end
         return ""
@@ -218,11 +225,14 @@ basic.dap = {
     width = breakpoint_width,
     text = function()
         local status = require("plugins.dap.attach").getStatus()
-        return {
-            {helper.separators.slant_left, "sep"},
-            {" ", "spacer"},
-            {status, "green"}
-        }
+        if status then
+            return {
+                {helper.separators.slant_left, "sep"},
+                {" ", "spacer"},
+                {status, "green"}
+            }
+        end
+        return ""
     end
 }
 
