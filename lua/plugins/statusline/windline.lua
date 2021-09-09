@@ -62,7 +62,9 @@ basic.lsp_diagnos = {
         red = {"red", "black"},
         yellow = {"yellow", "black"},
         blue = {"blue", "black"},
-        trans = {"transparent", "transparent"}
+        trans = {"transparent", "transparent"},
+        sep = {"black", "transparent"},
+        spacer = {"black", "black"}
     },
     width = breakpoint_width,
     text = function()
@@ -72,7 +74,8 @@ basic.lsp_diagnos = {
                 {lsp_comps.lsp_error({format = " %s", show_zero = true}), "red"},
                 {lsp_comps.lsp_warning({format = "  %s", show_zero = true}), "yellow"},
                 {lsp_comps.lsp_hint({format = "  %s", show_zero = true}), "blue"},
-                {" ", "trans"}
+                {" ", "spacer"},
+                {helper.separators.slant_right, "sep"}
             }
         end
         return ""
@@ -127,13 +130,17 @@ basic.git = {
     hl_colors = {
         green = {"green", "black"},
         red = {"red", "black"},
-        blue = {"blue", "black"}
+        blue = {"blue", "black"},
+        trans = {"transparent", "transparent"},
+        spacer = {"black", "black"},
+        sep = {"black", "transparent"}
     },
     width = breakpoint_width,
     text = function()
         if git_comps.is_git() then
             return {
-                {" ", ""},
+                {helper.separators.slant_left, "sep"},
+                {" ", "spacer"},
                 {git_comps.diff_added({format = " %s", show_zero = true}), "green"},
                 {git_comps.diff_removed({format = "  %s", show_zero = true}), "red"},
                 {git_comps.diff_changed({format = " 柳%s", show_zero = true}), "blue"}
@@ -147,6 +154,8 @@ basic.make = {
     name = "make",
     hl_colors = {
         green = {"green", "black"},
+        sep = {"black", "transparent"},
+        spacer = {"black", "black"},
         wave_anim1 = {"waveright1", "wavedefault"},
         wave_anim2 = {"waveright2", "waveright1"},
         wave_anim3 = {"waveright3", "waveright2"},
@@ -158,6 +167,8 @@ basic.make = {
     text = function()
         if make:GetRunning() then
             return {
+                {helper.separators.slant_left, "sep"},
+                {" ", "spacer"},
                 {" " .. sep.left_rounded, "wave_anim1"},
                 {" " .. sep.left_rounded, "wave_anim2"},
                 {" " .. sep.left_rounded, "wave_anim3"},
@@ -167,20 +178,31 @@ basic.make = {
                 {make:Status(), "green"}
             }
         end
-        return {{make:Status(), "green"}}
+        return {
+            {helper.separators.slant_left, "sep"},
+            {" ", "spacer"},
+            {make:Status(), "green"}
+        }
     end
 }
 
 basic.lsp_workspace = {
     name = "lsp_workspace",
     hl_colors = {
-        green = {"green", "black"}
+        green = {"green", "black"},
+        trans = {"transparent", "transparent"},
+        spacer = {"black", "black"},
+        sep = {"black", "transparent"}
     },
     width = breakpoint_width,
     text = function()
         if lsp_comps.check_lsp() then
             local lsp_status = require("plugins.lspStatus").lsp_status
-            return {{" ", ""}, {lsp_status.status(), "green"}}
+            return {
+                {helper.separators.slant_left, "sep"},
+                {" ", "spacer"},
+                {lsp_status.status(), "green"}
+            }
         end
         return ""
     end
@@ -189,12 +211,35 @@ basic.lsp_workspace = {
 basic.dap = {
     name = "dap",
     hl_colors = {
-        green = {"green", "black"}
+        green = {"green", "black"},
+        spacer = {"black", "black"},
+        sep = {"black", "transparent"}
     },
     width = breakpoint_width,
     text = function()
         local status = require("plugins.dap.attach").getStatus()
-        return {{" ", ""}, {status, "green"}}
+        return {
+            {helper.separators.slant_left, "sep"},
+            {" ", "spacer"},
+            {status, "green"}
+        }
+    end
+}
+
+basic.lsp_names = {
+    name = "lsp_names",
+    hl_colors = {
+        magenta = {"magenta", "black"},
+        sep = {"black", "transparent"},
+        spacer = {"black", "black"}
+    },
+    width = breakpoint_width,
+    text = function()
+        return {
+            {helper.separators.slant_left, "sep"},
+            {" ", "spacer"},
+            {lsp_comps.lsp_name(), "magenta"}
+        }
     end
 }
 
@@ -249,7 +294,7 @@ local default = {
         basic.lsp_diagnos,
         basic.divider,
         basic.file_right,
-        {lsp_comps.lsp_name(), {"magenta", "black"}, breakpoint_width},
+        basic.lsp_names,
         basic.lsp_workspace,
         basic.make,
         basic.dap,
