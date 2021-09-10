@@ -225,7 +225,7 @@ basic.dap = {
     width = breakpoint_width,
     text = function()
         local status = require("plugins.dap.attach").getStatus()
-        if status then
+        if not status == "" then
             return {
                 {helper.separators.slant_left, "sep"},
                 {" ", "spacer"},
