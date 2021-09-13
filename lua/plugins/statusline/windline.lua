@@ -215,21 +215,22 @@ basic.make = {
     end
 }
 
-local attach = require("plugins.dap.attach")
 basic.lsp_names = {
     name = "lsp_names",
     hl_colors = {
         green = {"green", "black"},
         magenta = {"magenta", "black"},
-        sep = {"black", attach.dap and "yellow" or "transparent"},
+        sep = {"black", "transparent"},
+        sepdebug = {"black", "yellow"},
         spacer = {"black", "black"}
     },
     width = breakpoint_width,
     text = function()
         if lsp_comps.check_lsp() then
+            local debug = require("plugins.dap.attach")
             local lsp_status = require("plugins.lspStatus").lsp_status
             return {
-                {helper.separators.slant_left, "sep"},
+                {helper.separators.slant_left, debug:session() and "sepdebug" or "sep"},
                 {" ", "spacer"},
                 {lsp_comps.lsp_name(), "magenta"},
                 {" ", "spacer"},
@@ -250,14 +251,14 @@ basic.dap = {
     },
     width = breakpoint_width,
     text = function()
-        local attach = require("plugins.dap.attach")
-        if attach.dap then
-            if attach.dap.session() then
-                local status = attach.getStatus()
+        local debug = require("plugins.dap.attach")
+        if debug.dap then
+            if debug.dap.session() then
+                local status = debug:getStatus()
                 return {
                     {helper.separators.slant_left, "sep"},
                     {" ", "spacer"},
-                    {"DAP: " .. status, "yellow"}
+                    {"DAP: " .. status .. " ", "yellow"}
                 }
             end
         end

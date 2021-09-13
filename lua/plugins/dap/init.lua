@@ -1,4 +1,5 @@
 local dap = require "dap"
+local global = require("core.global")
 
 dap.adapters.node2 = {
     type = "executable",
@@ -12,11 +13,21 @@ dap.adapters.chrome = {
     args = {os.getenv("HOME") .. "/code/vscode-chrome-debug/out/src/chromeDebug.js"}
 }
 
-dap.adapters.lldb = {
-    type = "executable",
-    command = "/usr/bin/lldb-vscode", -- adjust as needed
-    name = "lldb"
-}
+if global.is_linux then
+  dap.adapters.lldb = {
+      type = "executable",
+      command = "/usr/bin/lldb-vscode", -- adjust as needed
+      name = "lldb"
+  }
+end
+
+if global.is_mac then
+  dap.adapters.lldb = {
+      type = "executable",
+      command = "/usr/local/opt/llvm/bin//lldb-vscode", -- adjust as needed
+      name = "lldb"
+  }
+end
 
 dap.adapters.cppdbg = {
     type = "executable",

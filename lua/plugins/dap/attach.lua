@@ -1,35 +1,51 @@
-local dap = nil
+local Debug = {
+    dap = nil
+}
 
-local function addPlug()
+Debug.__index = Debug
+
+function Debug:new(o)
+    o = o or {}
+    setmetatable(o, Debug)
+    return o
+end
+
+function Debug:addPlug()
     if not packer_plugins["nvim-dap"].loaded then
         vim.cmd [[packadd nvim-dap]]
         vim.cmd [[packadd nvim-dap-ui]]
+        self.dap = require "dap"
         require("plugins.dap")
     end
 end
 
-local function attach()
-    if not dap then
-        addPlug()
-        print('jo')
-        dap = require "dap"
+function Debug:attach()
+    if not self.dap then
+        self.addPlug()
     end
-    dap.continue()
+    self.dap.continue()
 end
 
-local function getStatus()
-    if dap then
-        if dap.session() then
-            return "Attached"
+function Debug:session()
+    if self.dap then
+        if self.dap.session() then
+            return true
+        end
+    end
+
+    return false
+end
+
+function Debug:getStatus()
+    if self.dap then
+        if self.dap.session() then
+            return "Attached " .. self.dap.status()
         end
     end
 
     return "Detached"
 end
 
-return {
-    dap = dap,
-    attach = attach,
-    addPlug = addPlug,
-    getStatus = getStatus
-}
+local debug = Debug:new()
+
+return debug
