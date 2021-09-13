@@ -1,6 +1,5 @@
 local windline = require("windline")
 local helper = require("windline.helpers")
-local sep = helper.separators
 local b_components = require("windline.components.basic")
 local animation = require("wlanimation")
 local efffects = require("wlanimation.effects")
@@ -136,18 +135,32 @@ basic.git = {
         blue = {"blue", "black_light"},
         trans = {"transparent", "transparent"},
         spacer = {"black_light", "black_light"},
-        sep = {"black_light", "grey"}
+        sep = {"black_light", "grey"},
+        septwo = {"black_light", "black"}
     },
     width = breakpoint_width,
     text = function()
         if git_comps.is_git() then
-            return {
-                {helper.separators.slant_left, "sep"},
-                {" ", "spacer"},
-                {git_comps.diff_added({format = " %s", show_zero = true}), "green"},
-                {git_comps.diff_removed({format = "  %s", show_zero = true}), "red"},
-                {git_comps.diff_changed({format = " 柳%s", show_zero = true}), "blue"}
-            }
+            if not packer_plugins["neomake"].loaded then
+                return {
+                    {helper.separators.slant_left, "septwo"},
+                    {" ", "spacer"},
+                    {git_comps.diff_added({format = " %s", show_zero = true}), "green"},
+                    {git_comps.diff_removed({format = "  %s", show_zero = true}), "red"},
+                    {git_comps.diff_changed({format = " 柳%s", show_zero = true}), "blue"}
+                }
+            end
+        end
+        if git_comps.is_git() then
+            if packer_plugins["neomake"].loaded then
+                return {
+                    {helper.separators.slant_left, "sep"},
+                    {" ", "spacer"},
+                    {git_comps.diff_added({format = " %s", show_zero = true}), "green"},
+                    {git_comps.diff_removed({format = "  %s", show_zero = true}), "red"},
+                    {git_comps.diff_changed({format = " 柳%s", show_zero = true}), "blue"}
+                }
+            end
         end
         return ""
     end
@@ -159,33 +172,38 @@ basic.make = {
         green = {"green", "grey"},
         sep = {"grey", "black"},
         spacer = {"black", "grey"},
-        wave_anim1 = {"waveright1", "wavedefault"},
-        wave_anim2 = {"waveright2", "waveright1"},
-        wave_anim3 = {"waveright3", "waveright2"},
-        wave_anim4 = {"waveright4", "waveright3"},
-        wave_anim5 = {"waveright5", "waveright4"},
-        wave_anim6 = {"black", "waveright5"}
+        wave_anim1 = {"waveright2", "grey"},
+        wave_anim2 = {"waveright3", "grey"},
+        wave_anim3 = {"waveright4", "grey"},
+        wave_anim4 = {"waveright5", "grey"},
+        wave_anim5 = {"waveright6", "grey"},
+        wave_anim6 = {"waveright7", "grey"}
     },
     width = breakpoint_width,
     text = function()
-        if make:GetRunning() then
+        if packer_plugins["neomake"].loaded then
+            if make:GetRunning() then
+                return {
+                    {helper.separators.slant_left, "sep"},
+                    {" ", "spacer"},
+                    {"", "wave_anim1"},
+                    {" ", "spacer"},
+                    {"M", "wave_anim2"},
+                    {"a", "wave_anim3"},
+                    {"k", "wave_anim4"},
+                    {"e", "wave_anim5"},
+                    {" ", "spacer"},
+                    {"", "wave_anim6"},
+                    {" ", "spacer"}
+                }
+            end
             return {
                 {helper.separators.slant_left, "sep"},
                 {" ", "spacer"},
-                {" " .. sep.left_rounded, "wave_anim1"},
-                {" " .. sep.left_rounded, "wave_anim2"},
-                {" " .. sep.left_rounded, "wave_anim3"},
-                {" " .. sep.left_rounded, "wave_anim4"},
-                {" " .. sep.left_rounded, "wave_anim5"},
-                {" " .. sep.left_rounded, "wave_anim6"},
                 {make:Status(), "green"}
             }
         end
-        return {
-            {helper.separators.slant_left, "sep"},
-            {" ", "spacer"},
-            {make:Status(), "green"}
-        }
+        return ""
     end
 }
 
@@ -321,17 +339,16 @@ windline.setup(
             colors.grey = "#3d3d3d"
 
             colors.wavedefault = colors.black
-            colors.waveleft1 = colors.wavedefault
-            colors.waveleft2 = colors.wavedefault
-            colors.waveleft3 = colors.wavedefault
-            colors.waveleft4 = colors.wavedefault
-            colors.waveleft5 = colors.wavedefault
 
             colors.waveright1 = colors.wavedefault
             colors.waveright2 = colors.wavedefault
             colors.waveright3 = colors.wavedefault
             colors.waveright4 = colors.wavedefault
             colors.waveright5 = colors.wavedefault
+            colors.waveright6 = colors.wavedefault
+            colors.waveright7 = colors.wavedefault
+            colors.waveright8 = colors.wavedefault
+            colors.waveright9 = colors.wavedefault
 
             return colors
         end,
@@ -345,20 +362,6 @@ windline.setup(
 )
 
 animation.stop_all()
-animation.animation(
-    {
-        data = {
-            {"waveleft1", efffects.list_color(anim_colors, 6)},
-            {"waveleft2", efffects.list_color(anim_colors, 5)},
-            {"waveleft3", efffects.list_color(anim_colors, 4)},
-            {"waveleft4", efffects.list_color(anim_colors, 3)},
-            {"waveleft5", efffects.list_color(anim_colors, 2)}
-        },
-        timeout = 100,
-        delay = 200,
-        interval = 150
-    }
-)
 
 animation.animation(
     {
@@ -367,7 +370,11 @@ animation.animation(
             {"waveright2", efffects.list_color(anim_colors, 3)},
             {"waveright3", efffects.list_color(anim_colors, 4)},
             {"waveright4", efffects.list_color(anim_colors, 5)},
-            {"waveright5", efffects.list_color(anim_colors, 6)}
+            {"waveright5", efffects.list_color(anim_colors, 6)},
+            {"waveright6", efffects.list_color(anim_colors, 7)},
+            {"waveright7", efffects.list_color(anim_colors, 8)},
+            {"waveright8", efffects.list_color(anim_colors, 9)},
+            {"waveright9", efffects.list_color(anim_colors, 10)}
         },
         timeout = 100,
         delay = 200,

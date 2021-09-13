@@ -382,7 +382,7 @@ local function init()
     use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff", "Gblame", "Glog"}} -- git integration
 
     -- testing / building
-    use {"rcarriga/vim-ultest", cmd = {"Ultest"}, wants = {"vim-test"}}
+    use {"rcarriga/vim-ultest", cmd = {"Ultest"}, requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins"}
     use {
         "vim-test/vim-test",
         cmd = {"TestFile"},

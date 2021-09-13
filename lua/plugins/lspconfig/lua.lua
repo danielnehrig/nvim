@@ -23,6 +23,7 @@ local luadev =
         lspconfig = {
             cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
             capabilities = capabilities,
+            flags = {debounce_text_changes = 500},
             root_dir = require("lspconfig/util").root_pattern("."),
             on_attach = function(client, bufnr)
                 client.resolved_capabilities.document_formatting = false
