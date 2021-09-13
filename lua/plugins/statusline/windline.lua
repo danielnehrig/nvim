@@ -170,6 +170,7 @@ basic.make = {
     name = "make",
     hl_colors = {
         green = {"green", "grey"},
+        red = {"red", "grey"},
         sep = {"grey", "black"},
         spacer = {"black", "grey"},
         wave_anim1 = {"waveright2", "grey"},
@@ -196,6 +197,13 @@ basic.make = {
                     {"", "wave_anim6"},
                     {" ", "spacer"}
                 }
+            end
+            if make.failed then
+              return {
+                  {helper.separators.slant_left, "sep"},
+                  {" ", "spacer"},
+                  {make:Status(), "red"}
+              }
             end
             return {
                 {helper.separators.slant_left, "sep"},
