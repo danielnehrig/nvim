@@ -23,7 +23,7 @@ lsp_status.config {
 -- snippets setup
 -- https://github.com/hrsh7th/nvim-compe#how-to-use-lsp-snippet
 LSP.capabilities = vim.lsp.protocol.make_client_capabilities()
-LSP.capabilities = vim.tbl_extend("keep", LSP.capabilities or {}, require("lsp-status").capabilities)
+LSP.capabilities = vim.tbl_extend("keep", LSP.capabilities or {}, lsp_status.capabilities)
 LSP.capabilities = require("cmp_nvim_lsp").update_capabilities(LSP.capabilities)
 LSP.capabilities.textDocument.completion.completionItem.snippetSupport = true
 LSP.capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -35,6 +35,10 @@ LSP.capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 LSP.lsp_status = lsp_status
 
-lsp_status.register_progress()
+local init = false
+if not init then
+    LSP.lsp_status.register_progress()
+    init = true
+end
 
 return LSP

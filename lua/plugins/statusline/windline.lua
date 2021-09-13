@@ -135,12 +135,12 @@ basic.file_right = {
 basic.git = {
     name = "git",
     hl_colors = {
-        green = {"green", "black"},
-        red = {"red", "black"},
-        blue = {"blue", "black"},
+        green = {"green", "black_light"},
+        red = {"red", "black_light"},
+        blue = {"blue", "black_light"},
         trans = {"transparent", "transparent"},
-        spacer = {"black", "black"},
-        sep = {"black", "transparent"}
+        spacer = {"black_light", "black_light"},
+        sep = {"black_light", "grey"}
     },
     width = breakpoint_width,
     text = function()
@@ -160,9 +160,9 @@ basic.git = {
 basic.make = {
     name = "make",
     hl_colors = {
-        green = {"green", "black"},
-        sep = {"black", "transparent"},
-        spacer = {"black", "black"},
+        green = {"green", "grey"},
+        sep = {"grey", "black"},
+        spacer = {"black", "grey"},
         wave_anim1 = {"waveright1", "wavedefault"},
         wave_anim2 = {"waveright2", "waveright1"},
         wave_anim3 = {"waveright3", "waveright2"},
@@ -193,13 +193,13 @@ basic.make = {
     end
 }
 
-basic.lsp_workspace = {
-    name = "lsp_workspace",
+basic.lsp_names = {
+    name = "lsp_names",
     hl_colors = {
         green = {"green", "black"},
-        trans = {"transparent", "transparent"},
-        spacer = {"black", "black"},
-        sep = {"black", "transparent"}
+        magenta = {"magenta", "black"},
+        sep = {"black", "transparent"},
+        spacer = {"black", "black"}
     },
     width = breakpoint_width,
     text = function()
@@ -208,7 +208,11 @@ basic.lsp_workspace = {
             return {
                 {helper.separators.slant_left, "sep"},
                 {" ", "spacer"},
-                {" " .. lsp_status.status(), "green"}
+                {lsp_comps.lsp_name(), "magenta"},
+                {" ", "spacer"},
+                {"▊", "green"},
+                {" ", "spacer"},
+                {lsp_status.status(), "magenta"}
             }
         end
         return ""
@@ -233,23 +237,6 @@ basic.dap = {
             }
         end
         return ""
-    end
-}
-
-basic.lsp_names = {
-    name = "lsp_names",
-    hl_colors = {
-        magenta = {"magenta", "black"},
-        sep = {"black", "transparent"},
-        spacer = {"black", "black"}
-    },
-    width = breakpoint_width,
-    text = function()
-        return {
-            {helper.separators.slant_left, "sep"},
-            {" ", "spacer"},
-            {lsp_comps.lsp_name(), "magenta"}
-        }
     end
 }
 
@@ -305,7 +292,7 @@ local default = {
         basic.divider,
         basic.file_right,
         basic.lsp_names,
-        basic.lsp_workspace,
+        --basic.lsp_workspace,
         basic.make,
         basic.dap,
         basic.git,
@@ -336,6 +323,7 @@ windline.setup(
             colors.FilenameFg = colors.white_light
             colors.FilenameBg = colors.black_light
             colors.transparent = "none"
+            colors.grey = "#3d3d3d"
 
             colors.wavedefault = colors.black
             colors.waveleft1 = colors.wavedefault
