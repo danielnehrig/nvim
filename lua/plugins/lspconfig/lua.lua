@@ -29,6 +29,9 @@ local luadev =
             cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
             settings = {
                 Lua = {
+                    telemetry = {
+                        enable = false
+                    },
                     runtime = {
                         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                         version = "LuaJIT",
