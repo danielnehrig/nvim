@@ -3,12 +3,17 @@ local sumneko_root_path = os.getenv("HOME") .. "/dotfiles/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. globals.os_name .. "/lua-language-server"
 local lsp = require("plugins.lspconfig")
 local lspconfig = require("lspconfig")
-local capabilities = require("plugins.lspconfig").capabilities
+local capabilities = require("plugins.lspStatus").capabilities
 
 -- Lua Settings for nvim config and plugin development
 if not packer_plugins["lua-dev.nvim"].loaded then
     vim.cmd [[packadd lua-dev.nvim]]
 end
+
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+table.insert(runtime_path, "lua/plugins/?/?.lua")
 
 local luadev =
     require("lua-dev").setup(
@@ -22,6 +27,19 @@ local luadev =
         },
         lspconfig = {
             cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+            settings = {
+                Lua = {
+                    runtime = {
+                        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                        version = "LuaJIT",
+                        -- Setup your lua path
+                        path = runtime_path
+                    },
+                    diagnostics = {
+                        globals = {"packer_plugins"}
+                    }
+                }
+            },
             capabilities = capabilities,
             flags = {debounce_text_changes = 500},
             root_dir = require("lspconfig/util").root_pattern("."),
