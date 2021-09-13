@@ -9,6 +9,7 @@ local capabilities = require("plugins.lspconfig").capabilities
 if not packer_plugins["lua-dev.nvim"].loaded then
     vim.cmd [[packadd lua-dev.nvim]]
 end
+
 local luadev =
     require("lua-dev").setup(
     {

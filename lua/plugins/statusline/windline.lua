@@ -42,10 +42,6 @@ local colors_mode = {
     Command = {"magenta", "black"}
 }
 
-local util_color = {
-    trans = {"transparent", "transparent"}
-}
-
 basic.vi_mode = {
     name = "vi_mode",
     hl_colors = colors_mode,
@@ -211,7 +207,6 @@ basic.lsp_names = {
                 {lsp_comps.lsp_name(), "magenta"},
                 {" ", "spacer"},
                 {"▊", "green"},
-                {" ", "spacer"},
                 {lsp_status.status(), "magenta"}
             }
         end
@@ -296,8 +291,8 @@ local default = {
         basic.make,
         basic.dap,
         basic.git,
-        {git_comps.git_branch(), {"magenta", "black"}, breakpoint_width},
-        {" ", hl_list.Black},
+        {git_comps.git_branch(), {"magenta", "black_light"}, breakpoint_width},
+        {" ", {"black_light", "black_light"}},
         basic.square_mode
     },
     always_active = true,

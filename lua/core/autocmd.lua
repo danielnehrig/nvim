@@ -8,7 +8,8 @@ local definitions = {
         {"TermOpen", "*", "set nonumber"},
         {"TermOpen", "*", "set norelativenumber"},
         {"TermOpen", "*", "set showtabline=0"}, -- renable it
-        {"BufNewFile,BufRead", "*.toml", " setf toml"} -- set toml filetype
+        {"BufNewFile,BufRead", "*.toml", " setf toml"}, -- set toml filetype
+        {"FileType", "*.toml", "lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }"}
     }
 }
 
