@@ -11,6 +11,7 @@ end
 local function attach()
     if not dap then
         addPlug()
+        print('jo')
         dap = require "dap"
     end
     dap.continue()
@@ -19,14 +20,15 @@ end
 local function getStatus()
     if dap then
         if dap.session() then
-            return "DAP Attached"
+            return "Attached"
         end
     end
 
-    return ""
+    return "Detached"
 end
 
 return {
+    dap = dap,
     attach = attach,
     addPlug = addPlug,
     getStatus = getStatus

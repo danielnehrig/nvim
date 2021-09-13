@@ -199,11 +199,11 @@ basic.make = {
                 }
             end
             if make.failed then
-              return {
-                  {helper.separators.slant_left, "sep"},
-                  {" ", "spacer"},
-                  {make:Status(), "red"}
-              }
+                return {
+                    {helper.separators.slant_left, "sep"},
+                    {" ", "spacer"},
+                    {make:Status(), "red"}
+                }
             end
             return {
                 {helper.separators.slant_left, "sep"},
@@ -215,12 +215,13 @@ basic.make = {
     end
 }
 
+local attach = require("plugins.dap.attach")
 basic.lsp_names = {
     name = "lsp_names",
     hl_colors = {
         green = {"green", "black"},
         magenta = {"magenta", "black"},
-        sep = {"black", "transparent"},
+        sep = {"black", attach.dap and "yellow" or "transparent"},
         spacer = {"black", "black"}
     },
     width = breakpoint_width,
@@ -243,19 +244,22 @@ basic.lsp_names = {
 basic.dap = {
     name = "dap",
     hl_colors = {
-        green = {"green", "black"},
-        spacer = {"black", "black"},
-        sep = {"black", "transparent"}
+        yellow = {"red", "yellow"},
+        spacer = {"yellow", "yellow"},
+        sep = {"yellow", "transparent"}
     },
     width = breakpoint_width,
     text = function()
-        local status = require("plugins.dap.attach").getStatus()
-        if not status == "" then
-            return {
-                {helper.separators.slant_left, "sep"},
-                {" ", "spacer"},
-                {status, "green"}
-            }
+        local attach = require("plugins.dap.attach")
+        if attach.dap then
+            if attach.dap.session() then
+                local status = attach.getStatus()
+                return {
+                    {helper.separators.slant_left, "sep"},
+                    {" ", "spacer"},
+                    {"DAP: " .. status, "yellow"}
+                }
+            end
         end
         return ""
     end
@@ -312,10 +316,10 @@ local default = {
         basic.lsp_diagnos,
         basic.divider,
         basic.file_right,
+        basic.dap,
         basic.lsp_names,
         --basic.lsp_workspace,
         basic.make,
-        basic.dap,
         basic.git,
         {git_comps.git_branch(), {"magenta", "black_light"}, breakpoint_width},
         {" ", {"black_light", "black_light"}},
