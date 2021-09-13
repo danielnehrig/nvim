@@ -39,7 +39,8 @@ end
 function Debug:getStatus()
     if self.dap then
         if self.dap.session() then
-            return "Attached " .. self.dap.status()
+            local type = self.dap.configurations[vim.bo.filetype][1].type
+            return type .. " Attached " .. self.dap.status()
         end
     end
 
