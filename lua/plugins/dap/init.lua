@@ -14,19 +14,19 @@ dap.adapters.chrome = {
 }
 
 if global.is_linux then
-  dap.adapters.lldb = {
-      type = "executable",
-      command = "/usr/bin/lldb-vscode", -- adjust as needed
-      name = "lldb"
-  }
+    dap.adapters.lldb = {
+        type = "executable",
+        command = vim.fn.exepath("lldb-vscode"), -- adjust as needed
+        name = "lldb"
+    }
 end
 
 if global.is_mac then
-  dap.adapters.lldb = {
-      type = "executable",
-      command = "/usr/local/opt/llvm/bin//lldb-vscode", -- adjust as needed
-      name = "lldb"
-  }
+    dap.adapters.lldb = {
+        type = "executable",
+        command = vim.fn.exepath("lldb-vscode"), -- adjust as needed
+        name = "lldb"
+    }
 end
 
 dap.adapters.cppdbg = {
@@ -80,6 +80,20 @@ dap.configurations.typescript = {
         cwd = vim.fn.getcwd(),
         sourceMaps = true,
         protocol = "inspector"
+    },
+    {
+        type = "chrome",
+        request = "attach",
+        program = "${file}",
+        -- cwd = "${workspaceFolder}",
+        -- protocol = "inspector",
+        port = 9222,
+        webRoot = "${workspaceFolder}",
+        -- sourceMaps = true,
+        sourceMapPathOverrides = {
+            -- Sourcemap override for nextjs
+            ["webpack://_N_E/./*"] = "${webRoot}/*"
+        }
     }
 }
 
@@ -88,12 +102,15 @@ dap.configurations.typescriptreact = {
         type = "chrome",
         request = "attach",
         program = "${file}",
-        cwd = vim.fn.getcwd(),
-        sourceMaps = true,
-        protocol = "inspector",
+        -- cwd = "${workspaceFolder}",
+        -- protocol = "inspector",
         port = 9222,
-        url = "https://localhost:3000/nx/checkout/com-qs/de",
-        webRoot = "${workspaceFolder}"
+        webRoot = "${workspaceFolder}",
+        -- sourceMaps = true,
+        sourceMapPathOverrides = {
+            -- Sourcemap override for nextjs
+            ["webpack://_N_E/./*"] = "${webRoot}/*"
+        }
     }
 }
 
@@ -113,10 +130,14 @@ dap.configurations.javascriptreact = {
         type = "chrome",
         request = "attach",
         program = "${file}",
-        cwd = vim.fn.getcwd(),
-        sourceMaps = true,
-        protocol = "inspector",
-        port = 9222
+        -- cwd = vim.fn.getcwd(),
+        -- sourceMaps = true,
+        -- protocol = "inspector",
+        port = 9222,
+        sourceMapPathOverrides = {
+            -- Sourcemap override for nextjs
+            ["webpack://_N_E/./*"] = "${webRoot}/*"
+        }
     }
 }
 
