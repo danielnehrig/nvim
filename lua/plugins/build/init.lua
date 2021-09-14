@@ -26,7 +26,7 @@ function Make:Report(msg)
     notify.setup(
         {
             -- Animation style (see below for details)
-            stages = "fade",
+            -- stages = "fade",
             -- Default timeout for notifications
             timeout = 3000,
             -- For stages that change opacity this is treated as the highlight behind the window
