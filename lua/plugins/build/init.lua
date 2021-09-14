@@ -52,6 +52,7 @@ function Make:Report(msg)
 end
 
 function Make:init()
+    vim.g.neomake = {}
     vim.g.neomake_open_list = 2
     vim.api.nvim_set_var("test#javascript#runner", "jest")
     vim.api.nvim_set_var("test#typescript#runner", "jest")

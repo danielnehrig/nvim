@@ -78,4 +78,10 @@ remap("v", "<Leader>8", ":<c-u>HSHighlight 8<CR>")
 remap("v", "<Leader>9", ":<c-u>HSHighlight 9<CR>")
 remap("v", "<Leader>0", ":<c-u>HSRmHighlight<CR>")
 
+-- trouble
 remap("n", "<Leader>gt", ":LspTroubleToggle<CR>")
+
+-- make
+remap("n", "<Leader>ms", ":Neomake<CR>")
+remap("n", "<Leader>mt", ":TestFile<CR>")
+remap("n", "<Leader>mu", ":Ultest<CR>")
