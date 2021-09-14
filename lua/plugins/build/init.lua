@@ -21,7 +21,8 @@ function Make:Report(msg)
     local opt = {
         title = "Neomake"
     }
-    local info = vim.g.neomake_hook_context.jobinfo
+    local context = vim.g.neomake_hook_context
+    local info = context.jobinfo
     local notify = require("notify")
     notify.setup(
         {
@@ -42,11 +43,11 @@ function Make:Report(msg)
         }
     )
     if info.exit_code == 0 then
-        notify("Job Finished Successfully", _, opt)
+        notify(info.maker.name .. " Finished Successfully", _, opt)
     elseif info.exit_code == 1 then
-        notify("Job Failed", "error", opt)
+        notify(info.maker.name .. " Failed", "error", opt)
     else
-        notify("Job Started", "log", opt)
+        notify(info.maker.name .. " Started", "log", opt)
     end
 end
 
@@ -80,16 +81,16 @@ function Make:Status()
 end
 
 function Make:Finished()
-    local context = vim.api.nvim_get_var("neomake_hook_context")
+    local info = vim.g.neomake_hook_context.jobinfo
     self.running = false
-    if context.jobinfo.exit_code == 0 then
+    if info.exit_code == 0 then
         self.success = true
         self.failed = false
-        self.status = " Make ✅"
+        self.status = " " .. info.maker.name .. " ✅"
     else
         self.success = false
         self.failed = true
-        self.status = " Make ❌"
+        self.status = " " .. info.maker.name .. " ❌"
     end
 end
 
