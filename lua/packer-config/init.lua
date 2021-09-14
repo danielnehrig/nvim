@@ -193,7 +193,6 @@ local function init()
     use {
         "nvim-lua/lsp-status.nvim"
     } -- lsp status
-    use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use {
         "onsails/lspkind-nvim",
         config = function()
