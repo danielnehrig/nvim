@@ -77,6 +77,15 @@ vim.lsp.handlers["textDocument/hover"] =
     }
 )
 
+-- enable border
+vim.lsp.handlers["textDocument/signatureHelp"] =
+    vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    {
+        border = "single"
+    }
+)
+
 -- disable virtual text
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(
