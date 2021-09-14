@@ -92,7 +92,8 @@ dap.configurations.typescript = {
         -- sourceMaps = true,
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
-            ["webpack://_N_E/./*"] = "${webRoot}/*"
+            ["webpack://_N_E/./*"] = "${webRoot}/*",
+            ["webpack:///./*"] = "${webRoot}/*"
         }
     }
 }
@@ -109,7 +110,8 @@ dap.configurations.typescriptreact = {
         -- sourceMaps = true,
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
-            ["webpack://_N_E/./*"] = "${webRoot}/*"
+            ["webpack://_N_E/./*"] = "${webRoot}/*",
+            ["webpack:///./*"] = "${webRoot}/*"
         }
     }
 }
@@ -122,6 +124,21 @@ dap.configurations.javascript = {
         cwd = vim.fn.getcwd(),
         sourceMaps = true,
         protocol = "inspector"
+    },
+    {
+        type = "chrome",
+        request = "attach",
+        program = "${file}",
+        -- cwd = "${workspaceFolder}",
+        -- protocol = "inspector",
+        port = 9222,
+        webRoot = "${workspaceFolder}",
+        -- sourceMaps = true,
+        sourceMapPathOverrides = {
+            -- Sourcemap override for nextjs
+            ["webpack://_N_E/./*"] = "${webRoot}/*",
+            ["webpack:///./*"] = "${webRoot}/*"
+        }
     }
 }
 
@@ -136,7 +153,8 @@ dap.configurations.javascriptreact = {
         port = 9222,
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
-            ["webpack://_N_E/./*"] = "${webRoot}/*"
+            ["webpack://_N_E/./*"] = "${webRoot}/*",
+            ["webpack:///./*"] = "${webRoot}/*"
         }
     }
 }
