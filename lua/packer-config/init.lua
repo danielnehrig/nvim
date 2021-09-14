@@ -130,7 +130,7 @@ local function init()
             require("package-info").setup()
         end
     }
-    use {"folke/lua-dev.nvim"} -- lua nvim setup
+    use {"folke/lua-dev.nvim", opt = true} -- lua nvim setup
     use {"rust-lang/rust.vim", ft = {"rust", "rs"}} -- rust language tools
     use {
         "iamcco/markdown-preview.nvim",
@@ -159,6 +159,7 @@ local function init()
     use "RRethy/nvim-treesitter-textsubjects"
     use {
         "lewis6991/spellsitter.nvim",
+        disable = true,
         config = function()
             require("spellsitter").setup({captures = {"comment"}})
         end
@@ -179,7 +180,6 @@ local function init()
             require("trouble").setup()
         end,
         cmd = {"LspTrouble"},
-        event = "BufRead",
         requires = "kyazdani42/nvim-web-devicons"
     } -- window for showing LSP detected issues in code
     use {
