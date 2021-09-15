@@ -68,8 +68,6 @@ local mappings = {
     },
     g = {
         name = "+LSP Additional",
-        d = {"Difinition Peek"},
-        r = {"Reference Peek"},
         ["="] = {"LSP Format"},
         t = {"Trouble"},
         w = {"Symbol"},
