@@ -278,10 +278,10 @@ local quickfix = {
             {"cyan", "black_light"}
         },
         {" Total : %L ", {"cyan", "black_light"}},
-        {helper.separators.slant_right, {"black_light", "InactiveBg"}},
-        {" ", {"InactiveFg", "InactiveBg"}},
+        {helper.separators.slant_right, {"black_light", "transparent"}},
+        {" ", {"InactiveFg", "transparent"}},
         basic.divider,
-        {helper.separators.slant_right, {"InactiveBg", "black"}},
+        {helper.separators.slant_left_2, {"black", "transparent"}},
         {"🧛 ", {"white", "black"}}
     },
     always_active = true
