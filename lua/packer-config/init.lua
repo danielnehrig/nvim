@@ -277,7 +277,8 @@ local function init()
     -- quality of life
     use {"kevinhwang91/nvim-bqf"}
     use {
-        "gelguy/wilder.nvim"
+        "gelguy/wilder.nvim",
+        opt = true
     }
     use {
         "rcarriga/nvim-notify",
