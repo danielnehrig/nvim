@@ -130,7 +130,7 @@ local function init()
             require("package-info").setup()
         end
     }
-    use {"folke/lua-dev.nvim", opt = true} -- lua nvim setup
+    use {"danielnehrig/lua-dev.nvim", branch = "nvim_workspace", opt = true} -- lua nvim setup
     use {"rust-lang/rust.vim", ft = {"rust", "rs"}} -- rust language tools
     use {
         "iamcco/markdown-preview.nvim",

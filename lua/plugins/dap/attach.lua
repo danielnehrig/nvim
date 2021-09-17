@@ -63,7 +63,7 @@ function Debug:getStatus()
     if self.dap then
         if self.dap.session() then
             local type = self.dap.session().config.type
-            return type .. " Attached " .. self.dap.status()
+            return type .. " " .. self.dap.status()
         end
     end
 
