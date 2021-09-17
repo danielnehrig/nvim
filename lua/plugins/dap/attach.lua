@@ -1,3 +1,5 @@
+local remap = require("utils").map_global
+
 local Debug = {
     dap = nil
 }
@@ -17,8 +19,25 @@ function Debug:addPlug()
         vim.cmd [[packadd nvim-dap]]
         vim.cmd [[packadd nvim-dap-ui]]
         self.dap = require "dap"
+        self.mappings()
         require("plugins.dap")
     end
+end
+
+function Debug:mappings()
+    remap("n", "<Leader>ds", [[ <Cmd>lua require'dap'.close()<CR>]])
+    remap("n", "<Leader>dd", [[ <Cmd>lua require'dap'.disconnect(); require("dapui").close()<CR>]])
+    remap(
+        "n",
+        "<Leader>dB",
+        [[ <Cmd>lua require'dap'.set_breakpoint(nil, nul vim.fn.input('Log point message: '))<CR>]]
+    )
+    remap("n", "<Leader>dO", [[ <Cmd>lua require'dap'.step_over()<CR>]])
+    remap("n", "<Leader>di", [[ <Cmd>lua require'dap'.step_into()<CR>]])
+    remap("n", "<Leader>do", [[ <Cmd>lua require'dap'.step_out()<CR>]])
+    remap("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]])
+    remap("n", "<Leader>de", [[ <Cmd>lua require'dapui'.eval()<CR>]])
+    remap("n", "<Leader>df", [[ <Cmd>lua require'dapui'.float_element()<CR>]])
 end
 
 function Debug:attach()
