@@ -1,34 +1,26 @@
 local dap = require "dap"
 local global = require("core.global")
+local dap_install_folder = vim.fn.stdpath("data") .. "/dapinstall/"
 
 dap.adapters.node2 = {
     type = "executable",
     command = "node",
-    args = {vim.fn.stdpath("data") .. "/dapinstall/" .. "jsnode/vscode-node-debug2/out/src/nodeDebug.js"}
+    args = {dap_install_folder .. "jsnode/vscode-node-debug2/out/src/nodeDebug.js"}
 }
 
 dap.adapters.chrome = {
     type = "executable",
     command = "node",
-    args = {vim.fn.stdpath("data") .. "/dapinstall/" .. "chrome/vscode-chrome-debug/out/src/chromeDebug.js"}
+    args = {dap_install_folder .. "chrome/vscode-chrome-debug/out/src/chromeDebug.js"}
 }
 
-if global.is_linux then
-    dap.adapters.lldb = {
-        type = "executable",
-        command = vim.fn.exepath("lldb-vscode"), -- adjust as needed
-        name = "lldb"
-    }
-end
+dap.adapters.lldb = {
+    type = "executable",
+    command = vim.fn.exepath("lldb-vscode"),
+    name = "lldb"
+}
 
-if global.is_mac then
-    dap.adapters.lldb = {
-        type = "executable",
-        command = vim.fn.exepath("lldb-vscode"), -- adjust as needed
-        name = "lldb"
-    }
-end
-
+-- TODO
 dap.adapters.dart = {
     type = "executable",
     command = "node",
@@ -38,7 +30,7 @@ dap.adapters.dart = {
 dap.adapters.go = {
     type = "executable",
     command = "node",
-    args = {os.getenv("HOME") .. "/code/golang/vscode-go/dist/debugAdapter.js"}
+    args = {dap_install_folder .. "go/vscode-go/dist/debugAdapter.js"}
 }
 
 vim.fn.sign_define("DapBreakpoint", {text = "🛑", texthl = "", linehl = "", numhl = ""})
@@ -88,7 +80,7 @@ dap.configurations.typescript = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack://typescript-tictactoe/./*"] = "${webRoot}/*",
+            ["webpack://typescript-*/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
@@ -107,7 +99,7 @@ dap.configurations.typescriptreact = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack://typescript-tictactoe/./*"] = "${webRoot}/*",
+            ["webpack://typescript-*/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
@@ -134,6 +126,7 @@ dap.configurations.javascript = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
+            ["webpack://typescript-*/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
@@ -151,6 +144,7 @@ dap.configurations.javascriptreact = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
+            ["webpack://typescript-*/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
