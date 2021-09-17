@@ -20,11 +20,13 @@ function Debug:addPlug()
         vim.cmd [[packadd nvim-dap-ui]]
         self.dap = require "dap"
         self.mappings()
+
         require("plugins.dap")
     end
 end
 
 function Debug:mappings()
+    vim.cmd [[au FileType dap-repl lua require('dap.ext.autocompl').attach()]]
     remap("n", "<Leader>ds", [[ <Cmd>lua require'dap'.close()<CR>]])
     remap("n", "<Leader>dd", [[ <Cmd>lua require'dap'.disconnect(); require("dapui").close()<CR>]])
     remap(
@@ -38,6 +40,7 @@ function Debug:mappings()
     remap("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]])
     remap("n", "<Leader>de", [[ <Cmd>lua require'dapui'.eval()<CR>]])
     remap("n", "<Leader>df", [[ <Cmd>lua require'dapui'.float_element()<CR>]])
+    remap("n", "<Leader>dt", [[ <Cmd>lua require'dapui'.toggle()<CR>]])
 end
 
 function Debug:attach()

@@ -62,6 +62,7 @@ dap.configurations.dart = {
 dap.configurations.typescript = {
     {
         type = "node2",
+        name = "node",
         request = "attach",
         program = "${file}",
         cwd = vim.fn.getcwd(),
@@ -70,6 +71,7 @@ dap.configurations.typescript = {
     },
     {
         type = "chrome",
+        name = "chrome",
         request = "attach",
         program = "${file}",
         -- cwd = "${workspaceFolder}",
@@ -90,6 +92,7 @@ dap.configurations.typescriptreact = {
     {
         type = "chrome",
         request = "attach",
+        name = "chrome",
         program = "${file}",
         -- cwd = "${workspaceFolder}",
         -- protocol = "inspector",
@@ -108,6 +111,7 @@ dap.configurations.typescriptreact = {
 dap.configurations.javascript = {
     {
         type = "node2",
+        name = "node",
         request = "attach",
         program = "${file}",
         cwd = vim.fn.getcwd(),
@@ -117,6 +121,7 @@ dap.configurations.javascript = {
     {
         type = "chrome",
         request = "attach",
+        name = "chrome",
         program = "${file}",
         -- cwd = "${workspaceFolder}",
         -- protocol = "inspector",
@@ -135,6 +140,7 @@ dap.configurations.javascript = {
 dap.configurations.javascriptreact = {
     {
         type = "chrome",
+        name = "chrome",
         request = "attach",
         program = "${file}",
         -- cwd = vim.fn.getcwd(),
@@ -194,7 +200,7 @@ dap.configurations.rust[1].program = function()
         return rootPath .. file
     end
 
-    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/")
+    return vim.fn.getcwd() .. "/target/debug/" .. "${workspaceFolderBasename}"
 end
 
 require("dapui").setup()

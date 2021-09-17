@@ -39,7 +39,7 @@ remap("n", "<Leader>n", ":NvimTreeFindFile<CR>")
 remap("n", "<C-n>", ":NvimTreeToggle<CR>")
 
 -- dap NOTE: Lazyloaded
-remap("n", "<Leader>dc", [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require("plugins.dap.attach"):attach()<CR>]])
+remap("n", "<Leader>dc", [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.continue()<CR>]])
 remap("n", "<Leader>db", [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.toggle_breakpoint()<CR>]])
 
 -- compe: NOTE: Lazyloaded
