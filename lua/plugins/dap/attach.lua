@@ -22,10 +22,9 @@ function Debug:addPlug()
 end
 
 function Debug:attach()
-    if not self.dap then
-        self.addPlug()
+    if self.dap then
+        self.dap.continue()
     end
-    self.dap.continue()
 end
 
 function Debug:session()
