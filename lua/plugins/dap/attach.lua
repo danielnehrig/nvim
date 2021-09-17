@@ -1,6 +1,7 @@
 local Debug = {
     dap = nil
 }
+local debug = nil
 
 Debug.__index = Debug
 
@@ -47,6 +48,8 @@ function Debug:getStatus()
     return "Detached"
 end
 
-local debug = Debug:new()
+if not debug then
+    debug = Debug:new()
+end
 
 return debug
