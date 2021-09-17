@@ -1,6 +1,6 @@
-local compe = {}
+local cmp = {}
 
-function compe:init()
+function cmp:init()
     if not packer_plugins["plenary.nvim"].loaded then
         vim.cmd [[packadd plenary.nvim]]
     end
@@ -37,4 +37,4 @@ function compe:init()
     )
 end
 
-return compe
+return cmp

@@ -225,7 +225,7 @@ local function init()
     } -- default configs for lsp and setup lsp
     use {
         "hrsh7th/nvim-cmp",
-        config = require("plugins.compe").init,
+        config = require("plugins.cmp").init,
         wants = {"LuaSnip"},
         requires = {
             {"hrsh7th/cmp-nvim-lsp"},
