@@ -102,7 +102,7 @@ dap.configurations.typescriptreact = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack://typescript-*/./*"] = "${webRoot}/*",
+            ["webpack://typescript-/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
@@ -189,17 +189,6 @@ dap.configurations.rust = dap.configurations.cpp
 -- overwrite program
 dap.configurations.rust[1].program = function()
     -- root path
-    local rootPath = vim.fn.getcwd() .. "/target/debug/"
-    -- the actuall file name get from the root path looped and checked for exec in folder
-    local file = ""
-
-    -- check if file exists
-    -- TODO: make it right
-    local fileExists = vim.fn.executable(rootPath .. file)
-    if false then
-        return rootPath .. file
-    end
-
     return vim.fn.getcwd() .. "/target/debug/" .. "${workspaceFolderBasename}"
 end
 
