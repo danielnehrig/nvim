@@ -1,4 +1,10 @@
+
+
 # NVIM Config and VIM Migration to NVIM Story
+
+## Preview
+
+https://user-images.githubusercontent.com/4050749/133864439-42428245-d317-42b2-832a-ac43bbe74eb6.mp4
 
 ## Synposis
 
