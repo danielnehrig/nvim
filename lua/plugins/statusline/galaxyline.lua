@@ -62,7 +62,10 @@ local Running = {
 local function LspStatus()
     ---@diagnostic disable-next-line: undefined-field
     if table.getn(vim.lsp.buf_get_clients(0)) > 0 then
-        return require("lsp-status").status()
+      if packer_plugins["lsp-status.nvim"].loaded then
+          local lsp_status = require("plugins.lspStatus").lsp_status
+          return lsp_status.status()
+      end
     end
 
     return ""

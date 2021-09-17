@@ -10,36 +10,32 @@ function LSP:on_attach(client, bufnr)
         vim.cmd [[packadd lsp_signature.nvim]]
     end
 
-    require("lsp-status").on_attach(client)
+    if packer_plugins["lsp-status.nvim"].loaded then
+        local lsp_status = require("plugins.lspStatus").lsp_status
+        lsp_status.on_attach(client)
+    end
 
     map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
     map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
     map(bufnr, "n", "<C-w>gd", "<cmd>split | lua vim.lsp.buf.definition()<CR>")
-    map(bufnr, "n", "<space>gd", '<cmd>lua require("lspsaga.provider").preview_definition()<CR>')
-    map(bufnr, "n", "K", '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>')
+    map(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
     map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-    map(bufnr, "n", "gs", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
-    map(bufnr, "i", "<C-g>", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
+    map(bufnr, "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
     map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
     map(bufnr, "n", "<C-w>gi", "<cmd>split | lua vim.lsp.buf.implementation()<CR>")
     map(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
     map(bufnr, "n", "<space>gw", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
     map(bufnr, "n", "<space>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
-    map(bufnr, "n", "<space>ah", "<cmd>lua vim.lsp.buf.hover()<CR>")
-    map(bufnr, "n", "<space>af", '<cmd>lua require("lspsaga.codeaction").code_action()<CR>')
-    map(bufnr, "v", "<space>ac", '<cmd>lua require("lspsaga.codeaction").range_code_action()<CR>')
+    map(bufnr, "n", "<space>gh", "<cmd>lua vim.lsp.buf.hover()<CR>")
+    map(bufnr, "n", "<space>gf", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     map(bufnr, "n", "<space>ge", "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>")
-    map(bufnr, "n", "<space>ar", '<cmd>lua require("lspsaga.rename").rename()<CR>')
+    map(bufnr, "n", "<space>gr", "<cmd>lua vim.lsp.buf.rename()<CR>")
     map(bufnr, "n", "<space>g=", "<cmd>lua vim.lsp.buf.formatting()<CR>")
-    map(bufnr, "n", "<space>ai", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
-    map(bufnr, "n", "<space>ao", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
-    map(bufnr, "n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
-    map(bufnr, "i", "<Tab>", [[v:lua._G.tab_complete()]], {expr = true})
-    map(bufnr, "s", "<Tab>", [[v:lua._G.tab_complete()]], {expr = true})
-    map(bufnr, "i", "<S-Tab>", [[v:lua._G.s_tab_complete()]], {noremap = true, expr = true})
-    map(bufnr, "s", "<S-Tab>", [[v:lua._G.s_tab_complete()]], {noremap = true, expr = true})
+    map(bufnr, "n", "<space>gi", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
+    map(bufnr, "n", "<space>go", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
+    map(bufnr, "n", "<space>gd", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({border = 'single' })<CR>")
 
-    autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
+    autocmd("CursorHold", "<buffer>", "lua vim.lsp.diagnostic.show_line_diagnostics({border = 'single' })")
 
     fn.sign_define("LspDiagnosticsSignError", {text = ""})
     fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
@@ -70,6 +66,25 @@ function LSP:on_attach(client, bufnr)
         }
     )
 end
+
+-- enable border
+vim.lsp.handlers["textDocument/hover"] =
+    vim.lsp.with(
+    vim.lsp.handlers.hover,
+    {
+        -- Use a sharp border with `FloatBorder` highlights
+        border = "single"
+    }
+)
+
+-- enable border
+vim.lsp.handlers["textDocument/signatureHelp"] =
+    vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    {
+        border = "single"
+    }
+)
 
 -- disable virtual text
 vim.lsp.handlers["textDocument/publishDiagnostics"] =

@@ -39,17 +39,8 @@ remap("n", "<Leader>n", ":NvimTreeFindFile<CR>")
 remap("n", "<C-n>", ":NvimTreeToggle<CR>")
 
 -- dap NOTE: Lazyloaded
-remap("n", "<Leader>ds", [[ <Cmd>lua require'dap'.stop()<CR>]])
-remap("n", "<Leader>dd", [[ <Cmd>lua require'dap'.disconnect()<CR>]])
-remap("n", "<Leader>dc", [[ <Cmd>lua require("plugins.dap.attach").attach()<CR>]])
-remap("n", "<Leader>db", [[ <Cmd>lua require("plugins.dap.attach");require'dap'.toggle_breakpoint()<CR>]])
-remap("n", "<Leader>dB", [[ <Cmd>lua require'dap'.set_breakpoint(nil, nul vim.fn.input('Log point message: '))<CR>]])
-remap("n", "<Leader>dO", [[ <Cmd>lua require'dap'.step_over()<CR>]])
-remap("n", "<Leader>di", [[ <Cmd>lua require'dap'.step_into()<CR>]])
-remap("n", "<Leader>do", [[ <Cmd>lua require'dap'.step_out()<CR>]])
-remap("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]])
-remap("n", "<Leader>de", [[ <Cmd>lua require'dapui'.eval()<CR>]])
-remap("n", "<Leader>df", [[ <Cmd>lua require'dapui'.float_element()<CR>]])
+remap("n", "<Leader>dc", [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.continue()<CR>]])
+remap("n", "<Leader>db", [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.toggle_breakpoint()<CR>]])
 
 -- compe: NOTE: Lazyloaded
 remap("i", "<C-space>", "compe#complete()", true)
@@ -78,4 +69,10 @@ remap("v", "<Leader>8", ":<c-u>HSHighlight 8<CR>")
 remap("v", "<Leader>9", ":<c-u>HSHighlight 9<CR>")
 remap("v", "<Leader>0", ":<c-u>HSRmHighlight<CR>")
 
+-- trouble
 remap("n", "<Leader>gt", ":LspTroubleToggle<CR>")
+
+-- make
+remap("n", "<Leader>ms", ":Neomake<CR>")
+remap("n", "<Leader>mt", ":TestFile<CR>")
+remap("n", "<Leader>mu", ":Ultest<CR>")

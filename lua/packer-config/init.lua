@@ -22,7 +22,12 @@ local function init()
     local use = packer.use
 
     -- theme
-    use {"glepnir/galaxyline.nvim", branch = "main", requires = "kyazdani42/nvim-web-devicons"} -- statusbar
+    use {
+        "windwp/windline.nvim",
+        config = function()
+            require("plugins.statusline.windline")
+        end
+    }
     use {"romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons"} -- bufferline
     use {
         "norcalli/nvim-colorizer.lua",
@@ -53,7 +58,79 @@ local function init()
     } -- colorscheme
 
     -- language
-    use {"folke/lua-dev.nvim", opt = true} -- lua nvim setup
+    use {
+        "Saecki/crates.nvim",
+        ft = {"toml", "rs"},
+        requires = {"nvim-lua/plenary.nvim"},
+        config = function()
+            require("crates").setup {
+                smart_insert = true, -- try to be smart about inserting versions
+                avoid_prerelease = true, -- don't select a prerelease if the requirement does not have a suffix
+                autoload = true, -- automatically run update when opening a Cargo.toml
+                autoupdate = true, -- atomatically update when editing text
+                loading_indicator = true, -- show a loading indicator while fetching crate versions
+                text = {
+                    loading = "   Loading",
+                    version = "   %s",
+                    prerelease = "   %s",
+                    yanked = "   %s",
+                    nomatch = "   No match",
+                    update = "   %s",
+                    error = "   Error fetching crate"
+                },
+                highlight = {
+                    loading = "CratesNvimLoading",
+                    version = "CratesNvimVersion",
+                    prerelease = "CratesNvimPreRelease",
+                    yanked = "CratesNvimYanked",
+                    nomatch = "CratesNvimNoMatch",
+                    update = "CratesNvimUpdate",
+                    error = "CratesNvimError"
+                },
+                popup = {
+                    autofocus = false, -- focus the versions popup when opening it
+                    copy_register = '"', -- the register into which the version will be copied
+                    style = "minimal", -- same as nvim_open_win opts.style
+                    border = "none", -- same as nvim_open_win opts.border
+                    max_height = 30,
+                    min_width = 20,
+                    text = {
+                        title = "  %s ",
+                        version = "   %s ",
+                        prerelease = "  %s ",
+                        yanked = "  %s "
+                    },
+                    highlight = {
+                        title = "CratesNvimPopupTitle",
+                        version = "CratesNvimPopupVersion",
+                        prerelease = "CratesNvimPopupPreRelease",
+                        yanked = "CratesNvimPopupYanked"
+                    },
+                    keys = {
+                        hide = {"q", "<esc>"},
+                        select = {"<cr>"},
+                        select_dumb = {"s"},
+                        copy_version = {"yy"}
+                    }
+                },
+                cmp = {
+                    text = {
+                        prerelease = "  pre-release ",
+                        yanked = "  yanked "
+                    }
+                }
+            }
+        end
+    }
+    use {
+        "vuki656/package-info.nvim",
+        requires = "MunifTanjim/nui.nvim",
+        ft = {"json"},
+        config = function()
+            require("package-info").setup()
+        end
+    }
+    use {"danielnehrig/lua-dev.nvim", branch = "nvim_workspace", opt = true} -- lua nvim setup
     use {"rust-lang/rust.vim", ft = {"rust", "rs"}} -- rust language tools
     use {
         "iamcco/markdown-preview.nvim",
@@ -82,6 +159,7 @@ local function init()
     use "RRethy/nvim-treesitter-textsubjects"
     use {
         "lewis6991/spellsitter.nvim",
+        disable = true,
         config = function()
             require("spellsitter").setup({captures = {"comment"}})
         end
@@ -102,7 +180,6 @@ local function init()
             require("trouble").setup()
         end,
         cmd = {"LspTrouble"},
-        event = "BufRead",
         requires = "kyazdani42/nvim-web-devicons"
     } -- window for showing LSP detected issues in code
     use {
@@ -114,12 +191,8 @@ local function init()
         cmd = {"TodoQuickFix", "TodoTrouble", "TodoTelescope"}
     } -- show todos in qf
     use {
-        "nvim-lua/lsp-status.nvim",
-        config = function()
-            require("plugins.lspStatus")
-        end
+        "nvim-lua/lsp-status.nvim"
     } -- lsp status
-    use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use {
         "onsails/lspkind-nvim",
         config = function()
@@ -127,23 +200,40 @@ local function init()
         end
     } -- lsp extensions stuff
     use {
+        "jghauser/mkdir.nvim",
+        config = function()
+            require("mkdir")
+        end
+    }
+    use {
+        "folke/lsp-colors.nvim",
+        config = function()
+            require("lsp-colors").setup(
+                {
+                    Error = "#db4b4b",
+                    Warning = "#e0af68",
+                    Information = "#0db9d7",
+                    Hint = "#10B981"
+                }
+            )
+        end
+    }
+    use {
         "neovim/nvim-lspconfig",
         config = require("plugins.lspconfig").init,
         requires = {"nvim-lua/lsp-status.nvim", after = {"neovim/nvim-lspconfig"}}
     } -- default configs for lsp and setup lsp
     use {
-        "hrsh7th/nvim-compe",
-        event = "InsertEnter",
-        config = require("plugins.compe").init,
+        "hrsh7th/nvim-cmp",
+        config = require("plugins.cmp").init,
         wants = {"LuaSnip"},
         requires = {
+            {"hrsh7th/cmp-nvim-lsp"},
+            {"saadparwaiz1/cmp_luasnip"},
             {
                 "L3MON4D3/LuaSnip",
                 wants = "friendly-snippets",
-                event = "InsertCharPre",
-                config = function()
-                    require "plugins.compe.luasnip"
-                end
+                event = "InsertCharPre"
             },
             {
                 "rafamadriz/friendly-snippets",
@@ -159,12 +249,10 @@ local function init()
                 end,
                 keys = {"<space>oc", "<space>oa"},
                 ft = {"org"},
-                wants = "nvim-compe"
+                wants = "nvim-cmp"
             }
         }
-    } -- completion engine
-    use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh8th/nvim-compe"}
-    use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
+    }
 
     -- navigation
     use {
@@ -188,11 +276,18 @@ local function init()
 
     -- quality of life
     use {
-        "gelguy/wilder.nvim"
+        "lewis6991/impatient.nvim",
+        config = function()
+            require "impatient".enable_profile()
+        end
+    }
+    use {"kevinhwang91/nvim-bqf"}
+    use {
+        "gelguy/wilder.nvim",
+        opt = true
     }
     use {
         "rcarriga/nvim-notify",
-        commit = "2ee19cd937c98d4d40d77ae729c70fe0923a2b8c",
         opt = true
     }
     use {
@@ -248,13 +343,6 @@ local function init()
     -- misc
     use {"windwp/nvim-projectconfig", disable = true} -- project dependable cfg
     use {
-        "famiu/nvim-reload",
-        cmd = {"Reload", "Restart"},
-        setup = function()
-            vim.cmd [[packadd plenary.nvim]]
-        end
-    } -- reload nvim config
-    use {
         "glepnir/dashboard-nvim",
         setup = require("plugins.dashboard").dashboard
     } -- dashboard
@@ -265,6 +353,17 @@ local function init()
     } -- show indentation
 
     -- git
+    use {
+        "tanvirtin/vgit.nvim",
+        cmd = {"VGit"},
+        commit = "c1e5c82f5fc73bddb32eaef411dcc5e36ebc4efc",
+        config = function()
+            require("plugins.vgit")
+        end,
+        requires = {
+            "nvim-lua/plenary.nvim"
+        }
+    }
     use {
         "pwntester/octo.nvim",
         requires = {"nvim-telescope/telescope.nvim"},
@@ -290,7 +389,7 @@ local function init()
     use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff", "Gblame", "Glog"}} -- git integration
 
     -- testing / building
-    use {"rcarriga/vim-ultest", cmd = {"Ultest"}, wants = {"vim-test"}}
+    use {"rcarriga/vim-ultest", cmd = {"Ultest"}, requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins"}
     use {
         "vim-test/vim-test",
         cmd = {"TestFile"},
@@ -305,6 +404,19 @@ local function init()
     }
 
     -- debug
+    use {
+        "Pocco81/DAPInstall.nvim",
+        cmd = {"DIInstall", "DIList"},
+        config = function()
+            local dap_install = require("dap-install")
+
+            dap_install.setup(
+                {
+                    installation_path = vim.fn.stdpath("data") .. "/dapinstall/"
+                }
+            )
+        end
+    }
     use {
         "mfussenegger/nvim-dap",
         opt = true

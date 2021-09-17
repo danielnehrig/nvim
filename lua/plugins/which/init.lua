@@ -49,6 +49,12 @@ local opts = function(prefix)
 end
 
 local mappings = {
+    m = {
+        name = "+Make",
+        s = {"Start"},
+        t = {"Test"},
+        u = {"Ultest"}
+    },
     f = {
         name = "+File",
         f = {"Find File"},
@@ -62,9 +68,7 @@ local mappings = {
     },
     g = {
         name = "+LSP Additional",
-        d = {"Difinition Peek"},
-        r = {"Reference Peek"},
-        ['='] = {"LSP Format"},
+        ["="] = {"LSP Format"},
         t = {"Trouble"},
         w = {"Symbol"},
         W = {"Workspace Symbol"},
@@ -119,8 +123,8 @@ local mappings = {
     t = {
         name = "+TABLINE",
         t = {"Pick Tab"},
-        ['1'] = {"GoTo 1"},
-        ['2'] = {"GoTo 2"},
+        ["1"] = {"GoTo 1"},
+        ["2"] = {"GoTo 2"},
         p = {"Previous"},
         n = {"Next"},
         c = {"Close Buffer"},
