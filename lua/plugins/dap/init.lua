@@ -4,13 +4,13 @@ local global = require("core.global")
 dap.adapters.node2 = {
     type = "executable",
     command = "node",
-    args = {os.getenv("HOME") .. "/code/vscode-node-debug2/out/src/nodeDebug.js"}
+    args = {vim.fn.stdpath("data") .. "/dapinstall/" .. "jsnode/vscode-node-debug2/out/src/nodeDebug.js"}
 }
 
 dap.adapters.chrome = {
     type = "executable",
     command = "node",
-    args = {os.getenv("HOME") .. "/code/vscode-chrome-debug/out/src/chromeDebug.js"}
+    args = {vim.fn.stdpath("data") .. "/dapinstall/" .. "chrome/vscode-chrome-debug/out/src/chromeDebug.js"}
 }
 
 if global.is_linux then
@@ -28,11 +28,6 @@ if global.is_mac then
         name = "lldb"
     }
 end
-
-dap.adapters.cppdbg = {
-    type = "executable",
-    command = "~/code/cpptools/extension/debugAdapters/OpenDebugAD7"
-}
 
 dap.adapters.dart = {
     type = "executable",
@@ -93,6 +88,7 @@ dap.configurations.typescript = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
+            ["webpack://typescript-tictactoe/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
@@ -111,6 +107,7 @@ dap.configurations.typescriptreact = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
+            ["webpack://typescript-tictactoe/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }

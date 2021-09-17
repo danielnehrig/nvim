@@ -1,4 +1,5 @@
 local vgit = require("vgit")
+local utils = require("vgit.utils")
 
 vgit.setup(
     {

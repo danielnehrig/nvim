@@ -1,6 +1,7 @@
 local Debug = {
     dap = nil
 }
+
 local debug = nil
 
 Debug.__index = Debug

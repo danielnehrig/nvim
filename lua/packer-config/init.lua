@@ -275,6 +275,12 @@ local function init()
     use {"ggandor/lightspeed.nvim", keys = {"s", "S", "t", "f", "T", "F"}} -- lightspeed motion
 
     -- quality of life
+    use {
+        "lewis6991/impatient.nvim",
+        config = function()
+            require "impatient".enable_profile()
+        end
+    }
     use {"kevinhwang91/nvim-bqf"}
     use {
         "gelguy/wilder.nvim",
@@ -350,6 +356,7 @@ local function init()
     use {
         "tanvirtin/vgit.nvim",
         cmd = {"VGit"},
+        commit = "c1e5c82f5fc73bddb32eaef411dcc5e36ebc4efc",
         config = function()
             require("plugins.vgit")
         end,
@@ -397,6 +404,19 @@ local function init()
     }
 
     -- debug
+    use {
+        "Pocco81/DAPInstall.nvim",
+        cmd = {"DIInstall", "DIList"},
+        config = function()
+            local dap_install = require("dap-install")
+
+            dap_install.setup(
+                {
+                    installation_path = vim.fn.stdpath("data") .. "/dapinstall/"
+                }
+            )
+        end
+    }
     use {
         "mfussenegger/nvim-dap",
         opt = true
