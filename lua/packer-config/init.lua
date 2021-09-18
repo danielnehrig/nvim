@@ -404,6 +404,7 @@ local function init()
     }
 
     -- debug
+    use {"jbyuki/one-small-step-for-vimkind"}
     use {
         "Pocco81/DAPInstall.nvim",
         cmd = {"DIInstall", "DIList"},
