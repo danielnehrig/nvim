@@ -63,6 +63,19 @@ function Make:init()
 
     vim.api.nvim_set_var("test#strategy", "neomake")
 
+    vim.g.neomake_typescript_yarn_maker = {
+        exe = "yarn",
+        args = "install",
+        errorformat = "%f"
+    }
+    vim.g.neomake_typescriptreact_yarn_maker = vim.g.neomake_typescript_yarn_maker
+    vim.g.neomake_typescript_npm_maker = {
+        exe = "npm",
+        args = "install",
+        errorformat = "%f"
+    }
+    vim.g.neomake_typescriptreact_npm_maker = vim.g.neomake_typescript_npm_maker
+
     local autocmds = {
         neomake_hook = {
             {"User", "NeomakeJobFinished", "lua require('plugins.build'):Finished()"},

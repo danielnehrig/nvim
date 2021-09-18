@@ -20,13 +20,6 @@ dap.adapters.lldb = {
     name = "lldb"
 }
 
--- TODO
-dap.adapters.dart = {
-    type = "executable",
-    command = "node",
-    args = {"<path-to-Dart-Code>/out/dist/debug.js", "flutter"}
-}
-
 dap.adapters.go = {
     type = "executable",
     command = "node",
@@ -82,7 +75,6 @@ dap.configurations.typescript = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack://typescript-*/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
@@ -102,7 +94,6 @@ dap.configurations.typescriptreact = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack://typescript-/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
@@ -123,15 +114,11 @@ dap.configurations.javascript = {
         request = "attach",
         name = "chrome",
         program = "${file}",
-        -- cwd = "${workspaceFolder}",
-        -- protocol = "inspector",
         port = 9222,
         webRoot = "${workspaceFolder}",
-        -- sourceMaps = true,
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack://typescript-*/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
@@ -150,7 +137,6 @@ dap.configurations.javascriptreact = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack://typescript-*/./*"] = "${webRoot}/*",
             ["webpack:///./*"] = "${webRoot}/*"
         }
     }
@@ -167,28 +153,15 @@ dap.configurations.cpp = {
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
         args = {},
-        -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-        --
-        --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-        --
-        -- Otherwise you might get the following error:
-        --
-        --    Error on launch: Failed to attach to the target process
-        --
-        -- But you should be aware of the implications:
-        -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
         runInTerminal = false
     }
 }
-
--- If you want to use this for rust and c, add something like this:
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
 -- overwrite program
 dap.configurations.rust[1].program = function()
-    -- root path
     return vim.fn.getcwd() .. "/target/debug/" .. "${workspaceFolderBasename}"
 end
 
