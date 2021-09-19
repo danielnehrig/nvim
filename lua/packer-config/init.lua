@@ -377,7 +377,6 @@ local function init()
     use({
         "tanvirtin/vgit.nvim",
         cmd = { "VGit" },
-        commit = "c1e5c82f5fc73bddb32eaef411dcc5e36ebc4efc",
         config = function()
             require("plugins.vgit")
         end,

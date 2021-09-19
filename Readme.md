@@ -39,12 +39,7 @@ CONFIG SETUP:
 - remove unused plugins ✅
 - move to the build in LSP ✅
 - add formatting and linting ✅
-- Debug ☑️
-  - Typescript NodeJS ✅
-  - Browser Javascript ✅
-  - Rust ✅
-  - Go ❓
-  - Python ❓
+- Debug ✅
 - intutive mappings ✅
 - fast tab/buffer navigation ✅
 - project managment ✅
@@ -52,7 +47,6 @@ CONFIG SETUP:
 - file managment ✅
 - lazy load plugins ✅
 - Treesitter Setup ✅
-- DONE AS OF 18.05.21
 
 ## Philosophy and side infos
 
