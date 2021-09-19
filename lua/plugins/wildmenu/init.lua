@@ -1,4 +1,4 @@
-vim.cmd "autocmd CmdlineEnter * ++once lua require('plugins.wildmenu'):init()"
+vim.cmd("autocmd CmdlineEnter * ++once lua require('plugins.wildmenu'):init()")
 
 local Wild = {}
 
@@ -12,7 +12,7 @@ end
 
 function Wild:init()
     if not packer_plugins["wilder.nvim"].loaded then
-        vim.cmd [[ packadd wilder.nvim ]]
+        vim.cmd([[ packadd wilder.nvim ]])
         vim.api.nvim_exec(
             [[
 call wilder#enable_cmdline_enter()
@@ -26,9 +26,12 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_bo
 ]],
             false
         )
-        vim.api.nvim_exec([[
+        vim.api.nvim_exec(
+            [[
       call wilder#main#start()
-    ]], false)
+    ]],
+            false
+        )
     end
 end
 

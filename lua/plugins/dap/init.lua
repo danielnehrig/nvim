@@ -1,33 +1,68 @@
-local dap = require "dap"
+local dap = require("dap")
 local global = require("core.global")
 local dap_install_folder = vim.fn.stdpath("data") .. "/dapinstall/"
 
 dap.adapters.node2 = {
     type = "executable",
     command = "node",
-    args = {dap_install_folder .. "jsnode/vscode-node-debug2/out/src/nodeDebug.js"}
+    args = {
+        dap_install_folder .. "jsnode/vscode-node-debug2/out/src/nodeDebug.js",
+    },
 }
 
 dap.adapters.chrome = {
     type = "executable",
     command = "node",
-    args = {dap_install_folder .. "chrome/vscode-chrome-debug/out/src/chromeDebug.js"}
+    args = {
+        dap_install_folder
+            .. "chrome/vscode-chrome-debug/out/src/chromeDebug.js",
+    },
 }
 
 dap.adapters.lldb = {
     type = "executable",
     command = vim.fn.exepath("lldb-vscode"),
-    name = "lldb"
+    name = "lldb",
 }
 
 dap.adapters.go = {
     type = "executable",
     command = "node",
-    args = {dap_install_folder .. "go/vscode-go/dist/debugAdapter.js"}
+    args = { dap_install_folder .. "go/vscode-go/dist/debugAdapter.js" },
 }
 
-vim.fn.sign_define("DapBreakpoint", {text = "🛑", texthl = "", linehl = "", numhl = ""})
-vim.fn.sign_define("DapStopped", {text = "🟢", texthl = "", linehl = "", numhl = ""})
+vim.fn.sign_define(
+    "DapBreakpoint",
+    { text = "🛑", texthl = "", linehl = "", numhl = "" }
+)
+vim.fn.sign_define(
+    "DapStopped",
+    { text = "🟢", texthl = "", linehl = "", numhl = "" }
+)
+
+dap.configurations.lua = {
+    {
+        type = "nlua",
+        request = "attach",
+        name = "Neovim",
+        host = function()
+            local value = vim.fn.input("Host [127.0.0.1]: ")
+            if value ~= "" then
+                return value
+            end
+            return "127.0.0.1"
+        end,
+        port = function()
+            local val = tonumber(vim.fn.input("Port: "))
+            assert(val, "Please provide a port number")
+            return val
+        end,
+    },
+}
+
+dap.adapters.nlua = function(callback, config)
+    callback({ type = "server", host = config.host, port = config.port })
+end
 
 dap.configurations.go = {
     {
@@ -36,8 +71,8 @@ dap.configurations.go = {
         request = "launch",
         showLog = false,
         program = "${file}",
-        dlvToolPath = vim.fn.exepath("dlv") -- Adjust to where delve is installed
-    }
+        dlvToolPath = vim.fn.exepath("dlv"), -- Adjust to where delve is installed
+    },
 }
 
 dap.configurations.dart = {
@@ -48,8 +83,8 @@ dap.configurations.dart = {
         dartSdkPath = os.getenv("HOME") .. "/flutter/bin/cache/dart-sdk/",
         flutterSdkPath = os.getenv("HOME") .. "/flutter",
         program = "${workspaceFolder}/lib/main.dart",
-        cwd = "${workspaceFolder}"
-    }
+        cwd = "${workspaceFolder}",
+    },
 }
 
 dap.configurations.typescript = {
@@ -60,7 +95,7 @@ dap.configurations.typescript = {
         program = "${file}",
         cwd = vim.fn.getcwd(),
         sourceMaps = true,
-        protocol = "inspector"
+        protocol = "inspector",
     },
     {
         type = "chrome",
@@ -75,9 +110,9 @@ dap.configurations.typescript = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack:///./*"] = "${webRoot}/*"
-        }
-    }
+            ["webpack:///./*"] = "${webRoot}/*",
+        },
+    },
 }
 
 dap.configurations.typescriptreact = {
@@ -94,9 +129,9 @@ dap.configurations.typescriptreact = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack:///./*"] = "${webRoot}/*"
-        }
-    }
+            ["webpack:///./*"] = "${webRoot}/*",
+        },
+    },
 }
 
 dap.configurations.javascript = {
@@ -107,7 +142,7 @@ dap.configurations.javascript = {
         program = "${file}",
         cwd = vim.fn.getcwd(),
         sourceMaps = true,
-        protocol = "inspector"
+        protocol = "inspector",
     },
     {
         type = "chrome",
@@ -119,9 +154,9 @@ dap.configurations.javascript = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack:///./*"] = "${webRoot}/*"
-        }
-    }
+            ["webpack:///./*"] = "${webRoot}/*",
+        },
+    },
 }
 
 dap.configurations.javascriptreact = {
@@ -137,9 +172,9 @@ dap.configurations.javascriptreact = {
         sourceMapPathOverrides = {
             -- Sourcemap override for nextjs
             ["webpack://_N_E/./*"] = "${webRoot}/*",
-            ["webpack:///./*"] = "${webRoot}/*"
-        }
-    }
+            ["webpack:///./*"] = "${webRoot}/*",
+        },
+    },
 }
 
 dap.configurations.cpp = {
@@ -148,13 +183,17 @@ dap.configurations.cpp = {
         type = "lldb",
         request = "launch",
         program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            return vim.fn.input(
+                "Path to executable: ",
+                vim.fn.getcwd() .. "/",
+                "file"
+            )
         end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
         args = {},
-        runInTerminal = false
-    }
+        runInTerminal = false,
+    },
 }
 
 dap.configurations.c = dap.configurations.cpp
