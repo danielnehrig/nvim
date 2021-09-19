@@ -4,7 +4,8 @@ local augroups = require "utils".nvim_create_augroups
 -- efm setups
 local eslint = require("plugins.efm.eslint")
 local prettier = require("plugins.efm.prettier")
-local luafmt = require("plugins.efm.luafmt")
+-- local luafmt = require("plugins.efm.luafmt")
+local stylua = require("plugins.efm.stylua")
 local rustfmt = require("plugins.efm.rustfmt")
 local python = require("plugins.efm.python")
 local dprint = require("plugins.efm.dprint")
@@ -37,7 +38,7 @@ lspconfig.efm.setup {
         languages = {
             typescript = {prettier, eslint},
             typescriptreact = {prettier, eslint},
-            lua = {luafmt},
+            lua = {stylua},
             rust = {rustfmt},
             markdown = {dprint},
             python = {python},
