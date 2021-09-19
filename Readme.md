@@ -1,5 +1,3 @@
-
-
 # NVIM Config and VIM Migration to NVIM Story
 
 ## Preview
@@ -32,10 +30,17 @@ Started 09.04.21
 
 ## The Main Goals
 
+The Config should fully support:
+
+- Typescript / Javascript
+- Rust
+- Go
+- Python
+
 CONFIG SETUP:  
 
-- make vim more like an IDE ✅
-- Debloating the Config ✅
+- IDE capabilities (lsp,debug,project managment,build,lint,test) ✅
+- Debloating the Config (staying under 100ms bootup time) ✅
 - remove unused plugins ✅
 - move to the build in LSP ✅
 - add formatting and linting ✅
@@ -47,6 +52,7 @@ CONFIG SETUP:
 - file managment ✅
 - lazy load plugins ✅
 - Treesitter Setup ✅
+- Refactoring ✅
 
 ## Philosophy and side infos
 
