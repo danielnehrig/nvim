@@ -33,9 +33,18 @@ function LSP:on_attach(client, bufnr)
     map(bufnr, "n", "<space>g=", "<cmd>lua vim.lsp.buf.formatting()<CR>")
     map(bufnr, "n", "<space>gi", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
     map(bufnr, "n", "<space>go", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
-    map(bufnr, "n", "<space>gd", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({border = 'single' })<CR>")
+    map(
+        bufnr,
+        "n",
+        "<space>gd",
+        "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false, border = 'single' })<CR>"
+    )
 
-    autocmd("CursorHold", "<buffer>", "lua vim.lsp.diagnostic.show_line_diagnostics({border = 'single' })")
+    autocmd(
+        "CursorHold",
+        "<buffer>",
+        "lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false, border = 'single' })"
+    )
 
     fn.sign_define("LspDiagnosticsSignError", {text = ""})
     fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
