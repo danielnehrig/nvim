@@ -1,7 +1,7 @@
 local remap = require("utils").map_global
 
 local Debug = {
-    dap = nil
+    dap = nil,
 }
 
 local debug = nil
@@ -16,9 +16,9 @@ end
 
 function Debug:addPlug()
     if not packer_plugins["nvim-dap"].loaded then
-        vim.cmd [[packadd nvim-dap]]
-        vim.cmd [[packadd nvim-dap-ui]]
-        self.dap = require "dap"
+        vim.cmd([[packadd nvim-dap]])
+        vim.cmd([[packadd nvim-dap-ui]])
+        self.dap = require("dap")
         self.mappings()
 
         require("plugins.dap")
@@ -26,9 +26,13 @@ function Debug:addPlug()
 end
 
 function Debug:mappings()
-    vim.cmd [[au FileType dap-repl lua require('dap.ext.autocompl').attach()]]
+    vim.cmd([[au FileType dap-repl lua require('dap.ext.autocompl').attach()]])
     remap("n", "<Leader>ds", [[ <Cmd>lua require'dap'.close()<CR>]])
-    remap("n", "<Leader>dd", [[ <Cmd>lua require'dap'.disconnect(); require("dapui").close()<CR>]])
+    remap(
+        "n",
+        "<Leader>dd",
+        [[ <Cmd>lua require'dap'.disconnect(); require("dapui").close()<CR>]]
+    )
     remap(
         "n",
         "<Leader>dB",

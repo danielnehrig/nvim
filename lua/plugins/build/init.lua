@@ -5,7 +5,7 @@ local Make = {
     success = false,
     running = false,
     status = " Make  ",
-    notify = nil
+    notify = nil,
 }
 
 Make.__index = Make
@@ -17,31 +17,29 @@ function Make:new(o)
 end
 
 function Make:Report(msg)
-    vim.cmd [[packadd nvim-notify]]
+    vim.cmd([[packadd nvim-notify]])
     local opt = {
-        title = "Neomake"
+        title = "Neomake",
     }
     local context = vim.g.neomake_hook_context
     local info = context.jobinfo
     local notify = require("notify")
-    notify.setup(
-        {
-            -- Animation style (see below for details)
-            -- stages = "fade",
-            -- Default timeout for notifications
-            timeout = 3000,
-            -- For stages that change opacity this is treated as the highlight behind the window
-            background_colour = "NotifyBG",
-            -- Icons for the different levels
-            icons = {
-                ERROR = "",
-                WARN = "",
-                INFO = "",
-                DEBUG = "",
-                TRACE = "✎"
-            }
-        }
-    )
+    notify.setup({
+        -- Animation style (see below for details)
+        -- stages = "fade",
+        -- Default timeout for notifications
+        timeout = 3000,
+        -- For stages that change opacity this is treated as the highlight behind the window
+        background_colour = "NotifyBG",
+        -- Icons for the different levels
+        icons = {
+            ERROR = "",
+            WARN = "",
+            INFO = "",
+            DEBUG = "",
+            TRACE = "✎",
+        },
+    })
     if info.exit_code == 0 then
         notify(info.maker.name .. " Finished Successfully", _, opt)
     elseif info.exit_code == 1 then
@@ -66,23 +64,40 @@ function Make:init()
     vim.g.neomake_typescript_yarn_maker = {
         exe = "yarn",
         args = "install",
-        errorformat = "%f"
+        errorformat = "%f",
     }
-    vim.g.neomake_typescriptreact_yarn_maker = vim.g.neomake_typescript_yarn_maker
+    vim.g.neomake_typescriptreact_yarn_maker =
+        vim.g.neomake_typescript_yarn_maker
     vim.g.neomake_typescript_npm_maker = {
         exe = "npm",
         args = "install",
-        errorformat = "%f"
+        errorformat = "%f",
     }
     vim.g.neomake_typescriptreact_npm_maker = vim.g.neomake_typescript_npm_maker
 
     local autocmds = {
         neomake_hook = {
-            {"User", "NeomakeJobFinished", "lua require('plugins.build'):Finished()"},
-            {"User", "NeomakeJobFinished", "lua require('plugins.build'):Report()"},
-            {"User", "NeomakeJobStarted", "lua require('plugins.build'):Start()"},
-            {"User", "NeomakeJobStarted", "lua require('plugins.build'):Report()"}
-        }
+            {
+                "User",
+                "NeomakeJobFinished",
+                "lua require('plugins.build'):Finished()",
+            },
+            {
+                "User",
+                "NeomakeJobFinished",
+                "lua require('plugins.build'):Report()",
+            },
+            {
+                "User",
+                "NeomakeJobStarted",
+                "lua require('plugins.build'):Start()",
+            },
+            {
+                "User",
+                "NeomakeJobStarted",
+                "lua require('plugins.build'):Report()",
+            },
+        },
     }
 
     Func.nvim_create_augroups(autocmds)

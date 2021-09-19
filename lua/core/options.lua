@@ -17,12 +17,25 @@ local function load_options()
 
     -- Set so that folders are index for find command
     opt.path = "**/*"
-    opt.wildignore:append({"node_modules", ".git", "dist", ".next", "target", "android", "ios", "coverage", "build"})
+    opt.wildignore:append({
+        "node_modules",
+        ".git",
+        "dist",
+        ".next",
+        "target",
+        "android",
+        "ios",
+        "coverage",
+        "build",
+    })
 
     g.mapleader = " " -- space leader
 
     -- Tag Jump
-    b.match_words = table.concat({"(:),\\[:\\],{:},<:>,", "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>"})
+    b.match_words = table.concat({
+        "(:),\\[:\\],{:},<:>,",
+        "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>",
+    })
     opt.matchpairs:append("<:>")
 
     opt.hidden = true -- buffer hidden

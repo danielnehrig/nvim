@@ -19,7 +19,7 @@ local disabled_built_ins = {
     "vimballPlugin",
     "2html_plugin",
     "logipat",
-    "rrhelper"
+    "rrhelper",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
