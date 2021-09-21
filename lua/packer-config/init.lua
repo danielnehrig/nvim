@@ -447,7 +447,7 @@ local function init()
         end,
     })
     use({
-        "mfussenegger/nvim-dap",
+        "danielnehrig/nvim-dap",
         opt = true,
     })
     use({
