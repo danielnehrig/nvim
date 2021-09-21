@@ -13,7 +13,7 @@ if not packer_plugins["lua-dev.nvim"].loaded then
     vim.cmd([[packadd lua-dev.nvim]])
 end
 
-local isNvim = string.match(vim.fn.getcwd(), ".*/nvim.*") ~= nil and true
+local isNvim = string.match(vim.fn.getcwd(), ".*/dotfiles.*") ~= nil and true
     or false
 
 local luadev = require("lua-dev").setup({

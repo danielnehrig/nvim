@@ -4,7 +4,7 @@
 -- also a lot of configuration for plugins can be found
 -- in the packer config setup
 -- because of lazyloading
-local g = vim.g
+local g, opt = vim.g, vim.opt
 
 -- disable plugins
 local disabled_built_ins = {
@@ -40,5 +40,5 @@ if not g.vscode then
     pack.bootstrap()
     pack.load_compile()
 
-    vim.opt.shadafile = ""
+    opt.shadafile = ""
 end
