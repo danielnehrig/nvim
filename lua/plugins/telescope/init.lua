@@ -28,7 +28,7 @@ function M.init()
             sorting_strategy = "descending",
             layout_strategy = "horizontal",
             file_sorter = require "telescope.sorters".get_generic_sorter,
-            file_ignore_patterns = {},
+            file_ignore_patterns = {".git", "node_modules"},
             generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
             winblend = 0,
             border = {},

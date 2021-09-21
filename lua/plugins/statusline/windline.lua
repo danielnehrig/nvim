@@ -234,7 +234,7 @@ basic.lsp_names = {
                 {" ", "spacer"},
                 {lsp_comps.lsp_name(), "magenta"},
                 {" ", "spacer"},
-                {"▊", "green"},
+                {helper.separators.slant_left_thin, "magenta"},
                 {lsp_status.status(), "magenta"}
             }
         end

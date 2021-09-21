@@ -2,7 +2,7 @@ local globals = require("core.global")
 local sumneko_root_path = os.getenv("HOME") .. "/dotfiles/lua-language-server"
 local sumneko_binary = sumneko_root_path
     .. "/bin/"
-    .. globals.os_name
+    .. globals.os
     .. "/lua-language-server"
 local lsp = require("plugins.lspconfig")
 local lspconfig = require("lspconfig")
