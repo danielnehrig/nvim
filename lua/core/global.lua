@@ -9,11 +9,14 @@ function global:load_variables()
     self.is_linux = os_name == "Linux"
     self.is_windows = os_name == "Windows"
     self.os_name = os_name
-    self.os = os_name == "Darwin" and "macOS" or "Darwin"
+    self.sumenko_os = os_name == "Darwin" and "macOS" or "Linux"
     self.vim_path = vim.fn.stdpath("config")
     self.path_sep = path_sep
     self.home = home
-    self.data_path = string.format("%s" .. path_sep .. "site" .. path_sep, vim.fn.stdpath("data"))
+    self.data_path = string.format(
+        "%s" .. path_sep .. "site" .. path_sep,
+        vim.fn.stdpath("data")
+    )
     self.lsp_path = string.format("%s" .. path_sep, vim.fn.stdpath("data"))
 end
 
