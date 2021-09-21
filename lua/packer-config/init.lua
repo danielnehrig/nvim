@@ -292,6 +292,7 @@ local function init()
     use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } }) -- lightspeed motion
 
     -- quality of life
+    use({ "wakatime/vim-wakatime" })
     use({
         "t9md/vim-choosewin",
         cmd = { "ChooseWin" },
