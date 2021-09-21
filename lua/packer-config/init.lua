@@ -293,6 +293,10 @@ local function init()
 
     -- quality of life
     use({
+        "t9md/vim-choosewin",
+        cmd = { "ChooseWin" },
+    })
+    use({
         "lewis6991/impatient.nvim",
         config = function()
             require("impatient").enable_profile()

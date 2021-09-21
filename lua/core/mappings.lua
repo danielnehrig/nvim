@@ -108,3 +108,5 @@ remap("n", "<Leader>gt", ":LspTroubleToggle<CR>")
 remap("n", "<Leader>ms", ":Neomake<CR>")
 remap("n", "<Leader>mt", ":TestFile<CR>")
 remap("n", "<Leader>mu", ":Ultest<CR>")
+
+remap("n", "<Leader>w", ":ChooseWin<CR>")
