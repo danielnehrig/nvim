@@ -8,7 +8,22 @@ function M.init()
     vim.cmd([[packadd octo.nvim]])
 
     local telescope = require("telescope")
+    local action_set = require("telescope.actions.set")
+    local actions = require("telescope.actions")
     telescope.setup({
+        pickers = {
+            find_files = {
+                hidden = true,
+                attach_mappings = function(_)
+                    action_set.select:enhance({
+                        post = function()
+                            vim.cmd(":normal! zx")
+                        end,
+                    })
+                    return true
+                end,
+            },
+        },
         defaults = {
             vimgrep_arguments = {
                 "rg",
@@ -18,6 +33,9 @@ function M.init()
                 "--line-number",
                 "--column",
                 "--smart-case",
+            },
+            mapping = {
+                ["<cr>"] = actions.select_default + actions.center, -- is the telescope default btw
             },
             hidden = true,
             prompt_prefix = "🔍 ",
