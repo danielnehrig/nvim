@@ -123,7 +123,9 @@ function Make:Finished()
 end
 
 function Make:Start()
-    self.status = " Make  "
+    local context = vim.g.neomake_hook_context
+    local info = context.jobinfo
+    self.status = " " .. info.maker.name .. " pip  "
     self.running = true
     self.failed = false
     self.success = false

@@ -19,6 +19,7 @@ local anim_colors = {
     "#1565C0",
     "#0D47A1",
 }
+local loading_text = ""
 
 local hl_list = {
     Normal = { "NormalFg", "NormalBg" },
@@ -251,7 +252,7 @@ basic.make = {
                     { "k", "wave_anim4" },
                     { "e", "wave_anim5" },
                     { " ", "spacer" },
-                    { "", "wave_anim6" },
+                    { loading_text, "wave_anim6" },
                     { " ", "spacer" },
                 }
             end
@@ -453,4 +454,15 @@ animation.animation({
     timeout = nil,
     delay = 200,
     interval = 150,
+})
+
+local loading = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" }
+animation.basic_animation({
+    timeout = nil,
+    delay = 200,
+    interval = 150,
+    effect = efffects.list_text(loading),
+    on_tick = function(value)
+        loading_text = value
+    end,
 })
