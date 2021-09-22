@@ -25,6 +25,7 @@ function cmp:init()
       }),
     },
     sources = {
+      { name = "path" },
       { name = "nvim_lsp" },
       { name = "orgmode" },
       { name = "luasnip" },
