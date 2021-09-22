@@ -27,9 +27,9 @@ remap("n", "<Leader>la", ":ll<CR>")
 
 -- telescope NOTE: Lazyloaded
 remap(
-    "n",
-    "<Leader>ff",
-    ":Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>"
+  "n",
+  "<Leader>ff",
+  ":Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>"
 )
 remap("n", "<Leader>fg", ":Telescope live_grep<CR>")
 remap("n", "<Leader>fb", ":Telescope buffers<CR>")
@@ -44,14 +44,14 @@ remap("n", "<C-n>", ":NvimTreeToggle<CR>")
 
 -- dap NOTE: Lazyloaded
 remap(
-    "n",
-    "<Leader>dc",
-    [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.continue()<CR>]]
+  "n",
+  "<Leader>dc",
+  [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.continue()<CR>]]
 )
 remap(
-    "n",
-    "<Leader>db",
-    [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.toggle_breakpoint()<CR>]]
+  "n",
+  "<Leader>db",
+  [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.toggle_breakpoint()<CR>]]
 )
 
 -- compe: NOTE: Lazyloaded
@@ -62,31 +62,31 @@ remap("i", "<C-d>", "compe#scroll({ delta: -4 })", true)
 
 -- gitlinker: NOTE: Lazyloaded
 remap(
-    "n",
-    "<Leader>gy",
-    [[ <Cmd>lua require('plugins.gitlinker'):normal()<CR>]]
+  "n",
+  "<Leader>gy",
+  [[ <Cmd>lua require('plugins.gitlinker'):normal()<CR>]]
 )
 remap(
-    "v",
-    "<Leader>gy",
-    [[ <Cmd>lua require('plugins.gitlinker'):visual()<CR>]]
+  "v",
+  "<Leader>gy",
+  [[ <Cmd>lua require('plugins.gitlinker'):visual()<CR>]]
 )
 
 -- refactor: NOTE: Lazyloaded
 remap(
-    "v",
-    "<Leader>re",
-    [[ <Cmd>lua require('plugins.refactoring').extract()<CR>]]
+  "v",
+  "<Leader>re",
+  [[ <Cmd>lua require('plugins.refactoring').extract()<CR>]]
 )
 remap(
-    "v",
-    "<Leader>rf",
-    [[ <Cmd>lua require('plugins.refactoring').extract_to_file()<CR>]]
+  "v",
+  "<Leader>rf",
+  [[ <Cmd>lua require('plugins.refactoring').extract_to_file()<CR>]]
 )
 remap(
-    "v",
-    "<Leader>rt",
-    [[ <Cmd>lua require('plugins.refactoring').telescope()<CR>]]
+  "v",
+  "<Leader>rt",
+  [[ <Cmd>lua require('plugins.refactoring').telescope()<CR>]]
 )
 
 -- marker: NOTE: Lazyloaded

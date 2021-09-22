@@ -8,37 +8,37 @@ local g, opt = vim.g, vim.opt
 
 -- disable plugins
 local disabled_built_ins = {
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
+  "gzip",
+  "zip",
+  "zipPlugin",
+  "tar",
+  "tarPlugin",
+  "getscript",
+  "getscriptPlugin",
+  "vimball",
+  "vimballPlugin",
+  "2html_plugin",
+  "logipat",
+  "rrhelper",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-    g["loaded_" .. plugin] = 1
+  g["loaded_" .. plugin] = 1
 end
 
 -- check if we are in VSCode nvim
 -- if not do not apply plugins
 -- slows down VSCode and makes it non usable
 if not g.vscode then
-    -- setup conf and lua modules
-    require("core.global")
-    require("core.options")
-    require("core.mappings")
-    require("core.autocmd")
+  -- setup conf and lua modules
+  require("core.global")
+  require("core.options")
+  require("core.mappings")
+  require("core.autocmd")
 
-    local pack = require("packer-config")
-    pack.bootstrap()
-    pack.load_compile()
+  local pack = require("packer-config")
+  pack.bootstrap()
+  pack.load_compile()
 
-    opt.shadafile = ""
+  opt.shadafile = ""
 end

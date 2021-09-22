@@ -14,55 +14,55 @@ local shfmt = require("plugins.efm.shfmt")
 
 -- formatting and linting with efm
 lspconfig.efm.setup({
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = true
-        if client.resolved_capabilities.document_formatting then
-            local autocmds = {
-                Format = {
-                    {
-                        "BufWritePre",
-                        "<buffer>",
-                        "lua vim.lsp.buf.formatting_sync()",
-                    },
-                },
-            }
-            augroups(autocmds)
-        end
-    end,
-    root_dir = require("lspconfig/util").root_pattern(
-        "package.json",
-        ".eslintrc",
-        ".git"
-    ),
-    init_options = {
-        documentFormatting = true,
-        documentSymbol = false,
-        completion = false,
-        codeAction = false,
-        hover = false,
-    },
-    settings = {
-        rootMarkers = { "package.json", "go.mod", ".git/", ".zshrc" },
-        languages = {
-            typescript = { prettier, eslint },
-            typescriptreact = { prettier, eslint },
-            lua = { stylua },
-            rust = { rustfmt },
-            markdown = { dprint },
-            python = { python },
-            bash = { shellcheck, shfmt },
-            sh = { shellcheck, shfmt },
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = true
+    if client.resolved_capabilities.document_formatting then
+      local autocmds = {
+        Format = {
+          {
+            "BufWritePre",
+            "<buffer>",
+            "lua vim.lsp.buf.formatting_sync()",
+          },
         },
+      }
+      augroups(autocmds)
+    end
+  end,
+  root_dir = require("lspconfig/util").root_pattern(
+    "package.json",
+    ".eslintrc",
+    ".git"
+  ),
+  init_options = {
+    documentFormatting = true,
+    documentSymbol = false,
+    completion = false,
+    codeAction = false,
+    hover = false,
+  },
+  settings = {
+    rootMarkers = { "package.json", "go.mod", ".git/", ".zshrc" },
+    languages = {
+      typescript = { prettier, eslint },
+      typescriptreact = { prettier, eslint },
+      lua = { stylua },
+      rust = { rustfmt },
+      markdown = { dprint },
+      python = { python },
+      bash = { shellcheck, shfmt },
+      sh = { shellcheck, shfmt },
     },
-    filetypes = {
-        "lua",
-        "python",
-        "bash",
-        "sh",
-        "markdown",
-        "javascript",
-        "javascriptreact",
-        "typescriptreact",
-        "typescript",
-    },
+  },
+  filetypes = {
+    "lua",
+    "python",
+    "bash",
+    "sh",
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescriptreact",
+    "typescript",
+  },
 })

@@ -1,4 +1,4 @@
-local opt = {silent = true}
+local opt = { silent = true }
 local g = vim.g
 
 g.mapleader = " "
@@ -14,4 +14,9 @@ vim.api.nvim_set_keymap("n", "<Leader>t6", [[<Cmd>BufferGoto 6<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>t6", [[<Cmd>BufferGoto 6<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>tc", [[<Cmd>BufferClose<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>tt", [[<Cmd>BufferPick<CR>]], opt)
-vim.api.nvim_set_keymap("n", "<Leader>ta", [[<Cmd>BufferCloseAllButCurrent<CR>]], opt)
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>ta",
+  [[<Cmd>BufferCloseAllButCurrent<CR>]],
+  opt
+)

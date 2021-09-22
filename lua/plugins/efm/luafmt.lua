@@ -1,4 +1,4 @@
 return {
-    formatCommand = "luafmt --stdin",
-    formatStdin = true,
+  formatCommand = "luafmt --stdin",
+  formatStdin = true,
 }
