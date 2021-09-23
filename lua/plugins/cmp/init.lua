@@ -46,9 +46,9 @@ function cmp.init()
       }),
     },
     sources = {
+      { name = "nvim_lsp" },
       { name = "luasnip" },
       { name = "path" },
-      { name = "nvim_lsp" },
       { name = "orgmode" },
       { name = "crates" },
     },
