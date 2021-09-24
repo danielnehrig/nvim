@@ -206,7 +206,50 @@ local function init()
   use({
     "onsails/lspkind-nvim",
     config = function()
-      require("lspkind").init({ File = " " })
+      require("lspkind").init({
+        -- enables text annotations
+        --
+        -- default: true
+        with_text = true,
+
+        -- default symbol map
+        -- can be either 'default' (requires nerd-fonts font) or
+        -- 'codicons' for codicon preset (requires vscode-codicons font)
+        --
+        -- default: 'default'
+        preset = "codicons",
+
+        -- override preset symbols
+        --
+        -- default: {}
+        symbol_map = {
+          Text = "",
+          Method = "",
+          Function = "",
+          Constructor = "",
+          Field = "ﰠ",
+          Variable = "",
+          Class = "ﴯ",
+          Interface = "",
+          Module = "",
+          Property = "ﰠ",
+          Unit = "塞",
+          Value = "",
+          Enum = "",
+          Keyword = "",
+          Snippet = "",
+          Color = "",
+          File = "",
+          Reference = "",
+          Folder = "",
+          EnumMember = "",
+          Constant = "",
+          Struct = "פּ",
+          Event = "",
+          Operator = "",
+          TypeParameter = "",
+        },
+      })
     end,
   }) -- lsp extensions stuff
   use({
@@ -237,19 +280,15 @@ local function init()
   use({
     "hrsh7th/nvim-cmp",
     config = require("plugins.cmp").init,
-    wants = { "LuaSnip" },
     requires = {
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "saadparwaiz1/cmp_luasnip" },
       {
         "L3MON4D3/LuaSnip",
-        wants = "friendly-snippets",
-        event = "InsertCharPre",
       },
       {
         "rafamadriz/friendly-snippets",
-        event = "InsertCharPre",
       },
       {
         "kristijanhusak/orgmode.nvim",
@@ -298,6 +337,7 @@ local function init()
   })
   use({
     "lewis6991/impatient.nvim",
+    disable = true,
     config = function()
       require("impatient").enable_profile()
     end,

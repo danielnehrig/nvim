@@ -9,7 +9,6 @@ LSP.capabilities = vim.tbl_extend(
   LSP.capabilities or {},
   lsp_status.capabilities
 )
-LSP.capabilities = require("cmp_nvim_lsp").update_capabilities(LSP.capabilities)
 LSP.capabilities.textDocument.completion.completionItem.snippetSupport = true
 LSP.capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
@@ -18,6 +17,8 @@ LSP.capabilities.textDocument.completion.completionItem.resolveSupport = {
     "additionalTextEdits",
   },
 }
+LSP.capabilities = require("cmp_nvim_lsp").update_capabilities(LSP.capabilities)
+
 LSP.lsp_status = lsp_status
 
 local init = false
