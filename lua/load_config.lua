@@ -6,7 +6,6 @@ M.__index = M
 -- load configs for packer plugins
 M.init = function()
   require("plugins.web-devicons")
-  require("plugins.which")
   require("plugins.swagger")
   require("plugins.autopairs")
   require("plugins.nvimTree")

@@ -368,7 +368,6 @@ local function init()
     end,
   }) -- tmux in nvim
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite" } }) -- save as root
-  use("folke/which-key.nvim") -- which key
   use({ "junegunn/vim-slash", keys = { "/" } }) -- better search
   use("windwp/nvim-autopairs") -- autopairs "" {}
   use({
