@@ -63,6 +63,7 @@ local function init()
   }) -- colorscheme
 
   -- language
+  use({ "mfussenegger/nvim-jdtls" })
   use({
     "Saecki/crates.nvim",
     ft = { "toml", "rs" },
@@ -323,6 +324,9 @@ local function init()
   use({
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("nvim-tree").setup({})
+    end,
     cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
   }) -- Drawerboard style like nerdtree
 
