@@ -6,6 +6,7 @@ local home = require("core.global").home
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace = home .. "/code/work/" .. workspace_dir
 
+vim.lsp.set_log_level("trace")
 lspconfig.jdtls.setup({
   filetypes = { "java" },
   cmd = { "jdtls", "-data", workspace },
