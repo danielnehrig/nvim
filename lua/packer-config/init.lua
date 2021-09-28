@@ -5,6 +5,8 @@ local data_path = global.data_path
 local packer_compiled = data_path .. "packer_compiled.vim"
 local compile_to_lua = data_path .. "lua" .. global.path_sep .. "_compiled.lua"
 
+local isPriv = not os.getenv("USER") == "dashie"
+
 -- nil because packer is opt
 local packer = nil
 
@@ -339,7 +341,7 @@ local function init()
   use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } }) -- lightspeed motion
 
   -- quality of life
-  use({ "wakatime/vim-wakatime", disable = true }) -- time tracking
+  use({ "wakatime/vim-wakatime", disable = isPriv }) -- time tracking
   use({
     "t9md/vim-choosewin",
     cmd = { "ChooseWin" },
