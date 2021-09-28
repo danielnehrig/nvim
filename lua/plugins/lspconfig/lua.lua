@@ -7,7 +7,7 @@ local sumneko_binary = sumneko_root_path
   .. "/lua-language-server"
 local lsp = require("plugins.lspconfig")
 local lspconfig = require("lspconfig")
-local capabilities = require("plugins.lspStatus").capabilities
+local capabilities = require("plugins.lspconfig.capabilities").capabilities
 
 -- Lua Settings for nvim config and plugin development
 if not packer_plugins["lua-dev.nvim"].loaded then
