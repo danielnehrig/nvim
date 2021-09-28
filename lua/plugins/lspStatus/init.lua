@@ -2,8 +2,10 @@ local lsp_status = require("lsp-status")
 local LSP = require("plugins.lspconfig.capabilities")
 local M = {}
 
+-- the inited instance of lsp-status for usage in statusline
 M.lsp_status = lsp_status
 
+-- init lsp-status
 function M.init()
   LSP.capabilities = vim.tbl_extend(
     "keep",
