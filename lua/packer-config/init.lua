@@ -25,7 +25,7 @@ local function init()
     config = function()
       require("plugins.statusline.windline")
     end,
-  })
+  }) -- statusline
   use({ "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" }) -- bufferline
   use({
     "norcalli/nvim-colorizer.lua",
@@ -127,7 +127,7 @@ local function init()
         },
       })
     end,
-  })
+  }) -- rust crates info
   use({
     "vuki656/package-info.nvim",
     requires = "MunifTanjim/nui.nvim",
@@ -135,7 +135,7 @@ local function init()
     config = function()
       require("package-info").setup()
     end,
-  })
+  }) -- package.json info
   use({ "danielnehrig/lua-dev.nvim", branch = "nvim_workspace", opt = true }) -- lua nvim setup
   use({ "rust-lang/rust.vim", ft = { "rust", "rs" } }) -- rust language tools
   use({
@@ -150,7 +150,7 @@ local function init()
     ft = { "javascript", "typescript", "lua" },
   }) -- code playground in buffer executed
   use({ "nvim-treesitter/nvim-treesitter" }) -- syntax highlight indent etc
-  use({ "JoosepAlviste/nvim-ts-context-commentstring" })
+  use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- coment out code
   use({
     "winston0410/commented.nvim",
     keys = { "<space>cc" },
@@ -161,7 +161,7 @@ local function init()
         },
       })
     end,
-  })
+  }) -- comment out code
   use("nvim-treesitter/nvim-treesitter-textobjects") -- custom textobjects
   use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
   use("RRethy/nvim-treesitter-textsubjects")
@@ -171,7 +171,7 @@ local function init()
     config = function()
       require("spellsitter").setup({ captures = { "comment" } })
     end,
-  })
+  }) -- spell check treesitter based
   use({
     "windwp/nvim-ts-autotag",
     ft = { "typescriptreact", "javascriptreact", "html" },
@@ -254,11 +254,15 @@ local function init()
     end,
   }) -- lsp extensions stuff
   use({
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionMenu",
+  }) -- code actions menu
+  use({
     "jghauser/mkdir.nvim",
     config = function()
       require("mkdir")
     end,
-  })
+  }) -- create folders if not existing
   use({
     "folke/lsp-colors.nvim",
     config = function()
@@ -269,7 +273,7 @@ local function init()
         Hint = "#10B981",
       })
     end,
-  })
+  }) -- lsp diag colors
   use({
     "neovim/nvim-lspconfig",
     config = require("plugins.lspconfig").init,
@@ -304,7 +308,7 @@ local function init()
         wants = "nvim-cmp",
       },
     },
-  })
+  }) -- cmp completion engine
 
   -- navigation
   use({
@@ -334,7 +338,7 @@ local function init()
   use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } }) -- lightspeed motion
 
   -- quality of life
-  use({ "wakatime/vim-wakatime", disable = true })
+  use({ "wakatime/vim-wakatime", disable = true }) -- time tracking
   use({
     "t9md/vim-choosewin",
     cmd = { "ChooseWin" },
@@ -345,16 +349,16 @@ local function init()
     config = function()
       require("impatient").enable_profile()
     end,
-  })
-  use({ "kevinhwang91/nvim-bqf" })
+  }) -- caching of files
+  use({ "kevinhwang91/nvim-bqf" }) -- better quickfix
   use({
     "gelguy/wilder.nvim",
     opt = true,
-  })
+  }) -- better wild menu
   use({
     "rcarriga/nvim-notify",
     opt = true,
-  })
+  }) -- notication pop up
   use({
     "ThePrimeagen/refactoring.nvim",
     config = require("plugins.refactoring").init,
@@ -363,7 +367,7 @@ local function init()
       { "nvim-treesitter/nvim-treesitter" },
       { "nvim-lua/plenary.nvim", opt = true },
     },
-  })
+  }) -- refactoring
   use({
     "hkupty/nvimux",
     keys = { "<C-a>" },
@@ -382,7 +386,7 @@ local function init()
   use({
     "vimwiki/vimwiki",
     cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
-  })
+  }) -- wiki
   use({
     "kdav5758/HighStr.nvim",
     opt = true,
@@ -406,7 +410,7 @@ local function init()
         },
       })
     end,
-  })
+  }) -- highlight regions
 
   -- misc
   use({ "windwp/nvim-projectconfig", disable = true }) -- project dependable cfg
@@ -431,12 +435,12 @@ local function init()
     requires = {
       "nvim-lua/plenary.nvim",
     },
-  })
+  }) -- visual git
   use({
     "pwntester/octo.nvim",
     requires = { "nvim-telescope/telescope.nvim" },
     after = "telescope.nvim",
-  })
+  }) -- octo github pr review issues pr etc
   use({
     "ruifm/gitlinker.nvim",
     requires = {
@@ -466,7 +470,7 @@ local function init()
     cmd = { "Ultest" },
     requires = { "vim-test/vim-test" },
     run = ":UpdateRemotePlugins",
-  })
+  }) -- testing
   use({
     "vim-test/vim-test",
     cmd = { "TestFile" },
@@ -478,7 +482,7 @@ local function init()
       { "tpope/vim-dispatch", cmd = { "Dispatch" } },
     },
     wants = { "vim-dispatch", "neomake" },
-  })
+  }) -- testing
 
   -- debug
   use({ "jbyuki/one-small-step-for-vimkind" })
@@ -492,16 +496,16 @@ local function init()
         installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
       })
     end,
-  })
+  }) -- install dap adapters
   use({
     "danielnehrig/nvim-dap",
     opt = true,
-  })
+  }) -- dap
   use({
     "rcarriga/nvim-dap-ui",
     opt = true,
     requires = { "mfussenegger/nvim-dap" },
-  })
+  }) -- dap ui
 
   -- lib
   use({ "wbthomason/packer.nvim", opt = true }) -- packer
