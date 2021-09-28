@@ -5,7 +5,10 @@ local data_path = global.data_path
 local packer_compiled = data_path .. "packer_compiled.vim"
 local compile_to_lua = data_path .. "lua" .. global.path_sep .. "_compiled.lua"
 
+-- nil because packer is opt
 local packer = nil
+
+-- init plugins
 local function init()
   packer = require("packer")
   packer.init({
@@ -505,7 +508,7 @@ local plugins = setmetatable({}, {
   end,
 })
 
--- Bootstrap Packer and the Plugins
+-- Bootstrap Packer and the Plugins + loads configs afterwards
 function plugins.bootstrap()
   local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
   -- check if packer exists or is installed
@@ -534,6 +537,7 @@ function plugins.bootstrap()
   end
 end
 
+-- converts the compiled file to lua
 function plugins.convert_compile_file()
   local lines = {}
   local lnum = 1
@@ -563,11 +567,13 @@ function plugins.convert_compile_file()
   os.remove(packer_compiled)
 end
 
+-- autocompile function called by autocmd on packer complete
 function plugins.auto_compile()
   plugins.compile()
   plugins.convert_compile_file()
 end
 
+-- loads the compiled packer file and sets the commands for packer
 function plugins.load_compile()
   if fn.filereadable(compile_to_lua) == 1 then
     require("_compiled")
