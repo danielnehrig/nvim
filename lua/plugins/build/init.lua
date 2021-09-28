@@ -27,7 +27,6 @@ function Make.Report()
   local notify = nil
   if not packer_plugins["nvim-notify"].loaded then
     cmd([[packadd nvim-notify]])
-    print("yes")
     notify = require("notify")
     notify.setup({
       -- Animation style (see below for details)
