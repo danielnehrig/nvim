@@ -18,30 +18,34 @@ function Make:new(o)
   return o
 end
 
-function Make:Report()
-  cmd([[packadd nvim-notify]])
+function Make.Report()
+  local context = vim.g.neomake_hook_context
+  local info = context.jobinfo
   local opt = {
     title = "Neomake",
   }
-  local context = vim.g.neomake_hook_context
-  local info = context.jobinfo
-  local notify = require("notify")
-  notify.setup({
-    -- Animation style (see below for details)
-    -- stages = "fade",
-    -- Default timeout for notifications
-    timeout = 3000,
-    -- For stages that change opacity this is treated as the highlight behind the window
-    background_colour = "NotifyBG",
-    -- Icons for the different levels
-    icons = {
-      ERROR = "",
-      WARN = "",
-      INFO = "",
-      DEBUG = "",
-      TRACE = "✎",
-    },
-  })
+  local notify = nil
+  if not packer_plugins["nvim-notify"].loaded then
+    cmd([[packadd nvim-notify]])
+    print("yes")
+    notify = require("notify")
+    notify.setup({
+      -- Animation style (see below for details)
+      -- stages = "fade",
+      -- Default timeout for notifications
+      timeout = 3000,
+      -- For stages that change opacity this is treated as the highlight behind the window
+      background_colour = "NotifyBG",
+      -- Icons for the different levels
+      icons = {
+        ERROR = "",
+        WARN = "",
+        INFO = "",
+        DEBUG = "",
+        TRACE = "✎",
+      },
+    })
+  end
   if info.exit_code == 0 then
     notify(info.maker.name .. " Finished Successfully", _, opt)
   elseif info.exit_code == 1 then
@@ -73,7 +77,7 @@ function Make:init()
       {
         "User",
         "NeomakeJobFinished",
-        "lua require('plugins.build'):Report()",
+        "lua require('plugins.build').Report()",
       },
       {
         "User",
@@ -83,7 +87,7 @@ function Make:init()
       {
         "User",
         "NeomakeJobStarted",
-        "lua require('plugins.build'):Report()",
+        "lua require('plugins.build').Report()",
       },
     },
   }
