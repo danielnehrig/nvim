@@ -1,3 +1,4 @@
+local cmd = vim.cmd
 local globals = require("core.global")
 local sumneko_root_path = os.getenv("HOME") .. "/dotfiles/lua-language-server"
 local sumneko_binary = sumneko_root_path
@@ -10,7 +11,7 @@ local capabilities = require("plugins.lspStatus").capabilities
 
 -- Lua Settings for nvim config and plugin development
 if not packer_plugins["lua-dev.nvim"].loaded then
-  vim.cmd([[packadd lua-dev.nvim]])
+  cmd([[packadd lua-dev.nvim]])
 end
 
 local isNvim = string.match(vim.fn.getcwd(), ".*/dotfiles.*") ~= nil and true
@@ -39,7 +40,7 @@ local luadev = require("lua-dev").setup({
     -- root_dir = require("lspconfig/util").root_pattern("."),
     on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = false
-      lsp:on_attach(client, bufnr)
+      lsp.on_attach(client, bufnr)
     end,
   },
 })

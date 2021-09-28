@@ -1,4 +1,5 @@
-vim.cmd([[packadd nvim-web-devicons]])
+local cmd = vim.cmd
+cmd([[packadd nvim-web-devicons]])
 
 require("nvim-web-devicons").setup({
   override = {

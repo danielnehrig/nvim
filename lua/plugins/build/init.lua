@@ -1,4 +1,6 @@
 local Func = require("utils")
+local g, cmd = vim.g, vim.cmd
+local nvim_set_var = vim.api.nvim_set_var
 
 local Make = {
   failed = false,
@@ -17,7 +19,7 @@ function Make:new(o)
 end
 
 function Make:Report()
-  vim.cmd([[packadd nvim-notify]])
+  cmd([[packadd nvim-notify]])
   local opt = {
     title = "Neomake",
   }
@@ -50,29 +52,29 @@ function Make:Report()
 end
 
 function Make:init()
-  vim.g.neomake_open_list = 2
-  vim.api.nvim_set_var("test#javascript#runner", "jest")
-  vim.api.nvim_set_var("test#typescript#runner", "jest")
-  vim.api.nvim_set_var("test#typescriptreact#runner", "jest")
-  vim.api.nvim_set_var("test#python#pytest#options", "--color=yes")
-  vim.api.nvim_set_var("test#javascript#jest#options", "--color=yes")
-  vim.api.nvim_set_var("test#typescript#jest#options", "--color=yes")
-  vim.api.nvim_set_var("test#typescriptreact#jest#options", "--color=yes")
+  g.neomake_open_list = 2
+  nvim_set_var("test#javascript#runner", "jest")
+  nvim_set_var("test#typescript#runner", "jest")
+  nvim_set_var("test#typescriptreact#runner", "jest")
+  nvim_set_var("test#python#pytest#options", "--color=yes")
+  nvim_set_var("test#javascript#jest#options", "--color=yes")
+  nvim_set_var("test#typescript#jest#options", "--color=yes")
+  nvim_set_var("test#typescriptreact#jest#options", "--color=yes")
 
-  vim.api.nvim_set_var("test#strategy", "neomake")
+  nvim_set_var("test#strategy", "neomake")
 
-  vim.g.neomake_typescript_yarn_maker = {
+  g.neomake_typescript_yarn_maker = {
     exe = "yarn",
     args = "install",
     errorformat = "%f",
   }
-  vim.g.neomake_typescriptreact_yarn_maker = vim.g.neomake_typescript_yarn_maker
-  vim.g.neomake_typescript_npm_maker = {
+  g.neomake_typescriptreact_yarn_maker = vim.g.neomake_typescript_yarn_maker
+  g.neomake_typescript_npm_maker = {
     exe = "npm",
     args = "install",
     errorformat = "%f",
   }
-  vim.g.neomake_typescriptreact_npm_maker = vim.g.neomake_typescript_npm_maker
+  g.neomake_typescriptreact_npm_maker = vim.g.neomake_typescript_npm_maker
 
   local autocmds = {
     neomake_hook = {

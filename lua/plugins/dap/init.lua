@@ -1,5 +1,4 @@
 local dap = require("dap")
-local global = require("core.global")
 local dap_install_folder = vim.fn.stdpath("data") .. "/dapinstall/"
 
 dap.adapters.node2 = {

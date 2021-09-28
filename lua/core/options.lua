@@ -1,8 +1,9 @@
 local cmd = vim.cmd
-local g, b, opt, go = vim.g, vim.b, vim.opt, vim.go
+local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
+local M = {}
 
-local function load_options()
-  if vim.g.neovide then
+function M.load_options()
+  if g.neovide then
     g.neovide_cursor_vfx_mode = "railgun"
   end
   opt.shadafile = "NONE"
@@ -83,13 +84,13 @@ local function load_options()
   -- opt.spell = true
 
   -- fold settings
-  vim.wo.foldmethod = "expr"
-  vim.o.foldtext =
+  wo.foldmethod = "expr"
+  o.foldtext =
     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
-  vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
-  vim.wo.fillchars = "fold:\\"
-  vim.wo.foldnestmax = 3
-  vim.wo.foldminlines = 1
+  wo.foldexpr = "nvim_treesitter#foldexpr()"
+  wo.fillchars = "fold:\\"
+  wo.foldnestmax = 3
+  wo.foldminlines = 1
 end
 
-load_options()
+return M

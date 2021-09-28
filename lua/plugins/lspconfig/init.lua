@@ -1,11 +1,13 @@
 local map = require("utils").map
 local autocmd = require("utils").autocmd
-local fn = vim.fn
+local fn, handlers, with, diagnostic =
+  vim.fn, vim.lsp.handlers, vim.lsp.with, vim.lsp.diagnostic
+
 local LSP = {}
 LSP.__index = LSP
 
 -- custom attach config for most LSP configs
-function LSP:on_attach(client, bufnr)
+function LSP.on_attach(client, bufnr)
   if not packer_plugins["lsp_signature.nvim"].loaded then
     vim.cmd([[packadd lsp_signature.nvim]])
   end
@@ -85,29 +87,26 @@ function LSP:on_attach(client, bufnr)
 end
 
 -- enable border
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+handlers["textDocument/hover"] = with(handlers.hover, {
   -- Use a sharp border with `FloatBorder` highlights
   border = "single",
 })
 
 -- enable border
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help,
-  {
-    border = "single",
-  }
-)
+handlers["textDocument/signatureHelp"] = with(handlers.signature_help, {
+  border = "single",
+})
 
 -- disable virtual text
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
+handlers["textDocument/publishDiagnostics"] = with(
+  diagnostic.on_publish_diagnostics,
   {
     virtual_text = false,
   }
 )
 
 -- load all language files
-function LSP:init()
+function LSP.init()
   local servers = {
     "lua",
     "rust",
@@ -123,6 +122,7 @@ function LSP:init()
     "efm",
     "c",
   }
+  require("plugins.lspStatus").init()
   for _, server in ipairs(servers) do
     local settings = { lsp_config = "plugins.lspconfig." .. server }
     require(settings.lsp_config)

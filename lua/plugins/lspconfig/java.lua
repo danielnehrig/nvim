@@ -12,6 +12,6 @@ lspconfig.jdtls.setup({
   capabilities = capabilities,
   flags = { debounce_text_changes = 500 },
   on_attach = function(client, bufnr)
-    lsp:on_attach(client, bufnr)
+    lsp.on_attach(client, bufnr)
   end,
 })

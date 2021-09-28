@@ -1,29 +1,17 @@
 local lsp_status = require("lsp-status")
-local LSP = {}
+local LSP = require("plugins.lspconfig.capabilities")
+local M = {}
 
--- snippets setup
--- https://github.com/hrsh7th/nvim-compe#how-to-use-lsp-snippet
-LSP.capabilities = vim.lsp.protocol.make_client_capabilities()
-LSP.capabilities = vim.tbl_extend(
-  "keep",
-  LSP.capabilities or {},
-  lsp_status.capabilities
-)
-LSP.capabilities.textDocument.completion.completionItem.snippetSupport = true
-LSP.capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    "documentation",
-    "detail",
-    "additionalTextEdits",
-  },
-}
-LSP.capabilities = require("cmp_nvim_lsp").update_capabilities(LSP.capabilities)
+M.lsp_status = lsp_status
 
-LSP.lsp_status = lsp_status
+function M.init()
+  LSP.capabilities = vim.tbl_extend(
+    "keep",
+    LSP.capabilities or {},
+    lsp_status.capabilities
+  )
 
-local init = false
-if not init then
-  LSP.lsp_status.config({
+  M.lsp_status.config({
     select_symbol = function(cursor_pos, symbol)
       if symbol.valueRange then
         local value_range = {
@@ -41,8 +29,7 @@ if not init then
       end
     end,
   })
-  LSP.lsp_status.register_progress()
-  init = true
+  M.lsp_status.register_progress()
 end
 
-return LSP
+return M

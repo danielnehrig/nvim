@@ -1,6 +1,6 @@
-local cmp = {}
+local M = {}
 
-function cmp.init()
+function M.init()
   if not packer_plugins["plenary.nvim"].loaded then
     vim.cmd([[packadd plenary.nvim]])
   end
@@ -11,7 +11,7 @@ function cmp.init()
     formatting = {
       format = function(entry, vim_item)
         -- fancy icons and a name of kind
-        vim_item.kind = require("lspkind").presets.default[vim_item.kind]
+        vim_item.kind = lspkind.presets.default[vim_item.kind]
           .. " "
           .. vim_item.kind
 
@@ -55,4 +55,4 @@ function cmp.init()
   })
 end
 
-return cmp
+return M
