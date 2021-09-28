@@ -112,6 +112,9 @@ function M.mappings()
   remap("n", "<Leader>mu", ":Ultest<CR>")
 
   remap("n", "<Leader>w", ":ChooseWin<CR>")
+
+  -- neogen
+  remap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>")
 end
 
 return M

@@ -155,6 +155,15 @@ local function init()
     ft = { "javascript", "typescript", "lua" },
   }) -- code playground in buffer executed
   use({ "nvim-treesitter/nvim-treesitter" }) -- syntax highlight indent etc
+  use({
+    "danymat/neogen",
+    config = function()
+      require("neogen").setup({
+        enabled = true,
+      })
+    end,
+    requires = "nvim-treesitter/nvim-treesitter",
+  })
   use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- coment out code
   use({
     "winston0410/commented.nvim",
