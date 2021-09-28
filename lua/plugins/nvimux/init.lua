@@ -1,7 +1,7 @@
-local nvimux = require("nvimux")
 local M = {}
 
 function M.init()
+  local nvimux = require("nvimux")
   -- Nvimux configuration
   nvimux.config.set_all({
     prefix = "<C-a>",

@@ -1,5 +1,5 @@
 local Func = require("utils")
-local g, cmd = vim.g, vim.cmd
+local cmd = vim.cmd
 local nvim_set_var = vim.api.nvim_set_var
 
 local Make = {
@@ -52,7 +52,7 @@ function Make:Report()
 end
 
 function Make:init()
-  g.neomake_open_list = 2
+  vim.g.neomake_open_list = 2
   nvim_set_var("test#javascript#runner", "jest")
   nvim_set_var("test#typescript#runner", "jest")
   nvim_set_var("test#typescriptreact#runner", "jest")
@@ -62,19 +62,6 @@ function Make:init()
   nvim_set_var("test#typescriptreact#jest#options", "--color=yes")
 
   nvim_set_var("test#strategy", "neomake")
-
-  g.neomake_typescript_yarn_maker = {
-    exe = "yarn",
-    args = "install",
-    errorformat = "%f",
-  }
-  g.neomake_typescriptreact_yarn_maker = vim.g.neomake_typescript_yarn_maker
-  g.neomake_typescript_npm_maker = {
-    exe = "npm",
-    args = "install",
-    errorformat = "%f",
-  }
-  g.neomake_typescriptreact_npm_maker = vim.g.neomake_typescript_npm_maker
 
   local autocmds = {
     neomake_hook = {

@@ -195,9 +195,7 @@ local function init()
   }) -- window for showing LSP detected issues in code
   use({
     "folke/todo-comments.nvim",
-    config = function()
-      require("plugins.todo")
-    end,
+    config = require("plugins.todo").init,
     wants = "telescope.nvim",
     cmd = { "TodoQuickFix", "TodoTrouble", "TodoTelescope" },
   }) -- show todos in qf
@@ -343,13 +341,6 @@ local function init()
     "t9md/vim-choosewin",
     cmd = { "ChooseWin" },
   })
-  use({
-    "lewis6991/impatient.nvim",
-    disable = true,
-    config = function()
-      require("impatient").enable_profile()
-    end,
-  }) -- caching of files
   use({ "kevinhwang91/nvim-bqf" }) -- better quickfix
   use({
     "gelguy/wilder.nvim",
@@ -371,9 +362,7 @@ local function init()
   use({
     "hkupty/nvimux",
     keys = { "<C-a>" },
-    config = function()
-      require("plugins.nvimux")
-    end,
+    config = require("plugins.nvimux").init,
   }) -- tmux in nvim
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite" } }) -- save as root
   use({ "junegunn/vim-slash", keys = { "/" } }) -- better search
@@ -429,9 +418,7 @@ local function init()
     "tanvirtin/vgit.nvim",
     cmd = { "VGit" },
     commit = "c1e5c82f5fc73bddb32eaef411dcc5e36ebc4efc",
-    config = function()
-      require("plugins.vgit")
-    end,
+    config = require("plugins.vgit").init,
     requires = {
       "nvim-lua/plenary.nvim",
     },
@@ -451,9 +438,7 @@ local function init()
   use({
     "lewis6991/gitsigns.nvim",
     event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("plugins.gitsigns")
-    end,
+    config = require("plugins.gitsigns").init,
     requires = {
       { "nvim-lua/plenary.nvim", after = "gitsigns.nvim" },
     },

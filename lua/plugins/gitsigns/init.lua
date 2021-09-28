@@ -1,11 +1,11 @@
 local cmd = vim.cmd
-local gitsigns = require("gitsigns")
 local M = {}
 
 function M.init()
   if not packer_plugins["plenary.nvim"].loaded then
     cmd([[packadd plenary.nvim]])
   end
+  local gitsigns = require("gitsigns")
 
   local signs = {
     add = {

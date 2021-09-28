@@ -1,8 +1,8 @@
-local vgit = require("vgit")
-local utils = require("vgit.utils")
 local M = {}
 
 function M.init()
+  local vgit = require("vgit")
+  local utils = require("vgit.utils")
   vgit.setup({
     keymaps = {
       ["n <C-k>"] = "hunk_up",
