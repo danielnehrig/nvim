@@ -32,7 +32,7 @@ function LSP:on_attach(client, bufnr)
   map(bufnr, "n", "<space>gw", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
   map(bufnr, "n", "<space>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
   map(bufnr, "n", "<space>gh", "<cmd>lua vim.lsp.buf.hover()<CR>")
-  map(bufnr, "n", "<space>gf", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+  map(bufnr, "n", "<space>gf", "<cmd>:CodeActionMenu<CR>")
   map(
     bufnr,
     "n",

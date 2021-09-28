@@ -16,7 +16,7 @@ function Make:new(o)
   return o
 end
 
-function Make:Report(msg)
+function Make:Report()
   vim.cmd([[packadd nvim-notify]])
   local opt = {
     title = "Neomake",
