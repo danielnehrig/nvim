@@ -25,11 +25,10 @@ function M.init()
 
         -- set a name for each source
         vim_item.menu = ({
-          buffer = "[Buffer]",
+          path = "[Path]",
           nvim_lsp = "[LSP]",
           luasnip = "[LuaSnip]",
           nvim_lua = "[Lua]",
-          latex_symbols = "[Latex]",
         })[entry.source.name]
         return vim_item
       end,
