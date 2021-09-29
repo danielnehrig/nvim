@@ -205,6 +205,10 @@ def Darwin():
 
     log.Step("LSP Setup")
     sumneko_lua()
+    install_cli_packages("npm", "install -g", node_packages)
+    install_cli_packages("go", "install", go_packages)
+    install_cli_packages("cargo", "install", rust_packages)
+    install_cli_packages("pip", "install", pip_packages)
     jdtls()
 
 
