@@ -346,6 +346,7 @@ local function init()
   use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } }) -- lightspeed motion
 
   -- quality of life
+  use({ "Xuyuanp/scrollbar.nvim" })
   use({ "wakatime/vim-wakatime", disable = not is_private }) -- time tracking
   use({
     "t9md/vim-choosewin",

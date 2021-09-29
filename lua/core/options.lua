@@ -91,6 +91,13 @@ function M.load_options()
   wo.fillchars = "fold:\\"
   wo.foldnestmax = 3
   wo.foldminlines = 1
+
+  -- scroller
+  vim.g.scrollbar_shape = {
+    head = "▎",
+    body = "▎",
+    tail = "▎",
+  }
 end
 
 return M
