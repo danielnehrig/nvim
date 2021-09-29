@@ -19,6 +19,7 @@ current_folder = os.path.abspath(os.getcwd())
 user = getuser()
 home = "{0}{1}".format(os.environ.get("HOME"), "/")
 dap_path = home + ".local/share/nvim/dapinstall/"
+lsp_path = home + ".local/share/nvim/lsp/"
 
 arrow = "====>"
 
@@ -85,12 +86,52 @@ def Cmd(call: str):
         with open(os.devnull, "w") as f:
             subprocess.call(cmdArr, stdout=f)
             f.close()
-    except subprocess.CalledProcessError:
+    except subprocess.CalledProcessError as err:
         log.Error("Failed to execute {0}".format(call))
+        log.Error("Trace {0}".format(err))
+
+def java_debug():
+    if not os.path.isdir(dap_path + "java-debug"):
+        log.Info("Install Java Debug")
+        Cmd("git clone https://github.com/microsoft/java-debug " + dap_path + "java-debug")
+        Cmd("git clone https://github.com/microsoft/vscode-java-test " + dap_path + "vscode-java-test")
+        os.chdir(dap_path + "java-debug")
+        Cmd("./mvnw clean install")
+        os.chdir(current_folder)
+        os.chdir(dap_path + "vscode-java-test")
+        Cmd("npm install")
+        Cmd("npm run build-plugin")
+        os.chdir(current_folder)
+    else:
+        log.Warning("JAVA Debug Exists Update?")
+
+def sumneko_lua():
+    if not os.path.isdir(lsp_path + "lua"):
+        log.Info("Install lua langserver")
+        Cmd("git clone https://github.com/sumneko/lua-language-server " + lsp_path + "lua")
+        os.chdir(lsp_path + "lua")
+        Cmd("git submodule update --init --recursive")
+        os.chdir(current_folder)
+        os.chdir(lsp_path + "lua/3rd/luamake")
+        Cmd("compile/install.sh")
+        os.chdir(current_folder)
+        os.chdir(lsp_path + "lua")
+        Cmd("3rd/luamake/luamake rebuild")
+        os.chdir(current_folder)
+    else:
+        log.Warning("LUA LSP Exists Update?")
+
+def jdtls():
+    # TODO
+    log.Warning("JDTLS Needs Implementation")
 
 def Darwin():
-    log.Error("Not Supported")
-    exit(1)
+    log.Step('DAP Setup')
+    java_debug()
+
+    log.Step('LSP Setup')
+    sumneko_lua()
+    jdtls()
 
 def Cygwin():
     log.Error("Not Supported")
@@ -98,18 +139,11 @@ def Cygwin():
 
 def Linux():
     log.Step('DAP Setup')
-    log.Info("Install java")
-    Cmd("git clone https://github.com/microsoft/java-debug " + dap_path + "java-debug")
-    Cmd("git clone https://github.com/microsoft/vscode-java-test " + dap_path + "vscode-java-test")
-    os.chdir(dap_path + "java-debug")
-    Cmd("./mvnw clean install")
-    os.chdir(current_folder)
-    os.chdir(dap_path + "vscode-java-test")
-    Cmd("npm install")
-    Cmd("npm run build-plugin")
-    os.chdir(current_folder)
+    java_debug()
 
-    exit(0)
+    log.Step('LSP Setup')
+    sumneko_lua()
+    jdtls()
 
 if __name__ == "__main__":
     log.Info("Detected system is {0}".format(sys.platform))
