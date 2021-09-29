@@ -9,15 +9,13 @@ local workspace = home .. "/code/workspace/" .. workspace_dir
 
 local bundles = {
   vim.fn.glob(
-    "path/to/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+    home
+      .. "/dap/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
   ),
 }
 vim.list_extend(
   bundles,
-  vim.split(
-    vim.fn.glob("/path/to/microsoft/vscode-java-test/server/*.jar"),
-    "\n"
-  )
+  vim.split(vim.fn.glob(home .. "/dap/vscode-java-test/server/*.jar"), "\n")
 )
 
 local config = {
