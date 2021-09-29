@@ -61,10 +61,22 @@ function LSP.on_attach(client, bufnr)
   fn.sign_define("LspDiagnosticsSignWarning", { text = "" })
   fn.sign_define("LspDiagnosticsSignInformation", { text = "" })
   fn.sign_define("LspDiagnosticsSignHint", { text = "" })
-  fn.sign_define("DiagnosticSignError", { text = "" })
-  fn.sign_define("DiagnosticSignWarn", { text = "" })
-  fn.sign_define("DiagnosticSignInfo", { text = "" })
-  fn.sign_define("DiagnosticSignHint", { text = "" })
+  fn.sign_define(
+    "DiagnosticSignError",
+    { texthl = "DiagnosticError", text = "" }
+  )
+  fn.sign_define(
+    "DiagnosticSignWarn",
+    { texthl = "DiagnosticWarn", text = "" }
+  )
+  fn.sign_define(
+    "DiagnosticSignInfo",
+    { texthl = "DiagnosticInfo", text = "" }
+  )
+  fn.sign_define(
+    "DiagnosticSignHint",
+    { texthl = "DiagnosticHint", text = "" }
+  )
 
   require("lsp_signature").on_attach({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
