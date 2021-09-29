@@ -13,11 +13,12 @@ function global:load_variables()
   self.vim_path = vim.fn.stdpath("config")
   self.path_sep = path_sep
   self.home = home
+  self.dap_path = vim.fn.stdpath("data") .. path_sep .. "dapinstall"
+  self.lsp_path = vim.fn.stdpath("data") .. path_sep .. "lsp"
   self.data_path = string.format(
     "%s" .. path_sep .. "site" .. path_sep,
     vim.fn.stdpath("data")
   )
-  self.lsp_path = string.format("%s" .. path_sep, vim.fn.stdpath("data"))
 end
 
 global:load_variables()

@@ -1,10 +1,14 @@
 local cmd = vim.cmd
 local globals = require("core.global")
-local sumneko_root_path = os.getenv("HOME") .. "/dotfiles/lua-language-server"
+local path_sep = package.config:sub(1, 1)
+local sumneko_root_path = globals.lsp_path .. path_sep .. "lua"
 local sumneko_binary = sumneko_root_path
-  .. "/bin/"
+  .. path_sep
+  .. "bin"
+  .. path_sep
   .. globals.sumenko_os
-  .. "/lua-language-server"
+  .. path_sep
+  .. "lua-language-server"
 local lsp = require("plugins.lspconfig")
 local lspconfig = require("lspconfig")
 local capabilities = require("plugins.lspconfig.capabilities").capabilities

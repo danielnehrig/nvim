@@ -1,11 +1,11 @@
 local dap = require("dap")
-local dap_install_folder = vim.fn.stdpath("data") .. "/dapinstall/"
+local global = require("core.global")
 
 dap.adapters.node2 = {
   type = "executable",
   command = "node",
   args = {
-    dap_install_folder .. "jsnode/vscode-node-debug2/out/src/nodeDebug.js",
+    global.dap_path .. "/jsnode/vscode-node-debug2/out/src/nodeDebug.js",
   },
 }
 
@@ -13,7 +13,7 @@ dap.adapters.chrome = {
   type = "executable",
   command = "node",
   args = {
-    dap_install_folder .. "chrome/vscode-chrome-debug/out/src/chromeDebug.js",
+    global.dap_path .. "/chrome/vscode-chrome-debug/out/src/chromeDebug.js",
   },
 }
 
@@ -26,7 +26,7 @@ dap.adapters.lldb = {
 dap.adapters.go = {
   type = "executable",
   command = "node",
-  args = { dap_install_folder .. "go/vscode-go/dist/debugAdapter.js" },
+  args = { global.dap_path .. "/go/vscode-go/dist/debugAdapter.js" },
 }
 
 vim.fn.sign_define(
