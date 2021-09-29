@@ -18,6 +18,7 @@ current_time = now.strftime("%H:%M:%S")
 current_folder = os.path.abspath(os.getcwd())
 user = getuser()
 home = "{0}{1}".format(os.environ.get("HOME"), "/")
+dap_path = home + ".local/share/nvim/dapinstall/"
 
 arrow = "====>"
 
@@ -96,15 +97,14 @@ def Cygwin():
     exit(1)
 
 def Linux():
-    log.Error("Not Supported")
-
+    log.Step('DAP Setup')
     log.Info("Install java")
-    Cmd("git clone https://github.com/microsoft/java-debug " + home + "dap/java-debug")
-    Cmd("git clone https://github.com/microsoft/vscode-java-test " + home + "dap/vscode-java-test")
-    os.chdir(home + "dap/java-debug")
+    Cmd("git clone https://github.com/microsoft/java-debug " + dap_path + "java-debug")
+    Cmd("git clone https://github.com/microsoft/vscode-java-test " + dap_path + "vscode-java-test")
+    os.chdir(dap_path + "java-debug")
     Cmd("./mvnw clean install")
     os.chdir(current_folder)
-    os.chdir(home + "dap/vscode-java-test")
+    os.chdir(dap_path + "vscode-java-test")
     Cmd("npm install")
     Cmd("npm run build-plugin")
     os.chdir(current_folder)
