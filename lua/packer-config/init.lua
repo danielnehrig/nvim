@@ -73,7 +73,7 @@ local function init()
   }) -- colorscheme
 
   -- language
-  use({ "mfussenegger/nvim-jdtls" })
+  use({ "mfussenegger/nvim-jdtls", opt = true })
   use({
     "Saecki/crates.nvim",
     ft = { "toml", "rs" },
