@@ -97,7 +97,19 @@ def Cygwin():
 
 def Linux():
     log.Error("Not Supported")
-    exit(1)
+
+    log.Info("Install java")
+    Cmd("git clone https://github.com/microsoft/java-debug " + home + "dap/java-debug")
+    Cmd("git clone https://github.com/microsoft/vscode-java-test " + home + "dap/vscode-java-test")
+    os.chdir(home + "dap/java-debug")
+    Cmd("./mvnw clean install")
+    os.chdir(current_folder)
+    os.chdir(home + "dap/vscode-java-test")
+    Cmd("npm install")
+    Cmd("npm run build-plugin")
+    os.chdir(current_folder)
+
+    exit(0)
 
 if __name__ == "__main__":
     log.Info("Detected system is {0}".format(sys.platform))
