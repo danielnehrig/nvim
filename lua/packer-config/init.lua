@@ -482,7 +482,8 @@ local function init()
   }) -- testing
 
   -- debug
-  use({ "jbyuki/one-small-step-for-vimkind" })
+  use({ "jbyuki/one-small-step-for-vimkind" }) -- lua debug
+  use({ "mfussenegger/nvim-dap-python", opt = true }) -- python debug
   use({
     "Pocco81/DAPInstall.nvim",
     cmd = { "DIInstall", "DIList" },
