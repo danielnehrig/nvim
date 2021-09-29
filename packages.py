@@ -8,10 +8,35 @@
 import subprocess
 import os
 import sys
-from os import system
 from getpass import getuser
 from datetime import datetime
 from distutils.spawn import find_executable
+
+# index[0] is the package name index[1] is the bin name in path
+node_packages = [
+    ["typescript-language-server", "typescript-language-server"],
+    ["vscode-html-languageserver-bin", "vscode-html-languageserver-bin"],
+    ["css-language-server", "css-language-server"],
+    ["svelte-language-server", "svelte-language-server"],
+    ["bash-language-server", "bash-language-server"],
+    ["yaml-language-server", "yaml-language-server"],
+    ["dockerfile-language-server-nodejs", "dockerfile-language-server-nodejs"],
+    ["dprint", "dprint"],
+    ["pyright", "pyright"],
+]
+
+go_packages = [
+    ["mvdan.cc/sh/v3/cmd/shfmt", "shfmt"],
+    ["github.com/mattn/efm-langserver", "efm-langserver"],
+]
+
+rust_packages = [["blackd-client", "blackd-client"], ["stylua", "stylua"]]
+
+pip_packages = [
+    ["black", "black"],
+    ["aiohttp", "aiohttp"],
+    ["aiohttp_cors", "aiohttp_cors"],
+]
 
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
@@ -23,6 +48,7 @@ lsp_path = home + ".local/share/nvim/lsp/"
 
 arrow = "====>"
 
+
 class Colors:
     HEADER = "\033[95m"
     OKBLUE = "\033[94m"
@@ -32,6 +58,7 @@ class Colors:
     ENDC = "\033[0m"
     BOLD = "\033[1m"
     UNDERLINE = "\033[4m"
+
 
 class Log(Colors):
     user = getuser()
@@ -79,7 +106,8 @@ class Log(Colors):
 
 log = Log()
 
-def Cmd(call: str):
+
+def cmd(call: str):
     try:
         log.Info("Executing {0}".format(call))
         cmdArr = call.split()
@@ -90,60 +118,112 @@ def Cmd(call: str):
         log.Error("Failed to execute {0}".format(call))
         log.Error("Trace {0}".format(err))
 
+
+def in_path(cmd: str):
+    try:
+        inPath = find_executable(cmd) is not None
+        return inPath
+    except subprocess.CalledProcessError as e:
+        log.Error(
+            "Call Check {0} Failed with return code {1}".format(cmd, e.returncode)
+        )
+
+
+def install_cli_packages(
+    cli_tool: str, cli_options: str, arr: list[list[str]], options: str = ""
+):
+    if not in_path(cli_tool):
+        log.Warning("{0} not in path skipping installing".format(cli_tool))
+        return
+    for package in arr:
+        log.Info("Installing CLI Package {0}".format(package[0]))
+        install = "{0} {1} {2} {3}".format(cli_tool, cli_options, package[0], options)
+        try:
+            inPath = in_path(package[1])
+            if not inPath:
+                cmd(install)
+                log.Success("Success Installing package {0}".format(package[0]))
+        except subprocess.CalledProcessError as e:
+            log.Error(
+                "Failed to install {0} with code {1}".format(package, e.returncode)
+            )
+
+
 def java_debug():
     if not os.path.isdir(dap_path + "java-debug"):
         log.Info("Install Java Debug")
-        Cmd("git clone https://github.com/microsoft/java-debug " + dap_path + "java-debug")
-        Cmd("git clone https://github.com/microsoft/vscode-java-test " + dap_path + "vscode-java-test")
+        cmd(
+            "git clone https://github.com/microsoft/java-debug "
+            + dap_path
+            + "java-debug"
+        )
+        cmd(
+            "git clone https://github.com/microsoft/vscode-java-test "
+            + dap_path
+            + "vscode-java-test"
+        )
         os.chdir(dap_path + "java-debug")
-        Cmd("./mvnw clean install")
+        cmd("./mvnw clean install")
         os.chdir(current_folder)
         os.chdir(dap_path + "vscode-java-test")
-        Cmd("npm install")
-        Cmd("npm run build-plugin")
+        cmd("npm install")
+        cmd("npm run build-plugin")
         os.chdir(current_folder)
     else:
         log.Warning("JAVA Debug Exists Update?")
 
+
 def sumneko_lua():
     if not os.path.isdir(lsp_path + "lua"):
         log.Info("Install lua langserver")
-        Cmd("git clone https://github.com/sumneko/lua-language-server " + lsp_path + "lua")
+        cmd(
+            "git clone https://github.com/sumneko/lua-language-server "
+            + lsp_path
+            + "lua"
+        )
         os.chdir(lsp_path + "lua")
-        Cmd("git submodule update --init --recursive")
+        cmd("git submodule update --init --recursive")
         os.chdir(current_folder)
         os.chdir(lsp_path + "lua/3rd/luamake")
-        Cmd("compile/install.sh")
+        cmd("compile/install.sh")
         os.chdir(current_folder)
         os.chdir(lsp_path + "lua")
-        Cmd("3rd/luamake/luamake rebuild")
+        cmd("3rd/luamake/luamake rebuild")
         os.chdir(current_folder)
     else:
         log.Warning("LUA LSP Exists Update?")
+
 
 def jdtls():
     # TODO
     log.Warning("JDTLS Needs Implementation")
 
+
 def Darwin():
-    log.Step('DAP Setup')
+    log.Step("DAP Setup")
     java_debug()
 
-    log.Step('LSP Setup')
+    log.Step("LSP Setup")
     sumneko_lua()
     jdtls()
+
 
 def Cygwin():
     log.Error("Not Supported")
     exit(1)
 
+
 def Linux():
-    log.Step('DAP Setup')
+    log.Step("DAP Setup")
     java_debug()
 
-    log.Step('LSP Setup')
+    log.Step("LSP Setup")
     sumneko_lua()
-    jdtls()
+    install_cli_packages("npm", "install -g", node_packages)
+    install_cli_packages("go", "install", go_packages)
+    install_cli_packages("cargo", "install", rust_packages)
+    install_cli_packages("pip", "install", pip_packages)
+
 
 if __name__ == "__main__":
     log.Info("Detected system is {0}".format(sys.platform))
