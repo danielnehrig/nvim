@@ -7,7 +7,7 @@ function M.init()
     delete_check_events = "TextChanged,TextChangedI",
   })
 
-  require("luasnip.loaders.from_vscode").load({})
+  require("luasnip.loaders.from_vscode").lazy_load({})
 end
 
 local current_nsid = vim.api.nvim_create_namespace(

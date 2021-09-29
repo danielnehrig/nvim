@@ -1,9 +1,5 @@
 local M = {}
 
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 local check_back_space = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
@@ -48,16 +44,56 @@ function M.init()
       completeopt = table.concat(vim.opt.completeopt:get(), ","),
       keyword_length = 1,
     },
+
     mapping = {
-      ["<tab>"] = cmp.mapping(function(fallback)
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
         if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(t("<C-n>"), "n")
-        elseif luasnip and luasnip.expand_or_jumpable() then
-          vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
-        elseif neogen.jumpable() then
-          vim.fn.feedkeys(t("<cmd>lua require('neogen').jump_next()<CR>"), "")
+          vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes("<c-p>", true, true, true),
+            "n",
+            true
+          )
+        elseif luasnip and luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         elseif check_back_space() then
-          vim.fn.feedkeys(t("<tab>"), "n")
+          vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes("<s-tab>", true, true, true),
+            "n",
+            true
+          )
+        else
+          fallback()
+        end
+      end, {
+        "i",
+        "s",
+      }),
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if vim.fn.pumvisible() == 1 then
+          vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes("<c-n>", true, true, true),
+            "n",
+            true
+          )
+        elseif luasnip and luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif neogen.jumpable() then
+          vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes(
+              "<cmd>lua require('neogen').jump_next()<CR>",
+              true,
+              true,
+              true
+            ),
+            "",
+            true
+          )
+        elseif check_back_space() then
+          vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes("<tab>", true, true, true),
+            "n",
+            true
+          )
         else
           fallback()
         end
