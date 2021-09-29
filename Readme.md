@@ -34,6 +34,7 @@ The Config should fully support:
 
 - Typescript / Javascript
 - Rust
+- Java
 - Go
 - Python
 
@@ -77,6 +78,12 @@ it's inspired by Lvim though not cloned
 
 ### Requirements
 
+*Package managers:*
+- *python3.9*
+- *node*
+- *go*
+- *rust/cargo*
+
 *NVIM V ^0.5.\**
 
 *LSPs in path:*
@@ -92,3 +99,11 @@ it's inspired by Lvim though not cloned
 *DAP:*
 - Some Adapters can be installed with Dap install
 - Java Adapter has to be installed manually
+
+
+### Setup
+
+- Run ./package.py to install debug adapters and lsp
+- Run nvim and let it do its thing until its done
+- Run `TSInstall maintained`
+- Run in nvim `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
