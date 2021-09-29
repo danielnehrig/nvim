@@ -8,6 +8,7 @@ local workspace = home .. "/code/workspace/" .. workspace_dir
 
 lspconfig.jdtls.setup({
   filetypes = { "java" },
+  autostart = false,
   cmd = { "jdtls", "-data", workspace },
   capabilities = capabilities,
   flags = { debounce_text_changes = 500 },

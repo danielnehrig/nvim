@@ -142,7 +142,7 @@ function LSP.init()
     "yaml",
     "bash",
     "ts",
-    -- "java",
+    "java",
     "php",
     "efm",
     "c",

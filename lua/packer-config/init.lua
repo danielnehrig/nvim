@@ -49,11 +49,6 @@ local function init()
   use({
     "Murtaza-Udaipurwala/gruvqueen",
     config = function()
-      if not vim.g.neovide then
-        vim.g.gruvqueen_transparent_background = true
-      else
-        vim.g.gruvqueen_transparent_background = false
-      end
       vim.o.background = "dark" -- or light if you so prefer
       require("gruvqueen").setup({
         config = {
@@ -64,10 +59,11 @@ local function init()
           italic_variables = true,
           invert_selection = false,
           style = "mix", -- possible values: 'original', 'mix', 'material'
-          -- transparent_background = true,
+          transparent_background = not vim.g.neovide and true or false,
           -- bg_color = "black",
         },
       })
+
       require("core.highlights")
     end,
   }) -- colorscheme
