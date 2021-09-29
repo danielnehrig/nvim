@@ -70,7 +70,25 @@ it's inspired by Lvim though not cloned
 
 ### Nvim Log
 
-*Logs created on*
+*[Logs](./nvim.log) created on*
 - i9 9900k 5Ghz
 - 32GB Ram
 - Arch Linux
+
+### Requirements
+
+*NVIM V ^0.5.\**
+
+*LSPs in path:*
+- pyright
+- efm (for lint and formatting mainly lua and js,ts)
+- typescript-language-server
+- rust-analyzer
+- gopls
+- sumneko-lua
+- jdtls
+- etc... check lsp config for more info
+
+*DAP:*
+- Some Adapters can be installed with Dap install
+- Java Adapter has to be installed manually

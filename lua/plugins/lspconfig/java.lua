@@ -6,6 +6,8 @@ local home = require("core.global").home
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace = home .. "/code/workspace/" .. workspace_dir
 
+-- jdtls is a sh script in path which bootsup jdtls
+-- yay -S jdtls (for pacman based systems)
 lspconfig.jdtls.setup({
   filetypes = { "java" },
   autostart = false,
