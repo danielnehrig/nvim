@@ -41,18 +41,13 @@ local config = {
   }),
   on_attach = function(client, bufnr)
     require("jdtls").setup_dap({ hotcodereplace = "auto" })
+    require("jdtls.setup").add_commands()
+
     lsp.on_attach(client, bufnr)
 
     -- extra jdtls mapping overwrite TODO
     map(bufnr, "n", "<space>gf", "<cmd>lua require('jdtls').code_action()<CR>")
   end,
 }
-require("jdtls").start_or_attach(config)
 
-vim.cmd([[
-command! -buffer JdtCompile lua require('jdtls').compile()
-command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()
-command! -buffer JdtJol lua require('jdtls').jol()
-command! -buffer JdtBytecode lua require('jdtls').javap()
-command! -buffer JdtJshell lua require('jdtls').jshell()
-]])
+require("jdtls").start_or_attach(config)
