@@ -32,9 +32,9 @@ end
 if not g.vscode then
   -- setup conf and lua modules
   require("core.global")
-  require("core.options")
-  require("core.mappings")
-  require("core.autocmd")
+  require("core.options").load_options()
+  require("core.mappings").mappings()
+  require("core.autocmd").autocmds()
 
   local pack = require("packer-config")
   pack.bootstrap()

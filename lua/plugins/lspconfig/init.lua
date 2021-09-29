@@ -1,11 +1,12 @@
 local map = require("utils").map
 local autocmd = require("utils").autocmd
 local fn = vim.fn
+
 local LSP = {}
 LSP.__index = LSP
 
 -- custom attach config for most LSP configs
-function LSP:on_attach(client, bufnr)
+function LSP.on_attach(client, bufnr)
   if not packer_plugins["lsp_signature.nvim"].loaded then
     vim.cmd([[packadd lsp_signature.nvim]])
   end
@@ -60,6 +61,10 @@ function LSP:on_attach(client, bufnr)
   fn.sign_define("LspDiagnosticsSignWarning", { text = "" })
   fn.sign_define("LspDiagnosticsSignInformation", { text = "" })
   fn.sign_define("LspDiagnosticsSignHint", { text = "" })
+  fn.sign_define("DiagnosticSignError", { text = "" })
+  fn.sign_define("DiagnosticSignWarn", { text = "" })
+  fn.sign_define("DiagnosticSignInfo", { text = "" })
+  fn.sign_define("DiagnosticSignHint", { text = "" })
 
   require("lsp_signature").on_attach({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -84,30 +89,37 @@ function LSP:on_attach(client, bufnr)
   })
 end
 
--- enable border
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  -- Use a sharp border with `FloatBorder` highlights
-  border = "single",
-})
+-- LSP Settings
+function LSP.settings()
+  -- enable border for hover
+  vim.lsp.handlers["textDocument/hover"] =
+    vim.lsp.with(vim.lsp.handlers.hover, {
+      -- Use a sharp border with `FloatBorder` highlights
+      border = "single",
+    })
 
--- enable border
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help,
-  {
-    border = "single",
-  }
-)
+  -- enable border for signature
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    {
+      border = "single",
+    }
+  )
 
--- disable virtual text
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    virtual_text = false,
-  }
-)
+  -- disable virtual text
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+      virtual_text = false,
+    }
+  )
+end
 
--- load all language files
-function LSP:init()
+LSP.settings()
+
+-- init lsp config
+function LSP.init()
+  -- the server files
   local servers = {
     "lua",
     "rust",
@@ -123,6 +135,11 @@ function LSP:init()
     "efm",
     "c",
   }
+
+  -- init lspStatus
+  require("plugins.lspStatus").init()
+
+  -- load lsp configs for languages
   for _, server in ipairs(servers) do
     local settings = { lsp_config = "plugins.lspconfig." .. server }
     require(settings.lsp_config)

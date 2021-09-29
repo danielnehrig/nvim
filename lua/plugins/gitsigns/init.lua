@@ -1,67 +1,73 @@
 local cmd = vim.cmd
+local M = {}
 
-if not packer_plugins["plenary.nvim"].loaded then
-    vim.cmd([[packadd plenary.nvim]])
-end
+function M.init()
+  if not packer_plugins["plenary.nvim"].loaded then
+    cmd([[packadd plenary.nvim]])
+  end
+  local gitsigns = require("gitsigns")
 
-local signs = {
+  local signs = {
     add = {
-        hl = "GitSignsAdd",
-        text = "▌",
-        numhl = "GitSignsAdd",
-        linehl = "GitSignsAddLn",
+      hl = "GitSignsAdd",
+      text = "▌",
+      numhl = "GitSignsAdd",
+      linehl = "GitSignsAddLn",
     },
     change = {
-        hl = "GitSignsChange",
-        text = "▌",
-        numhl = "GitSignsChange",
-        linehl = "GitSignsChangeLn",
+      hl = "GitSignsChange",
+      text = "▌",
+      numhl = "GitSignsChange",
+      linehl = "GitSignsChangeLn",
     },
     delete = {
-        hl = "GitSignsDelete",
-        text = "▌",
-        numhl = "GitSignsDelete",
-        linehl = "GitSignsDeleteLn",
+      hl = "GitSignsDelete",
+      text = "▌",
+      numhl = "GitSignsDelete",
+      linehl = "GitSignsDeleteLn",
     },
     topdelete = {
-        hl = "GitSignsDelete",
-        text = "‾",
-        numhl = "GitSignsDeleteNr",
-        linehl = "GitSignsDeleteLn",
+      hl = "GitSignsDelete",
+      text = "‾",
+      numhl = "GitSignsDeleteNr",
+      linehl = "GitSignsDeleteLn",
     },
     changedelete = {
-        hl = "GitSignsChange",
-        text = "~",
-        numhl = "GitSignsChangeNr",
-        linehl = "GitSignsChangeLn",
+      hl = "GitSignsChange",
+      text = "~",
+      numhl = "GitSignsChangeNr",
+      linehl = "GitSignsChangeLn",
     },
-}
+  }
 
-require("gitsigns").setup({
+  gitsigns.setup({
     signs = signs,
     numhl = true,
     linehl = false,
     keymaps = {
-        -- Default keymap options
-        noremap = true,
-        buffer = true,
-        ["n ]c"] = {
-            expr = true,
-            "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'",
-        },
-        ["n [c"] = {
-            expr = true,
-            "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'",
-        },
-        ["n <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-        ["n <leader>hu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-        ["n <leader>hr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-        ["n <leader>hp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-        ["n <leader>hb"] = '<cmd>lua require"gitsigns".blame_line()<CR>',
+      -- Default keymap options
+      noremap = true,
+      buffer = true,
+      ["n ]c"] = {
+        expr = true,
+        "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'",
+      },
+      ["n [c"] = {
+        expr = true,
+        "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'",
+      },
+      ["n <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+      ["n <leader>hu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+      ["n <leader>hr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+      ["n <leader>hp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+      ["n <leader>hb"] = '<cmd>lua require"gitsigns".blame_line()<CR>',
     },
     watch_index = {
-        interval = 100,
+      interval = 100,
     },
     sign_priority = 5,
     status_formatter = nil, -- Use default
-})
+  })
+end
+
+return M

@@ -1,5 +1,5 @@
 local lsp = require("plugins.lspconfig")
-local capabilities = require("plugins.lspStatus").capabilities
+local capabilities = require("plugins.lspconfig.capabilities").capabilities
 local lspconfig = require("lspconfig")
 
 lspconfig.tsserver.setup({
@@ -15,6 +15,6 @@ lspconfig.tsserver.setup({
     -- disable TS formatting since we use efm
     client.resolved_capabilities.document_formatting = false
 
-    lsp:on_attach(client, bufnr)
+    lsp.on_attach(client, bufnr)
   end,
 })

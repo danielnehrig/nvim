@@ -5,7 +5,12 @@ local data_path = global.data_path
 local packer_compiled = data_path .. "packer_compiled.vim"
 local compile_to_lua = data_path .. "lua" .. global.path_sep .. "_compiled.lua"
 
+local is_private = os.getenv("USER") == "dashie"
+
+-- nil because packer is opt
 local packer = nil
+
+-- init plugins
 local function init()
   packer = require("packer")
   packer.init({
@@ -150,6 +155,15 @@ local function init()
     ft = { "javascript", "typescript", "lua" },
   }) -- code playground in buffer executed
   use({ "nvim-treesitter/nvim-treesitter" }) -- syntax highlight indent etc
+  use({
+    "danymat/neogen",
+    config = function()
+      require("neogen").setup({
+        enabled = true,
+      })
+    end,
+    requires = "nvim-treesitter/nvim-treesitter",
+  })
   use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- coment out code
   use({
     "winston0410/commented.nvim",
@@ -195,9 +209,7 @@ local function init()
   }) -- window for showing LSP detected issues in code
   use({
     "folke/todo-comments.nvim",
-    config = function()
-      require("plugins.todo")
-    end,
+    config = require("plugins.todo").init,
     wants = "telescope.nvim",
     cmd = { "TodoQuickFix", "TodoTrouble", "TodoTelescope" },
   }) -- show todos in qf
@@ -289,12 +301,8 @@ local function init()
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "saadparwaiz1/cmp_luasnip" },
-      {
-        "L3MON4D3/LuaSnip",
-      },
-      {
-        "rafamadriz/friendly-snippets",
-      },
+      { "L3MON4D3/LuaSnip" },
+      { "rafamadriz/friendly-snippets" },
       {
         "kristijanhusak/orgmode.nvim",
         config = function()
@@ -338,18 +346,11 @@ local function init()
   use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } }) -- lightspeed motion
 
   -- quality of life
-  use({ "wakatime/vim-wakatime", disable = true }) -- time tracking
+  use({ "wakatime/vim-wakatime", disable = not is_private }) -- time tracking
   use({
     "t9md/vim-choosewin",
     cmd = { "ChooseWin" },
   })
-  use({
-    "lewis6991/impatient.nvim",
-    disable = true,
-    config = function()
-      require("impatient").enable_profile()
-    end,
-  }) -- caching of files
   use({ "kevinhwang91/nvim-bqf" }) -- better quickfix
   use({
     "gelguy/wilder.nvim",
@@ -371,9 +372,7 @@ local function init()
   use({
     "hkupty/nvimux",
     keys = { "<C-a>" },
-    config = function()
-      require("plugins.nvimux")
-    end,
+    config = require("plugins.nvimux").init,
   }) -- tmux in nvim
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite" } }) -- save as root
   use({ "junegunn/vim-slash", keys = { "/" } }) -- better search
@@ -429,9 +428,7 @@ local function init()
     "tanvirtin/vgit.nvim",
     cmd = { "VGit" },
     commit = "c1e5c82f5fc73bddb32eaef411dcc5e36ebc4efc",
-    config = function()
-      require("plugins.vgit")
-    end,
+    config = require("plugins.vgit").init,
     requires = {
       "nvim-lua/plenary.nvim",
     },
@@ -451,9 +448,7 @@ local function init()
   use({
     "lewis6991/gitsigns.nvim",
     event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("plugins.gitsigns")
-    end,
+    config = require("plugins.gitsigns").init,
     requires = {
       { "nvim-lua/plenary.nvim", after = "gitsigns.nvim" },
     },
@@ -520,7 +515,7 @@ local plugins = setmetatable({}, {
   end,
 })
 
--- Bootstrap Packer and the Plugins
+-- Bootstrap Packer and the Plugins + loads configs afterwards
 function plugins.bootstrap()
   local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
   -- check if packer exists or is installed
@@ -549,6 +544,7 @@ function plugins.bootstrap()
   end
 end
 
+-- converts the compiled file to lua
 function plugins.convert_compile_file()
   local lines = {}
   local lnum = 1
@@ -578,11 +574,13 @@ function plugins.convert_compile_file()
   os.remove(packer_compiled)
 end
 
+-- autocompile function called by autocmd on packer complete
 function plugins.auto_compile()
   plugins.compile()
   plugins.convert_compile_file()
 end
 
+-- loads the compiled packer file and sets the commands for packer
 function plugins.load_compile()
   if fn.filereadable(compile_to_lua) == 1 then
     require("_compiled")

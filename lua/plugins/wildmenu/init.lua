@@ -1,16 +1,15 @@
-vim.cmd("autocmd CmdlineEnter * ++once lua require('plugins.wildmenu'):init()")
-
+vim.cmd("autocmd CmdlineEnter * ++once lua require('plugins.wildmenu').init()")
 local Wild = {}
 
 Wild.__index = Wild
 
-function Wild:new(o)
+function Wild.new(o)
   o = o or {}
   setmetatable(o, Wild)
   return o
 end
 
-function Wild:init()
+function Wild.init()
   if not packer_plugins["wilder.nvim"].loaded then
     vim.cmd([[ packadd wilder.nvim ]])
     vim.api.nvim_exec(
