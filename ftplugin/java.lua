@@ -1,4 +1,4 @@
-vim.cmd([[ packadd nvim-jdtls ]])
+require("plugins.dap.attach"):addPlug()
 local capabilities = require("plugins.lspconfig").capabilities
 local lsp = require("plugins.lspconfig")
 local map = require("utils").map
