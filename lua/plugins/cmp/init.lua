@@ -16,6 +16,8 @@ function M.init()
   local cmp = require("cmp")
   local lspkind = require("lspkind")
   local neogen = require("neogen")
+  local luasnip = require("luasnip")
+  require("plugins.cmp.luasnip").init()
 
   cmp.setup({
     formatting = {
@@ -43,12 +45,15 @@ function M.init()
       end,
     },
     completion = {
-      completeopt = "menu,menuone,noinsert",
+      completeopt = table.concat(vim.opt.completeopt:get(), ","),
+      keyword_length = 1,
     },
     mapping = {
       ["<tab>"] = cmp.mapping(function(fallback)
         if vim.fn.pumvisible() == 1 then
           vim.fn.feedkeys(t("<C-n>"), "n")
+        elseif luasnip and luasnip.expand_or_jumpable() then
+          vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
         elseif neogen.jumpable() then
           vim.fn.feedkeys(t("<cmd>lua require('neogen').jump_next()<CR>"), "")
         elseif check_back_space() then
@@ -62,7 +67,9 @@ function M.init()
       }),
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
-      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-Space>"] = cmp.mapping(function(_)
+        return vim.fn.pumvisible() == 1 and cmp.close() or cmp.complete()
+      end),
       ["<C-e>"] = cmp.mapping.close(),
       ["<CR>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
