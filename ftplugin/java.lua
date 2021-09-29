@@ -1,5 +1,4 @@
 require("plugins.dap.attach"):addPlug()
-vim.cmd([[ packadd nvim-jdtls ]])
 local global = require("core.global")
 local capabilities = require("plugins.lspconfig").capabilities
 local lsp = require("plugins.lspconfig")
@@ -42,6 +41,7 @@ local config = {
     "pom.xml",
   }),
   on_attach = function(client, bufnr)
+    vim.cmd([[ packadd nvim-jdtls ]])
     require("jdtls").setup_dap({ hotcodereplace = "auto" })
     require("jdtls.setup").add_commands()
 
