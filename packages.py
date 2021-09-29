@@ -98,6 +98,10 @@ class Log(Colors):
         st = self.buildLogString("INFO", self.OKBLUE)
         print(st.format(self.now(), self.user, arrow, string))
 
+    def Skip(self, string: str):
+        st = self.buildLogString("SKIP", self.OKBLUE)
+        print(st.format(self.now(), self.user, arrow, string))
+
     def Step(self, string: str):
         st = self.buildStepString("STEP", self.OKBLUE)
         print(st.format(self.now(), self.user, arrow, string, self.counter))
@@ -136,13 +140,15 @@ def install_cli_packages(
         log.Warning("{0} not in path skipping installing".format(cli_tool))
         return
     for package in arr:
-        log.Info("Installing CLI Package {0}".format(package[0]))
         install = "{0} {1} {2} {3}".format(cli_tool, cli_options, package[0], options)
         try:
             inPath = in_path(package[1])
             if not inPath:
+                log.Info("Installing CLI Package {0}".format(package[0]))
                 cmd(install)
                 log.Success("Success Installing package {0}".format(package[0]))
+            else:
+                log.Skip("SKIP: CLI Package {0} in path".format(package[0]))
         except subprocess.CalledProcessError as e:
             log.Error(
                 "Failed to install {0} with code {1}".format(package, e.returncode)
