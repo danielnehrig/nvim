@@ -1,8 +1,9 @@
 require("plugins.dap.attach"):addPlug()
+vim.cmd([[ packadd nvim-jdtls ]])
+local global = require("core.global")
 local capabilities = require("plugins.lspconfig").capabilities
 local lsp = require("plugins.lspconfig")
 local map = require("utils").map
-local global = require("core.global")
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace = global.home .. "/code/workspace/" .. workspace_dir
