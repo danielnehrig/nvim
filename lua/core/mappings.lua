@@ -114,7 +114,21 @@ function M.mappings()
   remap("n", "<Leader>w", ":ChooseWin<CR>")
 
   -- neogen
-  remap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>")
+  remap(
+    "n",
+    "<Leader>nf",
+    ":lua require('neogen').generate({ type = 'func' })<CR>"
+  )
+  remap(
+    "n",
+    "<Leader>nc",
+    ":lua require('neogen').generate({ type = 'class' })<CR>"
+  )
+  remap(
+    "n",
+    "<Leader>nt",
+    ":lua require('neogen').generate({ type = 'type' })<CR>"
+  )
 end
 
 return M
