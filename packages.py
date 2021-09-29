@@ -26,8 +26,8 @@ node_packages = [
 ]
 
 go_packages = [
-    ["mvdan.cc/sh/v3/cmd/shfmt", "shfmt"],
-    ["github.com/mattn/efm-langserver", "efm-langserver"],
+    ["mvdan.cc/sh/v3/cmd/shfmt@latest", "shfmt"],
+    ["github.com/mattn/efm-langserver@latest", "efm-langserver"],
 ]
 
 rust_packages = [["blackd-client", "blackd-client"], ["stylua", "stylua"]]
