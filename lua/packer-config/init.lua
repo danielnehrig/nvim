@@ -64,6 +64,7 @@ local function init()
         },
       })
 
+      vim.cmd([[colorscheme gruvqueen]])
       require("core.highlights")
     end,
   }) -- colorscheme
@@ -378,12 +379,12 @@ local function init()
   }) -- tmux in nvim
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite" } }) -- save as root
   use({ "junegunn/vim-slash", keys = { "/" } }) -- better search
-  use("windwp/nvim-autopairs") -- autopairs "" {}
+  use({ "windwp/nvim-autopairs" }) -- autopairs "" {}
   use({
     "alvan/vim-closetag",
     ft = { "html", "jsx", "tsx", "xhtml", "xml" },
   }) -- close <> tag for xhtml ... maybe remove because of TS tag
-  use("tpope/vim-surround") -- surround "" ''
+  use({ "tpope/vim-surround" }) -- surround "" ''
   use({
     "vimwiki/vimwiki",
     cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
@@ -458,7 +459,7 @@ local function init()
   use({
     "tpope/vim-fugitive",
     opt = true,
-    cmd = { "Git", "Gdiff", "Gblame", "Glog" },
+    cmd = { "Git", "Gdiff", "Gblame", "Glog", "Git mergetool" },
   }) -- git integration
 
   -- testing / building
