@@ -15,12 +15,12 @@ from distutils.spawn import find_executable
 # index[0] is the package name index[1] is the bin name in path
 node_packages = [
     ["typescript-language-server", "typescript-language-server"],
-    ["vscode-html-languageserver-bin", "vscode-html-languageserver-bin"],
+    ["vscode-html-languageserver-bin", "html-languageserver"],
     ["css-language-server", "css-language-server"],
-    ["svelte-language-server", "svelte-language-server"],
+    ["svelte-language-server", "svelteserver"],
     ["bash-language-server", "bash-language-server"],
     ["yaml-language-server", "yaml-language-server"],
-    ["dockerfile-language-server-nodejs", "dockerfile-language-server-nodejs"],
+    ["dockerfile-language-server-nodejs", "docker-langserver"],
     ["dprint", "dprint"],
     ["pyright", "pyright"],
 ]
