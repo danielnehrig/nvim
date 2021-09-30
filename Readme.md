@@ -78,6 +78,9 @@ it's inspired by Lvim though not cloned
 
 ### Requirements
 
+*Font:*
+- Nerd Font any Monospaced One (if not monospaced the dashboard logo will not work)
+
 *Package managers:*
 - *python3.9*
 - *node*
