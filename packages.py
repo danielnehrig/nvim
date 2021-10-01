@@ -141,7 +141,7 @@ def install_cli_packages(
     cli_tool: str, cli_options: str, arr: list[list[str]], options: str = ""
 ):
     if not in_path(cli_tool):
-        log.Warning("{0} not in path skipping installing".format(cli_tool))
+        log.Error("{0} not in path skipping installing".format(cli_tool))
         return
     for package in arr:
         install = "{0} {1} {2} {3}".format(cli_tool, cli_options, package[0], options)
