@@ -88,7 +88,7 @@ dap.configurations.dart = {
 dap.configurations.typescript = {
   {
     type = "node2",
-    name = "node",
+    name = "node attach",
     request = "attach",
     program = "${file}",
     cwd = vim.fn.getcwd(),
@@ -116,7 +116,7 @@ dap.configurations.typescript = {
 dap.configurations.typescriptreact = {
   {
     type = "chrome",
-    request = "attach",
+    request = "chrome attach",
     name = "chrome",
     program = "${file}",
     -- cwd = "${workspaceFolder}",
@@ -135,10 +135,19 @@ dap.configurations.typescriptreact = {
 dap.configurations.javascript = {
   {
     type = "node2",
-    name = "node",
+    name = "node attach",
     request = "attach",
     program = "${file}",
     cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = "inspector",
+  },
+  {
+    type = "node2",
+    name = "node launch",
+    request = "launch",
+    program = "${workspaceFolder}/${file}",
+    cwd = "${workspaceFolder}",
     sourceMaps = true,
     protocol = "inspector",
   },
@@ -160,7 +169,7 @@ dap.configurations.javascript = {
 dap.configurations.javascriptreact = {
   {
     type = "chrome",
-    name = "chrome",
+    name = "chrome attach",
     request = "attach",
     program = "${file}",
     -- cwd = vim.fn.getcwd(),

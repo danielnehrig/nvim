@@ -49,6 +49,19 @@ local config = {
 
     -- extra jdtls mapping overwrite TODO
     map(bufnr, "n", "<space>gf", "<cmd>lua require('jdtls').code_action()<CR>")
+    map(
+      bufnr,
+      "n",
+      "<space>dm",
+      "<cmd>lua require'jdtls'.test_nearest_method()<CR>"
+    )
+    map(bufnr, "n", "<space>dM", "<cmd>lua require'jdtls'.test_class()<CR>")
+    map(
+      bufnr,
+      "v",
+      "<space>em",
+      "<cmd>lua require('jdtls').extract_method()<CR>"
+    )
   end,
 }
 

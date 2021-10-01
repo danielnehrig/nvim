@@ -1,12 +1,13 @@
--- TODO: trigger on python filetype when mapping is pressed then add dap-python
 local global = require("core.global")
 local remap = require("utils").map_global
 
+local init = false
 _G.load_py_dap = function()
-  require("plugins.dap.attach"):addPlug()
-  if not packer_plugins["nvim-dap-python"].loaded then
+  if not packer_plugins["nvim-dap-python"].loaded and not init then
+    require("plugins.dap.attach"):addPlug()
     vim.cmd([[ packadd nvim-dap-python ]])
     require("dap-python").setup(global.dap_path .. "/python/bin/python")
+    init = true
   end
   require("dap").continue()
 end
