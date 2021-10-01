@@ -166,6 +166,9 @@ def install_cli_packages(
 
 def java_debug():
     if not os.path.isdir(dap_path + "java-debug"):
+        if not in_path("npm"):
+            log.Warning("{0} not in path skipping installing".format("npm"))
+            return
         log.Info("Install Java Debug")
         cmd(
             "git clone https://github.com/microsoft/java-debug "
@@ -224,11 +227,11 @@ def Darwin():
 
     log.Step("LSP Setup")
     sumneko_lua()
+    jdtls()
     install_cli_packages("npm", "install -g", node_packages)
     install_cli_packages("go", "install", go_packages)
     install_cli_packages("cargo", "install", rust_packages)
     install_cli_packages("pip", "install", pip_packages)
-    jdtls()
 
 
 def Cygwin():
@@ -242,6 +245,7 @@ def Linux():
 
     log.Step("LSP Setup")
     sumneko_lua()
+    jdtls()
     install_cli_packages("npm", "install -g", node_packages)
     install_cli_packages("go", "install", go_packages)
     install_cli_packages("cargo", "install", rust_packages)
