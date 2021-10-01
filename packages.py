@@ -143,7 +143,12 @@ def install_cli_packages(
         install = "{0} {1} {2} {3}".format(cli_tool, cli_options, package[0], options)
         try:
             inPath = in_path(package[1])
-            if not inPath:
+            isForce = False
+            for key, option in enumerate(sys.argv):
+                if option == "--force":
+                    isForce = True
+
+            if not inPath or isForce:
                 log.Info("Installing CLI Package {0}".format(package[0]))
                 cmd(install)
                 log.Success("Success Installing package {0}".format(package[0]))
@@ -235,8 +240,22 @@ def Linux():
     install_cli_packages("pip", "install", pip_packages)
 
 
+def help():
+    for option in sys.argv:
+        if option == "--help" or option == "-h":
+            print("Usage:")
+            print("  ./packages.py [OPTIONS]")
+            print("")
+            print("OPTIONS:")
+            print(
+                "  --force            | will force install without check if already installed"
+            )
+            sys.exit(0)
+
+
 if __name__ == "__main__":
     log.Info("Detected system is {0}".format(sys.platform))
+    help()
 
     try:
         if sys.platform == "cygwin":
