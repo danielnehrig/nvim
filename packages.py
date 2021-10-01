@@ -38,6 +38,10 @@ pip_packages = [
     ["aiohttp_cors", "aiohttp_cors"],
 ]
 
+yay_packages = [
+    ["jdtls", "jdtls"]
+]
+
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 current_folder = os.path.abspath(os.getcwd())
@@ -207,7 +211,11 @@ def sumneko_lua():
 
 def jdtls():
     # TODO
-    log.Warning("JDTLS Needs Implementation")
+    if sys.platform == 'linux':
+        log.Info("Install jdtls langserver")
+        install_cli_packages("yay", "-S", yay_packages)
+    else:
+        log.Warning(sys.platform .. " JDTLS Needs Implementation")
 
 
 def Darwin():
