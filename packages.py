@@ -50,7 +50,7 @@ home = "{0}{1}".format(os.environ.get("HOME"), "/")
 dap_path = home + ".local/share/nvim/dapinstall/"
 lsp_path = home + ".local/share/nvim/lsp/"
 
-arrow = "====>"
+arrow = "==>"
 
 
 class Colors:
