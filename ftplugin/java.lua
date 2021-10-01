@@ -21,6 +21,7 @@ vim.list_extend(
   )
 )
 
+vim.cmd([[ packadd nvim-jdtls ]])
 local config = {
   -- The command that starts the language server
   init_options = {
@@ -41,7 +42,6 @@ local config = {
     "pom.xml",
   }),
   on_attach = function(client, bufnr)
-    vim.cmd([[ packadd nvim-jdtls ]])
     require("jdtls").setup_dap({ hotcodereplace = "auto" })
     require("jdtls.setup").add_commands()
 
