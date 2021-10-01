@@ -215,7 +215,7 @@ def jdtls():
         log.Info("Install jdtls langserver")
         install_cli_packages("yay", "-S", yay_packages)
     else:
-        log.Warning(sys.platform .. " JDTLS Needs Implementation")
+        log.Warning(sys.platform + " JDTLS Needs Implementation")
 
 
 def Darwin():
