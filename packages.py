@@ -1,10 +1,5 @@
 #!/usr/bin/env python
 
-# TODO
-# Installation process
-# for dependencies that need to be manually installed
-# LSP's, Debug Adapters
-
 import subprocess
 import os
 import sys
@@ -39,7 +34,8 @@ pip_packages = [
 ]
 
 yay_packages = [
-    ["jdtls", "jdtls"]
+    ["jdtls", "jdtls"],
+    ["groovy-language-server", "groovy-language-server"]
 ]
 
 now = datetime.now()
@@ -148,7 +144,7 @@ def install_cli_packages(
         try:
             inPath = in_path(package[1])
             isForce = False
-            for key, option in enumerate(sys.argv):
+            for _, option in enumerate(sys.argv):
                 if option == "--force":
                     isForce = True
 
@@ -213,12 +209,7 @@ def sumneko_lua():
 
 
 def jdtls():
-    # TODO
-    if sys.platform == 'linux':
-        log.Info("Install jdtls langserver")
-        install_cli_packages("yay", "-S", yay_packages)
-    else:
-        log.Warning(sys.platform + " JDTLS Needs Implementation")
+    log.Warning(sys.platform + " JDTLS Needs Implementation")
 
 
 def Darwin():
@@ -245,7 +236,7 @@ def Linux():
 
     log.Step("LSP Setup")
     sumneko_lua()
-    jdtls()
+    install_cli_packages("yay", "-S", yay_packages)
     install_cli_packages("npm", "install -g", node_packages)
     install_cli_packages("go", "install", go_packages)
     install_cli_packages("cargo", "install", rust_packages)
