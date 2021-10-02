@@ -1,6 +1,15 @@
 local dap = require("dap")
 local global = require("core.global")
 
+vim.fn.sign_define(
+  "DapBreakpoint",
+  { text = "🛑", texthl = "", linehl = "", numhl = "" }
+)
+vim.fn.sign_define(
+  "DapStopped",
+  { text = "🟢", texthl = "", linehl = "", numhl = "" }
+)
+
 dap.adapters.node2 = {
   type = "executable",
   command = "node",
@@ -29,20 +38,15 @@ dap.adapters.go = {
   args = { global.dap_path .. "/go/vscode-go/dist/debugAdapter.js" },
 }
 
-vim.fn.sign_define(
-  "DapBreakpoint",
-  { text = "🛑", texthl = "", linehl = "", numhl = "" }
-)
-vim.fn.sign_define(
-  "DapStopped",
-  { text = "🟢", texthl = "", linehl = "", numhl = "" }
-)
+dap.adapters.nlua = function(callback, config)
+  callback({ type = "server", host = config.host, port = config.port })
+end
 
 dap.configurations.lua = {
   {
     type = "nlua",
     request = "attach",
-    name = "Neovim",
+    name = "Neovim attach",
     host = function()
       local value = vim.fn.input("Host [127.0.0.1]: ")
       if value ~= "" then
@@ -57,10 +61,6 @@ dap.configurations.lua = {
     end,
   },
 }
-
-dap.adapters.nlua = function(callback, config)
-  callback({ type = "server", host = config.host, port = config.port })
-end
 
 dap.configurations.go = {
   {
