@@ -135,6 +135,7 @@ function LSP.init()
   local servers = {
     "lua",
     "rust",
+    "groovy",
     "python",
     "css",
     "go",

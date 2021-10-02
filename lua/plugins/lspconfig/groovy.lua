@@ -6,7 +6,7 @@ lspconfig.groovyls.setup({
   cmd = {
     "java",
     "-jar",
-    global.lsp_path .. "/groovy/build/libs/" .. "groovy-language-server-all.jar",
+    global.lsp_path .. "/groovy/build/libs/" .. "groovy-all.jar",
   },
   filetypes = { "groovy" },
   on_attach = function(client, bufnr)
