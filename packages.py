@@ -236,7 +236,7 @@ def Linux():
 
     log.Step("LSP Setup")
     sumneko_lua()
-    install_cli_packages("yay", "-S", yay_packages)
+    install_cli_packages("yay", "--save --answerclean=All --answerdiff=None -S", yay_packages)
     install_cli_packages("npm", "install -g", node_packages)
     install_cli_packages("go", "install", go_packages)
     install_cli_packages("cargo", "install", rust_packages)
