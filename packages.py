@@ -120,13 +120,13 @@ class Log(Colors):
         return time.strftime("%H:%M:%S")
 
     def buildLogString(self, kind: str, color: str) -> str:
-        start: str = "{2} {0} " + color + "{1}:" + kind + " " + self.ENDC
-        attach: str = self.HEADER + ": {3}" + self.ENDC
+        start: str = "{2} {0} " + color + "{1}:" + kind + "\t" + self.ENDC
+        attach: str = self.BOLD + "\t--> {3}" + self.ENDC
         return start + attach
 
     def buildStepString(self, kind: str, color: str) -> str:
-        start: str = "{2} {0} " + color + "{1}:" + kind + " {4}/" + "{5}" + self.ENDC
-        attach: str = self.BOLD + ": {3}" + self.ENDC
+        start: str = "{2} {0} " + color + "{1}:" + kind + "\t{4}/" + "{5}" + self.ENDC
+        attach: str = self.BOLD + "\t--> {3}" + self.ENDC
         return start + attach
 
     def Success(self, string: str) -> None:
@@ -165,7 +165,7 @@ log: Log = Log()
 
 def cmd(call: str) -> None:
     try:
-        log.Info("Executing {0}".format(call))
+        log.Info("Executing {0}{1}{2}".format(Colors.WARNING, call, Colors.ENDC))
         cmdArr = call.split()
         with open(os.devnull, "w") as f:
             subprocess.call(cmdArr, stdout=f)
@@ -190,7 +190,7 @@ def in_path(cmd: str) -> bool:
 def install_cli_packages(package_manager: PackageManager):
     if not in_path(package_manager["cli_tool"]):
         log.Error(
-            "{0} not in path skipping installing".format(package_manager["cli_tool"])
+            "{0}{1}{2} not in path skipping installing".format(Colors.FAIL, package_manager["cli_tool"])
         )
         return
     mode = get_package_mode()
@@ -206,14 +206,14 @@ def install_cli_packages(package_manager: PackageManager):
                     isForce = True
 
             if not inPath or isForce:
-                log.Info("Installing CLI Package {0}".format(package[0]))
+                log.Info("Installing CLI Package {0}{1}".format(Colors.OKGREEN, package[0]))
                 cmd(install)
-                log.Success("Success Installing package {0}".format(package[0]))
+                log.Success("Success Installing package {0}{1}".format(Colors.OKGREEN, package[0]))
             else:
-                log.Skip("SKIP: CLI Package {0} in path".format(package[0]))
+                log.Skip("CLI Package {0}{1}{2} in path".format(Colors.OKBLUE, package[0], Colors.ENDC))
         except subprocess.CalledProcessError as e:
             log.Error(
-                "Failed to install {0} with code {1}".format(package, e.returncode)
+                "Failed to install {0}{1}{2} with code {3}".format(Colors.FAIL, package, Colors.ENDC, e.returncode)
             )
 
 
@@ -241,8 +241,6 @@ def java_debug() -> None:
         cmd("npm run build-plugin")
         os.chdir(current_folder)
         log.Success("Java Debug Installed")
-    else:
-        log.Warning("JAVA Debug Exists Update?")
 
 
 def sumneko_lua() -> None:
@@ -263,8 +261,6 @@ def sumneko_lua() -> None:
         cmd("3rd/luamake/luamake rebuild")
         os.chdir(current_folder)
         log.Success("Sumneko LSP Installed")
-    else:
-        log.Warning("LUA LSP Exists Update?")
 
 
 def jdtls() -> None:
@@ -286,7 +282,6 @@ def Darwin() -> None:
 
 def Cygwin() -> None:
     log.Error("Not Supported")
-    exit(1)
 
 
 def Linux() -> None:
@@ -311,9 +306,10 @@ def help() -> None:
             print("")
             print("OPTIONS:")
             print(
-                "  --force, -f            | will force install without check if already installed"
-                "  --update, -u      | will update packages"
+                "  --force, -f\t| will force install without check if already installed"
+                "  --update, -u\t| will update packages"
             )
+            sys.exit(1)
 
 
 def get_package_mode() -> str:
