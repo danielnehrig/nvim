@@ -207,6 +207,7 @@ dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
 -- overwrite program
+dap.configurations.rust[1].externalConsole = true
 dap.configurations.rust[1].program = function()
   return vim.fn.getcwd() .. "/target/debug/" .. "${workspaceFolderBasename}"
 end
