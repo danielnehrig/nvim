@@ -35,10 +35,11 @@ node: PackageManager = {
     "packages": [
         ["typescript-language-server", "typescript-language-server"],
         ["vscode-html-languageserver-bin", "html-languageserver"],
-        ["css-language-server", "css-language-server"],
+        ["vscode-langservers-extracted", "vscode-css-language-server"],
         ["svelte-language-server", "svelteserver"],
         ["bash-language-server", "bash-language-server"],
         ["yaml-language-server", "yaml-language-server"],
+        ["intelephense", "intelephense"],
         ["dockerfile-language-server-nodejs", "docker-langserver"],
         ["dprint", "dprint"],
         ["pyright", "pyright"],
@@ -52,6 +53,7 @@ go: PackageManager = {
     "packages": [
         ["mvdan.cc/sh/v3/cmd/shfmt@latest", "shfmt"],
         ["github.com/mattn/efm-langserver@latest", "efm-langserver"],
+        ["golang.org/x/tools/gopls@latest", "gopls"]
     ],
 }
 
