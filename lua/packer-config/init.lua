@@ -513,7 +513,7 @@ local function init()
     end,
   }) -- install dap adapters
   use({
-    "danielnehrig/nvim-dap",
+    "mfussenegger/nvim-dap",
     opt = true,
   }) -- dap
   use({
