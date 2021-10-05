@@ -80,11 +80,12 @@ yay: PackageManager = {
     "cli_tool": "yay",
     "modes": {
         "install": "--save --answerclean=All --answerdiff=None -S",
-        "update": "--save --answerclean=All --answerdiff=None -u",
+        "update": "--save --answerclean=All --answerdiff=None -Yu",
     },
     "packages": [
         ["jdtls", "jdtls"],
         ["groovy-language-server", "groovy-language-server"],
+        ["dotnet-sdk", "dotnet"],
     ],
 }
 
