@@ -138,6 +138,7 @@ function LSP.init()
     "groovy",
     "python",
     "css",
+    "cs",
     "go",
     "docker",
     "yaml",
