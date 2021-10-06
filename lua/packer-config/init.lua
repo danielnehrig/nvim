@@ -159,13 +159,7 @@ local function init()
   use({
     "danymat/neogen",
     cmd = { "DocGen" },
-    config = function()
-      require("neogen").setup({
-        enabled = true,
-      })
-
-      vim.cmd([[silent! command DocGen lua require('neogen').generate()]])
-    end,
+    config = require("plugins.neogen").init,
     requires = "nvim-treesitter/nvim-treesitter",
   })
   use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- coment out code
