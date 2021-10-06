@@ -10,7 +10,6 @@ local is_private = os.getenv("USER") == "dashie"
 -- nil because packer is opt
 local packer = nil
 
--- init plugins
 local function init()
   packer = require("packer")
   packer.init({
@@ -159,10 +158,13 @@ local function init()
   use({ "nvim-treesitter/nvim-treesitter" }) -- syntax highlight indent etc
   use({
     "danymat/neogen",
+    cmd = { "DocGen" },
     config = function()
       require("neogen").setup({
         enabled = true,
       })
+
+      vim.cmd([[silent! command DocGen lua require('neogen').generate()]])
     end,
     requires = "nvim-treesitter/nvim-treesitter",
   })

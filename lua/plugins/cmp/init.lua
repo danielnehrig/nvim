@@ -11,7 +11,6 @@ function M.init()
   end
   local cmp = require("cmp")
   local lspkind = require("lspkind")
-  local neogen = require("neogen")
   local luasnip = require("luasnip")
   require("plugins.cmp.luasnip").init()
 
@@ -76,17 +75,20 @@ function M.init()
           )
         elseif luasnip and luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
-        elseif neogen.jumpable() then
-          vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes(
-              "<cmd>lua require('neogen').jump_next()<CR>",
-              true,
-              true,
+        elseif packer_plugins["neogen"].loaded then
+          local neogen = require("neogen")
+          if neogen.jumpable() then
+            vim.api.nvim_feedkeys(
+              vim.api.nvim_replace_termcodes(
+                "<cmd>lua require('neogen').jump_next()<CR>",
+                true,
+                true,
+                true
+              ),
+              "",
               true
-            ),
-            "",
-            true
-          )
+            )
+          end
         elseif check_back_space() then
           vim.api.nvim_feedkeys(
             vim.api.nvim_replace_termcodes("<tab>", true, true, true),
