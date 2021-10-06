@@ -46,7 +46,7 @@ basic.vi_mode = {
   name = "vi_mode",
   hl_colors = colors_mode,
   text = function()
-    return { { "  ", state.mode[2] } }
+    return { { "  ", state.mode[2] } }
   end,
 }
 basic.square_mode = {
@@ -349,11 +349,25 @@ local quickfix = {
 }
 
 local explorer = {
-  filetypes = { "fern", "NvimTree", "lir", "dap-repl" },
+  filetypes = { "fern", "NvimTree", "lir" },
   active = {
     { "  ", { "white", "black" } },
-    { helper.separators.slant_right, { "black", "black_light" } },
+    { helper.separators.slant_right, { "black", "transparent" } },
     { b_components.divider, "" },
+    { helper.separators.slant_left, { "black_light", "transparent" } },
+    { b_components.file_name(""), { "white", "black_light" } },
+  },
+  always_active = true,
+  show_last_status = true,
+}
+
+local repl = {
+  filetypes = { "dap-repl" },
+  active = {
+    { "  ", { "white", "black" } },
+    { helper.separators.slant_right, { "black", "transparent" } },
+    { b_components.divider, "" },
+    { helper.separators.slant_left, { "black_light", "transparent" } },
     { b_components.file_name(""), { "white", "black_light" } },
   },
   always_active = true,
@@ -372,7 +386,6 @@ local dashboard = {
 local default = {
   filetypes = { "default", "terminal" },
   active = {
-    basic.square_mode,
     basic.vi_mode,
     basic.file,
     basic.lsp_diagnos,
@@ -389,12 +402,10 @@ local default = {
       breakpoint_width,
     },
     { " ", { "black_light", "black_light" } },
-    basic.square_mode,
   },
   always_active = true,
   show_last_status = true,
   inactive = {
-    basic.square_mode,
     basic.vi_mode,
     basic.file,
     basic.divider,
@@ -402,7 +413,6 @@ local default = {
     basic.git,
     { git_comps.git_branch(), { "magenta", "black" }, breakpoint_width },
     { " ", hl_list.Black },
-    basic.square_mode,
   },
 }
 
@@ -432,6 +442,7 @@ windline.setup({
   statuslines = {
     default,
     quickfix,
+    repl,
     explorer,
     dashboard,
   },
