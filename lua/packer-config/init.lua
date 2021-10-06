@@ -74,7 +74,7 @@ local function init()
     "Saecki/crates.nvim",
     ft = { "toml", "rs" },
     requires = { "nvim-lua/plenary.nvim" },
-    config = require("plugins.creates").init,
+    config = require("plugins.crates").init,
   }) -- rust crates info
   use({
     "vuki656/package-info.nvim",
