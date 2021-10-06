@@ -32,6 +32,9 @@ lspconfig.efm.setup({
   root_dir = require("lspconfig/util").root_pattern(
     "package.json",
     ".eslintrc",
+    ".eslintrc.json",
+    ".prettierrc",
+    ".prettierrc.json",
     ".git"
   ),
   init_options = {
