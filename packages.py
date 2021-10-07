@@ -311,8 +311,8 @@ def help() -> None:
             print("")
             print("OPTIONS:")
             print(
-                "  --force, -f\t| will force install without check if already installed"
-                "  --update, -u\t| will update packages"
+                "  --force, -f\t| will force install without check if already installed\n"
+                "  --update, -u\t| will update packages\n"
             )
             sys.exit(1)
 
