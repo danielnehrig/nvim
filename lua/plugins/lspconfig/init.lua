@@ -57,21 +57,21 @@ function LSP.on_attach(client, bufnr)
     "lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false, border = 'single' })"
   )
 
-  fn.sign_define("LspDiagnosticsSignError", { text = "" })
-  fn.sign_define("LspDiagnosticsSignWarning", { text = "" })
-  fn.sign_define("LspDiagnosticsSignInformation", { text = "" })
+  fn.sign_define("LspDiagnosticsSignError", { text = " " })
+  fn.sign_define("LspDiagnosticsSignWarning", { text = " " })
+  fn.sign_define("LspDiagnosticsSignInformation", { text = " " })
   fn.sign_define("LspDiagnosticsSignHint", { text = "" })
   fn.sign_define(
     "DiagnosticSignError",
-    { texthl = "DiagnosticError", text = "" }
+    { texthl = "DiagnosticError", text = " " }
   )
   fn.sign_define(
     "DiagnosticSignWarn",
-    { texthl = "DiagnosticWarn", text = "" }
+    { texthl = "DiagnosticWarn", text = " " }
   )
   fn.sign_define(
     "DiagnosticSignInfo",
-    { texthl = "DiagnosticInfo", text = "" }
+    { texthl = "DiagnosticInfo", text = " " }
   )
   fn.sign_define(
     "DiagnosticSignHint",
