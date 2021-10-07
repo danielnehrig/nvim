@@ -116,9 +116,9 @@ local function init()
       })
     end,
   }) -- comment out code
-  use("nvim-treesitter/nvim-treesitter-textobjects") -- custom textobjects
+  use({ "nvim-treesitter/nvim-treesitter-textobjects" }) -- custom textobjects
   use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
-  use("RRethy/nvim-treesitter-textsubjects")
+  use({ "RRethy/nvim-treesitter-textsubjects" })
   use({
     "lewis6991/spellsitter.nvim",
     disable = true,
