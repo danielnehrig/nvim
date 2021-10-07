@@ -46,7 +46,7 @@ basic.vi_mode = {
   name = "vi_mode",
   hl_colors = colors_mode,
   text = function()
-    return { { "  ", state.mode[2] } }
+    return { { "   ", state.mode[2] } }
   end,
 }
 basic.square_mode = {
