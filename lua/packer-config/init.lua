@@ -208,6 +208,7 @@ local function init()
   use({
     "weilbith/nvim-code-action-menu",
     cmd = "CodeActionMenu",
+    keys = { "<space>gf" },
   }) -- code actions menu
   use({
     "jghauser/mkdir.nvim",
