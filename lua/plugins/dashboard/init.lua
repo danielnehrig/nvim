@@ -6,7 +6,7 @@ function config.dashboard()
   vim.g.dashboard_preview_command = "cat"
   vim.g.dashboard_preview_pipeline = "lolcat"
   vim.g.dashboard_preview_file = vim.fn.expand(
-    home .. "/.config/nvim/neovim.cat"
+    vim.fn.stdpath("config") .. "/neovim.cat"
   )
   vim.g.dashboard_preview_file_height = 12
   vim.g.dashboard_preview_file_width = 80
