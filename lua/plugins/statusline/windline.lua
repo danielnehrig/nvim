@@ -303,6 +303,25 @@ basic.lsp_names = {
   end,
 }
 
+basic.gh_num = {
+  name = "gh_num",
+  hl_colors = {
+    green = { "green", "black" },
+    magenta = { "magenta", "black_light" },
+    sep = { "black", "transparent" },
+    sepdebug = { "black", "yellow" },
+    spacer = { "black", "black_light" },
+  },
+  width = breakpoint_width,
+  text = function()
+    local num = require("github-notifications").statusline_notification_count
+    return {
+      { " ", "spacer" },
+      { num, "magenta" },
+    }
+  end,
+}
+
 basic.dap = {
   name = "dap",
   hl_colors = {
@@ -396,6 +415,7 @@ local default = {
     --basic.lsp_workspace,
     basic.make,
     basic.git,
+    basic.gh_num,
     {
       git_comps.git_branch(),
       { "magenta", "black_light" },
