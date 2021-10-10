@@ -6,7 +6,7 @@ local sep_os_replacer = require("utils").sep_os_replacer
 local packer_compiled = data_path .. "packer_compiled.vim"
 local compile_to_lua = data_path .. "lua" .. global.path_sep .. "_compiled.lua"
 
-local is_private = vim.fn.expand("$HOME") == "dashie"
+local is_private = vim.fn.expand("$USER") == "dashie"
 
 -- nil because packer is opt
 local packer = nil
@@ -288,6 +288,19 @@ local function init()
   use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } }) -- lightspeed motion
 
   -- quality of life
+  use({
+    "rlch/github-notifications.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("github-notifications").setup({
+        username = os.getenv("GH_REGISTRY_USERNAME"),
+        token = os.getenv("GH_TOKEN"),
+      })
+    end,
+  })
   use({
     "rmagatti/auto-session",
     config = function()

@@ -1,5 +1,3 @@
-local sep_os_replacer = require("utils").sep_os_replacer
-
 local config = {}
 
 function config.dashboard()
@@ -7,9 +5,7 @@ function config.dashboard()
   vim.g.dashboard_footer_icon = "ﬦ "
   vim.g.dashboard_preview_command = "cat"
   vim.g.dashboard_preview_pipeline = "lolcat"
-  vim.g.dashboard_preview_file = vim.fn.expand(
-    sep_os_replacer(vim.fn.stdpath("config") .. "/neovim.cat")
-  )
+  vim.g.dashboard_preview_file = vim.fn.stdpath("config") .. "/neovim.cat"
   vim.g.dashboard_preview_file_height = 12
   vim.g.dashboard_preview_file_width = 80
   vim.g.dashboard_default_executive = "telescope"

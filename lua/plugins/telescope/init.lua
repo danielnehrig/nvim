@@ -91,6 +91,7 @@ function M.init()
   telescope.load_extension("project")
   telescope.load_extension("dotfiles")
   telescope.load_extension("file_create")
+  telescope.load_extension("ghn")
   require("octo").setup()
 end
 
