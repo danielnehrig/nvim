@@ -294,12 +294,7 @@ local function init()
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
     },
-    config = function()
-      require("github-notifications").setup({
-        username = os.getenv("GH_REGISTRY_USERNAME"),
-        token = os.getenv("GH_TOKEN"),
-      })
-    end,
+    config = require("plugins.gh").init
   })
   use({
     "rmagatti/auto-session",

@@ -314,11 +314,14 @@ basic.gh_num = {
   },
   width = breakpoint_width,
   text = function()
-    local num = require("github-notifications").statusline_notification_count
-    return {
-      { " ", "spacer" },
-      { num, "magenta" },
-    }
+    if git_comps.is_git() then
+      local num = require("github-notifications").statusline_notification_count
+      return {
+        { " ", "spacer" },
+        { num, "magenta" },
+      }
+    end
+    return ""
   end,
 }
 
