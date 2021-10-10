@@ -104,6 +104,9 @@ it's inspired by Lvim though not cloned
 - Some Adapters can be installed with Dap install
 - Java Adapter has to be installed manually
 
+*GH:* _(plugins.gh)_
+- Add a env var with ur github username
+- Add a env var with your github token
 
 ### Setup
 
