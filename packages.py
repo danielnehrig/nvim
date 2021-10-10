@@ -303,6 +303,12 @@ def Linux() -> None:
     install_cli_packages(python)
 
 
+def Win32() -> None:
+    install_cli_packages(node)
+    install_cli_packages(rust)
+    install_cli_packages(python)
+
+
 def help() -> None:
     for option in sys.argv:
         if option == "--help" or option == "-h":
@@ -331,6 +337,9 @@ if __name__ == "__main__":
     help()
 
     try:
+        if sys.platform == "win32":
+            Win32()
+
         if sys.platform == "cygwin":
             Cygwin()
 

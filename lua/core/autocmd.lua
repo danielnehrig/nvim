@@ -34,6 +34,9 @@ function M.autocmds()
         "silent! lua require('scrollbar').clear()",
       },
     },
+    gh = {
+      { "DirChanged", "*", "silent! lua require('plugins.gh').load()" },
+    },
   }
 
   Func.nvim_create_augroups(definitions)

@@ -5,6 +5,7 @@ function M.init()
   vim.cmd([[packadd plenary.nvim]])
   vim.cmd([[packadd telescope-project.nvim]])
   vim.cmd([[packadd telescope-fzf-native.nvim]])
+  vim.cmd([[packadd github-notifications.nvim]])
   vim.cmd([[packadd octo.nvim]])
 
   local telescope = require("telescope")
@@ -91,6 +92,7 @@ function M.init()
   telescope.load_extension("project")
   telescope.load_extension("dotfiles")
   telescope.load_extension("file_create")
+  telescope.load_extension("ghn")
   require("octo").setup()
 end
 
