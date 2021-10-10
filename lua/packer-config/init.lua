@@ -6,7 +6,7 @@ local sep_os_replacer = require("utils").sep_os_replacer
 local packer_compiled = data_path .. "packer_compiled.vim"
 local compile_to_lua = data_path .. "lua" .. global.path_sep .. "_compiled.lua"
 
-local is_private = os.getenv("USER") == "dashie"
+local is_private = vim.fn.expand("$HOME") == "dashie"
 
 -- nil because packer is opt
 local packer = nil
@@ -447,7 +447,9 @@ local function init()
       local dap_install = require("dap-install")
 
       dap_install.setup({
-        installation_path = sep_os_replacer(vim.fn.stdpath("data") .. "/dapinstall/"),
+        installation_path = sep_os_replacer(
+          vim.fn.stdpath("data") .. "/dapinstall/"
+        ),
       })
     end,
   }) -- install dap adapters
@@ -476,7 +478,9 @@ local plugins = setmetatable({}, {
 
 -- Bootstrap Packer and the Plugins + loads configs afterwards
 function plugins.bootstrap()
-  local install_path = sep_os_replacer(fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim")
+  local install_path = sep_os_replacer(
+    fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+  )
   -- check if packer exists or is installed
   if fn.empty(fn.glob(install_path)) > 0 then
     -- fetch packer
