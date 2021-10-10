@@ -1,14 +1,10 @@
 local cmd = vim.cmd
 local globals = require("core.global")
-local path_sep = package.config:sub(1, 1)
-local sumneko_root_path = globals.lsp_path .. path_sep .. "lua"
-local sumneko_binary = sumneko_root_path
-  .. path_sep
-  .. "bin"
-  .. path_sep
-  .. globals.sumenko_os
-  .. path_sep
-  .. "lua-language-server"
+local sep_os_replacer = require("utils").sep_os_replacer
+local sumneko_root_path = sep_os_replacer(globals.lsp_path .. "/lua")
+local sumneko_binary = sep_os_replacer(
+  sumneko_root_path .. "/bin/" .. globals.sumenko_os .. "/lua-language-server"
+)
 local lsp = require("plugins.lspconfig")
 local lspconfig = require("lspconfig")
 local capabilities = require("plugins.lspconfig.capabilities").capabilities
@@ -31,7 +27,11 @@ local luadev = require("lua-dev").setup({
     -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
   },
   lspconfig = {
-    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+    cmd = {
+      sumneko_binary,
+      "-E",
+      sep_os_replacer(sumneko_root_path .. "/main.lua"),
+    },
     settings = {
       Lua = {
         diagnostics = {
