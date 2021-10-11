@@ -107,6 +107,7 @@ it's inspired by Lvim though not cloned
 *GH:* _(plugins.gh)_
 - Add a env var with ur github username
 - Add a env var with your github token
+_hint:_ i use bitwarden and populate with the cli the credentials for the env
 
 ### Setup
 
