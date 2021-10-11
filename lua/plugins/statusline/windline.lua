@@ -42,6 +42,17 @@ local colors_mode = {
   Command = { "magenta", "black" },
 }
 
+local language_mode = {
+  lua = { "blue", "black" },
+  ts = { "blue", "black" },
+  rust = { "orange", "black" },
+  java = { "red", "black" },
+  python = { "blue", "black" },
+  white = { "white", "black" },
+  default = hl_list.Black,
+  magenta = { "magenta", "black" },
+}
+
 basic.vi_mode = {
   name = "vi_mode",
   hl_colors = colors_mode,
@@ -102,19 +113,17 @@ basic.lsp_diagnos = {
 
 basic.file = {
   name = "file",
-  hl_colors = {
-    default = hl_list.Black,
-    white = { "white", "black" },
-    magenta = { "magenta", "black" },
-  },
+  hl_colors = language_mode,
   text = function(_, _, width)
+    local filetype = vim.bo.filetype
+
     if width > breakpoint_width then
       return {
         { b_components.cache_file_size(), "default" },
         { " ", "" },
         {
           b_components.cache_file_icon({ default = "" }),
-          "default",
+          filetype,
         },
         { " ", "" },
         { b_components.cache_file_name("[No Name]", ""), "magenta" },
@@ -447,6 +456,7 @@ windline.setup({
     colors.FilenameBg = colors.black_light
     colors.transparent = "none"
     colors.grey = "#3d3d3d"
+    colors.orange = "#d8a657"
 
     colors.wavedefault = colors.black
 
