@@ -45,12 +45,8 @@ function M.init()
 
     mapping = {
       ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes("<c-p>", true, true, true),
-            "n",
-            true
-          )
+        if cmp.visible() then
+          cmp.select_prev_item()
         elseif luasnip and luasnip.jumpable(-1) then
           luasnip.jump(-1)
         elseif check_back_space() then
@@ -67,12 +63,8 @@ function M.init()
         "s",
       }),
       ["<Tab>"] = cmp.mapping(function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes("<c-n>", true, true, true),
-            "n",
-            true
-          )
+        if cmp.visible() then
+          cmp.select_next_item()
         elseif luasnip and luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
         elseif packer_plugins["neogen"].loaded then

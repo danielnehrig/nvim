@@ -294,7 +294,7 @@ local function init()
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
     },
-    config = require("plugins.gh").init
+    config = require("plugins.gh").init,
   })
   use({
     "rmagatti/auto-session",
