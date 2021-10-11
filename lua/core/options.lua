@@ -20,7 +20,7 @@ function M.load_options()
   opt.path = "**/*"
   opt.wildignore:append({
     "node_modules",
-    ".git",
+    ".git/",
     "dist",
     ".next",
     "target",

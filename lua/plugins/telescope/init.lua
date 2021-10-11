@@ -5,7 +5,6 @@ function M.init()
   vim.cmd([[packadd plenary.nvim]])
   vim.cmd([[packadd telescope-project.nvim]])
   vim.cmd([[packadd telescope-fzf-native.nvim]])
-  vim.cmd([[packadd github-notifications.nvim]])
   vim.cmd([[packadd octo.nvim]])
 
   local telescope = require("telescope")
@@ -26,19 +25,6 @@ function M.init()
       },
     },
     defaults = {
-      vimgrep_arguments = {
-        "rg",
-        "--color=never",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-      },
-      mapping = {
-        ["<cr>"] = actions.select_default + actions.center, -- is the telescope default btw
-      },
-      hidden = true,
       prompt_prefix = "🔍 ",
       selection_caret = "> ",
       entry_prefix = "  ",
@@ -47,7 +33,7 @@ function M.init()
       sorting_strategy = "descending",
       layout_strategy = "horizontal",
       file_sorter = require("telescope.sorters").get_generic_sorter,
-      file_ignore_patterns = { ".git", "node_modules" },
+      file_ignore_patterns = { ".git/", "node_modules" },
       generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
       winblend = 0,
       border = {},
