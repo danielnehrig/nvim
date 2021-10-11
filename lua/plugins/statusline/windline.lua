@@ -54,7 +54,7 @@ local language_mode = {
   java = { "red", "black" },
   python = { "blue", "black" },
   white = { "white", "black" },
-  default = hl_list.Black,
+  default = { "white", "black" },
   magenta = { "magenta", "black" },
 }
 
@@ -116,21 +116,23 @@ basic.lsp_diagnos = {
   end,
 }
 
+local icon_comp = b_components.cache_file_icon({
+  default = "",
+  hl_colors = { "white", "black" },
+})
+
 basic.file = {
   name = "file",
   hl_colors = language_mode,
-  text = function(_, _, width)
-    local filetype = vim.bo.filetype
-    local len = string.len(filetype)
+  text = function(bufnr, _, width)
+    -- local filetype = vim.bo.filetype
+    -- local len = string.len(filetype)
 
     if width > breakpoint_width then
       return {
         { b_components.cache_file_size(), "default" },
         { " ", "" },
-        {
-          b_components.cache_file_icon({ default = "" }),
-          len > 0 and filetype or "default",
-        },
+        icon_comp(bufnr),
         { " ", "" },
         { b_components.cache_file_name("[No Name]", ""), "magenta" },
         { b_components.line_col, "white" },
