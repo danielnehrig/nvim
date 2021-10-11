@@ -44,7 +44,12 @@ local colors_mode = {
 
 local language_mode = {
   lua = { "blue", "black" },
-  ts = { "blue", "black" },
+  typescript = { "blue", "black" },
+  typescriptreact = { "blue", "black" },
+  javascript = { "red", "black" },
+  javascriptreact = { "red", "black" },
+  sh = { "white", "black" },
+  zsh = { "white", "black" },
   rust = { "orange", "black" },
   java = { "red", "black" },
   python = { "blue", "black" },
@@ -116,6 +121,7 @@ basic.file = {
   hl_colors = language_mode,
   text = function(_, _, width)
     local filetype = vim.bo.filetype
+    local len = string.len(filetype)
 
     if width > breakpoint_width then
       return {
@@ -123,7 +129,7 @@ basic.file = {
         { " ", "" },
         {
           b_components.cache_file_icon({ default = "" }),
-          filetype,
+          len > 0 and filetype or "default",
         },
         { " ", "" },
         { b_components.cache_file_name("[No Name]", ""), "magenta" },
