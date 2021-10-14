@@ -2,14 +2,7 @@ local M = {}
 
 function M.init()
   local refactor = require("refactoring")
-  refactor.setup({
-    formatting = {
-      lua = function()
-        print("nice COOL")
-        vim.lsp.buf.formatting_sync()
-      end,
-    },
-  })
+  refactor.setup({})
 end
 
 function M.extract()

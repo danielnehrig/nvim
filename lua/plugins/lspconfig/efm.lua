@@ -35,7 +35,7 @@ lspconfig.efm.setup({
     ".eslintrc.json",
     ".prettierrc",
     ".prettierrc.json",
-    ".git"
+    "stylua.toml"
   ),
   init_options = {
     documentFormatting = true,

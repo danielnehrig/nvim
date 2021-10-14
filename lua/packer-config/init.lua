@@ -289,6 +289,11 @@ local function init()
 
   -- quality of life
   use({
+    "lukas-reineke/format.nvim",
+    cmd = { "Format" },
+    config = require("plugins.format").init,
+  }) -- fallback formatter
+  use({
     "rlch/github-notifications.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
