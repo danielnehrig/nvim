@@ -15,6 +15,8 @@ function M.load_options()
   -- completion menu settings
   opt.completeopt = "menuone,noselect" -- completion behaviour
   opt.omnifunc = "v:lua.vim.lsp.omnifunc" -- completion omnifunc
+  opt.list = true
+  opt.listchars:append("eol:↴")
 
   -- Set so that folders are index for find command
   opt.path = "**/*"
@@ -43,7 +45,7 @@ function M.load_options()
   opt.ignorecase = true -- case sens ignore search
   opt.splitbelow = true -- split behavior
   opt.splitright = true -- split behavior
-  go.termguicolors = true -- colors tmux settings
+  opt.termguicolors = true -- colors tmux settings
   go.t_Co = "256" -- colors tmux setting
   go.t_ut = "" -- colors tmux setting
   -- opt.background = "dark" -- dark

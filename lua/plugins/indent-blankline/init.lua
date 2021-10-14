@@ -7,7 +7,9 @@ function M.init()
     filetype_exclude = { "dashboard", "terminal", "git", "octo" },
     show_current_context = true,
     use_treesitter = true,
+    space_char_blankline = " ",
     show_end_of_line = true,
+    show_trailing_blankline_indent = false,
   })
 end
 
