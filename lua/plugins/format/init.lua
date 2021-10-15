@@ -14,32 +14,32 @@ function M.init()
     javascript = {
       {
         cmd = {
-          "prettier_d_slim --stdin --stdin-filepath",
-          "./node_modules/.bin/eslint --fix",
+          "prettier_d_slim --stdin",
+          "eslint_d --fix",
         },
       },
     },
     javascriptreact = {
       {
         cmd = {
-          "prettier_d_slim --stdin --stdin-filepath",
-          "./node_modules/.bin/eslint --fix",
+          "prettier_d_slim --stdin",
+          "eslint_d --fix",
         },
       },
     },
     typescript = {
       {
         cmd = {
-          "prettier_d_slim --stdin --stdin-filepath",
-          "./node_modules/.bin/eslint --fix",
+          "prettier_d_slim --stdin",
+          "eslint_d --fix",
         },
       },
     },
     typescriptreact = {
       {
         cmd = {
-          "prettier_d_slim --stdin --stdin-filepath",
-          "./node_modules/.bin/eslint --fix",
+          "prettier_d_slim --stdin",
+          "eslint_d --fix",
         },
       },
     },
