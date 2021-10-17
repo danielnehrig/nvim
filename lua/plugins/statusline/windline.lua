@@ -518,3 +518,22 @@ animation.basic_animation({
     loading_text = value
   end,
 })
+
+-- call it after you setup windline.
+require("wlfloatline").setup()
+
+-- default config
+require("wlfloatline").setup({
+  interval = 300,
+  ui = {
+    active_char = "▁",
+    active_color = "blue",
+    active_hl = nil,
+  },
+  skip_filetypes = {
+    "NvimTree",
+    "lir",
+  },
+  -- by default it skip all floating window but you can change it
+  floating_show_filetypes = {},
+})
