@@ -125,8 +125,8 @@ dap.configurations.typescript = {
 dap.configurations.typescriptreact = {
   {
     type = "chrome",
-    request = "chrome attach",
-    name = "chrome",
+    name = "chrome attach",
+    request = "attach",
     program = "${file}",
     -- cwd = "${workspaceFolder}",
     -- protocol = "inspector",
