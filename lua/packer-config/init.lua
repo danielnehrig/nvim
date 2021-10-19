@@ -289,6 +289,12 @@ local function init()
 
   -- quality of life
   use({
+    "luukvbaal/stabilize.nvim",
+    config = function()
+      require("stabilize").setup()
+    end,
+  })
+  use({
     "rlch/github-notifications.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
