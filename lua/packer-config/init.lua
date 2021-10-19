@@ -294,6 +294,12 @@ local function init()
     config = require("plugins.format").init,
   }) -- fallback formatter
   use({
+    "luukvbaal/stabilize.nvim",
+    config = function()
+      require("stabilize").setup()
+    end,
+  })
+  use({
     "rlch/github-notifications.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
