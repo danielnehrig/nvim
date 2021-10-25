@@ -100,10 +100,10 @@ function M.init()
         return vim.fn.pumvisible() == 1 and cmp.close() or cmp.complete()
       end),
       ["<C-e>"] = cmp.mapping.close(),
-      ["<CR>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      }),
+      --  ["<CR>"] = cmp.mapping.confirm({
+      --  behavior = cmp.ConfirmBehavior.Replace,
+      --  select = true,
+      --  }),
     },
     sources = {
       { name = "nvim_lsp" },
@@ -114,6 +114,7 @@ function M.init()
     },
   })
 
+  -- you need setup cmp first put this after cmp.setup()
   require("nvim-autopairs.completion.cmp").setup({
     map_cr = true, --  map <CR> on insert mode
     map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
