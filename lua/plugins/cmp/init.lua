@@ -39,11 +39,9 @@ function M.init()
       end,
     },
     completion = {
-      completeopt = table.concat(vim.opt.completeopt:get(), ","),
+      completeopt = "menu,menuone,noinsert",
       keyword_length = 1,
-
     },
-
     mapping = {
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -106,6 +104,7 @@ function M.init()
       --  select = true,
       --  }),
     },
+    preselect = cmp.PreselectMode.Item,
     sources = {
       { name = "nvim_lsp" },
       { name = "luasnip" },

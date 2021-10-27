@@ -60,7 +60,7 @@ function LSP.on_attach(client, bufnr)
   fn.sign_define("LspDiagnosticsSignError", { text = " " })
   fn.sign_define("LspDiagnosticsSignWarning", { text = " " })
   fn.sign_define("LspDiagnosticsSignInformation", { text = " " })
-  fn.sign_define("LspDiagnosticsSignHint", { text = "" })
+  fn.sign_define("LspDiagnosticsSignHint", { text = " " })
   fn.sign_define(
     "DiagnosticSignError",
     { texthl = "DiagnosticError", text = " " }
@@ -75,7 +75,7 @@ function LSP.on_attach(client, bufnr)
   )
   fn.sign_define(
     "DiagnosticSignHint",
-    { texthl = "DiagnosticHint", text = "" }
+    { texthl = "DiagnosticHint", text = " " }
   )
 
   require("lsp_signature").on_attach({
