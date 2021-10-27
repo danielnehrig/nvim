@@ -42,6 +42,9 @@ function M.init()
       completeopt = "menu,menuone,noinsert",
       keyword_length = 1,
     },
+    experimental = {
+      ghost_text = true
+    },
     mapping = {
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
