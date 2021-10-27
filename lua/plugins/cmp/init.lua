@@ -41,6 +41,7 @@ function M.init()
     completion = {
       completeopt = table.concat(vim.opt.completeopt:get(), ","),
       keyword_length = 1,
+
     },
 
     mapping = {
@@ -112,6 +113,20 @@ function M.init()
       { name = "orgmode" },
       { name = "crates" },
     },
+  })
+
+  cmp.setup.cmdline("/", {
+    sources = {
+      { name = "buffer" },
+    },
+  })
+
+  cmp.setup.cmdline(":", {
+    sources = cmp.config.sources({
+      { name = "path" },
+    }, {
+      { name = "cmdline" },
+    }),
   })
 
   -- you need setup cmp first put this after cmp.setup()

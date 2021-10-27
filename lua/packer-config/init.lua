@@ -240,6 +240,8 @@ local function init()
     "hrsh7th/nvim-cmp",
     config = require("plugins.cmp").init,
     requires = {
+      { "hrsh7th/cmp-cmdline" },
+      { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "saadparwaiz1/cmp_luasnip" },
