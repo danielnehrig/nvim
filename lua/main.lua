@@ -26,6 +26,8 @@ for _, plugin in pairs(disabled_built_ins) do
   g["loaded_" .. plugin] = 1
 end
 
+g.did_load_filetypes = 1
+
 -- check if we are in VSCode nvim
 -- if not do not apply plugins
 -- slows down VSCode and makes it non usable

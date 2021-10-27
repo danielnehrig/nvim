@@ -288,6 +288,7 @@ local function init()
   use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } }) -- lightspeed motion
 
   -- quality of life
+  use({ "nathom/filetype.nvim" })
   use({
     "luukvbaal/stabilize.nvim",
     config = function()
