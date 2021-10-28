@@ -102,10 +102,7 @@ function M.init()
         return vim.fn.pumvisible() == 1 and cmp.close() or cmp.complete()
       end),
       ["<C-e>"] = cmp.mapping.close(),
-      ["<CR>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      }),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }),
     },
     preselect = cmp.PreselectMode.Item,
     sources = {
