@@ -40,7 +40,7 @@ function LSP.on_attach(client, bufnr)
     "<space>ge",
     "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>"
   )
-  map(bufnr, "n", "<space>gr", "<cmd>lua vim.lsp.buf.rename()<CR>")
+  map(bufnr, "n", "<space>gr", "<cmd>lua require('plugins.lspconfig.utils').rename()<CR>")
   map(bufnr, "n", "<space>g=", "<cmd>lua vim.lsp.buf.formatting()<CR>")
   map(bufnr, "n", "<space>gi", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
   map(bufnr, "n", "<space>go", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
