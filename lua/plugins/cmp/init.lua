@@ -63,6 +63,7 @@ function M.init()
       end, {
         "i",
         "s",
+        "c",
       }),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -95,6 +96,7 @@ function M.init()
       end, {
         "i",
         "s",
+        "c",
       }),
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
