@@ -26,8 +26,12 @@ function M.get_python_interpreters(a, l, p)
     return vim.fn.getcwd(0) == vim.fn.expand("$HOME")
   end
   local commands = {
-    "find $HOME/venvs -name python",
+    -- "find $HOME/venvs -name python",
     "which -a python",
+    "which -a python2.7",
+    "which -a python2",
+    "which -a python3.9",
+    "which -a python3",
     is_home_dir() and "" or "find . -name python",
   }
   for _, cmd in ipairs(commands) do
