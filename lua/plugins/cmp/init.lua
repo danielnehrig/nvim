@@ -39,7 +39,7 @@ function M.init()
       end,
     },
     completion = {
-      completeopt = "menu,menuone,noinsert",
+      completeopt = "menu,menuone,noselect,noinsert",
       keyword_length = 1,
     },
     experimental = {
@@ -106,7 +106,7 @@ function M.init()
       ["<C-e>"] = cmp.mapping.close(),
       ["<CR>"] = cmp.mapping.confirm({ select = true }),
     },
-    preselect = cmp.PreselectMode.Item,
+    -- preselect = cmp.PreselectMode.Item,
     sources = {
       { name = "nvim_lsp" },
       { name = "luasnip" },

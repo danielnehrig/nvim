@@ -13,7 +13,7 @@ function M.load_options()
   opt.relativenumber = true -- enable numbers to be relative
 
   -- completion menu settings
-  opt.completeopt = "menu,menuone,noinsert" -- completion behaviour
+  opt.completeopt = "menu,menuone,noselect,noinsert" -- completion behaviour
   opt.omnifunc = "v:lua.vim.lsp.omnifunc" -- completion omnifunc
   opt.list = true
   opt.listchars:append("eol:↴")
