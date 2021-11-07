@@ -10,6 +10,14 @@ vim.fn.sign_define(
   "DapStopped",
   { text = "🟢", texthl = "", linehl = "", numhl = "" }
 )
+vim.fn.sign_define(
+  "DapBreakpointCondition",
+  { text = "🟡", texthl = "", linehl = "", numhl = "" }
+)
+vim.fn.sign_define(
+  "DapLogPoint",
+  { text = "🔵", texthl = "", linehl = "", numhl = "" }
+)
 
 dap.adapters.node2 = {
   type = "executable",
@@ -137,6 +145,15 @@ dap.configurations.typescriptreact = {
       -- Sourcemap override for nextjs
       ["webpack://_N_E/./*"] = "${webRoot}/*",
       ["webpack:///./*"] = "${webRoot}/*",
+    },
+    {
+      type = "node2",
+      name = "node attach",
+      request = "attach",
+      program = "${file}",
+      cwd = vim.fn.getcwd(),
+      sourceMaps = true,
+      protocol = "inspector",
     },
   },
 }

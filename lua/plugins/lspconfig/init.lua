@@ -40,7 +40,7 @@ function LSP.on_attach(client, bufnr)
     "<space>ge",
     "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>"
   )
-  map(bufnr, "n", "<space>gr", "<cmd>lua vim.lsp.buf.rename()<CR>")
+  map(bufnr, "n", "<space>gr", "<cmd>lua require('plugins.lspconfig.utils').rename()<CR>")
   map(bufnr, "n", "<space>g=", "<cmd>lua vim.lsp.buf.formatting()<CR>")
   map(bufnr, "n", "<space>gi", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
   map(bufnr, "n", "<space>go", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
@@ -60,7 +60,7 @@ function LSP.on_attach(client, bufnr)
   fn.sign_define("LspDiagnosticsSignError", { text = " " })
   fn.sign_define("LspDiagnosticsSignWarning", { text = " " })
   fn.sign_define("LspDiagnosticsSignInformation", { text = " " })
-  fn.sign_define("LspDiagnosticsSignHint", { text = "" })
+  fn.sign_define("LspDiagnosticsSignHint", { text = " " })
   fn.sign_define(
     "DiagnosticSignError",
     { texthl = "DiagnosticError", text = " " }
@@ -75,7 +75,7 @@ function LSP.on_attach(client, bufnr)
   )
   fn.sign_define(
     "DiagnosticSignHint",
-    { texthl = "DiagnosticHint", text = "" }
+    { texthl = "DiagnosticHint", text = " " }
   )
 
   require("lsp_signature").on_attach({

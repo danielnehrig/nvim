@@ -240,6 +240,8 @@ local function init()
     "hrsh7th/nvim-cmp",
     config = require("plugins.cmp").init,
     requires = {
+      { "hrsh7th/cmp-cmdline" },
+      { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "saadparwaiz1/cmp_luasnip" },
@@ -278,9 +280,7 @@ local function init()
   use({
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("nvim-tree").setup({})
-    end,
+    config = require("plugins.nvimTree").init,
     cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
   }) -- Drawerboard style like nerdtree
 
@@ -288,6 +288,7 @@ local function init()
   use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } }) -- lightspeed motion
 
   -- quality of life
+  use({ "nathom/filetype.nvim" })
   use({
     "lukas-reineke/format.nvim",
     cmd = { "Format" },
@@ -297,6 +298,20 @@ local function init()
     "luukvbaal/stabilize.nvim",
     config = function()
       require("stabilize").setup()
+    end,
+  })
+  use({
+    "Darazaki/indent-o-matic",
+    config = function()
+      require("indent-o-matic").setup({
+        -- The values indicated here are the defaults
+
+        -- Number of lines without indentation before giving up (use -1 for infinite)
+        max_lines = 2048,
+
+        -- Space indentations that should be detected
+        standard_widths = { 2, 4, 8 },
+      })
     end,
   })
   use({
