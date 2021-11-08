@@ -47,7 +47,19 @@ local function init()
     end,
   }) -- colors hex
   use({
+    "folke/tokyonight.nvim",
+    config = function()
+      vim.o.background = "dark" -- or light if you so prefer
+      vim.g.tokyonight_style = "night"
+      vim.g.tokyonight_transparent = true
+
+      vim.cmd([[colorscheme tokyonight]])
+      require("core.highlights")
+    end,
+  })
+  use({
     "Murtaza-Udaipurwala/gruvqueen",
+    disable = true,
     config = function()
       vim.o.background = "dark" -- or light if you so prefer
       require("gruvqueen").setup({
