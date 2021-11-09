@@ -5,8 +5,13 @@ function M.autocmds()
   local definitions = {
     ft = {
       { "FileType", "NvimTree,lspsagafinder,dashboard", "let b:cusorword=0" },
-      { "FileType", "dashboard,TelescopePrompt", "set showtabline=0" }, -- disable tabline in dashboard
-      { "BufNewFile,BufRead", "*", "set showtabline=2" }, -- renable it
+      { "FileType", "dashboard,TelescopePrompt,prompt", "set showtabline=0" }, -- disable tabline in dashboard
+      {
+        "WinLeave,WinClosed,BufLeave,BufDelete,BufUnload,BufWinLeave,BufWipeout",
+        "TelescopePrompt,prompt",
+        "set showtabline=2",
+      }, -- disable tabline in dashboard
+      { "BufNewFile,BufRead,WinEnter", "*.*", "set showtabline=2" }, -- renable it
       { "TermOpen", "*", "set nonumber" },
       { "TermOpen", "*", "set norelativenumber" },
       { "TermOpen", "*", "set showtabline=0" }, -- renable it
