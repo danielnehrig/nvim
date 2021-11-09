@@ -16,6 +16,18 @@ M.init = function()
 
   -- load last to overwrite every highlight that has been added by a plugin
   require("core.highlights")
+
+  local Job = require("plenary.job")
+  CI = { "LOADING" }
+  Job
+    :new({
+      command = "hub",
+      args = { "ci-status", "-f", "%t %S%n" },
+      on_exit = function(j, return_val)
+        CI = j:result()
+      end,
+    })
+    :start()
 end
 
 return M
