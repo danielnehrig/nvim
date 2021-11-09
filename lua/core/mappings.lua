@@ -31,7 +31,7 @@ function M.mappings()
   remap(
     "n",
     "<Leader>ff",
-    ":Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>"
+    "<Cmd>packadd telescope.nvim | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>"
   )
   remap("n", "<Leader>fg", ":Telescope live_grep<CR>")
   remap("n", "<Leader>fb", ":Telescope buffers<CR>")

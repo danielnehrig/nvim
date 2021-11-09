@@ -5,7 +5,7 @@ function M.autocmds()
   local definitions = {
     ft = {
       { "FileType", "NvimTree,lspsagafinder,dashboard", "let b:cusorword=0" },
-      { "FileType", "dashboard", "set showtabline=0" }, -- disable tabline in dashboard
+      { "FileType", "dashboard,TelescopePrompt", "set showtabline=0" }, -- disable tabline in dashboard
       { "BufNewFile,BufRead", "*", "set showtabline=2" }, -- renable it
       { "TermOpen", "*", "set nonumber" },
       { "TermOpen", "*", "set norelativenumber" },
@@ -17,26 +17,26 @@ function M.autocmds()
         "lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }",
       },
     },
-    ScrollbarInit = {
-      {
-        "CursorMoved,VimResized,QuitPre",
-        "*",
-        "silent! lua require('scrollbar').show()",
-      },
-      {
-        "WinEnter,FocusGained",
-        "*",
-        "silent! lua require('scrollbar').show()",
-      },
-      {
-        "WinLeave,BufLeave,BufWinLeave,FocusLost",
-        "*",
-        "silent! lua require('scrollbar').clear()",
-      },
-    },
-    gh = {
-      { "DirChanged", "*", "silent! lua require('plugins.gh').load()" },
-    },
+    --  ScrollbarInit = {
+    --  {
+    --  "CursorMoved,VimResized,QuitPre",
+    --  "*",
+    --  "silent! lua require('scrollbar').show()",
+    --  },
+    --  {
+    --  "WinEnter,FocusGained",
+    --  "*",
+    --  "silent! lua require('scrollbar').show()",
+    --  },
+    --  {
+    --  "WinLeave,BufLeave,BufWinLeave,FocusLost",
+    --  "*",
+    --  "silent! lua require('scrollbar').clear()",
+    --  },
+    --  },
+    --  gh = {
+    --  { "DirChanged", "*", "silent! lua require('plugins.gh').load()" },
+    --  },
   }
 
   Func.nvim_create_augroups(definitions)

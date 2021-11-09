@@ -277,7 +277,7 @@ local function init()
   -- navigation
   use({
     "nvim-telescope/telescope.nvim",
-    cmd = { "Telescope", "Octo" },
+    cmd = { "Telescope" },
     config = require("plugins.telescope").init,
     requires = {
       { "nvim-lua/plenary.nvim", opt = true },
@@ -309,7 +309,21 @@ local function init()
   use({
     "luukvbaal/stabilize.nvim",
     config = function()
-      require("stabilize").setup()
+      require("stabilize").setup({
+        force = true, -- stabilize window even when current cursor position will be hidden behind new window
+        forcemark = nil, -- set context mark to register on force event which can be jumped to with '<forcemark>
+        ignore = { -- do not manage windows matching these file/buftypes
+          filetype = { "packer", "Dashboard", "Trouble", "TelescopePrompt" },
+          buftype = {
+            "packer",
+            "Dashboard",
+            "terminal",
+            "quickfix",
+            "loclist",
+          },
+        },
+        nested = nil, -- comma-separated list of autocmds that wil trigger the plugins window restore function
+      })
     end,
   })
   use({ "tpope/vim-sleuth" })
@@ -440,11 +454,6 @@ local function init()
       "nvim-lua/plenary.nvim",
     },
   }) -- visual git
-  use({
-    "pwntester/octo.nvim",
-    requires = { "nvim-telescope/telescope.nvim" },
-    after = "telescope.nvim",
-  }) -- octo github pr review issues pr etc
   use({
     "ruifm/gitlinker.nvim",
     requires = {
