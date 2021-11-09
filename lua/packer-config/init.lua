@@ -312,8 +312,10 @@ local function init()
       require("stabilize").setup()
     end,
   })
+  use({ "tpope/vim-sleuth" })
   use({
     "Darazaki/indent-o-matic",
+    disable = true,
     config = function()
       require("indent-o-matic").setup({
         -- The values indicated here are the defaults
