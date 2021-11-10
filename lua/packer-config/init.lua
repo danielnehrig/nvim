@@ -372,7 +372,7 @@ local function init()
     "t9md/vim-choosewin",
     cmd = { "ChooseWin" },
   })
-  use({ "kevinhwang91/nvim-bqf" }) -- better quickfix
+  use({ "kevinhwang91/nvim-bqf", ft = "qf" }) -- better quickfix
   use({
     "gelguy/wilder.nvim",
     opt = true,

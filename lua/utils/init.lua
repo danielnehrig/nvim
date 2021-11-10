@@ -14,6 +14,22 @@ function M.map(bufnr, type, key, value, opt)
   end
 end
 
+function M.toggle_qf()
+  local qf_exists = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      qf_exists = true
+    end
+  end
+  if qf_exists == true then
+    vim.cmd("cclose")
+    return
+  end
+  if not vim.tbl_isempty(vim.fn.getqflist()) then
+    vim.cmd("copen")
+  end
+end
+
 function M.map_global(type, key, value, expr)
   vim.api.nvim_set_keymap(
     type,

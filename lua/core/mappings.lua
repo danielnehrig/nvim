@@ -14,18 +14,16 @@ function M.mappings()
   remap("i", "jj", "<ESC>") -- normal mode map
 
   -- quickfix
-  remap("n", "<Leader>qc", ":cclose<CR>")
+  remap("n", "<Leader>qo", "<Cmd>lua require('utils').toggle_qf()<CR>")
   remap("n", "<Leader>qn", ":cnext<CR>")
   remap("n", "<Leader>qo", ":copen<CR>")
   remap("n", "<Leader>qp", ":cprev<CR>")
-  remap("n", "<Leader>qa", ":cc<CR>")
 
   -- locationlist
   remap("n", "<Leader>lc", ":lclose<CR>")
-  remap("n", "<Leader>ln", ":lnext<CR>")
   remap("n", "<Leader>lo", ":lopen<CR>")
+  remap("n", "<Leader>ln", ":lnext<CR>")
   remap("n", "<Leader>lp", ":lprev<CR>")
-  remap("n", "<Leader>la", ":ll<CR>")
 
   -- telescope NOTE: Lazyloaded
   remap(
