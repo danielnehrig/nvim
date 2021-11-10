@@ -9,9 +9,21 @@ function config.dashboard()
   vim.g.dashboard_preview_file_width = 80
   vim.g.dashboard_default_executive = "telescope"
   vim.g.dashboard_custom_section = {
-    ci = {
-      description = CI,
-      command = "",
+    repo1 = {
+      description = { "Next Checkout" },
+      command = "cd ~/code/work/next-checkout",
+    },
+    repo2 = {
+      description = { "Fock" },
+      command = "cd ~/code/work/fock",
+    },
+    repo3 = {
+      description = { "Bully" },
+      command = "cd ~/code/work/bully",
+    },
+    repo4 = {
+      description = { "Api" },
+      command = "cd ~/code/work/api",
     },
   }
 end
