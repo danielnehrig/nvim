@@ -66,4 +66,50 @@ function M.sep_os_replacer(str)
   return result
 end
 
+function M.ci()
+  vim.cmd([[packadd nvim-notify]])
+  local notify = require("notify")
+  notify.setup({
+    -- Animation style (see below for details)
+    -- stages = "fade",
+    -- Default timeout for notifications
+    timeout = 3000,
+    -- For stages that change opacity this is treated as the highlight behind the window
+    background_colour = "NotifyBG",
+    -- Icons for the different levels
+    icons = {
+      ERROR = "",
+      WARN = "",
+      INFO = "",
+      DEBUG = "",
+      TRACE = "✎",
+    },
+  })
+  local Job = require("plenary.job")
+  local ci = { "LOADING" }
+  Job
+    :new({
+      command = "hub",
+      args = { "ci-status", "-f", "%t %S%n" },
+      on_exit = function(j, _)
+        local result = ""
+        local count = 0
+        ci = j:result()
+
+        for i, msg in ipairs(ci) do
+          if count >= 0 then
+            result = result .. msg .. "\n"
+            count = 0
+          else
+            result = result .. msg
+            count = count + 1
+          end
+        end
+
+        notify(result, _, { title = "Github CI" })
+      end,
+    })
+    :start()
+end
+
 return M

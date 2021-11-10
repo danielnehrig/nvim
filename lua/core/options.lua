@@ -100,6 +100,13 @@ function M.load_options()
     body = "▎",
     tail = "▎",
   }
+
+  vim.api.nvim_exec(
+    [[
+  command! GithubCI lua require('utils').ci()
+  ]],
+    false
+  )
 end
 
 return M
