@@ -14,15 +14,15 @@ if not packer_plugins["lua-dev.nvim"].loaded then
   cmd([[packadd lua-dev.nvim]])
 end
 
-local isNvim = string.match(vim.fn.getcwd(), ".*/dotfiles.*") ~= nil and true
+IS_NVIM = string.match(vim.fn.getcwd(), ".*/dotfiles.*") ~= nil and true
   or false
 
 local luadev = require("lua-dev").setup({
   library = {
-    vimruntime = isNvim, -- runtime path
-    types = isNvim, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-    plugins = isNvim, -- installed opt or start plugins in packpath
-    nvim_cfg = isNvim,
+    vimruntime = IS_NVIM, -- runtime path
+    types = IS_NVIM, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+    plugins = IS_NVIM, -- installed opt or start plugins in packpath
+    nvim_cfg = IS_NVIM,
     -- you can also specify the list of plugins to make available as a workspace library
     -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
   },

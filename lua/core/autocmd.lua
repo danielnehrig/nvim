@@ -60,6 +60,14 @@ function M.autocmds()
         "silent! lua require('scrollbar').clear()",
       },
     },
+    lsp = {
+      {
+        "DirChanged",
+        "*",
+        'silent! lua IS_NVIM = string.match(vim.fn.getcwd(), ".*/dotfiles.*") ~= nil and true or false',
+      },
+    },
+
     --  gh = {
     --  { "DirChanged", "*", "silent! lua require('plugins.gh').load()" },
     --  },
