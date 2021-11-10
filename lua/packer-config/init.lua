@@ -51,7 +51,7 @@ local function init()
     config = function()
       vim.o.background = "dark" -- or light if you so prefer
       vim.g.tokyonight_style = "night"
-      vim.g.tokyonight_transparent = true
+      vim.g.tokyonight_transparent = not vim.g.neovide and true or false
 
       vim.cmd([[colorscheme tokyonight]])
       require("core.highlights")
