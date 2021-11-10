@@ -2,7 +2,7 @@ local lspconfig = require("lspconfig")
 local augroups = require("utils").nvim_create_augroups
 
 -- efm setups
--- local eslint = require("plugins.efm.eslint")
+local eslint = require("plugins.efm.eslint")
 local prettier = require("plugins.efm.prettier")
 -- local luafmt = require("plugins.efm.luafmt")
 local stylua = require("plugins.efm.stylua")
@@ -47,8 +47,8 @@ lspconfig.efm.setup({
   settings = {
     rootMarkers = { "package.json", "go.mod", ".git/", ".zshrc" },
     languages = {
-      typescript = { prettier },
-      typescriptreact = { prettier },
+      typescript = { prettier, eslint },
+      typescriptreact = { prettier, eslint },
       lua = { stylua },
       rust = { rustfmt },
       markdown = { dprint },
