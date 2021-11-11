@@ -64,7 +64,7 @@ function M.autocmds()
       {
         "DirChanged",
         "*",
-        'silent! lua IS_NVIM = string.match(vim.fn.getcwd(), ".*/dotfiles.*") ~= nil and true or false',
+        'silent! lua require("plugins.lspconfig.lua").reinit()',
       },
     },
 
