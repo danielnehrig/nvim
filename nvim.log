@@ -4,93 +4,93 @@ times in msec
  clock   self+sourced   self:  sourced script
  clock   elapsed:              other lines
 
-000.008  000.008: --- NVIM STARTING ---
-000.200  000.192: locale set
-000.408  000.208: inits 1
-000.415  000.007: window checked
-002.594  002.179: parsing arguments
-002.660  000.066: expanding arguments
-002.675  000.015: inits 2
-003.021  000.346: init highlight
-003.023  000.002: waiting for UI
-003.532  000.509: done waiting for UI
-003.550  000.018: init screen for UI
-003.563  000.013: init default mappings
-003.612  000.049: init default autocommands
-003.652  000.009  000.009: sourcing /usr/share/nvim/archlinux.vim
-003.655  000.028  000.019: sourcing /etc/xdg//nvim/sysinit.vim
-014.162  000.047  000.047: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
-021.377  000.138  000.138: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/plugin/dashboard.vim
-026.082  001.983  001.983: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/gruvqueen/colors/gruvqueen.vim
-055.273  000.031  000.031: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-treesitter/autoload/nvim_treesitter.vim
-055.456  000.010  000.010: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/orgmode.nvim/ftdetect/org.vim
-055.509  000.032  000.032: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/orgmode.nvim/ftdetect/org_archive.vim
-055.551  000.024  000.024: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/rust.vim/ftdetect/rust.vim
-055.582  051.913  049.647: sourcing /home/dashie/.config/nvim/init.lua
-055.590  000.036: sourcing vimrc file(s)
-055.637  000.008  000.008: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/filetype.nvim/filetype.vim
-055.731  000.009  000.009: sourcing /usr/share/nvim/runtime/filetype.vim
-055.890  000.028  000.028: sourcing /usr/share/nvim/runtime/ftplugin.vim
-056.070  000.028  000.028: sourcing /usr/share/nvim/runtime/indent.vim
-056.308  000.061  000.061: sourcing /usr/share/nvim/runtime/syntax/synload.vim
-056.375  000.258  000.196: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
-056.912  000.010  000.010: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/plugin/dashboard.vim
-056.960  000.007  000.007: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
-057.156  000.011  000.011: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
-057.173  000.007  000.007: sourcing /usr/share/nvim/runtime/plugin/health.vim
-057.212  000.030  000.030: sourcing /usr/share/nvim/runtime/plugin/man.vim
-057.577  000.175  000.175: sourcing /usr/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
-057.645  000.423  000.248: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
-057.758  000.101  000.101: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
-058.033  000.264  000.264: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
-058.163  000.007  000.007: sourcing /home/dashie/.local/share/nvim/rplugin.vim
-058.168  000.107  000.100: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
-058.226  000.046  000.046: sourcing /usr/share/nvim/runtime/plugin/shada.vim
-058.260  000.017  000.017: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
-058.289  000.012  000.012: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
-058.311  000.008  000.008: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
-058.337  000.013  000.013: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
-058.368  000.013  000.013: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
-058.827  000.407  000.407: sourcing /usr/share/vim/vimfiles/plugin/fzf.vim
-059.069  001.672: loading rtp plugins
-059.476  000.136  000.136: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/LuaSnip/plugin/luasnip.vim
-059.699  000.093  000.093: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/auto-session/plugin/auto-session.vim
-061.729  000.049  000.049: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/barbar.nvim/autoload/bufferline/highlight.vim
-063.687  003.909  003.860: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/barbar.nvim/plugin/bufferline.vim
-063.873  000.024  000.024: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/filetype.nvim/plugin/filetype.vim
-064.043  000.022  000.022: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/indent-o-matic/plugin/indent-o-matic.vim
-064.215  000.100  000.100: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim/plugin/lsp-colors.vim
-064.384  000.015  000.015: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-bqf/plugin/bqf.vim
-064.832  000.364  000.364: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-cmp/plugin/cmp.lua
-064.947  000.050  000.050: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/plugin/lspconfig.vim
-066.309  001.265  001.265: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.vim
-067.557  001.155  001.155: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim
-067.784  000.139  000.139: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textsubjects/plugin/nvim-treesitter-textsubjects.vim
-067.980  000.119  000.119: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim
-068.088  000.010  000.010: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
-068.212  000.036  000.036: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/plenary.nvim/plugin/plenary.vim
-068.602  000.287  000.287: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/vim-surround/plugin/surround.vim
-077.915  009.233  009.233: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/vim-wakatime/plugin/wakatime.vim
-078.150  002.123: loading packages
-078.680  000.314  000.314: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp-buffer/after/plugin/cmp_buffer.lua
-078.863  000.132  000.132: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp-cmdline/after/plugin/cmp_cmdline.lua
-078.950  000.038  000.038: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua
-079.201  000.182  000.182: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp-path/after/plugin/cmp_path.lua
-079.411  000.160  000.160: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp_luasnip/after/plugin/cmp_luasnip.lua
-079.432  000.457: loading after plugins
-079.450  000.018: inits 3
-081.354  001.904: reading ShaDa
-081.926  000.572: opening buffers
-082.477  000.551: BufEnter autocommands
-082.480  000.003: editing files in windows
-082.764  000.110  000.110: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/autoload/dashboard.vim
-083.270  000.021  000.021: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/autoload/dashboard/utils.vim
-083.437  000.038  000.038: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/autoload/dashboard/header.vim
-084.379  000.085  000.085: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/autoload/dashboard/section.vim
-085.361  000.173  000.173: sourcing /usr/share/nvim/runtime/autoload/provider/clipboard.vim
-088.027  000.063  000.063: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/syntax/dashboard.vim
-090.836  007.867: VimEnter autocommands
-090.840  000.003: UIEnter autocommands
-090.842  000.002: before starting main loop
-092.075  001.233: first screen update
-092.077  000.002: --- NVIM STARTED ---
+000.006  000.006: --- NVIM STARTING ---
+000.195  000.189: locale set
+000.392  000.197: inits 1
+000.402  000.009: window checked
+002.376  001.974: parsing arguments
+002.442  000.065: expanding arguments
+002.461  000.020: inits 2
+002.759  000.298: init highlight
+002.760  000.001: waiting for UI
+003.215  000.455: done waiting for UI
+003.234  000.019: init screen for UI
+003.252  000.018: init default mappings
+003.309  000.057: init default autocommands
+003.352  000.011  000.011: sourcing /usr/share/nvim/archlinux.vim
+003.356  000.033  000.021: sourcing /etc/xdg//nvim/sysinit.vim
+013.250  000.042  000.042: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+020.786  000.245  000.245: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/plugin/dashboard.vim
+025.396  001.909  001.909: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/gruvqueen/colors/gruvqueen.vim
+053.225  000.027  000.027: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-treesitter/autoload/nvim_treesitter.vim
+053.411  000.011  000.011: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/orgmode.nvim/ftdetect/org.vim
+053.436  000.009  000.009: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/orgmode.nvim/ftdetect/org_archive.vim
+053.473  000.023  000.023: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/rust.vim/ftdetect/rust.vim
+053.505  050.128  047.862: sourcing /home/dashie/.config/nvim/init.lua
+053.513  000.043: sourcing vimrc file(s)
+053.561  000.008  000.008: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/filetype.nvim/filetype.vim
+053.656  000.009  000.009: sourcing /usr/share/nvim/runtime/filetype.vim
+053.851  000.036  000.036: sourcing /usr/share/nvim/runtime/ftplugin.vim
+054.011  000.024  000.024: sourcing /usr/share/nvim/runtime/indent.vim
+054.243  000.062  000.062: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+054.307  000.257  000.194: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+054.814  000.009  000.009: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/plugin/dashboard.vim
+054.861  000.007  000.007: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+055.023  000.009  000.009: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+055.039  000.007  000.007: sourcing /usr/share/nvim/runtime/plugin/health.vim
+055.079  000.032  000.032: sourcing /usr/share/nvim/runtime/plugin/man.vim
+055.406  000.146  000.146: sourcing /usr/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+055.468  000.379  000.233: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+055.579  000.100  000.100: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+055.836  000.245  000.245: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+055.952  000.007  000.007: sourcing /home/dashie/.local/share/nvim/rplugin.vim
+055.957  000.101  000.094: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+056.008  000.040  000.040: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+056.042  000.016  000.016: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+056.069  000.012  000.012: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+056.090  000.008  000.008: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+056.116  000.013  000.013: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+056.141  000.012  000.012: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+056.547  000.360  000.360: sourcing /usr/share/vim/vimfiles/plugin/fzf.vim
+056.766  001.567: loading rtp plugins
+057.182  000.134  000.134: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/LuaSnip/plugin/luasnip.vim
+057.352  000.090  000.090: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/auto-session/plugin/auto-session.vim
+058.709  000.039  000.039: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/barbar.nvim/autoload/bufferline/highlight.vim
+060.478  003.054  003.015: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/barbar.nvim/plugin/bufferline.vim
+060.662  000.022  000.022: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/filetype.nvim/plugin/filetype.vim
+060.794  000.018  000.018: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/indent-o-matic/plugin/indent-o-matic.vim
+060.972  000.113  000.113: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim/plugin/lsp-colors.vim
+061.136  000.014  000.014: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-bqf/plugin/bqf.vim
+061.570  000.350  000.350: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-cmp/plugin/cmp.lua
+061.679  000.051  000.051: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/plugin/lspconfig.vim
+062.978  001.225  001.225: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.vim
+064.096  001.030  001.030: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim
+064.307  000.129  000.129: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textsubjects/plugin/nvim-treesitter-textsubjects.vim
+064.496  000.113  000.113: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim
+064.577  000.009  000.009: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+064.688  000.028  000.028: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/plenary.nvim/plugin/plenary.vim
+065.039  000.253  000.253: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/vim-surround/plugin/surround.vim
+074.516  009.400  009.400: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/vim-wakatime/plugin/wakatime.vim
+074.725  001.923: loading packages
+075.332  000.346  000.346: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp-buffer/after/plugin/cmp_buffer.lua
+075.574  000.168  000.168: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp-cmdline/after/plugin/cmp_cmdline.lua
+075.699  000.045  000.045: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua
+076.005  000.231  000.231: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp-path/after/plugin/cmp_path.lua
+076.248  000.171  000.171: sourcing /home/dashie/.local/share/nvim/site/pack/packer/start/cmp_luasnip/after/plugin/cmp_luasnip.lua
+076.269  000.584: loading after plugins
+076.285  000.016: inits 3
+078.479  002.194: reading ShaDa
+079.000  000.521: opening buffers
+079.526  000.526: BufEnter autocommands
+079.528  000.003: editing files in windows
+079.808  000.129  000.129: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/autoload/dashboard.vim
+080.279  000.021  000.021: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/autoload/dashboard/utils.vim
+080.453  000.039  000.039: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/autoload/dashboard/header.vim
+081.364  000.118  000.118: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/autoload/dashboard/section.vim
+082.447  000.158  000.158: sourcing /usr/share/nvim/runtime/autoload/provider/clipboard.vim
+084.796  000.056  000.056: sourcing /home/dashie/.local/share/nvim/site/pack/packer/opt/dashboard-nvim/syntax/dashboard.vim
+087.896  007.847: VimEnter autocommands
+087.900  000.004: UIEnter autocommands
+087.902  000.002: before starting main loop
+089.004  001.102: first screen update
+089.006  000.002: --- NVIM STARTED ---

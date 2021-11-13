@@ -8,7 +8,7 @@ local debug = nil
 
 Debug.__index = Debug
 
-function Debug:new(o)
+function Debug.new(o)
   o = o or {}
   setmetatable(o, Debug)
   return o
@@ -25,7 +25,7 @@ function Debug:addPlug()
   end
 end
 
-function Debug:mappings()
+function Debug.mappings()
   vim.cmd([[au FileType dap-repl lua require('dap.ext.autocompl').attach()]])
   remap("n", "<Leader>ds", [[ <Cmd>lua require'dap'.close()<CR>]])
   remap(

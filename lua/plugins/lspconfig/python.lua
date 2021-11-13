@@ -20,7 +20,7 @@ function M.change_python_interpreter(path)
   vim.cmd("e%")
 end
 
-function M.get_python_interpreters(a, l, p)
+function M.get_python_interpreters()
   local paths = {}
   local is_home_dir = function()
     return vim.fn.getcwd(0) == vim.fn.expand("$HOME")

@@ -47,7 +47,19 @@ local function init()
     end,
   }) -- colors hex
   use({
+    "folke/tokyonight.nvim",
+    config = function()
+      vim.o.background = "dark" -- or light if you so prefer
+      vim.g.tokyonight_style = "night"
+      vim.g.tokyonight_transparent = not vim.g.neovide and true or false
+
+      vim.cmd([[colorscheme tokyonight]])
+      require("core.highlights")
+    end,
+  })
+  use({
     "Murtaza-Udaipurwala/gruvqueen",
+    disable = true,
     config = function()
       vim.o.background = "dark" -- or light if you so prefer
       require("gruvqueen").setup({
@@ -265,7 +277,7 @@ local function init()
   -- navigation
   use({
     "nvim-telescope/telescope.nvim",
-    cmd = { "Telescope", "Octo" },
+    cmd = { "Telescope" },
     config = require("plugins.telescope").init,
     requires = {
       { "nvim-lua/plenary.nvim", opt = true },
@@ -290,13 +302,34 @@ local function init()
   -- quality of life
   use({ "nathom/filetype.nvim" })
   use({
+    "lukas-reineke/format.nvim",
+    cmd = { "Format" },
+    config = require("plugins.format").init,
+  }) -- fallback formatter
+  use({
     "luukvbaal/stabilize.nvim",
     config = function()
-      require("stabilize").setup()
+      require("stabilize").setup({
+        force = true, -- stabilize window even when current cursor position will be hidden behind new window
+        forcemark = nil, -- set context mark to register on force event which can be jumped to with '<forcemark>
+        ignore = { -- do not manage windows matching these file/buftypes
+          filetype = { "packer", "Dashboard", "Trouble", "TelescopePrompt" },
+          buftype = {
+            "packer",
+            "Dashboard",
+            "terminal",
+            "quickfix",
+            "loclist",
+          },
+        },
+        nested = nil, -- comma-separated list of autocmds that wil trigger the plugins window restore function
+      })
     end,
   })
+  use({ "tpope/vim-sleuth" })
   use({
     "Darazaki/indent-o-matic",
+    disable = true,
     config = function()
       require("indent-o-matic").setup({
         -- The values indicated here are the defaults
@@ -339,7 +372,7 @@ local function init()
     "t9md/vim-choosewin",
     cmd = { "ChooseWin" },
   })
-  use({ "kevinhwang91/nvim-bqf" }) -- better quickfix
+  use({ "kevinhwang91/nvim-bqf", ft = "qf" }) -- better quickfix
   use({
     "gelguy/wilder.nvim",
     opt = true,
@@ -421,11 +454,6 @@ local function init()
       "nvim-lua/plenary.nvim",
     },
   }) -- visual git
-  use({
-    "pwntester/octo.nvim",
-    requires = { "nvim-telescope/telescope.nvim" },
-    after = "telescope.nvim",
-  }) -- octo github pr review issues pr etc
   use({
     "ruifm/gitlinker.nvim",
     requires = {

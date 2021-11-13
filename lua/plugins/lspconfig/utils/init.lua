@@ -1,7 +1,7 @@
 local M = {}
 
 function M.rename()
-  vim.cmd [[ packadd playground ]]
+  vim.cmd([[ packadd playground ]])
   local rename = "textDocument/rename"
   local currName = vim.fn.expand("<cword>")
   local tshl = require("nvim-treesitter-playground.hl-info").get_treesitter_hl()
