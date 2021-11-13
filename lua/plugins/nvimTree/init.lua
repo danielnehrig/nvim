@@ -1,4 +1,3 @@
-local g = vim.g
 local M = {}
 
 function M.init()

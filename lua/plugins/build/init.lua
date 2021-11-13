@@ -12,7 +12,7 @@ local Make = {
 
 Make.__index = Make
 
-function Make:new(o)
+function Make.new(o)
   o = o or {}
   setmetatable(o, Make)
   return o
@@ -46,7 +46,7 @@ function Make.Report()
     })
   end
   if info.exit_code == 0 then
-    notify(info.maker.name .. " Finished Successfully", _, opt)
+    notify(info.maker.name .. " Finished Successfully", "info", opt)
   elseif info.exit_code == 1 then
     notify(info.maker.name .. " Failed", "error", opt)
   else
@@ -54,7 +54,7 @@ function Make.Report()
   end
 end
 
-function Make:init()
+function Make.init()
   vim.g.neomake_open_list = 2
   nvim_set_var("test#javascript#runner", "jest")
   nvim_set_var("test#typescript#runner", "jest")

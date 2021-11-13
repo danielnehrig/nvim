@@ -25,18 +25,6 @@ function _G.dump(...)
   print(unpack(objects))
 end
 
-local function clear_prompt()
-  vim.api.nvim_command("normal :esc<CR>")
-end
-
-local function get_user_input()
-  return vim.fn.nr2char(vim.fn.getchar())
-end
-
-local function remove_dir(cwd)
-  return vim.loop.fs_rmdir(cwd .. "/")
-end
-
 local file_create = function(opts)
   opts = opts or {}
   local results = folder_list()

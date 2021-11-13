@@ -96,7 +96,7 @@ function M.ci()
         local count = 0
         ci = j:result()
 
-        for i, msg in ipairs(ci) do
+        for _, msg in ipairs(ci) do
           if count >= 0 then
             result = result .. msg .. "\n"
             count = 0

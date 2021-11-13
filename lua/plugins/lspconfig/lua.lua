@@ -56,7 +56,7 @@ function M.reinit()
   IS_NVIM = string.match(vim.fn.getcwd(), ".*/dotfiles.*") ~= nil and true
     or false
 
-  local luadev = require("lua-dev").setup({
+  local luadev_reinit = require("lua-dev").setup({
     library = {
       vimruntime = IS_NVIM, -- runtime path
       types = IS_NVIM, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
@@ -87,7 +87,7 @@ function M.reinit()
       end,
     },
   })
-  lspconfig.sumneko_lua.setup(luadev)
+  lspconfig.sumneko_lua.setup(luadev_reinit)
 end
 
 return M
