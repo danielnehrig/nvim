@@ -75,7 +75,7 @@ function Debug:getStatus()
 end
 
 if not debug then
-  debug = Debug:new()
+  debug = Debug.new()
 end
 
 return debug
