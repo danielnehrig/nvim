@@ -95,18 +95,34 @@ function M.ci()
         local result = ""
         local count = 0
         ci = j:result()
+        local failed = false
 
         for _, msg in ipairs(ci) do
+          local str = msg
+          if msg == "success" then
+            str = "✔️"
+          end
+          if msg == "failure" then
+            failed = true
+            str = "❌"
+          end
+          if msg == "pending" then
+            str = "🟠"
+          end
           if count >= 0 then
-            result = result .. msg .. "\n"
+            result = result .. str .. "\n"
             count = 0
           else
-            result = result .. msg
+            result = result .. str
             count = count + 1
           end
         end
 
-        notify(result, _, { title = "Github CI" })
+        if failed then
+          notify(result, "error", { title = "Github CI" })
+        else
+          notify(result, "success", { title = "Github CI" })
+        end
       end,
     })
     :start()

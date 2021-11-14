@@ -46,7 +46,7 @@ function Make.Report()
     })
   end
   if info.exit_code == 0 then
-    notify(info.maker.name .. " Finished Successfully", "info", opt)
+    notify(info.maker.name .. " Finished Successfully", "success", opt)
   elseif info.exit_code == 1 then
     notify(info.maker.name .. " Failed", "error", opt)
   else
@@ -63,6 +63,23 @@ function Make.init()
   nvim_set_var("test#javascript#jest#options", "--color=yes")
   nvim_set_var("test#typescript#jest#options", "--color=yes")
   nvim_set_var("test#typescriptreact#jest#options", "--color=yes")
+
+  vim.g.neomake_lua_luacheck_maker = {
+    exe = "luacheck",
+    args = table.concat({
+      "--no-color",
+      "--globals",
+      "vim",
+      "packer_plugins",
+      "--formatter=plain",
+      "--ranges",
+      "--codes",
+      "--filename",
+      "%:p",
+    }, " "),
+    errorformat = "%E%f:%l:%c-%s: \\(%t%n\\) %m",
+    supports_stdin = 1,
+  }
 
   nvim_set_var("test#strategy", "neomake")
 
