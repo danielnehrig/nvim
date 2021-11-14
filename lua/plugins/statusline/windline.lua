@@ -296,7 +296,7 @@ basic.lsp_names = {
     green = { "green", "black" },
     magenta = { "magenta", "black" },
     sep = { "black", "transparent" },
-    sepdebug = { "black", "yellow" },
+    sepdebug = { "black", "debug_yellow" },
     spacer = { "black", "black" },
   },
   width = breakpoint_width,
@@ -345,9 +345,9 @@ basic.gh_num = {
 basic.dap = {
   name = "dap",
   hl_colors = {
-    yellow = { "red", "yellow" },
-    spacer = { "yellow", "yellow" },
-    sep = { "yellow", "transparent" },
+    yellow = { "debug_red", "debug_yellow" },
+    spacer = { "debug_yellow", "debug_yellow" },
+    sep = { "debug_yellow", "transparent" },
   },
   width = breakpoint_width,
   text = function()
@@ -465,6 +465,8 @@ windline.setup({
     colors.transparent = "none"
     colors.grey = "#3d3d3d"
     colors.orange = "#d8a657"
+    colors.debug_yellow = "#eae611"
+    colors.debug_red = "#ff6902"
 
     colors.wavedefault = colors.black
 
