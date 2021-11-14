@@ -90,7 +90,7 @@ function M.ci()
   Job
     :new({
       command = "hub",
-      args = { "ci-status", "-f", "%t %S%n" },
+      args = { "ci-status", "-f", "%t%n%S%n" },
       on_exit = function(j, _)
         local result = ""
         local count = 0
@@ -109,7 +109,7 @@ function M.ci()
           if msg == "pending" then
             str = "🟠"
           end
-          if count >= 0 then
+          if count >= 1 then
             result = result .. str .. "\n"
             count = 0
           else
