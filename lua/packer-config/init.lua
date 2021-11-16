@@ -90,6 +90,15 @@ local function init()
     config = require("plugins.crates").init,
   }) -- rust crates info
   use({
+    "~/code/lua/github-ci.nvim",
+    requires = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
+    cmd = { "GithubCI" },
+    config = function()
+      vim.cmd([[packadd nvim-notify]])
+      require("githubci").setup()
+    end,
+  })
+  use({
     "vuki656/package-info.nvim",
     requires = "MunifTanjim/nui.nvim",
     ft = { "json" },
