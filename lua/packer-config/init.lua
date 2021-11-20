@@ -455,15 +455,6 @@ local function init()
 
   -- git
   use({
-    "tanvirtin/vgit.nvim",
-    cmd = { "VGit" },
-    commit = "c1e5c82f5fc73bddb32eaef411dcc5e36ebc4efc",
-    config = require("plugins.vgit").init,
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
-  }) -- visual git
-  use({
     "ruifm/gitlinker.nvim",
     requires = {
       { "nvim-lua/plenary.nvim", opt = true },
