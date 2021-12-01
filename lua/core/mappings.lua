@@ -25,6 +25,9 @@ function M.mappings()
   remap("n", "<Leader>ln", ":lnext<CR>")
   remap("n", "<Leader>lp", ":lprev<CR>")
 
+  -- cmdline
+  remap("n", ":", "<cmd>FineCmdline<CR>")
+
   -- telescope NOTE: Lazyloaded
   remap(
     "n",
