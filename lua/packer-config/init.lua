@@ -359,6 +359,16 @@ local function init()
     end,
   })
   use({
+    "tanvirtin/vgit.nvim",
+    event = "BufWinEnter",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("vgit").setup()
+    end,
+  })
+  use({
     "rlch/github-notifications.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
