@@ -377,7 +377,19 @@ local function init()
     config = function()
       -- local vgit = require("vgit")
       -- local utils = require("vgit.utils")
-      require("vgit").setup({})
+      require("vgit").setup({
+        controller = {
+          hunks_enabled = false,
+          blames_enabled = false,
+          diff_strategy = "index",
+          diff_preference = "horizontal",
+          predict_hunk_signs = false,
+          predict_hunk_throttle_ms = 300,
+          predict_hunk_max_lines = 50000,
+          blame_line_throttle_ms = 150,
+          action_delay_ms = 300,
+        },
+      })
     end,
   })
   use({
@@ -502,7 +514,17 @@ local function init()
     "tpope/vim-fugitive",
     cmd = { "Git", "Gdiff", "Gblame", "Glog", "Git mergetool" },
   }) -- git integration
-  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+  use({
+    "TimUntersberger/neogit",
+    config = function()
+      local neogit = require("neogit")
+      neogit.setup({
+        disable_signs = true,
+        disable_hint = true,
+      })
+    end,
+    requires = "nvim-lua/plenary.nvim",
+  })
 
   -- testing / building
   use({
