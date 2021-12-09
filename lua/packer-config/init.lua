@@ -342,7 +342,7 @@ local function init()
       })
     end,
   })
-  use({ "tpope/vim-sleuth" })
+  use({ "tpope/vim-sleuth", disable = true })
   use({
     "Darazaki/indent-o-matic",
     disable = true,

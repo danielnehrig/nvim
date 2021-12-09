@@ -91,6 +91,7 @@ function M.load_options()
     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
   wo.foldexpr = "nvim_treesitter#foldexpr()"
   wo.fillchars = "fold:\\"
+  opt.fillchars:append({ eob = " " })
   wo.foldnestmax = 3
   wo.foldminlines = 1
 
