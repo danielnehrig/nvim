@@ -74,6 +74,7 @@ function M.init()
   })
   telescope.load_extension("fzf")
   telescope.load_extension("project")
+  telescope.load_extension("projects")
   telescope.load_extension("dotfiles")
   telescope.load_extension("file_create")
 end

@@ -285,6 +285,16 @@ local function init()
 
   -- navigation
   use({
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      })
+    end,
+  })
+  use({
     "nvim-telescope/telescope.nvim",
     cmd = { "Telescope" },
     config = require("plugins.telescope").init,
@@ -365,7 +375,9 @@ local function init()
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      require("vgit").setup()
+      -- local vgit = require("vgit")
+      -- local utils = require("vgit.utils")
+      require("vgit").setup({})
     end,
   })
   use({
