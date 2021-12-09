@@ -490,6 +490,7 @@ local function init()
     "tpope/vim-fugitive",
     cmd = { "Git", "Gdiff", "Gblame", "Glog", "Git mergetool" },
   }) -- git integration
+  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
 
   -- testing / building
   use({
