@@ -10,13 +10,42 @@ function M.init()
     },
     filetype = "org",
   }
+
+  parser_config.tsdoc = {
+    install_info = {
+      url = "https://github.com/stsewd/tree-sitter-comment",
+      revision = "master",
+      files = { "src/parser.c", "src/scanner.c" },
+    },
+    filetype = {
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    },
+  }
+
+  parser_config.jsdoc = {
+    install_info = {
+      url = "https://github.com/tree-sitter/tree-sitter-jsdoc",
+      revision = "master",
+      files = { "src/parser.c" },
+    },
+    filetype = {
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    },
+  }
+
   require("nvim-treesitter.configs").setup({
     -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
       enable = true,
     },
     indent = {
-      enable = false,
+      enable = true,
     },
     autotag = {
       enable = true,

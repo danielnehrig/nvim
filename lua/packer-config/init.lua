@@ -90,6 +90,15 @@ local function init()
     config = require("plugins.crates").init,
   }) -- rust crates info
   use({
+    "~/code/lua/github-ci.nvim",
+    requires = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
+    cmd = { "GithubCI" },
+    config = function()
+      vim.cmd([[packadd nvim-notify]])
+      require("githubci").setup()
+    end,
+  })
+  use({
     "vuki656/package-info.nvim",
     requires = "MunifTanjim/nui.nvim",
     ft = { "json" },
@@ -276,6 +285,16 @@ local function init()
 
   -- navigation
   use({
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      })
+    end,
+  })
+  use({
     "nvim-telescope/telescope.nvim",
     cmd = { "Telescope" },
     config = require("plugins.telescope").init,
@@ -300,6 +319,39 @@ local function init()
   use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } }) -- lightspeed motion
 
   -- quality of life
+  use({
+    "andweeb/presence.nvim",
+    config = function()
+      require("presence"):setup({
+        -- General options
+        auto_update = true, -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
+        neovim_image_text = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
+        main_image = "neovim", -- Main image display (either "neovim" or "file")
+        client_id = "793271441293967371", -- Use your own Discord application client id (not recommended)
+        log_level = nil, -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
+        debounce_timeout = 10, -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
+        enable_line_number = false, -- Displays the current line number instead of the current project
+        blacklist = {}, -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+        buttons = true, -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+
+        -- Rich Presence text options
+        editing_text = "Editing %s", -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
+        file_explorer_text = "Browsing %s", -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
+        git_commit_text = "Committing changes", -- Format string rendered when committing changes in git (either string or function(filename: string): string)
+        plugin_manager_text = "Managing plugins", -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
+        reading_text = "Reading %s", -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
+        workspace_text = "Working on %s", -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
+        line_number_text = "Line %s out of %s", -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
+      })
+    end,
+  })
+  use({
+    "VonHeikemen/fine-cmdline.nvim",
+    requires = {
+      { "MunifTanjim/nui.nvim" },
+    },
+  })
+  use({ "junegunn/vim-easy-align", cmd = { "EasyAlign" } })
   use({ "nathom/filetype.nvim" })
   use({
     "lukas-reineke/format.nvim",
@@ -326,7 +378,7 @@ local function init()
       })
     end,
   })
-  use({ "tpope/vim-sleuth" })
+  use({ "tpope/vim-sleuth", disable = true })
   use({
     "Darazaki/indent-o-matic",
     disable = true,
@@ -339,6 +391,30 @@ local function init()
 
         -- Space indentations that should be detected
         standard_widths = { 2, 4, 8 },
+      })
+    end,
+  })
+  use({
+    "tanvirtin/vgit.nvim",
+    event = "BufWinEnter",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      -- local vgit = require("vgit")
+      -- local utils = require("vgit.utils")
+      require("vgit").setup({
+        controller = {
+          hunks_enabled = false,
+          blames_enabled = false,
+          diff_strategy = "index",
+          diff_preference = "horizontal",
+          predict_hunk_signs = false,
+          predict_hunk_throttle_ms = 300,
+          predict_hunk_max_lines = 50000,
+          blame_line_throttle_ms = 150,
+          action_delay_ms = 300,
+        },
       })
     end,
   })
@@ -415,6 +491,7 @@ local function init()
       local high_str = require("high-str")
       high_str.setup({
         verbosity = 0,
+        saving_path = "/tmp/highstr/",
         highlight_colors = {
           -- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
           color_0 = { "#000000", "smart" }, -- Chartreuse yellow
@@ -446,15 +523,6 @@ local function init()
 
   -- git
   use({
-    "tanvirtin/vgit.nvim",
-    cmd = { "VGit" },
-    commit = "c1e5c82f5fc73bddb32eaef411dcc5e36ebc4efc",
-    config = require("plugins.vgit").init,
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
-  }) -- visual git
-  use({
     "ruifm/gitlinker.nvim",
     requires = {
       { "nvim-lua/plenary.nvim", opt = true },
@@ -473,6 +541,17 @@ local function init()
     "tpope/vim-fugitive",
     cmd = { "Git", "Gdiff", "Gblame", "Glog", "Git mergetool" },
   }) -- git integration
+  use({
+    "TimUntersberger/neogit",
+    config = function()
+      local neogit = require("neogit")
+      neogit.setup({
+        disable_signs = true,
+        disable_hint = true,
+      })
+    end,
+    requires = "nvim-lua/plenary.nvim",
+  })
 
   -- testing / building
   use({

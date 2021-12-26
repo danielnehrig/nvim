@@ -25,6 +25,9 @@ function M.mappings()
   remap("n", "<Leader>ln", ":lnext<CR>")
   remap("n", "<Leader>lp", ":lprev<CR>")
 
+  -- cmdline
+  remap("n", "<C-p>", "<cmd>FineCmdline<CR>")
+
   -- telescope NOTE: Lazyloaded
   remap(
     "n",
@@ -35,7 +38,7 @@ function M.mappings()
   remap("n", "<Leader>fb", ":Telescope buffers<CR>")
   remap("n", "<Leader>fh", ":Telescope help_tags<CR>")
   remap("n", "<Leader>fo", ":Telescope oldfiles<CR>")
-  remap("n", "<Leader>fp", ":Telescope project<CR>")
+  remap("n", "<Leader>fp", ":Telescope projects<CR>")
   remap("n", "<Leader>fn", ":Telescope file_create<CR>")
 
   -- nvim tree NOTE: Lazyloaded
@@ -53,12 +56,6 @@ function M.mappings()
     "<Leader>db",
     [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.toggle_breakpoint()<CR>]]
   )
-
-  -- compe: NOTE: Lazyloaded
-  remap("i", "<C-space>", "compe#complete()", true)
-  remap("i", "<C-e>", "compe#close('<C-e>')", true)
-  remap("i", "<C-f>", "compe#scroll({ delta: +4 })", true)
-  remap("i", "<C-d>", "compe#scroll({ delta: -4 })", true)
 
   -- gitlinker: NOTE: Lazyloaded
   remap(

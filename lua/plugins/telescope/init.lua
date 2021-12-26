@@ -31,7 +31,7 @@ function M.init()
       sorting_strategy = "descending",
       layout_strategy = "horizontal",
       file_sorter = require("telescope.sorters").get_generic_sorter,
-      file_ignore_patterns = { ".git/", "node_modules" },
+      file_ignore_patterns = { ".git/", "node_modules", "__snapshots_-" },
       generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
       winblend = 0,
       border = {},
@@ -74,6 +74,7 @@ function M.init()
   })
   telescope.load_extension("fzf")
   telescope.load_extension("project")
+  telescope.load_extension("projects")
   telescope.load_extension("dotfiles")
   telescope.load_extension("file_create")
 end

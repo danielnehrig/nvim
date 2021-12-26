@@ -66,6 +66,7 @@ function M.init()
       interval = 100,
     },
     sign_priority = 5,
+    update_debounce = 100,
     status_formatter = nil, -- Use default
   })
 end

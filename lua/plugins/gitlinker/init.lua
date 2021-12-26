@@ -37,12 +37,18 @@ end
 
 function M:normal()
   self.init()
-  gitlinker.get_buf_range_url("n")
+  gitlinker.get_buf_range_url(
+    "n",
+    { action_callback = require("gitlinker.actions").open_in_browser }
+  )
 end
 
 function M:visual()
   self.init()
-  gitlinker.get_buf_range_url("v")
+  gitlinker.get_buf_range_url(
+    "v",
+    { action_callback = require("gitlinker.actions").open_in_browser }
+  )
 end
 
 return M

@@ -64,7 +64,7 @@ function M.load_options()
     cmd('let g:neovide_cursor_vfx_mode = "pixiedust"')
   end
 
-  opt.updatetime = 300 -- update interval for gitsigns
+  opt.updatetime = 0 -- update interval for gitsigns
   opt.inccommand = "nosplit"
   opt.timeoutlen = 500
   opt.clipboard = "unnamedplus" -- clipboard yank
@@ -91,6 +91,7 @@ function M.load_options()
     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
   wo.foldexpr = "nvim_treesitter#foldexpr()"
   wo.fillchars = "fold:\\"
+  opt.fillchars:append({ eob = " " })
   wo.foldnestmax = 3
   wo.foldminlines = 1
 
@@ -100,13 +101,6 @@ function M.load_options()
     body = "▎",
     tail = "▎",
   }
-
-  vim.api.nvim_exec(
-    [[
-  command! GithubCI lua require('utils').ci()
-  ]],
-    false
-  )
 end
 
 return M

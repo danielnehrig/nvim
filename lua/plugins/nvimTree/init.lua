@@ -1,6 +1,7 @@
 local M = {}
 
 function M.init()
+  vim.g.nvim_tree_respect_buf_cwd = 1
   require("nvim-tree").setup({
     disable_netrw = true,
     hijack_netrw = true,
@@ -13,7 +14,7 @@ function M.init()
     auto_close = false,
     open_on_tab = false,
     hijack_cursor = false,
-    update_cwd = false,
+    update_cwd = true,
     diagnostics = {
       enable = false,
       icons = {
@@ -24,8 +25,8 @@ function M.init()
       },
     },
     update_focused_file = {
-      enable = false,
-      update_cwd = false,
+      enable = true,
+      update_cwd = true,
       ignore_list = {},
     },
     system_open = {

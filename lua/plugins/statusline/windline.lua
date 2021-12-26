@@ -9,6 +9,17 @@ local state = _G.WindLine.state
 local lsp_comps = require("windline.components.lsp")
 local git_comps = require("windline.components.git")
 
+local current_signature = function(width)
+  if
+    not packer_plugins["lsp_signature.nvim"]
+    or packer_plugins["lsp_signature.nvim"].loaded == false
+  then
+    return ""
+  end
+  local sig = require("lsp_signature").status_line(width)
+  return sig.label .. "🐼" .. sig.hint
+end
+
 local anim_colors = {
   "#90CAF9",
   "#64B5F6",
@@ -296,7 +307,7 @@ basic.lsp_names = {
     green = { "green", "black" },
     magenta = { "magenta", "black" },
     sep = { "black", "transparent" },
-    sepdebug = { "black", "yellow" },
+    sepdebug = { "black", "debug_yellow" },
     spacer = { "black", "black" },
   },
   width = breakpoint_width,
@@ -345,9 +356,9 @@ basic.gh_num = {
 basic.dap = {
   name = "dap",
   hl_colors = {
-    yellow = { "red", "yellow" },
-    spacer = { "yellow", "yellow" },
-    sep = { "yellow", "transparent" },
+    yellow = { "debug_red", "debug_yellow" },
+    spacer = { "debug_yellow", "debug_yellow" },
+    sep = { "debug_yellow", "transparent" },
   },
   width = breakpoint_width,
   text = function()
@@ -363,6 +374,19 @@ basic.dap = {
       end
     end
     return ""
+  end,
+}
+
+basic.sig = {
+  name = "sig",
+  hl_colors = {
+    yellow = { "debug_red", "debug_yellow" },
+    spacer = { "debug_yellow", "debug_yellow" },
+    sep = { "debug_yellow", "transparent" },
+  },
+  width = breakpoint_width,
+  text = function()
+    return current_signature(breakpoint_width)
   end,
 }
 
@@ -430,6 +454,7 @@ local default = {
     basic.lsp_diagnos,
     basic.divider,
     basic.file_right,
+    basic.sig,
     basic.dap,
     basic.lsp_names,
     --basic.lsp_workspace,
@@ -465,6 +490,8 @@ windline.setup({
     colors.transparent = "none"
     colors.grey = "#3d3d3d"
     colors.orange = "#d8a657"
+    colors.debug_yellow = "#eae611"
+    colors.debug_red = "#ff6902"
 
     colors.wavedefault = colors.black
 

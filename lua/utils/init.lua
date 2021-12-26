@@ -90,23 +90,39 @@ function M.ci()
   Job
     :new({
       command = "hub",
-      args = { "ci-status", "-f", "%t %S%n" },
+      args = { "ci-status", "-f", "%t%n%S%n" },
       on_exit = function(j, _)
         local result = ""
         local count = 0
         ci = j:result()
+        local failed = false
 
         for _, msg in ipairs(ci) do
-          if count >= 0 then
-            result = result .. msg .. "\n"
+          local str = msg
+          if msg == "success" then
+            str = "✔️"
+          end
+          if msg == "failure" then
+            failed = true
+            str = "❌"
+          end
+          if msg == "pending" then
+            str = "🟠"
+          end
+          if count >= 1 then
+            result = result .. str .. "\n"
             count = 0
           else
-            result = result .. msg
+            result = result .. str
             count = count + 1
           end
         end
 
-        notify(result, _, { title = "Github CI" })
+        if failed then
+          notify(result, "error", { title = "Github CI" })
+        else
+          notify(result, "success", { title = "Github CI" })
+        end
       end,
     })
     :start()
