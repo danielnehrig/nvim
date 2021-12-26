@@ -465,6 +465,7 @@ local function init()
       local high_str = require("high-str")
       high_str.setup({
         verbosity = 0,
+        saving_path = "/tmp/highstr/",
         highlight_colors = {
           -- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
           color_0 = { "#000000", "smart" }, -- Chartreuse yellow
