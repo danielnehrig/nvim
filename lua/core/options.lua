@@ -64,7 +64,7 @@ function M.load_options()
     cmd('let g:neovide_cursor_vfx_mode = "pixiedust"')
   end
 
-  opt.updatetime = 300 -- update interval for gitsigns
+  opt.updatetime = 0 -- update interval for gitsigns
   opt.inccommand = "nosplit"
   opt.timeoutlen = 500
   opt.clipboard = "unnamedplus" -- clipboard yank

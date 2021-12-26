@@ -31,6 +31,11 @@ function M.autocmds()
   )
   local definitions = {
     ft = {
+      {
+        "CursorHold",
+        "*",
+        "lua vim.diagnostic.open_float({focusable = false, focus = false, border = 'single' })",
+      },
       { "FileType", "NvimTree,lspsagafinder,dashboard", "let b:cusorword=0" },
       {
         "WinEnter,BufRead,BufEnter",

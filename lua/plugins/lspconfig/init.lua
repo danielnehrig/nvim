@@ -1,5 +1,4 @@
 local map = require("utils").map
-local autocmd = require("utils").autocmd
 local fn = vim.fn
 
 local LSP = {}
@@ -37,12 +36,6 @@ function LSP.on_attach(client, bufnr)
   map(
     bufnr,
     "n",
-    "<space>ge",
-    "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>"
-  )
-  map(
-    bufnr,
-    "n",
     "<space>gr",
     "<cmd>lua require('plugins.lspconfig.utils').rename()<CR>"
   )
@@ -53,19 +46,9 @@ function LSP.on_attach(client, bufnr)
     bufnr,
     "n",
     "<space>gd",
-    "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false, border = 'single' })<CR>"
+    "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single' })<CR>"
   )
 
-  autocmd(
-    "CursorHold",
-    "<buffer>",
-    "lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false, border = 'single' })"
-  )
-
-  fn.sign_define("LspDiagnosticsSignError", { text = " " })
-  fn.sign_define("LspDiagnosticsSignWarning", { text = " " })
-  fn.sign_define("LspDiagnosticsSignInformation", { text = " " })
-  fn.sign_define("LspDiagnosticsSignHint", { text = " " })
   fn.sign_define(
     "DiagnosticSignError",
     { texthl = "DiagnosticError", text = " " }
