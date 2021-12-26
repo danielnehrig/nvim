@@ -1,7 +1,6 @@
 local M = {}
 
 function M.init()
-  local types = require("luasnip.util.types")
   require("luasnip.config").setup({
     history = true,
     updateevents = "TextChanged,TextChangedI",
