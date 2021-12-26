@@ -57,12 +57,6 @@ function M.mappings()
     [[ <Cmd>lua require("plugins.dap.attach"):addPlug(); require'dap'.toggle_breakpoint()<CR>]]
   )
 
-  -- compe: NOTE: Lazyloaded
-  remap("i", "<C-space>", "compe#complete()", true)
-  remap("i", "<C-e>", "compe#close('<C-e>')", true)
-  remap("i", "<C-f>", "compe#scroll({ delta: +4 })", true)
-  remap("i", "<C-d>", "compe#scroll({ delta: -4 })", true)
-
   -- gitlinker: NOTE: Lazyloaded
   remap(
     "n",
