@@ -25,6 +25,7 @@ local function init()
   local use = packer.use
 
   -- theme
+  use({ "lewis6991/impatient.nvim" })
   use({
     "windwp/windline.nvim",
     config = function()

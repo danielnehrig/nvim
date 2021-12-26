@@ -40,6 +40,7 @@ if not g.vscode then
 
   local pack = require("packer-config")
   pack.bootstrap()
+  require("impatient")
   pack.load_compile()
 
   opt.shadafile = ""
