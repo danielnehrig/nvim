@@ -38,7 +38,7 @@ function M.mappings()
   remap("n", "<Leader>fb", ":Telescope buffers<CR>")
   remap("n", "<Leader>fh", ":Telescope help_tags<CR>")
   remap("n", "<Leader>fo", ":Telescope oldfiles<CR>")
-  remap("n", "<Leader>fp", ":Telescope project<CR>")
+  remap("n", "<Leader>fp", ":Telescope projects<CR>")
   remap("n", "<Leader>fn", ":Telescope file_create<CR>")
 
   -- nvim tree NOTE: Lazyloaded

@@ -49,6 +49,8 @@ lspconfig.efm.setup({
     languages = {
       typescript = { prettier, eslint },
       typescriptreact = { prettier, eslint },
+      javascript = { prettier, eslint },
+      javascriptreact = { prettier, eslint },
       lua = { stylua },
       rust = { rustfmt },
       markdown = { dprint },
