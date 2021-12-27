@@ -397,26 +397,12 @@ local function init()
   })
   use({
     "tanvirtin/vgit.nvim",
-    event = "BufWinEnter",
+    disable = true,
     requires = {
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      -- local vgit = require("vgit")
-      -- local utils = require("vgit.utils")
-      require("vgit").setup({
-        controller = {
-          hunks_enabled = false,
-          blames_enabled = false,
-          diff_strategy = "index",
-          diff_preference = "horizontal",
-          predict_hunk_signs = false,
-          predict_hunk_throttle_ms = 300,
-          predict_hunk_max_lines = 50000,
-          blame_line_throttle_ms = 150,
-          action_delay_ms = 300,
-        },
-      })
+      require("vgit").setup()
     end,
   })
   use({
