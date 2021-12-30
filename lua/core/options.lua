@@ -53,7 +53,7 @@ function M.load_options()
 
   opt.mouse = "a" -- mouse on don't use mouse
 
-  opt.signcolumn = "auto" -- 2 sign column
+  opt.signcolumn = "auto:2" -- 2 sign column
   opt.cmdheight = 1 -- ex cmd height
   opt.guifont = "Fira Code Regular Nerd Font:h12" -- set font
   opt.showcmd = false -- disable showcmd keys bottom right
