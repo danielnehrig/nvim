@@ -5,6 +5,7 @@ M.__index = M
 -- and or if packer plugins are installed
 -- load configs for packer plugins
 M.init = function()
+  require("impatient").enable_profile()
   require("plugins.web-devicons").init()
   require("plugins.autopairs").init()
   require("plugins.treesitter").init()

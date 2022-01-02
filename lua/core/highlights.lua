@@ -52,9 +52,6 @@ cmd(
 cmd(
   "autocmd ColorScheme * highlight NormalFloat guifg=#fff guibg=none ctermbg=none"
 )
-cmd(
-  "autocmd ColorScheme * highlight FloatBorder guifg=#FF6111 guibg=none ctermbg=none"
-)
 cmd("autocmd ColorScheme * highlight PmenuSel guifg=#c14a4a guibg=#98c379")
 
 cmd("autocmd ColorScheme * highlight GitSignsChange ctermbg=none guibg=none")
