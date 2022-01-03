@@ -32,11 +32,19 @@ cmd(
 )
 cmd("autocmd ColorScheme * highlight EndOfBuffer guifg=#282c34")
 
-cmd("autocmd ColorScheme * highlight TelescopeBorder   guifg=#3e4451")
-cmd("autocmd ColorScheme * highlight TelescopePromptBorder   guifg=#3e4451")
-cmd("autocmd ColorScheme * highlight TelescopeResultsBorder  guifg=#3e4451")
+cmd("autocmd ColorScheme * highlight TelescopeBorder guibg=none ctermbg=none")
+cmd("autocmd ColorScheme * highlight TelescopeNormal guibg=none ctermbg=none")
+cmd(
+  "autocmd ColorScheme * highlight TelescopePromptBorder guibg=none ctermbg=none"
+)
+cmd(
+  "autocmd ColorScheme * highlight TelescopeResultsBorder  guibg=none ctermbg=none"
+)
 
-cmd("autocmd ColorScheme * highlight TelescopePreviewBorder  guifg=#525865")
+cmd(
+  "autocmd ColorScheme * highlight TelescopePreviewBorder  guibg=none ctermbg=none"
+)
+cmd("autocmd ColorScheme * highlight FloatBorder guibg=none ctermbg=none")
 
 -- tree folder name , icon color
 cmd("autocmd ColorScheme * highlight NvimTreeFolderIcon guifg = #61afef")
