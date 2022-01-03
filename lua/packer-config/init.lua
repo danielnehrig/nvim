@@ -15,6 +15,7 @@ local function init()
   packer = require("packer")
   packer.init({
     compile_path = packer_compiled,
+    max_jobs = 50,
     disable_commands = true,
     display = {
       open_fn = require("packer.util").float,
