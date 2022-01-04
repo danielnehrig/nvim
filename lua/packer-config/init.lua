@@ -399,7 +399,6 @@ local function init()
   })
   use({
     "tanvirtin/vgit.nvim",
-    disable = true,
     requires = {
       "nvim-lua/plenary.nvim",
     },
