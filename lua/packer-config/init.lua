@@ -403,7 +403,13 @@ local function init()
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      require("vgit").setup()
+      require("vgit").setup({
+        settings = {
+          live_gutter = {
+            enabled = false,
+          },
+        },
+      })
     end,
   })
   use({
