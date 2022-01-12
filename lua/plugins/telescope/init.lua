@@ -5,6 +5,7 @@ function M.init()
   vim.cmd([[packadd plenary.nvim]])
   vim.cmd([[packadd telescope-project.nvim]])
   vim.cmd([[packadd telescope-fzf-native.nvim]])
+  vim.cmd([[packadd telescope-file-browser.nvim]])
 
   local telescope = require("telescope")
   local action_set = require("telescope.actions.set")
