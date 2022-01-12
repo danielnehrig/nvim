@@ -55,6 +55,9 @@ function M.init()
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     },
     extensions = {
+      file_browser = {
+        theme = "ivy",
+      },
       fzf = {
         fuzzy = true,
         override_generic_sorter = true, -- override the generic sorter
@@ -77,6 +80,7 @@ function M.init()
   telescope.load_extension("projects")
   telescope.load_extension("dotfiles")
   telescope.load_extension("file_create")
+  telescope.load_extension("file_browser")
 end
 
 return M
