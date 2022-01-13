@@ -51,12 +51,6 @@ function M.init()
           cmp.select_prev_item()
         elseif luasnip and luasnip.jumpable(-1) then
           luasnip.jump(-1)
-        elseif check_back_space() then
-          vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes("<s-tab>", true, true, true),
-            "n",
-            true
-          )
         else
           fallback()
         end
@@ -84,12 +78,6 @@ function M.init()
               true
             )
           end
-        elseif check_back_space() then
-          vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes("<tab>", true, true, true),
-            "n",
-            true
-          )
         else
           fallback()
         end
