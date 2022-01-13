@@ -20,6 +20,7 @@ lspconfig.rust_analyzer.setup({
     end
     lsp.on_attach(client, bufnr)
   end,
+  cmd = { "rustup", "run", "nightly", "rust-analyzer" },
   ["rust-analyzer"] = {
     assist = {
       importGranularity = "module",
