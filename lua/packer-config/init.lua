@@ -3,8 +3,7 @@ local fn = vim.fn
 local global = require("core.global")
 local data_path = global.data_path
 local sep_os_replacer = require("utils").sep_os_replacer
-local packer_compiled = data_path .. "packer_compiled.vim"
-local compile_to_lua = data_path .. "lua" .. global.path_sep .. "_compiled.lua"
+local packer_compiled = data_path .. "packer_compiled.lua"
 
 local is_private = vim.fn.expand("$USER") == "dashie"
 
@@ -664,47 +663,14 @@ function plugins.bootstrap()
   end
 end
 
--- converts the compiled file to lua
-function plugins.convert_compile_file()
-  local lines = {}
-  local lnum = 1
-  lines[#lines + 1] = "vim.cmd [[packadd packer.nvim]]\n"
-  for line in io.lines(packer_compiled) do
-    lnum = lnum + 1
-    if lnum > 15 then
-      lines[#lines + 1] = line .. "\n"
-      if line == "END" then
-        break
-      end
-    end
-  end
-  table.remove(lines, #lines)
-  if fn.isdirectory(data_path .. "lua") ~= 1 then
-    os.execute("mkdir -p " .. data_path .. "lua")
-  end
-  if fn.filereadable(compile_to_lua) == 1 then
-    os.remove(compile_to_lua)
-  end
-  local file = io.open(compile_to_lua, "w")
-  for _, line in ipairs(lines) do
-    file:write(line)
-  end
-  file:close()
-
-  os.remove(packer_compiled)
-end
-
 -- autocompile function called by autocmd on packer complete
 function plugins.auto_compile()
   plugins.compile()
-  plugins.convert_compile_file()
 end
 
 -- loads the compiled packer file and sets the commands for packer
 function plugins.load_compile()
-  if fn.filereadable(compile_to_lua) == 1 then
-    require("_compiled")
-  else
+  if not fn.filereadable(packer_compiled) == 1 then
     assert(
       "Missing packer compile file Run PackerCompile Or PackerInstall to fix"
     )
