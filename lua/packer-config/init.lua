@@ -1,9 +1,9 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 local global = require("core.global")
-local data_path = global.data_path
+local vim_path = global.vim_path
 local sep_os_replacer = require("utils").sep_os_replacer
-local packer_compiled = data_path .. "packer_compiled.lua"
+local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 
 local is_private = vim.fn.expand("$USER") == "dashie"
 
@@ -13,7 +13,6 @@ local packer = nil
 local function init()
   packer = require("packer")
   packer.init({
-    compile_path = packer_compiled,
     max_jobs = 50,
     disable_commands = true,
     display = {
