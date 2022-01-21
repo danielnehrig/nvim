@@ -121,6 +121,7 @@ local function init()
     ft = { "javascript", "typescript", "lua" },
   }) -- code playground in buffer executed
   use({ "nvim-treesitter/nvim-treesitter" }) -- syntax highlight indent etc
+  use({ "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" })
   use({
     "danymat/neogen",
     cmd = { "DocGen" },

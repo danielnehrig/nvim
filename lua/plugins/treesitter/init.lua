@@ -47,6 +47,7 @@ function M.init()
     indent = {
       enable = true,
     },
+    yati = { enable = true },
     autotag = {
       enable = true,
     },
