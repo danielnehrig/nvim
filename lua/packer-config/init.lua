@@ -498,7 +498,12 @@ local function init()
     "alvan/vim-closetag",
     ft = { "html", "jsx", "tsx", "xhtml", "xml" },
   }) -- close <> tag for xhtml ... maybe remove because of TS tag
-  use({ "tpope/vim-surround" }) -- surround "" ''
+  use({
+    "blackCauldron7/surround.nvim",
+    config = function()
+      require("surround").setup({ mappings_style = "surround" })
+    end,
+  })
   use({
     "vimwiki/vimwiki",
     cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
