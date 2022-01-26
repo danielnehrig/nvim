@@ -84,7 +84,7 @@ function M.mappings()
   remap(
     "v",
     "<Leader>rt",
-    [[ <Cmd>lua require('plugins.refactoring').telescope()<CR>]]
+    [[<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]]
   )
 
   -- marker: NOTE: Lazyloaded

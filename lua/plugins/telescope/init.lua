@@ -3,6 +3,7 @@ M.__index = M
 
 function M.init()
   vim.cmd([[packadd plenary.nvim]])
+  vim.cmd([[packadd refactoring.nvim]])
   vim.cmd([[packadd telescope-project.nvim]])
   vim.cmd([[packadd telescope-fzf-native.nvim]])
   vim.cmd([[packadd telescope-file-browser.nvim]])
@@ -82,6 +83,7 @@ function M.init()
   telescope.load_extension("dotfiles")
   telescope.load_extension("file_create")
   telescope.load_extension("file_browser")
+  telescope.load_extension("refactoring")
 end
 
 return M
