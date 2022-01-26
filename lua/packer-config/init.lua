@@ -91,7 +91,7 @@ local function init()
     config = require("plugins.crates").init,
   }) -- rust crates info
   use({
-    "~/code/lua/github-ci.nvim",
+    "danielnehrig/github-ci.nvim",
     requires = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
     cmd = { "GithubCI" },
     config = function()
@@ -516,7 +516,7 @@ local function init()
       local high_str = require("high-str")
       high_str.setup({
         verbosity = 0,
-        saving_path = "/tmp/highstr/",
+        saving_path = "~/highstr/",
         highlight_colors = {
           -- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
           color_0 = { "#000000", "smart" }, -- Chartreuse yellow
@@ -564,7 +564,8 @@ local function init()
   }) -- like gitgutter shows hunks etc on sign column
   use({
     "tpope/vim-fugitive",
-    cmd = { "Git", "Gdiff", "Gblame", "Glog", "Git mergetool" },
+    disable = true,
+    cmd = { "Git", "Git mergetool" },
   }) -- git integration
   use({
     "TimUntersberger/neogit",
