@@ -190,7 +190,7 @@ basic.git = {
   },
   width = breakpoint_width,
   text = function()
-    if git_comps.is_git() then
+    if git_comps.is_git(0) then
       if not packer_plugins["neomake"].loaded then
         return {
           { helper.separators.slant_left, "septwo" },
@@ -219,7 +219,7 @@ basic.git = {
         }
       end
     end
-    if git_comps.is_git() then
+    if git_comps.is_git(0) then
       if packer_plugins["neomake"].loaded then
         return {
           { helper.separators.slant_left, "sep" },
@@ -342,7 +342,7 @@ basic.gh_num = {
   },
   width = breakpoint_width,
   text = function()
-    if git_comps.is_git() then
+    if git_comps.is_git(0) then
       local num = require("github-notifications").statusline_notification_count
       return {
         { " ", "spacer" },

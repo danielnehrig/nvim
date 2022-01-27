@@ -572,8 +572,8 @@ local function init()
     config = function()
       local neogit = require("neogit")
       neogit.setup({
-        disable_signs = true,
-        disable_hint = true,
+        disable_signs = false,
+        disable_hint = false,
       })
     end,
     requires = "nvim-lua/plenary.nvim",
