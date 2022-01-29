@@ -64,6 +64,14 @@ function M.init()
       enable_autocmd = true,
     },
     textobjects = {
+      lsp_interop = {
+        enable = true,
+        border = "none",
+        peek_definition_code = {
+          ["<leader>]f"] = "@function.outer",
+          ["<leader>]F"] = "@class.outer",
+        },
+      },
       swap = {
         enable = true,
         swap_next = {
@@ -99,19 +107,13 @@ function M.init()
       },
       select = {
         enable = true,
+        lookahead = true,
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
           ["af"] = "@function.outer",
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
           ["ic"] = "@class.inner",
-          -- Or you can define your own textobjects like this
-          --  ["iF"] = {
-          --  python = "(function_definition) @function",
-          --  cpp = "(function_definition) @function",
-          --  c = "(function_definition) @function",
-          --  java = "(method_declaration) @function",
-          --  },
         },
       },
     },
