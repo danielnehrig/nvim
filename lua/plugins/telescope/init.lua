@@ -57,6 +57,10 @@ function M.init()
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     },
     extensions = {
+      workspaces = {
+        -- keep insert mode after selection in the picker, default is false
+        keep_insert = true,
+      },
       file_browser = {
         theme = "ivy",
       },
@@ -78,8 +82,9 @@ function M.init()
     },
   })
   telescope.load_extension("fzf")
-  telescope.load_extension("project")
-  telescope.load_extension("projects")
+  -- telescope.load_extension("project")
+  -- telescope.load_extension("projects")
+  telescope.load_extension("workspaces")
   telescope.load_extension("dotfiles")
   telescope.load_extension("file_create")
   telescope.load_extension("file_browser")
