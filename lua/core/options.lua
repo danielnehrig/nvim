@@ -55,7 +55,7 @@ function M.load_options()
 
   opt.signcolumn = "auto:2" -- 2 sign column
   opt.cmdheight = 1 -- ex cmd height
-  opt.guifont = "Fira Code Regular Nerd Font:h12" -- set font
+  opt.guifont = "Fira Code Regular Nerd Font Complete:h12" -- set font
   opt.showcmd = false -- disable showcmd keys bottom right
   opt.showmode = false -- modes
   opt.autoread = true -- reload files changed other edit
