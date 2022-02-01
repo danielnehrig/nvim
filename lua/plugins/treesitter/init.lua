@@ -25,20 +25,6 @@ function M.init()
     },
   }
 
-  parser_config.jsdoc = {
-    install_info = {
-      url = "https://github.com/tree-sitter/tree-sitter-jsdoc",
-      revision = "master",
-      files = { "src/parser.c" },
-    },
-    filetype = {
-      "typescript",
-      "typescriptreact",
-      "javascript",
-      "javascriptreact",
-    },
-  }
-
   require("nvim-treesitter.configs").setup({
     -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
@@ -111,6 +97,8 @@ function M.init()
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
           ["af"] = "@function.outer",
+          ["aa"] = "@parameter.outer",
+          ["ia"] = "@parameter.inner",
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
           ["ic"] = "@class.inner",
