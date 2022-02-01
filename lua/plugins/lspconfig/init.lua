@@ -91,6 +91,7 @@ end
 
 -- LSP Settings
 function LSP.settings()
+  vim.diagnostic.config({ virtual_text = false })
   -- enable border for hover
   vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, {
