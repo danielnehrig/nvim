@@ -43,7 +43,7 @@ node: PackageManager = {
         ["dockerfile-language-server-nodejs", "docker-langserver"],
         ["dprint", "dprint"],
         ["pyright", "pyright"],
-        ["prettier_d_slim", "prettier_d_slim"],
+        ["@fsouza/prettierd", "prettierd"],
         ["eslint_d", "eslint_d"],
     ],
 }
