@@ -421,6 +421,7 @@ local function init()
   use({ "nathom/filetype.nvim" })
   use({
     "lukas-reineke/format.nvim",
+    disable = true,
     cmd = { "Format" },
     config = require("plugins.format").init,
   }) -- fallback formatter
