@@ -5,8 +5,6 @@ local vim_path = global.vim_path
 local sep_os_replacer = require("utils").sep_os_replacer
 local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 
-local is_private = vim.fn.expand("$USER") == "dashie"
-
 -- nil because packer is opt
 local packer = nil
 
@@ -185,9 +183,8 @@ local function init()
     config = function()
       require("lspkind").init({
         -- enables text annotations
-        --
+        mode = "symbol_text",
         -- default: true
-        with_text = true,
 
         -- default symbol map
         -- can be either 'default' (requires nerd-fonts font) or
