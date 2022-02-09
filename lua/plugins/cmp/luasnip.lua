@@ -21,6 +21,9 @@ function M.init()
     typescriptreact = {
       ls.parser.parse_snippet("cb", "($1) => {\n$0\n}"),
     },
+    rust = {
+      ls.parser.parse_snippet("cb", "|$1| {\n$0\n}"),
+    },
   }
   require("luasnip.config").setup({
     history = true,
