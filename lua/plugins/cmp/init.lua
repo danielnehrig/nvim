@@ -123,6 +123,7 @@ function M.init()
     -- preselect = cmp.PreselectMode.Item,
     sources = {
       { name = "nvim_lsp" },
+      { name = "nvim_lsp_signature_help" },
       { name = "luasnip" },
       { name = "path" },
       { name = "orgmode" },
