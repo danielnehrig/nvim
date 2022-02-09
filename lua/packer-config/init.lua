@@ -160,7 +160,8 @@ local function init()
   }) -- openapi preview
 
   -- completion
-  use({ "ray-x/lsp_signature.nvim", opt = true }) -- auto signature trigger
+  use({ "ray-x/lsp_signature.nvim", opt = true, disable = true }) -- auto signature trigger
+  use({ "hrsh7th/cmp-nvim-lsp-signature-help" }) -- auto signature trigger
   use({
     "folke/lsp-trouble.nvim",
     config = function()

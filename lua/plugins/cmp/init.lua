@@ -33,6 +33,14 @@ function M.init()
         require("luasnip").lsp_expand(args.body)
       end,
     },
+    window = {
+      completion = {
+        border = "rounded",
+      },
+      documentation = {
+        border = "rounded",
+      },
+    },
     completion = {
       completeopt = "menu,menuone,noselect,noinsert",
       keyword_length = 1,
@@ -80,6 +88,28 @@ function M.init()
         "i",
         "s",
         "c",
+      }),
+      ["<C-x><C-o>"] = cmp.mapping(function(_)
+        cmp.complete({
+          config = {
+            sources = {
+              { name = "nvim_lsp" },
+            },
+          },
+        })
+      end, {
+        "i",
+      }),
+      ["<C-x><C-s>"] = cmp.mapping(function(_)
+        cmp.complete({
+          config = {
+            sources = {
+              { name = "luasnip" },
+            },
+          },
+        })
+      end, {
+        "i",
       }),
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
