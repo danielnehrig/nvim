@@ -5,7 +5,7 @@ local vim_path = global.vim_path
 local sep_os_replacer = require("utils").sep_os_replacer
 local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 
--- nil because packer is opt
+-- nil some packer is opt
 local packer = nil
 
 local function init()
@@ -126,7 +126,7 @@ local function init()
     config = require("plugins.neogen").init,
     requires = "nvim-treesitter/nvim-treesitter",
   })
-  use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- coment out code
+  use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- comment out code
   use({
     "winston0410/commented.nvim",
     keys = { "<space>cc" },
@@ -265,6 +265,7 @@ local function init()
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "f3fora/cmp-spell" },
+      { "f3fora/cmp-nuspell", rocks = { "lua-nuspell" } },
       { "saadparwaiz1/cmp_luasnip" },
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets" },
