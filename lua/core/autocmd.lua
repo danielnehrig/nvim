@@ -33,7 +33,7 @@ function M.autocmds()
     ft = {
       {
         "FileType",
-        "markdown,org,txt",
+        "markdown,org,txt,tex",
         "lua vim.wo.spell = true",
       },
       {
