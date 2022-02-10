@@ -22,7 +22,7 @@ class PackageManager(TypedDict):
     # cli tool name (package manager name)
     cli_tool: str
     # index[0] is the package name index[1] is the bin name in path
-    packages: list[list[str]]
+    packages: list[list[str | None]]
     # the mode key is the internal compression check for behaviour in doing cli commands
     # on a package manager and the value is the command passed to the package manager
     modes: Modes
@@ -85,6 +85,9 @@ yay: PackageManager = {
         "update": "--save --answerclean=All --answerdiff=None -Yu",
     },
     "packages": [
+        ["nuspell", "nuspell"],
+        ["hunspell-en_us", None],
+        ["hunspell-de", None],
         ["jdtls", "jdtls"],
         ["groovy-language-server", "groovy-language-server"],
         ["dotnet-sdk", "dotnet"],
@@ -204,7 +207,10 @@ def install_cli_packages(package_manager: PackageManager):
             package_manager["cli_tool"], package_manager["modes"][mode], package[0]
         )
         try:
-            inPath = in_path(package[1])
+            if package[1]:
+                inPath = in_path(package[1])
+            else:
+                inPath = False
             isForce = mode == 'update' and True or False
             for _, option in enumerate(sys.argv):
                 if option == "--force":
