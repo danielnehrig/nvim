@@ -162,11 +162,11 @@ local function init()
   use({ "ray-x/lsp_signature.nvim", opt = true, disable = true }) -- auto signature trigger
   use({ "hrsh7th/cmp-nvim-lsp-signature-help" }) -- auto signature trigger
   use({
-    "folke/lsp-trouble.nvim",
+    "folke/trouble.nvim",
     config = function()
       require("trouble").setup()
     end,
-    cmd = { "LspTrouble" },
+    cmd = { "Trouble" },
     requires = "kyazdani42/nvim-web-devicons",
   }) -- window for showing LSP detected issues in code
   use({
