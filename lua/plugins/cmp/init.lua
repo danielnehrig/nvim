@@ -30,7 +30,7 @@ function M.init()
     snippet = {
       expand = function(args)
         -- For `luasnip` user.
-        require("luasnip").lsp_expand(args.body)
+        luasnip.lsp_expand(args.body)
       end,
     },
     window = {
@@ -67,19 +67,10 @@ function M.init()
           cmp.select_next_item()
         elseif luasnip and luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
-        elseif packer_plugins["neogen"].loaded then
+        elseif packer_plugins["neogen"] and packer_plugins["neogen"].loaded then
           local neogen = require("neogen")
           if neogen.jumpable() then
-            vim.api.nvim_feedkeys(
-              vim.api.nvim_replace_termcodes(
-                "<cmd>lua require('neogen').jump_next()<CR>",
-                true,
-                true,
-                true
-              ),
-              "",
-              true
-            )
+            neogen.jump_next()
           end
         else
           fallback()
@@ -101,6 +92,17 @@ function M.init()
         "i",
       }),
       ["<C-x><C-s>"] = cmp.mapping(function(_)
+        cmp.complete({
+          config = {
+            sources = {
+              { name = "spell" },
+            },
+          },
+        })
+      end, {
+        "i",
+      }),
+      ["<C-x><C-j>"] = cmp.mapping(function(_)
         cmp.complete({
           config = {
             sources = {

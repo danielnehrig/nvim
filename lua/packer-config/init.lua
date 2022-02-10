@@ -28,8 +28,8 @@ local function init()
     config = function()
       require("plugins.statusline.windline")
     end,
-  }) -- statusline
-  use({ "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" }) -- bufferline
+  }) -- Statusline
+  use({ "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" }) -- Bufferline
   use({
     "norcalli/nvim-colorizer.lua",
     ft = {
@@ -78,7 +78,7 @@ local function init()
       vim.cmd([[colorscheme gruvqueen]])
       require("core.highlights")
     end,
-  }) -- colorscheme
+  }) -- Color scheme
 
   -- language
   use({ "mfussenegger/nvim-jdtls", opt = true })
@@ -264,6 +264,7 @@ local function init()
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
+      { "f3fora/cmp-spell" },
       { "saadparwaiz1/cmp_luasnip" },
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets" },
