@@ -32,6 +32,11 @@ function M.autocmds()
   local definitions = {
     ft = {
       {
+        "FileType",
+        "markdown,org,txt",
+        "lua vim.wo.spell = true",
+      },
+      {
         "CursorHold",
         "*",
         "lua vim.diagnostic.open_float({focusable = false, focus = false, border = 'single' })",
@@ -75,23 +80,23 @@ function M.autocmds()
         "set showtabline=2",
       }, -- renable it
     },
-    ScrollbarInit = {
-      {
-        "CursorMoved,VimResized,QuitPre",
-        "*",
-        "silent! lua require('scrollbar').show()",
-      },
-      {
-        "WinEnter,FocusGained",
-        "*",
-        "silent! lua require('scrollbar').show()",
-      },
-      {
-        "WinLeave,BufLeave,BufWinLeave,FocusLost",
-        "*",
-        "silent! lua require('scrollbar').clear()",
-      },
-    },
+    --  ScrollbarInit = {
+    --  {
+    --  "CursorMoved,VimResized,QuitPre",
+    --  "*",
+    --  "silent! lua require('scrollbar').show()",
+    --  },
+    --  {
+    --  "WinEnter,FocusGained",
+    --  "*",
+    --  "silent! lua require('scrollbar').show()",
+    --  },
+    --  {
+    --  "WinLeave,BufLeave,BufWinLeave,FocusLost",
+    --  "*",
+    --  "silent! lua require('scrollbar').clear()",
+    --  },
+    --  },
     lsp = {
       {
         "DirChanged",
