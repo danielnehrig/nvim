@@ -91,14 +91,14 @@ function M.load_options()
   o.foldtext =
     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
   wo.foldexpr = "nvim_treesitter#foldexpr()"
-  --wo.fillchars = "fold:\\"
+  wo.fillchars = "fold:\\"
   opt.fillchars:append({ eob = " " }) -- disable eob marker for dashboard asthetics
   opt.fillchars:append("fold:•")
   opt.fillchars:append("foldopen:-")
   opt.fillchars:append("foldclose:+")
   wo.foldnestmax = 3
   wo.foldminlines = 1
-  opt.foldcolumn = "1"
+  opt.foldcolumn = "auto:3"
 
   -- scroller
   vim.g.scrollbar_shape = {
@@ -106,6 +106,22 @@ function M.load_options()
     body = "▎",
     tail = "▎",
   }
+end
+
+M.fold_column_toggle = function()
+  if wo.foldcolumn ~= "0" then
+    opt.foldcolumn = "0"
+  else
+    opt.foldcolumn = "auto:3"
+  end
+end
+
+M.number_position_toggle = function()
+  if wo.relativenumber then
+    opt.relativenumber = false
+  else
+    opt.relativenumber = true
+  end
 end
 
 return M

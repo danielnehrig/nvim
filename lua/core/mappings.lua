@@ -111,6 +111,18 @@ function M.mappings()
 
   -- neogen
   remap("n", "<Leader>nf", ":DocGen<CR>")
+
+  -- utility binds
+  vim.keymap.set({ "n" }, "<leader>uf", function()
+    require("core.options").fold_column_toggle()
+  end, {
+    silent = true,
+  })
+  vim.keymap.set({ "n" }, "<leader>un", function()
+    require("core.options").number_position_toggle()
+  end, {
+    silent = true,
+  })
 end
 
 return M
