@@ -143,9 +143,8 @@ local function init()
   use({ "RRethy/nvim-treesitter-textsubjects" })
   use({
     "lewis6991/spellsitter.nvim",
-    disable = true,
     config = function()
-      require("spellsitter").setup({ captures = { "comment" } })
+      require("spellsitter").setup({ enable = true, captures = { "comment" } })
     end,
   }) -- spell check treesitter based
   use({
