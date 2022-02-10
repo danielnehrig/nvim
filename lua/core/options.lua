@@ -66,7 +66,7 @@ function M.load_options()
 
   opt.updatetime = 60 -- update interval for gitsigns
   opt.inccommand = "nosplit"
-  opt.incsearch = false
+  opt.incsearch = true
   opt.timeoutlen = 500
   opt.clipboard = "unnamedplus" -- clipboard yank
   opt.wildmenu = true

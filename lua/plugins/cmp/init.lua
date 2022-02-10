@@ -133,6 +133,9 @@ function M.init()
   })
 
   cmp.setup.cmdline("/", {
+    view = {
+      entries = { name = "wildmenu", separator = "|" },
+    },
     sources = {
       { name = "buffer" },
     },
