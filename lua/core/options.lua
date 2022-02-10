@@ -83,8 +83,8 @@ function M.load_options()
   opt.shiftwidth = 2
 
   -- spell
-  -- opt.spelllang = "en,de"
-  -- opt.spell = true
+  opt.spelllang = "en,de"
+  opt.spell = false
 
   -- fold settings
   wo.foldmethod = "expr"
@@ -109,19 +109,15 @@ function M.load_options()
 end
 
 M.fold_column_toggle = function()
-  if wo.foldcolumn ~= "0" then
-    opt.foldcolumn = "0"
-  else
-    opt.foldcolumn = "auto:3"
-  end
+  wo.foldcolumn = wo.foldcolumn == "0" and "auto:3" or "0"
 end
 
 M.number_position_toggle = function()
-  if wo.relativenumber then
-    opt.relativenumber = false
-  else
-    opt.relativenumber = true
-  end
+  wo.relativenumber = not wo.relativenumber
+end
+
+M.spell_toggle = function()
+  wo.spell = not wo.spell
 end
 
 return M

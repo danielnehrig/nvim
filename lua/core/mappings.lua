@@ -113,14 +113,23 @@ function M.mappings()
   remap("n", "<Leader>nf", ":DocGen<CR>")
 
   -- utility binds
-  vim.keymap.set({ "n" }, "<leader>uf", function()
-    require("core.options").fold_column_toggle()
-  end, {
-    silent = true,
-  })
-  vim.keymap.set({ "n" }, "<leader>un", function()
-    require("core.options").number_position_toggle()
-  end, {
+  vim.keymap.set(
+    { "n" },
+    "<leader>uf",
+    require("core.options").fold_column_toggle,
+    {
+      silent = true,
+    }
+  )
+  vim.keymap.set(
+    { "n" },
+    "<leader>un",
+    require("core.options").number_position_toggle,
+    {
+      silent = true,
+    }
+  )
+  vim.keymap.set({ "n" }, "<leader>us", require("core.options").spell_toggle, {
     silent = true,
   })
 end
