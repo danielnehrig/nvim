@@ -123,12 +123,15 @@ function M.mappings()
   )
   vim.keymap.set(
     { "n" },
-    "<leader>un",
-    require("core.options").number_position_toggle,
+    "<leader>ur",
+    require("core.options").relative_position_toggle,
     {
       silent = true,
     }
   )
+  vim.keymap.set({ "n" }, "<leader>un", require("core.options").number_toggle, {
+    silent = true,
+  })
   vim.keymap.set({ "n" }, "<leader>us", require("core.options").spell_toggle, {
     silent = true,
   })

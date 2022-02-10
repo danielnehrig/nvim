@@ -112,8 +112,14 @@ M.fold_column_toggle = function()
   wo.foldcolumn = wo.foldcolumn == "0" and "auto:3" or "0"
 end
 
-M.number_position_toggle = function()
+M.relative_position_toggle = function()
   wo.relativenumber = not wo.relativenumber
+  wo.number = not wo.relativenumber
+end
+
+M.number_toggle = function()
+  wo.number = not wo.number
+  wo.relativenumber = wo.number
 end
 
 M.spell_toggle = function()
