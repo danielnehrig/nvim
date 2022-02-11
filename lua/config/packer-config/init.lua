@@ -723,6 +723,9 @@ function plugins.load_compile()
   vim.cmd(
     [[autocmd User PackerComplete lua require('config.packer-config').auto_compile()]]
   )
+  vim.cmd(
+    "autocmd User PackerCompileDone lua require('config.core.global'):reload()"
+  )
 end
 
 return plugins
