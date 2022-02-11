@@ -9,7 +9,6 @@ local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 local packer = nil
 
 local function init()
-  local test = "424"
   packer = require("packer")
   packer.init({
     max_jobs = 50,
@@ -501,6 +500,26 @@ local function init()
   }) -- better wild menu
   use({
     "rcarriga/nvim-notify",
+    config = function()
+      local notify = require("notify")
+      notify.setup({
+        -- Animation style (see below for details)
+        -- stages = "fade",
+        -- Default timeout for notifications
+        timeout = 3000,
+        -- For stages that change opacity this is treated as the highlight behind the window
+        background_colour = "NotifyBG",
+        -- Icons for the different levels
+        icons = {
+          ERROR = "",
+          WARN = "",
+          INFO = "",
+          DEBUG = "",
+          TRACE = "✎",
+        },
+      })
+      vim.notify = notify
+    end,
     opt = true,
   }) -- notication pop up
   use({
@@ -721,14 +740,6 @@ function plugins.load_compile()
   vim.cmd([[command! PackerClean lua require('config.packer-config').clean()]])
   vim.cmd(
     [[command! PackerStatus  lua require('config.packer-config').status()]]
-  )
-
-  -- autocompile event
-  vim.cmd(
-    [[autocmd User PackerComplete lua require('config.packer-config').auto_compile()]]
-  )
-  vim.cmd(
-    "autocmd User PackerCompileDone lua require('config.core.global'):reload()"
   )
 end
 

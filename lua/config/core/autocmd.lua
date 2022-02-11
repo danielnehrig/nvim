@@ -9,6 +9,16 @@ function M.autocmds()
         "*.lua",
         "lua require('config.core.global'):reload()",
       },
+      {
+        "User",
+        "PackerCompileDone",
+        "lua require('config.core.global'):reload()",
+      },
+      {
+        "User",
+        "PackerComplete",
+        "lua require('config.packer-config').auto_compile()",
+      },
     },
     ft = {
       {

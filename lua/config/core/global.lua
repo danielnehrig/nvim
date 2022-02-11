@@ -31,7 +31,7 @@ function global:reload()
   end
   vim.cmd("luafile " .. vim.env.MYVIMRC)
   vim.cmd("doautocmd VimEnter")
-  vim.notify("RELOADED")
+  vim.notify("Config Reload", "success", { title = "Reload" })
 end
 
 return global

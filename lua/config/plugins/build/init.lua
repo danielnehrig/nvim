@@ -44,6 +44,7 @@ function Make.Report()
         TRACE = "✎",
       },
     })
+    vim.notify = notify
   end
   if info.exit_code == 0 then
     notify(info.maker.name .. " Finished Successfully", "success", opt)
@@ -88,22 +89,22 @@ function Make.init()
       {
         "User",
         "NeomakeJobFinished",
-        "lua require('plugins.build'):Finished()",
+        "lua require('config.plugins.build'):Finished()",
       },
       {
         "User",
         "NeomakeJobFinished",
-        "lua require('plugins.build').Report()",
+        "lua require('config.plugins.build').Report()",
       },
       {
         "User",
         "NeomakeJobStarted",
-        "lua require('plugins.build'):Start()",
+        "lua require('config.plugins.build'):Start()",
       },
       {
         "User",
         "NeomakeJobStarted",
-        "lua require('plugins.build').Report()",
+        "lua require('config.plugins.build').Report()",
       },
     },
   }
