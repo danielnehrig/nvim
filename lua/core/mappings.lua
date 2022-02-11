@@ -113,7 +113,7 @@ function M.mappings()
   remap("n", "<Leader>nf", ":DocGen<CR>")
 
   -- utility binds
-  if vim.version().minor == 7 then
+  if vim.version().minor >= 7 then
     vim.keymap.set(
       { "n" },
       "<leader>uf",
