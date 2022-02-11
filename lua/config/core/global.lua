@@ -30,7 +30,6 @@ function global:reload()
     end
   end
   vim.cmd("luafile " .. vim.env.MYVIMRC)
-  vim.cmd([[LspRestart]])
   vim.cmd("doautocmd VimEnter")
   vim.notify("RELOADED")
 end
