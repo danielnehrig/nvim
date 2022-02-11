@@ -385,6 +385,9 @@ local function init()
 
   -- quality of life
   use({
+    "p00f/cphelper.nvim",
+  })
+  use({
     "anuvyklack/pretty-fold.nvim",
     config = function()
       require("pretty-fold").setup({ remove_fold_markers = false })
@@ -594,7 +597,7 @@ local function init()
     config = function()
       local neogit = require("neogit")
       neogit.setup({
-        disable_signs = false,
+        disable_signs = true,
         disable_hint = false,
       })
     end,
