@@ -14,9 +14,8 @@ function M.mappings()
   remap("i", "jj", "<ESC>") -- normal mode map
 
   -- quickfix
-  remap("n", "<Leader>qo", "<Cmd>lua require('config.utils').toggle_qf()<CR>")
+  remap("n", "<Leader>qo", ":lua require('config.utils').toggle_qf()<CR>")
   remap("n", "<Leader>qn", ":cnext<CR>")
-  remap("n", "<Leader>qo", ":copen<CR>")
   remap("n", "<Leader>qp", ":cprev<CR>")
 
   -- locationlist
