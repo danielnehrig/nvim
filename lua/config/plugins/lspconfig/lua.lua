@@ -3,7 +3,7 @@ local globals = require("config.core.global")
 local sep_os_replacer = require("config.utils").sep_os_replacer
 local sumneko_root_path = sep_os_replacer(globals.lsp_path .. "/lua")
 local sumneko_binary = vim.fn.expand(
-  sumneko_root_path .. "/bin/" .. globals.sumenko_os .. "/lua-language-server"
+  sumneko_root_path .. "/bin/lua-language-server"
 )
 local lsp = require("config.plugins.lspconfig")
 local lspconfig = require("lspconfig")
