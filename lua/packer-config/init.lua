@@ -265,7 +265,7 @@ local function init()
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "f3fora/cmp-spell" },
-      { "f3fora/cmp-nuspell", rocks = { "lua-nuspell" } },
+      -- { "f3fora/cmp-nuspell", rocks = { "lua-nuspell" } },
       { "saadparwaiz1/cmp_luasnip" },
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets" },

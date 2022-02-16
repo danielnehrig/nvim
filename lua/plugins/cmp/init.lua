@@ -95,8 +95,8 @@ function M.init()
         cmp.complete({
           config = {
             sources = {
-              -- { name = "spell" },
-              { name = "nuspell" },
+              { name = "spell" },
+              -- { name = "nuspell" },
             },
           },
         })
