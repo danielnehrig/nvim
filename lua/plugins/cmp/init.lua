@@ -125,8 +125,9 @@ function M.init()
     },
     -- preselect = cmp.PreselectMode.Item,
     sources = {
-      { name = "nvim_lsp" },
       { name = "nvim_lsp_signature_help" },
+      { name = "nvim_lsp" },
+      { name = "cmp_tabnine" },
       { name = "luasnip" },
       { name = "path" },
       { name = "orgmode" },
@@ -134,9 +135,6 @@ function M.init()
   })
 
   cmp.setup.cmdline("/", {
-    view = {
-      entries = { name = "wildmenu", separator = "|" },
-    },
     sources = {
       { name = "buffer" },
     },
@@ -152,6 +150,19 @@ function M.init()
 
   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+  local tabnine = require("cmp_tabnine.config")
+  tabnine:setup({
+    max_lines = 1000,
+    max_num_results = 20,
+    sort = true,
+    run_on_every_keystroke = true,
+    snippet_placeholder = "..",
+    ignored_file_types = { -- default is not to ignore
+      -- uncomment to ignore in lua:
+      -- lua = true
+    },
+  })
 end
 
 return M

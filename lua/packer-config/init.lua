@@ -252,6 +252,11 @@ local function init()
     },
   }) -- default configs for lsp and setup lsp
   use({
+    "tzachar/cmp-tabnine",
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+  })
+  use({
     "hrsh7th/nvim-cmp",
     branch = "dev",
     config = require("plugins.cmp").init,
