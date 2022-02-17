@@ -1,4 +1,5 @@
 local cmd = vim.cmd
+local globals = require("config.core.global")
 local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
 local M = {}
 
@@ -55,7 +56,11 @@ function M.load_options()
 
   opt.signcolumn = "auto:2" -- 2 sign column
   opt.cmdheight = 1 -- ex cmd height
-  vim.o.guifont = "Fira Code Regular Nerd Font Complete Mono:h12" -- set font
+  if globals.is_darwin then
+    vim.o.guifont = "FiraCode Nerd Font Mono:h12" -- set font
+  else
+    vim.o.guifont = "Fira Code Regular Nerd Font Complete Mono:h12" -- set font
+  end
   opt.showcmd = false -- disable showcmd keys bottom right
   opt.showmode = false -- modes
   opt.autoread = true -- reload files changed other edit
