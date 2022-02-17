@@ -227,11 +227,6 @@ local function init()
     end,
   }) -- lsp extensions stuff
   use({
-    "weilbith/nvim-code-action-menu",
-    cmd = "CodeActionMenu",
-    keys = { "<space>gf" },
-  }) -- code actions menu
-  use({
     "jghauser/mkdir.nvim",
     config = function()
       require("mkdir")
