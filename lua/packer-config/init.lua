@@ -253,6 +253,7 @@ local function init()
   }) -- default configs for lsp and setup lsp
   use({
     "hrsh7th/nvim-cmp",
+    branch = "dev",
     config = require("plugins.cmp").init,
     requires = {
       { "hrsh7th/cmp-cmdline" },
