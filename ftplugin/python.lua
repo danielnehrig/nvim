@@ -1,6 +1,6 @@
-local global = require("core.global")
-local remap = require("utils").map_global
-local sep_os_replacer = require("utils").sep_os_replacer
+local global = require("config.core.global")
+local remap = require("config.utils").map_global
+local sep_os_replacer = require("config.utils").sep_os_replacer
 
 local init = false
 _G.load_py_dap = function()
