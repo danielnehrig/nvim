@@ -32,7 +32,7 @@ function M.mappings()
   remap(
     "n",
     "<Leader>ff",
-    "<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 theme=ivy<CR>"
+    "<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>"
   )
   remap("n", "<Leader>fg", ":Telescope live_grep theme=dropdown<CR>")
   remap("n", "<Leader>fb", ":Telescope file_browser<CR>")
