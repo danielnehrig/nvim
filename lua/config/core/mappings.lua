@@ -33,9 +33,10 @@ function M.mappings()
     "<Leader>ff",
     "<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>"
   )
-  remap("n", "<Leader>fg", ":Telescope live_grep<CR>")
+  remap("n", "<Leader>fg", ":Telescope live_grep theme=dropdown<CR>")
   remap("n", "<Leader>fb", ":Telescope file_browser<CR>")
-  remap("n", "<Leader>fj", ":Telescope git_status<CR>")
+  remap("n", "<Leader>gf", ":Telescope lsp_code_actions theme=cursor<CR>")
+  remap("n", "<Leader>fs", ":Telescope git_status<CR>")
   --remap("n", "<Leader>fb", ":Telescope buffers<CR>")
   remap("n", "<Leader>fh", ":Telescope help_tags<CR>")
   remap("n", "<Leader>fo", ":Telescope oldfiles<CR>")

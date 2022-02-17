@@ -227,11 +227,6 @@ local function init()
     end,
   }) -- lsp extensions stuff
   use({
-    "weilbith/nvim-code-action-menu",
-    cmd = "CodeActionMenu",
-    keys = { "<space>gf" },
-  }) -- code actions menu
-  use({
     "jghauser/mkdir.nvim",
     config = function()
       require("mkdir")
@@ -257,15 +252,21 @@ local function init()
     },
   }) -- default configs for lsp and setup lsp
   use({
+    "tzachar/cmp-tabnine",
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+  })
+  use({
     "hrsh7th/nvim-cmp",
     config = require("config.plugins.cmp").init,
+    branch = "dev",
     requires = {
       { "hrsh7th/cmp-cmdline" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "f3fora/cmp-spell" },
-      { "f3fora/cmp-nuspell", rocks = { "lua-nuspell" } },
+      -- { "f3fora/cmp-nuspell", rocks = { "lua-nuspell" } },
       { "saadparwaiz1/cmp_luasnip" },
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets" },
@@ -545,6 +546,7 @@ local function init()
   }) -- close <> tag for xhtml ... maybe remove because of TS tag
   use({
     "blackCauldron7/surround.nvim",
+    disable = true,
     config = function()
       require("surround").setup({ mappings_style = "surround" })
     end,
