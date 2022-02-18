@@ -8,8 +8,6 @@ function M.load_options()
     g.neovide_cursor_vfx_mode = "railgun"
   end
   opt.shadafile = "NONE"
-  -- activate line numbers
-  -- TODO: make toggle for pair programming
   opt.number = true -- enable numbers
   opt.relativenumber = true -- enable numbers to be relative
 
@@ -57,7 +55,7 @@ function M.load_options()
   opt.signcolumn = "auto:2" -- 2 sign column
   opt.cmdheight = 1 -- ex cmd height
   if globals.is_darwin then
-    vim.o.guifont = "FiraCode Nerd Font Mono:h12" -- set font
+    vim.o.guifont = "FiraCode Nerd Font Mono:h16" -- set font
   else
     vim.o.guifont = "Fira Code Regular Nerd Font Complete Mono:h12" -- set font
   end

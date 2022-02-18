@@ -68,7 +68,7 @@ function M.reinit()
       cmd = {
         sumneko_binary,
         "-E",
-        sep_os_replacer(sumneko_root_path .. "/main.lua"),
+        sep_os_replacer(sumneko_root_path .. "/bin/main.lua"),
       },
       settings = {
         Lua = {
