@@ -149,6 +149,22 @@ function M.init()
     }),
   })
 
+  cmp.setup.filetype("gitcommit", {
+    sources = cmp.config.sources({
+      { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = "buffer" },
+    }),
+  })
+
+  cmp.setup.filetype("FineCmdlinePrompt", {
+    sources = cmp.config.sources({
+      { name = "path" }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = "cmdline" },
+    }),
+  })
+
   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
