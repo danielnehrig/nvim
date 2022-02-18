@@ -21,7 +21,7 @@ function Debug:addPlug()
     self.dap = require("dap")
     self.mappings()
 
-    require("plugins.dap")
+    require("config.plugins.dap")
   end
 end
 

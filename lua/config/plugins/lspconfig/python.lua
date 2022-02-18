@@ -5,8 +5,11 @@ local capabilities =
 
 local config = {
   capabilities = capabilities,
-  settings = lspconfig.pyright.settings,
+  settings = vim.tbl_extend("keep", { lspconfig.pyright.settings }, {
+    rootMarkers = { "package.json", "go.mod", ".git/", ".zshrc" },
+  }),
   flags = { debounce_text_changes = 500 },
+  root_dir = require("lspconfig/util").root_pattern(),
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     lsp.on_attach(client, bufnr)
