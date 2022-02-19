@@ -22,8 +22,11 @@ function M.init()
           path = "[Path]",
           cmp_tabnine = "[TabNine]",
           nvim_lsp = "[LSP]",
+          spell = "[Spell]",
+          cmdline = "[CMD]",
+          cmp_git = "[GIT]",
           luasnip = "[LuaSnip]",
-          nvim_lua = "[Lua]",
+          nvim_lua = "[NLua]",
         })[entry.source.name]
         return vim_item
       end,
@@ -157,7 +160,7 @@ function M.init()
     }),
   })
 
-  cmp.setup.filetype("FineCmdlinePrompt", {
+  cmp.setup.filetype("fineline", {
     sources = cmp.config.sources({
       { name = "path" }, -- You can specify the `cmp_git` source if you were installed it.
     }, {

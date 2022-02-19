@@ -439,7 +439,7 @@ local function init()
         popup = {
           buf_options = {
             -- Setup a special file type if you need to
-            filetype = "FineCmdlinePrompt",
+            filetype = "fineline",
           },
         },
         hooks = {
