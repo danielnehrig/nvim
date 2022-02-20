@@ -487,7 +487,7 @@ windline.setup({
     -- ADD MORE COLOR HERE ----
     colors.FilenameFg = colors.white_light
     colors.FilenameBg = colors.black_light
-    colors.transparent = "#000000" -- have to change this back once figured why on nightly this brakes when set to none
+    colors.transparent = "none"
     colors.grey = "#3d3d3d"
     colors.orange = "#d8a657"
     colors.debug_yellow = "#eae611"
