@@ -14,7 +14,7 @@ function M.load_options()
   -- completion menu settings
   opt.completeopt = "menu,menuone,noselect,noinsert" -- completion behaviour
   opt.omnifunc = "v:lua.vim.lsp.omnifunc" -- completion omnifunc
-  opt.list = true
+  opt.list = false
   opt.listchars:append("eol:↴")
 
   -- Set so that folders are index for find command
