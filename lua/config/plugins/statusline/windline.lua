@@ -488,7 +488,9 @@ windline.setup({
     colors.FilenameFg = colors.white_light
     colors.FilenameBg = colors.black_light
     colors.transparent = "none"
-    colors.grey = "#3d3d3d"
+    colors.grey = "#2a203a"
+    colors.dark_red = "#8a2f8e"
+    colors.dark_green = "#2f8e60"
     colors.orange = "#d8a657"
     colors.debug_yellow = "#eae611"
     colors.debug_red = "#ff6902"
