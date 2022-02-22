@@ -7,12 +7,12 @@ function M.autocmds()
       {
         "BufWritePost",
         "*.lua",
-        "lua require('config.core.global'):reload()",
+        "lua require('config.core.global').reload()",
       },
       {
         "User",
         "PackerCompileDone",
-        "lua require('config.core.global'):reload()",
+        "lua require('config.core.global').reload()",
       },
       {
         "User",

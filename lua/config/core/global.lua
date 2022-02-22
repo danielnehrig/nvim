@@ -23,8 +23,8 @@ end
 
 global:load_variables()
 
-function global:reload()
-  for k, v in pairs(package.loaded) do
+function global.reload()
+  for k, _ in pairs(package.loaded) do
     if string.match(k, "^config") then
       package.loaded[k] = nil
     end

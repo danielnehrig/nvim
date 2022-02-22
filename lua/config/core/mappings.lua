@@ -115,7 +115,7 @@ function M.mappings()
   -- utility binds
   if vim.version().minor > 6 then
     vim.keymap.set({ "n" }, "<leader>r", function()
-      require("config.core.global"):reload()
+      require("config.core.global").reload()
     end, {
       silent = false,
     })

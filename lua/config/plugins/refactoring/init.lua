@@ -31,7 +31,7 @@ function M.extract_to_file()
   refactoring.refactor("Extract Function To File")
 end
 
-local function refactor(prompt_bufnr)
+function M.refactor(prompt_bufnr)
   local refactoring = require("refactoring")
   local content = require("telescope.actions.state").get_selected_entry()
   require("telescope.actions").close(prompt_bufnr)

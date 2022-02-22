@@ -425,7 +425,7 @@ local function init()
     "VonHeikemen/fine-cmdline.nvim",
     config = function()
       local fineline = require("fine-cmdline")
-      local fn = fineline.fn
+      local fno = fineline.fn
 
       fineline.setup({
         cmdline = {
@@ -443,14 +443,14 @@ local function init()
           },
         },
         hooks = {
-          set_keymaps = function(imap, feedkeys)
+          set_keymaps = function(imap, _)
             -- Restore default keybindings...
             -- Except for `<Tab>`, that's what everyone uses to autocomplete
-            imap("<Esc>", fn.close)
-            imap("<C-c>", fn.close)
+            imap("<Esc>", fno.close)
+            imap("<C-c>", fno.close)
 
-            imap("<Up>", fn.up_search_history)
-            imap("<Down>", fn.down_search_history)
+            imap("<Up>", fno.up_search_history)
+            imap("<Down>", fno.down_search_history)
           end,
         },
       })
