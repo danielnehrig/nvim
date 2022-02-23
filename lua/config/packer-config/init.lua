@@ -294,54 +294,13 @@ local function init()
     end,
   })
   use({
-    "natecraddock/workspaces.nvim",
-    config = function()
-      -- code
-      require("workspaces").setup({
-        hooks = {
-          open_pre = {
-            -- If recording, save current session state and stop recording
-            "SessionsStop",
-
-            -- delete all buffers (does not save changes)
-            "silent %bdelete!",
-          },
-          open = function()
-            require("sessions").load(nil, {
-              silent = true,
-            })
-          end,
-        },
-      })
-    end,
-  })
-  use({
-    "natecraddock/sessions.nvim",
-    config = function()
-      require("sessions").setup({
-        -- autocmd events which trigger a session save
-        --
-        -- the default is to only save session files before exiting nvim.
-        -- you may wish to also save more frequently by adding "BufEnter" or any
-        -- other autocmd event
-        events = { "VimLeavePre", "WinEnter" },
-
-        -- default session filepath (relative)
-        --
-        -- if a path is provided here, then the path argument for commands and API
-        -- functions will use session_filepath as a default if no path is provided.
-        session_filepath = ".nvim/session",
-      })
-    end,
-  })
-  use({
     "nvim-telescope/telescope.nvim",
     cmd = { "Telescope" },
     config = require("config.plugins.telescope").init,
     requires = {
       { "nvim-lua/plenary.nvim", opt = true },
       { "nvim-telescope/telescope-file-browser.nvim", opt = true },
-      { "nvim-telescope/telescope-project.nvim", disable = true, opt = true },
+      { "nvim-telescope/telescope-project.nvim", opt = true },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         opt = true,
