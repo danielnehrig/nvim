@@ -4,9 +4,6 @@ local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
 local M = {}
 
 function M.load_options()
-  if g.neovide then
-    g.neovide_cursor_vfx_mode = "railgun"
-  end
   opt.shadafile = "NONE"
   opt.number = true -- enable numbers
   opt.relativenumber = true -- enable numbers to be relative
@@ -64,7 +61,12 @@ function M.load_options()
   opt.autoread = true -- reload files changed other edit
 
   if g.neovide then
-    cmd('let g:neovide_cursor_vfx_mode = "pixiedust"')
+    vim.g.neovide_cursor_vfx_mode = "pixiedust"
+    vim.g.neovide_cursor_vfx_particle_lifetime = 1.6
+    vim.g.neovide_cursor_vfx_particle_density = 30
+    vim.g.neovide_cursor_vfx_particle_speed = 30.0
+    vim.g.neovide_cursor_vfx_opacity = 500
+    vim.g.neovide_transparency = 0.5
   end
 
   opt.updatetime = 60 -- update interval for gitsigns
