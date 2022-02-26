@@ -372,6 +372,66 @@ local function init()
           },
         },
       })
+      require("pretty-fold").ft_setup("cpp", {
+        process_comment_signs = false,
+        comment_signs = {
+          "/**", -- C++ Doxygen comments
+        },
+        stop_words = {
+          "%s%*", -- a space and star char
+          "@brief%s*", -- '@brief' and any number of spaces after
+          -- or in sigle pattern:
+          -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
+        },
+      })
+      require("pretty-fold").ft_setup("javascriptreact", {
+        process_comment_signs = false,
+        comment_signs = {
+          "/**", -- C++ Doxygen comments
+        },
+        stop_words = {
+          "%s%*", -- a space and star char
+          "@brief%s*", -- '@brief' and any number of spaces after
+          -- or in sigle pattern:
+          -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
+        },
+      })
+      require("pretty-fold").ft_setup("typescript", {
+        process_comment_signs = false,
+        comment_signs = {
+          "/**", -- C++ Doxygen comments
+        },
+        stop_words = {
+          "%s%*", -- a space and star char
+          "@brief%s*", -- '@brief' and any number of spaces after
+          -- or in sigle pattern:
+          -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
+        },
+      })
+      require("pretty-fold").ft_setup("typescriptreact", {
+        process_comment_signs = false,
+        comment_signs = {
+          "/**", -- C++ Doxygen comments
+        },
+        stop_words = {
+          "%s%*", -- a space and star char
+          "@brief%s*", -- '@brief' and any number of spaces after
+          -- or in sigle pattern:
+          -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
+        },
+      })
+      require("pretty-fold").ft_setup("typescript", {
+        process_comment_signs = false,
+        comment_signs = {
+          "/**", -- C++ Doxygen comments
+        },
+        stop_words = {
+          "%s%*", -- a space and star char
+          "@brief%s*", -- '@brief' and any number of spaces after
+          -- or in sigle pattern:
+          -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
+        },
+      })
       require("pretty-fold.preview").setup({ border = "rounded" })
     end,
   })
