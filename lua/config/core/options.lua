@@ -1,4 +1,3 @@
-local cmd = vim.cmd
 local globals = require("config.core.global")
 local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
 local M = {}
