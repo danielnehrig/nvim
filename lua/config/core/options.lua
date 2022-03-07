@@ -65,7 +65,7 @@ function M.load_options()
     vim.g.neovide_cursor_vfx_particle_density = 30
     vim.g.neovide_cursor_vfx_particle_speed = 30.0
     vim.g.neovide_cursor_vfx_opacity = 500
-    vim.g.neovide_transparency = 0.5
+    -- vim.g.neovide_transparency = 0.5
   end
 
   opt.updatetime = 60 -- update interval for gitsigns

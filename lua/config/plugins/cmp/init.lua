@@ -131,7 +131,7 @@ function M.init()
     sources = {
       { name = "nvim_lsp_signature_help" },
       { name = "nvim_lsp" },
-      { name = "cmp_tabnine" },
+      -- { name = "cmp_tabnine" },
       { name = "luasnip" },
       { name = "path" },
       { name = "orgmode" },
