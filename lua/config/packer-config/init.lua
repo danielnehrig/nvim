@@ -259,7 +259,6 @@ local function init()
   use({
     "hrsh7th/nvim-cmp",
     config = require("config.plugins.cmp").init,
-    branch = "dev",
     requires = {
       { "hrsh7th/cmp-cmdline" },
       { "hrsh7th/cmp-buffer" },
@@ -316,7 +315,7 @@ local function init()
   }) -- Drawerboard style like nerdtree
 
   -- movement
-  use({ "ggandor/lightspeed.nvim", keys = { "s", "S", "t", "f", "T", "F" } })
+  use({ "ggandor/lightspeed.nvim" })
   use({
     "abecodes/tabout.nvim",
     config = function()
@@ -344,6 +343,12 @@ local function init()
   })
 
   -- quality of life
+  use({
+    "ur4ltz/surround.nvim",
+    config = function()
+      require("surround").setup({ mappings_style = "surround" })
+    end,
+  })
   use({
     "p00f/cphelper.nvim",
   })
@@ -612,13 +617,6 @@ local function init()
     "alvan/vim-closetag",
     ft = { "html", "jsx", "tsx", "xhtml", "xml" },
   }) -- close <> tag for xhtml ... maybe remove because of TS tag
-  use({
-    "blackCauldron7/surround.nvim",
-    disable = true,
-    config = function()
-      require("surround").setup({ mappings_style = "surround" })
-    end,
-  })
   use({
     "vimwiki/vimwiki",
     cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
