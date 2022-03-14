@@ -252,11 +252,6 @@ local function init()
     },
   }) -- default configs for lsp and setup lsp
   use({
-    "tzachar/cmp-tabnine",
-    run = "./install.sh",
-    requires = "hrsh7th/nvim-cmp",
-  })
-  use({
     "hrsh7th/nvim-cmp",
     config = require("config.plugins.cmp").init,
     requires = {
@@ -300,11 +295,6 @@ local function init()
       { "nvim-lua/plenary.nvim", opt = true },
       { "nvim-telescope/telescope-file-browser.nvim", opt = true },
       { "nvim-telescope/telescope-project.nvim", opt = true },
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        opt = true,
-        run = "make",
-      },
     },
   }) -- fuzzy finder
   use({
@@ -354,6 +344,7 @@ local function init()
   })
   use({
     "anuvyklack/pretty-fold.nvim",
+    disable = true, -- crash because of this shit
     config = function()
       require("pretty-fold").setup({
         keep_indentation = false,

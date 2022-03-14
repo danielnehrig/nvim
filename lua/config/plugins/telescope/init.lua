@@ -5,7 +5,6 @@ function M.init()
   vim.cmd([[packadd plenary.nvim]])
   vim.cmd([[packadd refactoring.nvim]])
   vim.cmd([[packadd telescope-project.nvim]])
-  vim.cmd([[packadd telescope-fzf-native.nvim]])
   vim.cmd([[packadd telescope-file-browser.nvim]])
 
   local telescope = require("telescope")
@@ -60,12 +59,6 @@ function M.init()
       file_browser = {
         theme = "ivy",
       },
-      fzf = {
-        fuzzy = true,
-        override_generic_sorter = true, -- override the generic sorter
-        override_file_sorter = true, -- override the file sorter
-        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-      },
       project = {
         base_dirs = {
           "~/code",
@@ -77,7 +70,6 @@ function M.init()
       },
     },
   })
-  telescope.load_extension("fzf")
   telescope.load_extension("project")
   telescope.load_extension("dotfiles")
   telescope.load_extension("file_create")
