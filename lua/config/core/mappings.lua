@@ -114,6 +114,10 @@ function M.mappings()
 
   -- utility binds
   if vim.version().minor > 6 then
+    vim.keymap.set("n", "<A-h>", ":vert resize +5<CR>")
+    vim.keymap.set("n", "<A-j>", ":resize  +5<CR>")
+    vim.keymap.set("n", "<A-k>", ":resize  -5<CR>")
+    vim.keymap.set("n", "<A-l>", ":vert resize -5<CR>")
     vim.keymap.set({ "n" }, "<leader>r", function()
       require("config.core.global").reload()
     end, {
