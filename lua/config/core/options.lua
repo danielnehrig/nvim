@@ -6,12 +6,14 @@ function M.load_options()
   opt.shadafile = "NONE"
   opt.number = true -- enable numbers
   opt.relativenumber = true -- enable numbers to be relative
+  -- opt.backupcopy = "auto" -- fix for when files are not detected changed
 
   -- completion menu settings
   opt.completeopt = "menu,menuone,noselect,noinsert" -- completion behaviour
   opt.omnifunc = "v:lua.vim.lsp.omnifunc" -- completion omnifunc
   opt.list = false
   opt.listchars:append("eol:↴")
+  opt.laststatus = 3
 
   -- Set so that folders are index for find command
   opt.path = "**/*"

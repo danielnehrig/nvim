@@ -22,19 +22,22 @@ lspconfig.rust_analyzer.setup({
     lsp.on_attach(client, bufnr)
   end,
   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
-  ["rust-analyzer"] = {
-    assist = {
-      importGranularity = "module",
-      importPrefix = "by_self",
-    },
-    cargo = {
-      loadOutDirsFromCheck = true,
-    },
-    checkOnSave = {
-      command = "clippy",
-    },
-    procMacro = {
-      enable = true,
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importGranularity = "module",
+        importPrefix = "by_self",
+      },
+      cargo = {
+        loadOutDirsFromCheck = true,
+      },
+      checkOnSave = {
+        enable = false,
+        command = "clippy",
+      },
+      procMacro = {
+        enable = true,
+      },
     },
   },
 })
