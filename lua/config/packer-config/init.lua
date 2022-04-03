@@ -149,7 +149,6 @@ local function init()
   }) -- spell check treesitter based
   use({
     "windwp/nvim-ts-autotag",
-    ft = { "typescriptreact", "javascriptreact", "html" },
   }) -- autotag <>
   use({
     "shuntaka9576/preview-swagger.nvim",
@@ -604,10 +603,6 @@ local function init()
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite" } }) -- save as root
   use({ "junegunn/vim-slash", keys = { "/" } }) -- better search
   use({ "windwp/nvim-autopairs" }) -- autopairs "" {}
-  use({
-    "alvan/vim-closetag",
-    ft = { "html", "jsx", "tsx", "xhtml", "xml" },
-  }) -- close <> tag for xhtml ... maybe remove because of TS tag
   use({
     "vimwiki/vimwiki",
     cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },

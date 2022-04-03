@@ -36,6 +36,13 @@ function M.init()
     yati = { enable = true },
     autotag = {
       enable = true,
+      filetypes = {
+        "html",
+        "xml",
+        "rust",
+        "typescriptreact",
+        "javascriptreact",
+      },
     },
     textsubjects = {
       enable = true,
