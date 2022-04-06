@@ -44,9 +44,9 @@ end
 
 M.get_diagnostics_count = function(bufnr)
   bufnr = bufnr or 0
-  local error = vim.lsp.diagnostic.get_count(bufnr, [[Error]])
-  local warning = vim.lsp.diagnostic.get_count(bufnr, [[Warning]])
-  local information = vim.lsp.diagnostic.get_count(bufnr, [[Information]])
+  local error = vim.diagnostic.get_count(bufnr, [[Error]])
+  local warning = vim.diagnostic.get_count(bufnr, [[Warning]])
+  local information = vim.diagnostic.get_count(bufnr, [[Information]])
   -- local hint = vim.lsp.diagnostic.get_count(bufnr, [[Hint]])
 
   return error, warning, information
