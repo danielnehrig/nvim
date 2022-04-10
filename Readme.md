@@ -88,7 +88,7 @@ it's inspired by Lvim though not cloned
 - *go*
 - *rust/cargo*
 
-*NVIM V ^0.5.\**
+*NVIM V ^0.7.\**
 
 *LSPs in path:*
 - pyright

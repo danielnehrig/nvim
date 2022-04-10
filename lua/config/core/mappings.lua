@@ -107,55 +107,58 @@ function M.mappings()
   remap("n", "<Leader>mt", ":TestFile<CR>")
   remap("n", "<Leader>mu", ":Ultest<CR>")
 
-  remap("n", "<Leader>w", ":ChooseWin<CR>")
-
   -- neogen
   remap("n", "<Leader>nf", ":DocGen<CR>")
 
+  -- Move to window, or swap by using shift + letter
+  vim.keymap.set("n", "<Leader>w", ":WindowPick<CR>")
+
+  -- Swap with any window
+  -- vim.api.nvim_set_keymap("n", "<leader>ws", "WindowSwap")
+  -- vim.api.nvim_set_keymap("n", "<leader>wq", "WindowZap")
+
   -- utility binds
-  if vim.version().minor > 6 then
-    vim.keymap.set("n", "<A-h>", ":vert resize +5<CR>")
-    vim.keymap.set("n", "<A-j>", ":resize  +5<CR>")
-    vim.keymap.set("n", "<A-k>", ":resize  -5<CR>")
-    vim.keymap.set("n", "<A-l>", ":vert resize -5<CR>")
-    vim.keymap.set({ "n" }, "<leader>r", function()
-      require("config.core.global").reload()
-    end, {
-      silent = false,
-    })
-    vim.keymap.set(
-      { "n" },
-      "<leader>uf",
-      require("config.core.options").fold_column_toggle,
-      {
-        silent = true,
-      }
-    )
-    vim.keymap.set(
-      { "n" },
-      "<leader>ur",
-      require("config.core.options").relative_position_toggle,
-      {
-        silent = true,
-      }
-    )
-    vim.keymap.set(
-      { "n" },
-      "<leader>un",
-      require("config.core.options").number_toggle,
-      {
-        silent = true,
-      }
-    )
-    vim.keymap.set(
-      { "n" },
-      "<leader>us",
-      require("config.core.options").spell_toggle,
-      {
-        silent = true,
-      }
-    )
-  end
+  vim.keymap.set("n", "<A-h>", ":vert resize +5<CR>")
+  vim.keymap.set("n", "<A-j>", ":resize  +5<CR>")
+  vim.keymap.set("n", "<A-k>", ":resize  -5<CR>")
+  vim.keymap.set("n", "<A-l>", ":vert resize -5<CR>")
+  vim.keymap.set({ "n" }, "<leader>r", function()
+    require("config.core.global").reload()
+  end, {
+    silent = false,
+  })
+  vim.keymap.set(
+    { "n" },
+    "<leader>uf",
+    require("config.core.options").fold_column_toggle,
+    {
+      silent = true,
+    }
+  )
+  vim.keymap.set(
+    { "n" },
+    "<leader>ur",
+    require("config.core.options").relative_position_toggle,
+    {
+      silent = true,
+    }
+  )
+  vim.keymap.set(
+    { "n" },
+    "<leader>un",
+    require("config.core.options").number_toggle,
+    {
+      silent = true,
+    }
+  )
+  vim.keymap.set(
+    { "n" },
+    "<leader>us",
+    require("config.core.options").spell_toggle,
+    {
+      silent = true,
+    }
+  )
 end
 
 return M
