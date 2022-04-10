@@ -679,6 +679,7 @@ local function init()
     disable = true,
     cmd = { "Git", "Git mergetool" },
   }) -- git integration
+  use({ "kdheepak/lazygit.nvim" })
   use({
     "TimUntersberger/neogit",
     config = function()
