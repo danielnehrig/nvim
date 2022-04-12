@@ -1,4 +1,4 @@
-local remap = require("config.utils").map_global
+local set = vim.keymap.set
 
 local Debug = {
   dap = nil,
@@ -27,24 +27,24 @@ end
 
 function Debug.mappings()
   vim.cmd([[au FileType dap-repl lua require('dap.ext.autocompl').attach()]])
-  remap("n", "<Leader>ds", [[ <Cmd>lua require'dap'.close()<CR>]])
-  remap(
+  set("n", "<Leader>ds", [[ <Cmd>lua require'dap'.close()<CR>]])
+  set(
     "n",
     "<Leader>dd",
     [[ <Cmd>lua require'dap'.disconnect(); require("dapui").close()<CR>]]
   )
-  remap(
+  set(
     "n",
     "<Leader>dB",
     [[ <Cmd>lua require'dap'.set_breakpoint(nil, nul vim.fn.input('Log point message: '))<CR>]]
   )
-  remap("n", "<Leader>dO", [[ <Cmd>lua require'dap'.step_over()<CR>]])
-  remap("n", "<Leader>di", [[ <Cmd>lua require'dap'.step_into()<CR>]])
-  remap("n", "<Leader>do", [[ <Cmd>lua require'dap'.step_out()<CR>]])
-  remap("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]])
-  remap("n", "<Leader>de", [[ <Cmd>lua require'dapui'.eval()<CR>]])
-  remap("n", "<Leader>df", [[ <Cmd>lua require'dapui'.float_element()<CR>]])
-  remap("n", "<Leader>dt", [[ <Cmd>lua require'dapui'.toggle()<CR>]])
+  set("n", "<Leader>dO", [[ <Cmd>lua require'dap'.step_over()<CR>]])
+  set("n", "<Leader>di", [[ <Cmd>lua require'dap'.step_into()<CR>]])
+  set("n", "<Leader>do", [[ <Cmd>lua require'dap'.step_out()<CR>]])
+  set("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]])
+  set("n", "<Leader>de", [[ <Cmd>lua require'dapui'.eval()<CR>]])
+  set("n", "<Leader>df", [[ <Cmd>lua require'dapui'.float_element()<CR>]])
+  set("n", "<Leader>dt", [[ <Cmd>lua require'dapui'.toggle()<CR>]])
 end
 
 function Debug:attach()

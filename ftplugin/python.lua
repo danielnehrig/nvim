@@ -1,5 +1,5 @@
 local global = require("config.core.global")
-local remap = require("config.utils").map_global
+local set = vim.keymap.set
 local sep_os_replacer = require("config.utils").sep_os_replacer
 
 local init = false
@@ -15,4 +15,4 @@ _G.load_py_dap = function()
   require("dap").continue()
 end
 
-remap("n", "<Leader>dc", [[ <Cmd>lua load_py_dap()<CR>]])
+set("n", "<Leader>dc", [[ <Cmd>lua load_py_dap()<CR>]])

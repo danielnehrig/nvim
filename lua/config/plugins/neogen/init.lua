@@ -1,4 +1,4 @@
-local remap = require("config.utils").map_global
+local set = vim.keymap.set
 
 local M = {}
 
@@ -12,17 +12,17 @@ M.init = function()
       neogen.generate({ type = "func" })
     end)
   else
-    remap(
+    set(
       "n",
       "<Leader>nf",
       ":lua require('neogen').generate({ type = 'func' })<CR>"
     )
-    remap(
+    set(
       "n",
       "<Leader>nc",
       ":lua require('neogen').generate({ type = 'class' })<CR>"
     )
-    remap(
+    set(
       "n",
       "<Leader>nt",
       ":lua require('neogen').generate({ type = 'type' })<CR>"
