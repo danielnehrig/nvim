@@ -1,5 +1,8 @@
+local formatter = "stylua"
+local command = string.format("%s --color Never -", formatter)
+
 return {
-  formatCommand = "stylua ${--config-precedence:configPrecedence} -",
+  formatCommand = command,
   formatStdin = true,
-  rootMarkers = { "stylua.toml" },
+  rootMarkers = { "stylua.toml", ".stylua.toml" },
 }

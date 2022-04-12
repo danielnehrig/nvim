@@ -2,84 +2,75 @@ local Func = require("config.utils")
 local M = {}
 
 function M.autocmds()
+  local au_pack = vim.api.nvim_create_augroup("packer", { clear = true })
+  local au_utils = vim.api.nvim_create_augroup("utils", { clear = true })
+  local au_ft = vim.api.nvim_create_augroup("ft", { clear = true })
+  local au_cmp = vim.api.nvim_create_augroup("cmp", { clear = true })
+  -- util
   vim.api.nvim_create_autocmd("CursorHold", {
     callback = function()
       Func.open_diag_float()
     end,
+    group = au_utils,
   })
-  local definitions = {
-    packer = {
-      {
-        "BufWritePost",
-        "*.lua",
-        "lua require('config.core.global').reload()",
-      },
-      {
-        "User",
-        "PackerCompileDone",
-        "lua require('config.core.global').reload()",
-      },
-      {
-        "User",
-        "PackerComplete",
-        "lua require('config.packer-config').auto_compile()",
-      },
-    },
-    ft = {
-      {
-        "FileType",
-        "markdown,org,txt,tex",
-        "lua vim.wo.spell = true",
-      },
-      { "FileType", "NvimTree,lspsagafinder,dashboard", "let b:cusorword=0" },
-      {
-        "WinEnter,BufRead,BufEnter",
-        "dashboard",
-        "Dashboard",
-      }, -- disable tabline in dashboard
-      { "BufNewFile,BufRead", "*.toml", "setf toml" }, -- set toml filetype
-      {
-        "FileType",
-        "*.toml",
-        "lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }",
-      },
-      {
-        "FileType",
-        "*.org",
-        "lua require('cmp').setup.buffer { sources = { { name = 'orgmode' } } }",
-      },
-    },
-    Terminal = {
-      { "TermOpen", "*", "set nonumber" },
-      { "TermOpen", "*", "set norelativenumber" },
-      { "TermOpen", "*", "set showtabline=0" }, -- renable it
-      { "WinEnter,BufEnter", "terminal", "set nonumber" },
-      { "WinEnter,BufEnter", "terminal", "set norelativenumber" },
-      { "WinEnter,BufEnter", "terminal", "set showtabline=0" }, -- renable it
-    },
-    TabLine = {
-      { "FileType", "dashboard,TelescopePrompt,prompt", "set showtabline=0" }, -- disable tabline in dashboard
-      {
-        "WinLeave,WinClosed,BufLeave,BufDelete,BufUnload,BufWinLeave,BufWipeout",
-        "TelescopePrompt,prompt",
-        "set showtabline=2",
-      }, -- disable tabline in dashboard
-      {
-        "BufNewFile,BufRead,WinEnter,TermLeave",
-        "*.*",
-        "set showtabline=2",
-      }, -- renable it
-    },
-    lsp = {
-      {
-        "DirChanged",
-        "*",
-        'silent! lua require("plugins.lspconfig.lua").reinit()',
-      },
-    },
-  }
-
-  Func.nvim_create_augroups(definitions)
+  vim.api.nvim_create_autocmd("DirChanged", {
+    callback = function()
+      require("plugins.lspconfig.lua").reinit()
+    end,
+    group = au_utils,
+  })
+  -- pack
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "*.lua",
+    callback = function()
+      require("config.core.global").reload()
+    end,
+    group = au_pack,
+  })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "PackerCompileDone",
+    callback = function()
+      require("config.core.global").reload()
+    end,
+    group = au_pack,
+  })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "PackerCompileDone",
+    callback = function()
+      require("config.packer-config").auto_compile()
+    end,
+    group = au_pack,
+  })
+  -- ft
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown,org,txt,tex",
+    callback = function()
+      vim.wo.spell = true
+    end,
+    group = au_ft,
+  })
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "NvimTree,lspsagafinder,dashboard",
+    callback = function()
+      -- vim.opt.cursor_word = 0
+    end,
+    group = au_ft,
+  })
+  -- cmp
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*.toml",
+    callback = function()
+      require("cmp").setup.buffer({ sources = { { name = "crates" } } })
+    end,
+    group = au_cmp,
+  })
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*.org",
+    callback = function()
+      require("cmp").setup.buffer({ sources = { { name = "orgmode" } } })
+    end,
+    group = au_cmp,
+  })
 end
 
 return M
