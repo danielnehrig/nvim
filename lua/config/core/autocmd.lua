@@ -2,6 +2,11 @@ local Func = require("config.utils")
 local M = {}
 
 function M.autocmds()
+  vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function()
+      Func.open_diag_float()
+    end,
+  })
   local definitions = {
     packer = {
       {
@@ -25,11 +30,6 @@ function M.autocmds()
         "FileType",
         "markdown,org,txt,tex",
         "lua vim.wo.spell = true",
-      },
-      {
-        "CursorHold",
-        "*",
-        "lua vim.diagnostic.open_float({focusable = false, focus = false, border = 'single' })",
       },
       { "FileType", "NvimTree,lspsagafinder,dashboard", "let b:cusorword=0" },
       {
@@ -70,23 +70,6 @@ function M.autocmds()
         "set showtabline=2",
       }, -- renable it
     },
-    --  ScrollbarInit = {
-    --  {
-    --  "CursorMoved,VimResized,QuitPre",
-    --  "*",
-    --  "silent! lua require('scrollbar').show()",
-    --  },
-    --  {
-    --  "WinEnter,FocusGained",
-    --  "*",
-    --  "silent! lua require('scrollbar').show()",
-    --  },
-    --  {
-    --  "WinLeave,BufLeave,BufWinLeave,FocusLost",
-    --  "*",
-    --  "silent! lua require('scrollbar').clear()",
-    --  },
-    --  },
     lsp = {
       {
         "DirChanged",
@@ -94,10 +77,6 @@ function M.autocmds()
         'silent! lua require("plugins.lspconfig.lua").reinit()',
       },
     },
-
-    --  gh = {
-    --  { "DirChanged", "*", "silent! lua require('plugins.gh').load()" },
-    --  },
   }
 
   Func.nvim_create_augroups(definitions)
