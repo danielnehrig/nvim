@@ -13,6 +13,24 @@ function M.autocmds()
     end,
     group = au_utils,
   })
+  vim.api.nvim_create_autocmd("CursorHold", {
+    pattern = "*",
+    callback = vim.lsp.buf.document_highlight,
+    desc = "Highlight lsp references",
+    group = au_utils,
+  })
+  vim.api.nvim_create_autocmd("CursorHoldI", {
+    pattern = "*",
+    callback = vim.lsp.buf.document_highlight,
+    desc = "Highlight lsp references",
+    group = au_utils,
+  })
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    pattern = "*",
+    callback = vim.lsp.buf.clear_references,
+    desc = "Highlight lsp references",
+    group = au_utils,
+  })
   vim.api.nvim_create_autocmd("DirChanged", {
     callback = function()
       require("plugins.lspconfig.lua").reinit()
@@ -70,6 +88,15 @@ function M.autocmds()
       require("cmp").setup.buffer({ sources = { { name = "orgmode" } } })
     end,
     group = au_cmp,
+  })
+  -- util
+  vim.api.nvim_create_autocmd("TextYankPost", {
+    pattern = "*",
+    callback = function()
+      vim.highlight.on_yank()
+    end,
+    desc = "Highlight yank",
+    group = au_utils,
   })
 end
 
