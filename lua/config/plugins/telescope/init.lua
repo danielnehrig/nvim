@@ -70,6 +70,7 @@ function M.init()
       },
     },
   })
+  telescope.load_extension("urlview")
   telescope.load_extension("project")
   telescope.load_extension("dotfiles")
   telescope.load_extension("file_create")

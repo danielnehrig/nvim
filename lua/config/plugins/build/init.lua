@@ -1,5 +1,3 @@
-local Func = require("config.utils")
-local cmd = vim.cmd
 local nvim_set_var = vim.api.nvim_set_var
 
 local Make = {
@@ -24,34 +22,13 @@ function Make.Report()
   local opt = {
     title = "Neomake",
   }
-  local notify = nil
-  if not packer_plugins["nvim-notify"].loaded then
-    cmd([[packadd nvim-notify]])
-    notify = require("notify")
-    notify.setup({
-      -- Animation style (see below for details)
-      -- stages = "fade",
-      -- Default timeout for notifications
-      timeout = 3000,
-      -- For stages that change opacity this is treated as the highlight behind the window
-      background_colour = "NotifyBG",
-      -- Icons for the different levels
-      icons = {
-        ERROR = "",
-        WARN = "",
-        INFO = "",
-        DEBUG = "",
-        TRACE = "✎",
-      },
-    })
-    vim.notify = notify
-  end
+  print(vim.inspect(context))
   if info.exit_code == 0 then
-    notify(info.maker.name .. " Finished Successfully", "success", opt)
+    vim.notify(info.maker.name .. " Finished Successfully", 2, opt)
   elseif info.exit_code == 1 then
-    notify(info.maker.name .. " Failed", "error", opt)
+    vim.notify(info.maker.name .. " Failed", 1, opt)
   else
-    notify(info.maker.name .. " Started", "log", opt)
+    vim.notify(info.maker.name .. " Started", 3, opt)
   end
 end
 
@@ -84,32 +61,35 @@ function Make.init()
 
   nvim_set_var("test#strategy", "neomake")
 
-  local autocmds = {
-    neomake_hook = {
-      {
-        "User",
-        "NeomakeJobFinished",
-        "lua require('config.plugins.build'):Finished()",
-      },
-      {
-        "User",
-        "NeomakeJobFinished",
-        "lua require('config.plugins.build').Report()",
-      },
-      {
-        "User",
-        "NeomakeJobStarted",
-        "lua require('config.plugins.build'):Start()",
-      },
-      {
-        "User",
-        "NeomakeJobStarted",
-        "lua require('config.plugins.build').Report()",
-      },
-    },
-  }
-
-  Func.nvim_create_augroups(autocmds)
+  local au_build = vim.api.nvim_create_augroup("build_nm", { clear = true })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "NeomakeJobFinished",
+    callback = function()
+      require("config.plugins.build"):Finished()
+    end,
+    group = au_build,
+  })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "NeomakeJobFinished",
+    callback = function()
+      require("config.plugins.build").Report()
+    end,
+    group = au_build,
+  })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "NeomakeJobStarted",
+    callback = function()
+      require("config.plugins.build"):Start()
+    end,
+    group = au_build,
+  })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "NeomakeJobStarted",
+    callback = function()
+      require("config.plugins.build").Report()
+    end,
+    group = au_build,
+  })
 end
 
 -- For Statusline gets called every tick
