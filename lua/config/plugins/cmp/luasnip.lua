@@ -10,6 +10,7 @@ function M.init()
   ls.snippets = {
     lua = {
       ls.parser.parse_snippet("cb", "function($1)\n$0\nend"),
+      ls.parser.parse_snippet("pr", "print(vim.inspect($1))$0"),
       s("req", fmt("local {} = require('{}')", { i(1), rep(1) })),
     },
     javascript = {

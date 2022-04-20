@@ -22,7 +22,6 @@ function Make.Report()
   local opt = {
     title = "Neomake",
   }
-  print(vim.inspect(context))
   if info.exit_code == 0 then
     vim.notify(info.maker.name .. " Finished Successfully", 2, opt)
   elseif info.exit_code == 1 then
