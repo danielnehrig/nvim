@@ -6,29 +6,12 @@ function M.autocmds()
   local au_utils = vim.api.nvim_create_augroup("utils", { clear = true })
   local au_ft = vim.api.nvim_create_augroup("ft", { clear = true })
   local au_cmp = vim.api.nvim_create_augroup("cmp", { clear = true })
+
   -- util
   vim.api.nvim_create_autocmd("CursorHold", {
     callback = function()
       Func.open_diag_float()
     end,
-    group = au_utils,
-  })
-  vim.api.nvim_create_autocmd("CursorHold", {
-    pattern = "*",
-    callback = vim.lsp.buf.document_highlight,
-    desc = "Highlight lsp references",
-    group = au_utils,
-  })
-  vim.api.nvim_create_autocmd("CursorHoldI", {
-    pattern = "*",
-    callback = vim.lsp.buf.document_highlight,
-    desc = "Highlight lsp references",
-    group = au_utils,
-  })
-  vim.api.nvim_create_autocmd("CursorMoved", {
-    pattern = "*",
-    callback = vim.lsp.buf.clear_references,
-    desc = "Highlight lsp references",
     group = au_utils,
   })
   vim.api.nvim_create_autocmd("DirChanged", {

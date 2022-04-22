@@ -54,6 +54,26 @@ function LSP.on_attach(client, bufnr)
     "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single' })<CR>"
   )
 
+  local au_lsp = vim.api.nvim_create_augroup("lsp", { clear = true })
+  vim.api.nvim_create_autocmd("CursorHold", {
+    pattern = "*",
+    callback = vim.lsp.buf.document_highlight,
+    desc = "Highlight lsp references",
+    group = au_lsp,
+  })
+  vim.api.nvim_create_autocmd("CursorHoldI", {
+    pattern = "*",
+    callback = vim.lsp.buf.document_highlight,
+    desc = "Highlight lsp references",
+    group = au_lsp,
+  })
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    pattern = "*",
+    callback = vim.lsp.buf.clear_references,
+    desc = "Highlight lsp references",
+    group = au_lsp,
+  })
+
   fn.sign_define(
     "DiagnosticSignError",
     { texthl = "DiagnosticError", text = " " }
@@ -103,10 +123,11 @@ end
 function LSP.settings()
   vim.diagnostic.config({ virtual_text = false })
   -- enable border for hover
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    -- Use a sharp border with `FloatBorder` highlights
-    border = "single",
-  })
+  vim.lsp.handlers["textDocument/hover"] =
+    vim.lsp.with(vim.lsp.handlers.hover, {
+      -- Use a sharp border with `FloatBorder` highlights
+      border = "single",
+    })
 
   -- enable border for signature
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
