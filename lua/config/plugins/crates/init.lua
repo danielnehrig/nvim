@@ -13,7 +13,6 @@ M.init = function()
       prerelease = "   %s",
       yanked = "   %s",
       nomatch = "   No match",
-      update = "   %s",
       error = "   Error fetching crate",
     },
     highlight = {
@@ -22,7 +21,6 @@ M.init = function()
       prerelease = "CratesNvimPreRelease",
       yanked = "CratesNvimYanked",
       nomatch = "CratesNvimNoMatch",
-      update = "CratesNvimUpdate",
       error = "CratesNvimError",
     },
     popup = {
@@ -47,16 +45,9 @@ M.init = function()
       keys = {
         hide = { "q", "<esc>" },
         select = { "<cr>" },
-        select_dumb = { "s" },
         copy_version = { "yy" },
       },
-    },
-    cmp = {
-      text = {
-        prerelease = "  pre-release ",
-        yanked = "  yanked ",
-      },
-    },
+    }
   })
 end
 
