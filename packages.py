@@ -66,6 +66,13 @@ rust: PackageManager = {
     "packages": [["blackd-client", "blackd-client"], ["stylua", "stylua"]],
 }
 
+# Rustup for rust lsp
+rust_up: PackageManager = {
+    "cli_tool": "rustup",
+    "modes": {"install": "+nightly component add", "update": "+nightly update"},
+    "packages": [["rust-analyzer-preview", "rust-analyzer-preview"]],
+}
+
 # Python PIP Package Manager
 python: PackageManager = {
     "cli_tool": "pip",
@@ -288,6 +295,7 @@ def Darwin() -> None:
     install_cli_packages(node)
     install_cli_packages(go)
     install_cli_packages(rust)
+    install_cli_packages(rust_up)
     install_cli_packages(python)
 
 
@@ -306,6 +314,7 @@ def Linux() -> None:
     install_cli_packages(node)
     install_cli_packages(go)
     install_cli_packages(rust)
+    install_cli_packages(rust_up)
     install_cli_packages(python)
 
 
