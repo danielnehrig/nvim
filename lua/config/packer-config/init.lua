@@ -139,6 +139,12 @@ local function init()
     end,
   }) -- comment out code
   use({ "nvim-treesitter/nvim-treesitter-textobjects" }) -- custom textobjects
+  use({
+    "mizlan/iswap.nvim",
+    config = function()
+      require("iswap").setup({})
+    end,
+  })
   use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
   use({ "RRethy/nvim-treesitter-textsubjects" })
   use({
