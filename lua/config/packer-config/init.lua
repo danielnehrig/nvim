@@ -291,6 +291,7 @@ local function init()
     cmd = { "Telescope" },
     config = require("config.plugins.telescope").init,
     requires = {
+      { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-lua/plenary.nvim", opt = true },
       { "nvim-telescope/telescope-file-browser.nvim", opt = true },
       { "nvim-telescope/telescope-project.nvim", opt = true },
