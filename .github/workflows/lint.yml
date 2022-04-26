@@ -19,4 +19,4 @@ jobs:
                   sudo apt-get install luarocks
                   sudo luarocks install luacheck
             - name: Lint
-              run: luacheck lua --globals vim packer_plugins IS_NVIM --no-max-line-length
+              run: luacheck lua --no-max-line-length

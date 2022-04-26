@@ -73,6 +73,13 @@ rust_up: PackageManager = {
     "packages": [["rust-analyzer-preview", "rust-analyzer-preview"]],
 }
 
+# Rustup for rust lsp
+lua: PackageManager = {
+    "cli_tool": "luarocks",
+    "modes": {"install": "--local install", "update": "--local install"},
+    "packages": [["luacheck", "luacheck"]],
+}
+
 # Python PIP Package Manager
 python: PackageManager = {
     "cli_tool": "pip",
@@ -296,6 +303,7 @@ def Darwin() -> None:
     install_cli_packages(go)
     install_cli_packages(rust)
     install_cli_packages(rust_up)
+    install_cli_packages(lua)
     install_cli_packages(python)
 
 
@@ -315,6 +323,7 @@ def Linux() -> None:
     install_cli_packages(go)
     install_cli_packages(rust)
     install_cli_packages(rust_up)
+    install_cli_packages(lua)
     install_cli_packages(python)
 
 

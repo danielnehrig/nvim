@@ -1,9 +1,14 @@
+local linter = "shellcheck"
+local command = string.format("%s --color=never --format=gcc -", linter)
+
 return {
-  lintCommand = "shellcheck -f gcc -x",
-  lintSource = "shellcheck",
+  prefix = linter,
+  lintCommand = command,
+  lintStdin = true,
   lintFormats = {
-    "%f:%l:%c: %trror: %m",
-    "%f:%l:%c: %tarning: %m",
-    "%f:%l:%c: %tote: %m",
+    "-:%l:%c: %trror: %m",
+    "-:%l:%c: %tarning: %m",
+    "-:%l:%c: %tote: %m",
   },
+  rootMarkers = {},
 }

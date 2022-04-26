@@ -6,6 +6,7 @@ local eslint = require("config.plugins.efm.eslint")
 local prettier = require("config.plugins.efm.prettier")
 -- local luafmt = require("config.plugins.efm.luafmt")
 local stylua = require("config.plugins.efm.stylua")
+local luacheck = require("config.plugins.efm.luacheck")
 local rustfmt = require("config.plugins.efm.rustfmt")
 local python = require("config.plugins.efm.python")
 local dprint = require("config.plugins.efm.dprint")
@@ -51,7 +52,7 @@ lspconfig.efm.setup({
       typescriptreact = { prettier, eslint },
       javascript = { prettier, eslint },
       javascriptreact = { prettier, eslint },
-      lua = { stylua },
+      lua = { stylua, luacheck },
       rust = { rustfmt },
       markdown = { dprint },
       python = { python },
