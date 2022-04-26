@@ -58,6 +58,13 @@ end
 
 lspconfig.pyright.setup(config)
 
+vim.api.nvim_create_user_command("PythonInterpreter2", function(a)
+  print(vim.inspect(a))
+  require("config.plugins.lspconfig.python").get_python_interpreters()
+end, {
+  nargs = 1
+})
+
 vim.api.nvim_exec(
   [[
 command! -nargs=1 -complete=customlist,PythonInterpreterComplete PythonInterpreter lua require'plugins.lspconfig.python'.change_python_interpreter(<q-args>)

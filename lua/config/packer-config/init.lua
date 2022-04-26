@@ -8,7 +8,7 @@ local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 -- nil some packer is opt
 local packer = nil
 
-local function init(a)
+local function init()
   packer = require("packer")
   packer.init({
     max_jobs = 50,
