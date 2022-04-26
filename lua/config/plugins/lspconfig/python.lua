@@ -58,13 +58,12 @@ end
 
 lspconfig.pyright.setup(config)
 
-vim.api.nvim_create_user_command("PythonInterpreter2", function(a)
-  require("config.plugins.lspconfig.python").change_python_interpreter(a.args)
+vim.api.nvim_create_user_command("PythonInterpreter", function(tbl)
+  M.change_python_interpreter(tbl.args)
 end, {
   nargs = 1,
   complete = function(_, _, _)
-    -- return require("config.plugins.lspconfig.python").get_python_interpreters()
-    return { "asd", "asd2" }
+    return M.get_python_interpreters()
   end,
 })
 
