@@ -47,7 +47,7 @@ M.init = function()
         select = { "<cr>" },
         copy_version = { "yy" },
       },
-    }
+    },
   })
 end
 
