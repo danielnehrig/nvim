@@ -824,26 +824,35 @@ end
 
 -- loads the compiled packer file and sets the commands for packer
 function plugins.load_compile()
-  if not fn.filereadable(packer_compiled) == 1 then
+  if fn.filereadable(packer_compiled) ~= 1 then
     assert(
       "Missing packer compile file Run PackerCompile Or PackerInstall to fix"
     )
   end
 
-  vim.cmd(
-    [[command! PackerCompile lua require('config.packer-config').auto_compile()]]
-  )
-  vim.cmd(
-    [[command! PackerInstall lua require('config.packer-config').install()]]
-  )
-  vim.cmd(
-    [[command! PackerUpdate lua require('config.packer-config').update()]]
-  )
-  vim.cmd([[command! PackerSync lua require('config.packer-config').sync()]])
-  vim.cmd([[command! PackerClean lua require('config.packer-config').clean()]])
-  vim.cmd(
-    [[command! PackerStatus  lua require('config.packer-config').status()]]
-  )
+  vim.api.nvim_create_user_command("PackerCompile", function(_)
+    require('config.packer-config').auto_compile()
+  end, {})
+  vim.api.nvim_create_user_command("PackerInstall", function(_)
+    require('config.packer-config').install()
+  end, {})
+  vim.api.nvim_create_user_command("PackerUpdate", function(_)
+    require('config.packer-config').update()
+  end, {})
+  vim.api.nvim_create_user_command("PackerSync", function(_)
+    require('config.packer-config').sync()
+  end, {})
+  vim.api.nvim_create_user_command("PackerClean", function(_)
+    require('config.packer-config').clean()
+  end, {})
+  vim.api.nvim_create_user_command("PackerStatus", function(_)
+    require('config.packer-config').status()
+  end, {})
+  vim.api.nvim_create_user_command("PackerSnap", function(tbl)
+    require('config.packer-config').snapshot(tbl.args)
+  end, {
+    nargs = 1,
+  })
 end
 
 return plugins
