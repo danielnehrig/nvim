@@ -831,27 +831,45 @@ function plugins.load_compile()
   end
 
   vim.api.nvim_create_user_command("PackerCompile", function(_)
-    require('config.packer-config').auto_compile()
+    require("config.packer-config").auto_compile()
   end, {})
   vim.api.nvim_create_user_command("PackerInstall", function(_)
-    require('config.packer-config').install()
+    require("config.packer-config").install()
   end, {})
   vim.api.nvim_create_user_command("PackerUpdate", function(_)
-    require('config.packer-config').update()
+    require("config.packer-config").update()
   end, {})
   vim.api.nvim_create_user_command("PackerSync", function(_)
-    require('config.packer-config').sync()
+    require("config.packer-config").sync()
   end, {})
   vim.api.nvim_create_user_command("PackerClean", function(_)
-    require('config.packer-config').clean()
+    require("config.packer-config").clean()
   end, {})
   vim.api.nvim_create_user_command("PackerStatus", function(_)
-    require('config.packer-config').status()
+    require("config.packer-config").status()
   end, {})
   vim.api.nvim_create_user_command("PackerSnap", function(tbl)
-    require('config.packer-config').snapshot(tbl.args)
+    require("config.packer-config").snapshot(tbl.args)
   end, {
     nargs = 1,
+  })
+  vim.api.nvim_create_user_command("PackerSnapLoad", function(tbl)
+    require("config.packer-config").rollback(tbl.args)
+  end, {
+    nargs = 1,
+    complete = function(a)
+      vim.pretty_print(a)
+      -- @TODO add logic to display all saved snapshots
+      return { "one" }
+    end,
+  })
+  vim.api.nvim_create_user_command("PackerSnapDelete", function(tbl)
+    require("config.packer-config").delete(tbl.args)
+  end, {
+    nargs = 1,
+    complete = function(a)
+      vim.pretty_print(a)
+    end,
   })
 end
 
