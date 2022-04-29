@@ -800,9 +800,13 @@ function plugins.bootstrap()
     execute("packadd packer.nvim")
 
     -- autocmd hook to wait for packer install and then after install load the needed config for plugins
-    vim.cmd(
-      "autocmd User PackerComplete ++once lua require('config.load_config').init()"
-    )
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "PackerComplete",
+      callback = function()
+        require("config.load_config").init()
+      end,
+      once = true,
+    })
 
     -- load packer plugins
     init()
