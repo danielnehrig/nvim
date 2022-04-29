@@ -52,23 +52,6 @@ function M.map_global(type, key, value, expr)
   )
 end
 
-function M.autocmd(event, triggers, operations)
-  local cmd = string.format("autocmd %s %s %s", event, triggers, operations)
-  vim.cmd(cmd)
-end
-
-function M.nvim_create_augroups(tbl)
-  for group_name, definition in pairs(tbl) do
-    vim.api.nvim_command("augroup " .. group_name)
-    vim.api.nvim_command("autocmd!")
-    for _, def in ipairs(definition) do
-      local command = table.concat(vim.tbl_flatten({ "autocmd", def }), " ")
-      vim.api.nvim_command(command)
-    end
-    vim.api.nvim_command("augroup END")
-  end
-end
-
 --- Replaces / or \\ depending on os to path to correct places
 --- @param str string
 --- @return string
