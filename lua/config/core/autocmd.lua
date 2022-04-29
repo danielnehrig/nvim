@@ -50,6 +50,26 @@ function M.autocmds()
     end,
     group = au_ft,
   })
+  vim.api.nvim_create_autocmd({ "WinEnter", "BufRead", "BufEnter" }, {
+    pattern = "dashboard",
+    command = "Dashboard",
+    group = au_ft,
+  })
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "dashboard",
+    command = "set showtabline=0",
+    group = au_ft,
+  })
+  vim.api.nvim_create_autocmd({
+    "BufNewFile",
+    "BufRead",
+    "WinEnter",
+    "TermLeave",
+  }, {
+    pattern = "*.*",
+    command = "set showtabline=2",
+    group = au_ft,
+  })
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "NvimTree,lspsagafinder,dashboard",
     callback = function()
