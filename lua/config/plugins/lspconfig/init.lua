@@ -7,13 +7,6 @@ LSP.__index = LSP
 -- custom attach config for most LSP configs
 function LSP.on_attach(client, bufnr)
   if
-    packer_plugins["lsp_signature.nvim"]
-    and not packer_plugins["lsp_signature.nvim"].loaded
-  then
-    vim.cmd([[packadd lsp_signature.nvim]])
-  end
-
-  if
     packer_plugins["lsp-status.nvim"]
     and packer_plugins["lsp-status.nvim"].loaded
   then
@@ -90,33 +83,6 @@ function LSP.on_attach(client, bufnr)
     "DiagnosticSignHint",
     { texthl = "DiagnosticHint", text = " " }
   )
-
-  if
-    packer_plugins["lsp_signature.nvim"]
-    and packer_plugins["lsp_signature.nvim"].loaded
-  then
-    require("lsp_signature").on_attach({
-      bind = true, -- This is mandatory, otherwise border config won't get registered.
-      -- If you want to hook lspsaga or other signature handler, pls set to false
-      doc_lines = 6, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
-      -- set to 0 if you DO NOT want any API comments be shown
-      -- This setting only take effect in insert mode, it does not affect signature help in normal
-      -- mode
-      floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
-      hint_enable = true, -- virtual hint enable
-      hint_prefix = "", -- Panda for parameter
-      hint_scheme = "String",
-      use_lspsaga = false, -- set to true if you want to use lspsaga popup
-      hi_parameter = "FloatBorder", -- how your parameter will be highlight
-      handler_opts = {
-        border = "single", -- double, single, shadow, none
-      },
-      -- deprecate
-      -- decorator = {"`", "`"}  -- decoractor can be `decorator = {"***", "***"}`  `decorator = {"**", "**"}` `decorator = {"**_", "_**"}`
-      -- `decorator = {"*", "*"} see markdown help for more details
-      -- <u></u> ~ ~ does not supported by nvim
-    })
-  end
 end
 
 -- LSP Settings
