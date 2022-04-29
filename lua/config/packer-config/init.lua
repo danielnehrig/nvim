@@ -568,14 +568,6 @@ local function init()
     end,
   })
   use({
-    "rlch/github-notifications.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    config = require("config.plugins.gh").init,
-  })
-  use({
     "rmagatti/auto-session",
     disable = true,
     config = function()
