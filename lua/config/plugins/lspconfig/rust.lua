@@ -1,6 +1,5 @@
 local lspconfig = require("lspconfig")
 local lsp = require("config.plugins.lspconfig")
-local augroups = require("config.utils").nvim_create_augroups
 local capabilities =
   require("config.plugins.lspconfig.capabilities").capabilities
 
@@ -8,16 +7,14 @@ lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     if client.resolved_capabilities.document_formatting then
-      local autocmds = {
-        Format = {
-          {
-            "BufWritePre",
-            "<buffer>",
-            "lua vim.lsp.buf.formatting()",
-          },
-        },
-      }
-      augroups(autocmds)
+      local au_lsp = vim.api.nvim_create_augroup("efm_lsp", { clear = true })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.buf.formatting_sync()
+        end,
+        group = au_lsp,
+      })
     end
     lsp.on_attach(client, bufnr)
   end,

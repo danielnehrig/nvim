@@ -31,14 +31,8 @@ function M.autocmds()
   vim.api.nvim_create_autocmd("User", {
     pattern = "PackerCompileDone",
     callback = function()
-      require("config.core.global").reload()
-    end,
-    group = au_pack,
-  })
-  vim.api.nvim_create_autocmd("User", {
-    pattern = "PackerCompileDone",
-    callback = function()
       require("config.packer-config").auto_compile()
+      require("config.core.global").reload()
     end,
     group = au_pack,
   })
