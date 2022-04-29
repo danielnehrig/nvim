@@ -1,9 +1,11 @@
-local global = {}
+--- @type string HOME always exists
 local home = os.getenv("HOME")
--- local path_sep = global.is_windows and "\\" or "/"
 local path_sep = package.config:sub(1, 1)
+--- @type string
 local os_name = vim.loop.os_uname().sysname
 
+local global = {}
+global._index = global
 function global:load_variables()
   self.is_darwin = os_name == "Darwin"
   self.is_linux = os_name == "Linux"
@@ -23,6 +25,7 @@ end
 
 global:load_variables()
 
+--- Reload the Config
 function global.reload()
   for k, _ in pairs(package.loaded) do
     if string.match(k, "^config") then
