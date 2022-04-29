@@ -2,7 +2,7 @@ local windline = require("windline")
 local helper = require("windline.helpers")
 local b_components = require("windline.components.basic")
 local animation = require("wlanimation")
-local efffects = require("wlanimation.effects")
+local effects = require("wlanimation.effects")
 local make = require("config.plugins.build")
 local state = _G.WindLine.state
 
@@ -134,7 +134,14 @@ local icon_comp = b_components.cache_file_icon({
 
 basic.file = {
   name = "file",
-  hl_colors = language_mode,
+  hl_colors = {
+    red = { "red", "black" },
+    yellow = { "yellow", "black" },
+    blue = { "blue", "black" },
+    trans = { "transparent", "transparent" },
+    sep = { "black", "transparent" },
+    spacer = { "black", "black" },
+  },
   text = function(bufnr, _, width)
     -- local filetype = vim.bo.filetype
     -- local len = string.len(filetype)
@@ -150,6 +157,8 @@ basic.file = {
         { b_components.progress, "" },
         { " ", "" },
         { b_components.file_modified(" "), "magenta" },
+        { " ", "spacer" },
+        { helper.separators.slant_right, "sep" },
       }
     else
       return {
@@ -158,6 +167,8 @@ basic.file = {
         { b_components.cache_file_name("[No Name]", ""), "magenta" },
         { " ", "" },
         { b_components.file_modified(" "), "magenta" },
+        { " ", "spacer" },
+        { helper.separators.slant_right, "sep" },
       }
     end
   end,
@@ -451,16 +462,16 @@ local default = {
   active = {
     basic.vi_mode,
     basic.file,
-    basic.lsp_diagnos,
+    --basic.lsp_diagnos,
     basic.divider,
-    basic.file_right,
-    basic.sig,
+    --basic.file_right,
+    --basic.sig,
     basic.dap,
     basic.lsp_names,
     --basic.lsp_workspace,
     basic.make,
     basic.git,
-    basic.gh_num,
+    --basic.gh_num,
     {
       git_comps.git_branch(),
       { "magenta", "black_light" },
@@ -522,15 +533,15 @@ animation.stop_all()
 
 animation.animation({
   data = {
-    { "waveright1", efffects.list_color(anim_colors, 2) },
-    { "waveright2", efffects.list_color(anim_colors, 3) },
-    { "waveright3", efffects.list_color(anim_colors, 4) },
-    { "waveright4", efffects.list_color(anim_colors, 5) },
-    { "waveright5", efffects.list_color(anim_colors, 6) },
-    { "waveright6", efffects.list_color(anim_colors, 7) },
-    { "waveright7", efffects.list_color(anim_colors, 8) },
-    { "waveright8", efffects.list_color(anim_colors, 9) },
-    { "waveright9", efffects.list_color(anim_colors, 10) },
+    { "waveright1", effects.list_color(anim_colors, 2) },
+    { "waveright2", effects.list_color(anim_colors, 3) },
+    { "waveright3", effects.list_color(anim_colors, 4) },
+    { "waveright4", effects.list_color(anim_colors, 5) },
+    { "waveright5", effects.list_color(anim_colors, 6) },
+    { "waveright6", effects.list_color(anim_colors, 7) },
+    { "waveright7", effects.list_color(anim_colors, 8) },
+    { "waveright8", effects.list_color(anim_colors, 9) },
+    { "waveright9", effects.list_color(anim_colors, 10) },
   },
   timeout = nil,
   delay = 200,
@@ -542,7 +553,7 @@ animation.basic_animation({
   timeout = nil,
   delay = 200,
   interval = 150,
-  effect = efffects.list_text(loading),
+  effect = effects.list_text(loading),
   on_tick = function(value)
     loading_text = value
   end,
