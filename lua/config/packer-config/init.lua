@@ -806,11 +806,6 @@ function plugins.bootstrap()
   end
 end
 
--- autocompile function called by autocmd on packer complete
-function plugins.auto_compile()
-  require("packer").compile()
-end
-
 -- loads the compiled packer file and sets the commands for packer
 function plugins.load_compile()
   if fn.filereadable(packer_compiled) ~= 1 then
