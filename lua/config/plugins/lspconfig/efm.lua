@@ -17,13 +17,13 @@ lspconfig.efm.setup({
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = true
     if client.resolved_capabilities.document_formatting then
-      local au_lsp = vim.api.nvim_create_augroup("efm_lsp",  { clear  = true })
+      local au_lsp = vim.api.nvim_create_augroup("efm_lsp", { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern =  "*",
-        callback = function ()
+        pattern = "*",
+        callback = function()
           vim.lsp.buf.formatting_sync()
         end,
-        group = au_lsp
+        group = au_lsp,
       })
     end
   end,
