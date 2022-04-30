@@ -417,7 +417,7 @@ local dashboard = {
   show_last_status = true,
 }
 
-local left = { basic.vi_mode, basic.file }
+local left = { basic.vi_mode, basic.file, basic.divider }
 local right = {
   basic.dap,
   basic.lsp_names,
@@ -431,7 +431,7 @@ local right = {
   { " ", { "black_light", "black_light" } },
 }
 
-local statusline = table.merge(left, table.merge({ basic.divider }, right))
+local statusline = vim.list_extend(left, right)
 
 local default = {
   filetypes = { "default", "terminal" },
