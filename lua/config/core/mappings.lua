@@ -125,6 +125,12 @@ function M.mappings()
   set({ "n" }, "<leader>uf", require("config.core.options").fold_column_toggle, {
     silent = true,
   })
+  set({ "n" }, "<leader>ud", vim.diagnostic.disable, {
+    silent = true,
+  })
+  set({ "n" }, "<leader>ut", vim.diagnostic.enable, {
+    silent = true,
+  })
   set(
     { "n" },
     "<leader>ur",
