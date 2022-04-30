@@ -451,8 +451,6 @@ local default = {
 
 windline.setup({
   colors_name = function(colors)
-    -- print(vim.inspect(colors))
-    -- ADD MORE COLOR HERE ----
     colors.FilenameFg = colors.white_light
     colors.FilenameBg = colors.black_light
     colors.transparent = "none"

@@ -3,7 +3,7 @@ local global = require("config.core.global")
 local sep_os_replacer = require("config.utils").sep_os_replacer
 local capabilities = require("config.plugins.lspconfig").capabilities
 local lsp = require("config.plugins.lspconfig")
-local map = require("config.utils").map
+local map = vim.keymap.set
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace = sep_os_replacer(
@@ -55,20 +55,15 @@ local config = {
     lsp.on_attach(client, bufnr)
 
     -- extra jdtls mapping overwrite TODO
-    map(bufnr, "n", "<space>gf", "<cmd>lua require('jdtls').code_action()<CR>")
+    map("n", "<space>gf", require("jdtls").code_action, { buffer = bufnr })
     map(
-      bufnr,
       "n",
       "<space>dm",
-      "<cmd>lua require'jdtls'.test_nearest_method()<CR>"
+      require("jdtls").test_nearest_method,
+      { buffer = bufnr }
     )
-    map(bufnr, "n", "<space>dM", "<cmd>lua require'jdtls'.test_class()<CR>")
-    map(
-      bufnr,
-      "v",
-      "<space>em",
-      "<cmd>lua require('jdtls').extract_method()<CR>"
-    )
+    map("n", "<space>dM", require("jdtls").test_class, { buffer = bufnr })
+    map("v", "<space>em", require("jdtls").extract_method, { buffer = bufnr })
   end,
 }
 
