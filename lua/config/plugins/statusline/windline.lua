@@ -42,22 +42,6 @@ local colors_mode = {
   Command = { "magenta", "black" },
 }
 
-local language_mode = {
-  lua = { "blue", "black" },
-  typescript = { "blue", "black" },
-  typescriptreact = { "blue", "black" },
-  javascript = { "red", "black" },
-  javascriptreact = { "red", "black" },
-  sh = { "white", "black" },
-  zsh = { "white", "black" },
-  rust = { "orange", "black" },
-  java = { "red", "black" },
-  python = { "blue", "black" },
-  white = { "white", "black" },
-  default = { "white", "black" },
-  magenta = { "magenta", "black" },
-}
-
 basic.vi_mode = {
   name = "vi_mode",
   hl_colors = colors_mode,
@@ -433,27 +417,25 @@ local dashboard = {
   show_last_status = true,
 }
 
+local left = { basic.vi_mode, basic.file }
+local right = {
+  basic.dap,
+  basic.lsp_names,
+  basic.make,
+  basic.git,
+  {
+    git_comps.git_branch(),
+    { "magenta", "black_light" },
+    breakpoint_width,
+  },
+  { " ", { "black_light", "black_light" } },
+}
+
+local statusline = table.merge(left, table.merge({ basic.divider }, right))
+
 local default = {
   filetypes = { "default", "terminal" },
-  active = {
-    basic.vi_mode,
-    basic.file,
-    --basic.lsp_diagnos,
-    basic.divider,
-    --basic.file_right,
-    basic.dap,
-    basic.lsp_names,
-    --basic.lsp_workspace,
-    basic.make,
-    basic.git,
-    --basic.gh_num,
-    {
-      git_comps.git_branch(),
-      { "magenta", "black_light" },
-      breakpoint_width,
-    },
-    { " ", { "black_light", "black_light" } },
-  },
+  active = statusline,
   always_active = true,
   show_last_status = true,
   inactive = {
