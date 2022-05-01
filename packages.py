@@ -4,6 +4,7 @@ import subprocess
 import os
 import sys
 from typing import TypedDict
+from typing import Union
 from getpass import getuser
 from datetime import datetime
 from distutils.spawn import find_executable
@@ -22,7 +23,7 @@ class PackageManager(TypedDict):
     # cli tool name (package manager name)
     cli_tool: str
     # index[0] is the package name index[1] is the bin name in path
-    packages: list[list[str | None]]
+    packages: list[tuple[str, Union[str, None]]]
     # the mode key is the internal compression check for behaviour in doing cli commands
     # on a package manager and the value is the command passed to the package manager
     modes: Modes
@@ -33,18 +34,18 @@ node: PackageManager = {
     "cli_tool": "npm",
     "modes": {"install": "install -g", "update": "upgrade -g"},
     "packages": [
-        ["typescript-language-server", "typescript-language-server"],
-        ["vscode-html-languageserver-bin", "html-languageserver"],
-        ["vscode-langservers-extracted", "vscode-css-language-server"],
-        ["svelte-language-server", "svelteserver"],
-        ["bash-language-server", "bash-language-server"],
-        ["yaml-language-server", "yaml-language-server"],
-        ["intelephense", "intelephense"],
-        ["dockerfile-language-server-nodejs", "docker-langserver"],
-        ["dprint", "dprint"],
-        ["pyright", "pyright"],
-        ["@fsouza/prettierd", "prettierd"],
-        ["eslint_d", "eslint_d"],
+        ("typescript-language-server", "typescript-language-server"),
+        ( "vscode-html-languageserver-bin", "html-languageserver" ),
+        ( "vscode-langservers-extracted", "vscode-css-language-server" ),
+        ( "svelte-language-server", "svelteserver" ),
+        ( "bash-language-server", "bash-language-server" ),
+        ( "yaml-language-server", "yaml-language-server" ),
+        ( "intelephense", "intelephense" ),
+        ( "dockerfile-language-server-nodejs", "docker-langserver" ),
+        ( "dprint", "dprint" ),
+        ( "pyright", "pyright" ),
+        ( "@fsouza/prettierd", "prettierd" ),
+        ( "eslint_d", "eslint_d" ),
     ],
 }
 
@@ -53,11 +54,11 @@ go: PackageManager = {
     "cli_tool": "go",
     "modes": {"install": "install", "update": "install"},
     "packages": [
-        ["mvdan.cc/sh/v3/cmd/shfmt@latest", "shfmt"],
-        ["github.com/mattn/efm-langserver@latest", "efm-langserver"],
-        ["golang.org/x/tools/gopls@latest", "gopls"],
-        ["golang.org/x/tools/cmd/goimports@latest", "goimports"],
-        ["github.com/segmentio/golines@latest", "golines"],
+        ( "mvdan.cc/sh/v3/cmd/shfmt@latest", "shfmt" ),
+        ( "github.com/mattn/efm-langserver@latest", "efm-langserver" ),
+        ( "golang.org/x/tools/gopls@latest", "gopls" ),
+        ( "golang.org/x/tools/cmd/goimports@latest", "goimports" ),
+        ( "github.com/segmentio/golines@latest", "golines" ),
     ],
 }
 
@@ -65,21 +66,21 @@ go: PackageManager = {
 rust: PackageManager = {
     "cli_tool": "cargo",
     "modes": {"install": "install", "update": "install"},
-    "packages": [["blackd-client", "blackd-client"], ["stylua", "stylua"]],
+    "packages": [("blackd-client", "blackd-client"), ("stylua", "stylua")],
 }
 
 # Rustup for rust lsp
 rust_up: PackageManager = {
     "cli_tool": "rustup",
     "modes": {"install": "+nightly component add", "update": "+nightly update"},
-    "packages": [["rust-analyzer-preview", "rust-analyzer-preview"]],
+    "packages": [("rust-analyzer-preview", "rust-analyzer-preview")],
 }
 
 # Rustup for rust lsp
 lua: PackageManager = {
     "cli_tool": "luarocks",
     "modes": {"install": "--local install", "update": "--local install"},
-    "packages": [["luacheck", "luacheck"]],
+    "packages": [("luacheck", "luacheck")],
 }
 
 # Python PIP Package Manager
@@ -87,9 +88,9 @@ python: PackageManager = {
     "cli_tool": "pip",
     "modes": {"install": "install", "update": "install"},
     "packages": [
-        ["black", "black"],
-        ["aiohttp", "aiohttp"],
-        ["aiohttp_cors", "aiohttp_cors"],
+        ( "black", "black" ),
+        ("aiohttp", "aiohttp"),
+        ("aiohttp_cors", "aiohttp_cors"),
     ],
 }
 
@@ -101,12 +102,12 @@ yay: PackageManager = {
         "update": "--save --answerclean=All --answerdiff=None -Yu",
     },
     "packages": [
-        ["nuspell", "nuspell"],
-        ["hunspell-en_us", None],
-        ["hunspell-de", None],
-        ["jdtls", "jdtls"],
-        ["groovy-language-server", "groovy-language-server"],
-        ["dotnet-sdk", "dotnet"],
+        ("nuspell", "nuspell"),
+        ("hunspell-en_us", None),
+        ("hunspell-de", None),
+        ("jdtls", "jdtls"),
+        ("groovy-language-server", "groovy-language-server"),
+        ("dotnet-sdk", "dotnet"),
     ],
 }
 
