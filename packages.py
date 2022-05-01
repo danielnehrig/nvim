@@ -35,17 +35,17 @@ node: PackageManager = {
     "modes": {"install": "install -g", "update": "upgrade -g"},
     "packages": [
         ("typescript-language-server", "typescript-language-server"),
-        ( "vscode-html-languageserver-bin", "html-languageserver" ),
-        ( "vscode-langservers-extracted", "vscode-css-language-server" ),
-        ( "svelte-language-server", "svelteserver" ),
-        ( "bash-language-server", "bash-language-server" ),
-        ( "yaml-language-server", "yaml-language-server" ),
-        ( "intelephense", "intelephense" ),
-        ( "dockerfile-language-server-nodejs", "docker-langserver" ),
-        ( "dprint", "dprint" ),
-        ( "pyright", "pyright" ),
-        ( "@fsouza/prettierd", "prettierd" ),
-        ( "eslint_d", "eslint_d" ),
+        ("vscode-html-languageserver-bin", "html-languageserver"),
+        ("vscode-langservers-extracted", "vscode-css-language-server"),
+        ("svelte-language-server", "svelteserver"),
+        ("bash-language-server", "bash-language-server"),
+        ("yaml-language-server", "yaml-language-server"),
+        ("intelephense", "intelephense"),
+        ("dockerfile-language-server-nodejs", "docker-langserver"),
+        ("dprint", "dprint"),
+        ("pyright", "pyright"),
+        ("@fsouza/prettierd", "prettierd"),
+        ("eslint_d", "eslint_d"),
     ],
 }
 
@@ -54,11 +54,11 @@ go: PackageManager = {
     "cli_tool": "go",
     "modes": {"install": "install", "update": "install"},
     "packages": [
-        ( "mvdan.cc/sh/v3/cmd/shfmt@latest", "shfmt" ),
-        ( "github.com/mattn/efm-langserver@latest", "efm-langserver" ),
-        ( "golang.org/x/tools/gopls@latest", "gopls" ),
-        ( "golang.org/x/tools/cmd/goimports@latest", "goimports" ),
-        ( "github.com/segmentio/golines@latest", "golines" ),
+        ("mvdan.cc/sh/v3/cmd/shfmt@latest", "shfmt"),
+        ("github.com/mattn/efm-langserver@latest", "efm-langserver"),
+        ("golang.org/x/tools/gopls@latest", "gopls"),
+        ("golang.org/x/tools/cmd/goimports@latest", "goimports"),
+        ("github.com/segmentio/golines@latest", "golines"),
     ],
 }
 
@@ -88,7 +88,7 @@ python: PackageManager = {
     "cli_tool": "pip",
     "modes": {"install": "install", "update": "install"},
     "packages": [
-        ( "black", "black" ),
+        ("black", "black"),
         ("aiohttp", "aiohttp"),
         ("aiohttp_cors", "aiohttp_cors"),
     ],
@@ -111,7 +111,13 @@ yay: PackageManager = {
     ],
 }
 
-steps: int = len(yay["packages"]) + len(python["packages"]) + len(rust["packages"]) + len(go["packages"]) + len(node["packages"])
+steps: int = (
+    len(yay["packages"])
+    + len(python["packages"])
+    + len(rust["packages"])
+    + len(go["packages"])
+    + len(node["packages"])
+)
 now: datetime = datetime.now()
 current_time: str = now.strftime("%H:%M:%S")
 current_folder: str = os.path.abspath(os.getcwd())
@@ -215,7 +221,9 @@ def in_path(cmd: str) -> bool:
 def install_cli_packages(package_manager: PackageManager):
     if not in_path(package_manager["cli_tool"]):
         log.Error(
-            "{0}{1}{2} not in path skipping installing".format(Colors.FAIL, package_manager["cli_tool"])
+            "{0}{1}{2} not in path skipping installing".format(
+                Colors.FAIL, package_manager["cli_tool"]
+            )
         )
         return
     mode = get_package_mode()
@@ -228,20 +236,32 @@ def install_cli_packages(package_manager: PackageManager):
                 inPath = in_path(package[1])
             else:
                 inPath = False
-            isForce = mode == 'update' and True or False
+            isForce = mode == "update" and True or False
             for _, option in enumerate(sys.argv):
                 if option == "--force":
                     isForce = True
 
             if not inPath or isForce:
-                log.Info("Installing CLI Package {0}{1}".format(Colors.OKGREEN, package[0]))
+                log.Info(
+                    "Installing CLI Package {0}{1}".format(Colors.OKGREEN, package[0])
+                )
                 cmd(install)
-                log.Success("Success Installing package {0}{1}".format(Colors.OKGREEN, package[0]))
+                log.Success(
+                    "Success Installing package {0}{1}".format(
+                        Colors.OKGREEN, package[0]
+                    )
+                )
             else:
-                log.Skip("CLI Package {0}{1}{2} in path".format(Colors.OKBLUE, package[0], Colors.ENDC))
+                log.Skip(
+                    "CLI Package {0}{1}{2} in path".format(
+                        Colors.OKBLUE, package[0], Colors.ENDC
+                    )
+                )
         except subprocess.CalledProcessError as e:
             log.Error(
-                "Failed to install {0}{1}{2} with code {3}".format(Colors.FAIL, package, Colors.ENDC, e.returncode)
+                "Failed to install {0}{1}{2} with code {3}".format(
+                    Colors.FAIL, package, Colors.ENDC, e.returncode
+                )
             )
 
 
