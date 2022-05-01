@@ -79,8 +79,10 @@ end
 function Debug:getStatus()
   if self.dap then
     if self.dap.session() then
-      local type = self.dap.session().config.type
-      return type .. " " .. self.dap.status()
+      if self.dap.session().config then
+        local type = self.dap.session().config.type
+        return type .. " " .. self.dap.status()
+      end
     end
   end
 
