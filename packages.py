@@ -55,7 +55,9 @@ go: PackageManager = {
     "packages": [
         ["mvdan.cc/sh/v3/cmd/shfmt@latest", "shfmt"],
         ["github.com/mattn/efm-langserver@latest", "efm-langserver"],
-        ["golang.org/x/tools/gopls@latest", "gopls"]
+        ["golang.org/x/tools/gopls@latest", "gopls"],
+        ["golang.org/x/tools/cmd/goimports@latest", "goimports"],
+        ["github.com/segmentio/golines@latest", "golines"],
     ],
 }
 

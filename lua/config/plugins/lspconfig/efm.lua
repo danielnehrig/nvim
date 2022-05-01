@@ -3,7 +3,6 @@ local lspconfig = require("lspconfig")
 -- efm setups
 local eslint = require("config.plugins.efm.eslint")
 local prettier = require("config.plugins.efm.prettier")
--- local luafmt = require("config.plugins.efm.luafmt")
 local stylua = require("config.plugins.efm.stylua")
 local luacheck = require("config.plugins.efm.luacheck")
 local rustfmt = require("config.plugins.efm.rustfmt")
@@ -11,6 +10,9 @@ local python = require("config.plugins.efm.python")
 local dprint = require("config.plugins.efm.dprint")
 local shellcheck = require("config.plugins.efm.shellcheck")
 local shfmt = require("config.plugins.efm.shfmt")
+local gofmt = require("config.plugins.efm.gofmt")
+local goimports = require("config.plugins.efm.goimports")
+local golines = require("config.plugins.efm.golines")
 
 -- formatting and linting with efm
 lspconfig.efm.setup({
@@ -29,6 +31,8 @@ lspconfig.efm.setup({
   end,
   root_dir = require("lspconfig/util").root_pattern(
     "package.json",
+    "cargo.toml",
+    "go.mod",
     ".eslintrc",
     ".eslintrc.json",
     ".prettierrc",
@@ -43,7 +47,13 @@ lspconfig.efm.setup({
     hover = false,
   },
   settings = {
-    rootMarkers = { "package.json", "go.mod", ".git/", ".zshrc" },
+    rootMarkers = {
+      "package.json",
+      "go.mod",
+      ".git/",
+      ".zshrc",
+      "cargo.toml",
+    },
     languages = {
       typescript = { prettier, eslint },
       typescriptreact = { prettier, eslint },
@@ -51,6 +61,7 @@ lspconfig.efm.setup({
       javascriptreact = { prettier, eslint },
       lua = { stylua, luacheck },
       rust = { rustfmt },
+      go = { gofmt, goimports, golines },
       markdown = { dprint },
       python = { python },
       bash = { shellcheck, shfmt },
@@ -62,6 +73,7 @@ lspconfig.efm.setup({
     "python",
     "bash",
     "sh",
+    "go",
     "markdown",
     "javascript",
     "javascriptreact",
