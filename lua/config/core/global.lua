@@ -32,9 +32,9 @@ function global.reload()
       package.loaded[k] = nil
     end
   end
+  vim.notify("Config Reload")
   vim.cmd("luafile " .. vim.env.MYVIMRC)
   vim.cmd("doautocmd VimEnter")
-  vim.notify("Config Reload", 1, { title = "Reload" })
 end
 
 return global
