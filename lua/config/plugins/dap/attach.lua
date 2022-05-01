@@ -4,7 +4,7 @@ local Debug = {
   dap = nil,
 }
 
-local debug = nil
+local debug_instance = nil
 
 Debug.__index = Debug
 
@@ -27,24 +27,37 @@ end
 
 function Debug.mappings()
   vim.cmd([[au FileType dap-repl lua require('dap.ext.autocompl').attach()]])
-  set("n", "<Leader>ds", [[ <Cmd>lua require'dap'.close()<CR>]])
-  set(
-    "n",
-    "<Leader>dd",
-    [[ <Cmd>lua require'dap'.disconnect(); require("dapui").close()<CR>]]
-  )
-  set(
-    "n",
-    "<Leader>dB",
-    [[ <Cmd>lua require'dap'.set_breakpoint(nil, nul vim.fn.input('Log point message: '))<CR>]]
-  )
-  set("n", "<Leader>dO", [[ <Cmd>lua require'dap'.step_over()<CR>]])
-  set("n", "<Leader>di", [[ <Cmd>lua require'dap'.step_into()<CR>]])
-  set("n", "<Leader>do", [[ <Cmd>lua require'dap'.step_out()<CR>]])
-  set("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]])
-  set("n", "<Leader>de", [[ <Cmd>lua require'dapui'.eval()<CR>]])
-  set("n", "<Leader>df", [[ <Cmd>lua require'dapui'.float_element()<CR>]])
-  set("n", "<Leader>dt", [[ <Cmd>lua require'dapui'.toggle()<CR>]])
+  set("n", "<Leader>ds", function()
+    require("dap").close()
+  end)
+  set("n", "<Leader>dd", function()
+    require("dap").disconnect()
+    require("dapui").close()
+  end)
+  set("n", "<Leader>dB", function()
+    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+  end)
+  set("n", "<Leader>dO", function()
+    require("dap").step_over()
+  end)
+  set("n", "<Leader>di", function()
+    require("dap").step_into()
+  end)
+  set("n", "<Leader>do", function()
+    require("dap").step_out()
+  end)
+  set("n", "<Leader>dr", function()
+    require("dap").repl.open()
+  end)
+  set("n", "<Leader>de", function()
+    require("dapui").eval()
+  end)
+  set("n", "<Leader>df", function()
+    require("dapui").float_element()
+  end)
+  set("n", "<Leader>dt", function()
+    require("dapui").toggle()
+  end)
 end
 
 function Debug:attach()
@@ -74,8 +87,8 @@ function Debug:getStatus()
   return "Detached"
 end
 
-if not debug then
-  debug = Debug.new()
+if not debug_instance then
+  debug_instance = Debug.new()
 end
 
-return debug
+return debug_instance

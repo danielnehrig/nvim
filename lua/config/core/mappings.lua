@@ -14,7 +14,9 @@ function M.mappings()
   set("i", "jj", "<ESC>") -- normal mode map
 
   -- quickfix
-  set("n", "<Leader>qo", ":lua require('config.utils').toggle_qf()<CR>")
+  set("n", "<Leader>qo", function()
+    require("config.utils").toggle_qf()
+  end)
   set("n", "<Leader>qn", ":cnext<CR>")
   set("n", "<Leader>qp", ":cprev<CR>")
 
@@ -46,45 +48,33 @@ function M.mappings()
   set("n", "<C-n>", ":NvimTreeToggle<CR>")
 
   -- dap NOTE: Lazyloaded
-  set(
-    "n",
-    "<Leader>dc",
-    [[ <Cmd>lua require("config.plugins.dap.attach"):addPlug(); require'dap'.continue()<CR>]]
-  )
-  set(
-    "n",
-    "<Leader>db",
-    [[ <Cmd>lua require("config.plugins.dap.attach"):addPlug(); require'dap'.toggle_breakpoint()<CR>]]
-  )
+  set("n", "<Leader>dc", function()
+    require("config.plugins.dap.attach"):addPlug()
+    require("dap").continue()
+  end)
+  set("n", "<Leader>db", function()
+    require("config.plugins.dap.attach"):addPlug()
+    require("dap").toggle_breakpoint()
+  end)
 
   -- gitlinker: NOTE: Lazyloaded
-  set(
-    "n",
-    "<Leader>gy",
-    [[ <Cmd>lua require('config.plugins.gitlinker'):normal()<CR>]]
-  )
-  set(
-    "v",
-    "<Leader>gy",
-    [[ <Cmd>lua require('config.plugins.gitlinker'):visual()<CR>]]
-  )
+  set("n", "<Leader>gy", function()
+    require("config.plugins.gitlinker"):normal()
+  end)
+  set("v", "<Leader>gy", function()
+    require("config.plugins.gitlinker"):visual()
+  end)
 
   -- refactor: NOTE: Lazyloaded
-  set(
-    "v",
-    "<Leader>re",
-    [[ <Cmd>lua require('config.plugins.refactoring').extract()<CR>]]
-  )
-  set(
-    "v",
-    "<Leader>rf",
-    [[ <Cmd>lua require('config.plugins.refactoring').extract_to_file()<CR>]]
-  )
-  set(
-    "v",
-    "<Leader>rt",
-    [[<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]]
-  )
+  set("v", "<Leader>re", function()
+    require("config.plugins.refactoring").extract()
+  end)
+  set("v", "<Leader>rf", function()
+    require("config.plugins.refactoring").extract_to_file()
+  end)
+  set("v", "<Leader>rt", function()
+    require("telescope").extensions.refactoring.refactors()
+  end)
 
   -- marker: NOTE: Lazyloaded
   set("v", "<Leader>1", ":<c-u>HSHighlight 1<CR>")
