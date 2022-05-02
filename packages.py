@@ -345,8 +345,8 @@ def get_package_mode() -> str:
 
 
 def main():
-    log.Info("Detected system is {0}".format(sys.platform))
     help()
+    log.Info("Detected system is {0}".format(sys.platform))
 
     try:
 
