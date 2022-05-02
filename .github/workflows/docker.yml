@@ -3,11 +3,12 @@ name: ci
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    name: docker
     steps:
       -
         name: Checkout
