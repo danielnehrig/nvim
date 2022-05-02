@@ -47,7 +47,7 @@ class Manager:
         self.dependencies_installer = dependencies_installer
 
     def install_cli_packages(self):
-        if not in_path(self.package_manager["cli_tool"]):
+        if not find_executable(self.package_manager["cli_tool"]):
             log.Error(
                 "{0}{1}{2} not in path skipping installing".format(
                     Colors.FAIL, self.package_manager["cli_tool"]
@@ -63,7 +63,7 @@ class Manager:
             )
             try:
                 if package[1]:
-                    inPath = in_path(package[1])
+                    inPath = find_executable(package[1])
                 else:
                     inPath = False
                 isForce = mode == "update" and True or False
@@ -318,18 +318,6 @@ def cmd(call: str) -> None:
     except subprocess.CalledProcessError as err:
         log.Error("Failed to execute {0}".format(call))
         log.Error("Trace {0}".format(err))
-
-
-def in_path(cmd: str) -> bool:
-    inPath = False
-    try:
-        inPath = find_executable(cmd) is not None
-    except subprocess.CalledProcessError as e:
-        log.Error(
-            "Call Check {0} Failed with return code {1}".format(cmd, e.returncode)
-        )
-
-    return inPath
 
 
 def help() -> None:
