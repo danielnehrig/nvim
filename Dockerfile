@@ -1,7 +1,7 @@
 FROM testcab/yay
 RUN yay --save --nocleanmenu --nodiffmenu --noconfirm -Syu
 RUN yay --save --nocleanmenu --nodiffmenu --noconfirm -S neovim-git
-RUN yay --save --nocleanmenu --nodiffmenu --noconfirm -S node python python-pip rustup go lua luarocks fzf ripgrep
+RUN yay --save --nocleanmenu --nodiffmenu --noconfirm -S nodejs npm python python-pip rustup go lua luarocks fzf ripgrep
 RUN yay --save --nocleanmenu --nodiffmenu --noconfirm -S lolcat bat
 RUN rustup install nightly
 RUN echo 'PATH+=":$HOME/.local/bin"' >> /home/makepkg/.bashrc
