@@ -39,7 +39,8 @@ local luadev = require("lua-dev").setup({
     flags = { debounce_text_changes = 500 },
     -- root_dir = require("lspconfig/util").root_pattern("."),
     on_attach = function(client, bufnr)
-      client.resolved_capabilities.document_formatting = false
+      client.server_capabilities.document_formatting = false
+      vim.pretty_print(client.server_capabilities)
       lsp.on_attach(client, bufnr)
     end,
   },
@@ -75,7 +76,7 @@ function M.reinit()
       flags = { debounce_text_changes = 500 },
       -- root_dir = require("lspconfig/util").root_pattern("."),
       on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
         lsp.on_attach(client, bufnr)
       end,
     },

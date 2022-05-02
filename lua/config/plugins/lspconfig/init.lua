@@ -55,24 +55,27 @@ function LSP.on_attach(client, bufnr)
   )
 
   local au_lsp = vim.api.nvim_create_augroup("lsp", { clear = true })
-  vim.api.nvim_create_autocmd("CursorHold", {
-    pattern = "*",
-    callback = vim.lsp.buf.document_highlight,
-    desc = "Highlight lsp references",
-    group = au_lsp,
-  })
-  vim.api.nvim_create_autocmd("CursorHoldI", {
-    pattern = "*",
-    callback = vim.lsp.buf.document_highlight,
-    desc = "Highlight lsp references",
-    group = au_lsp,
-  })
-  vim.api.nvim_create_autocmd("CursorMoved", {
-    pattern = "*",
-    callback = vim.lsp.buf.clear_references,
-    desc = "Highlight lsp references",
-    group = au_lsp,
-  })
+
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_autocmd("CursorHold", {
+      pattern = "*",
+      callback = vim.lsp.buf.document_highlight,
+      desc = "Highlight lsp references",
+      group = au_lsp,
+    })
+    vim.api.nvim_create_autocmd("CursorHoldI", {
+      pattern = "*",
+      callback = vim.lsp.buf.document_highlight,
+      desc = "Highlight lsp references",
+      group = au_lsp,
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      pattern = "*",
+      callback = vim.lsp.buf.clear_references,
+      desc = "Highlight lsp references",
+      group = au_lsp,
+    })
+  end
 
   fn.sign_define(
     "DiagnosticSignError",
