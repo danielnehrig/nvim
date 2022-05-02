@@ -206,14 +206,17 @@ yay: Manager = Manager(
 
 class SysManager:
     package_list: list[Manager]
+    os: str
 
-    def __init__(self, package_list: list[Manager]):
+    def __init__(self, os: str, package_list: list[Manager]):
+        self.os = os
         self.package_list = package_list
 
 
-darwin_setup = SysManager([node, rust, rust_up, go, lua, python])
-linux_setup = SysManager([yay, node, rust, rust_up, go, lua, python])
-windows_setup = SysManager([node, rust, rust_up, go, lua, python])
+darwin_setup = SysManager("darwin", [node, rust, rust_up, go, lua, python])
+linux_setup = SysManager("linux", [yay, node, rust, rust_up, go, lua, python])
+windows_setup = SysManager("win32", [node, rust, rust_up, go, lua, python])
+supported_os = [darwin_setup, linux_setup, windows_setup]
 
 # @TODO - Refactor set  steps on OS Func level each os install different amount of packages
 # reduce the setup arrays to sum up the length of the packages array
@@ -329,34 +332,6 @@ def in_path(cmd: str) -> bool:
     return inPath
 
 
-def Darwin() -> None:
-    for manager in darwin_setup.package_list:
-        manager.install_cli_packages()
-
-        if manager.dependencies_installer:
-            manager.dependencies_installer()
-
-
-def Cygwin() -> None:
-    log.Error("Not Supported")
-
-
-def Linux() -> None:
-    for manager in linux_setup.package_list:
-        manager.install_cli_packages()
-
-        if manager.dependencies_installer:
-            manager.dependencies_installer()
-
-
-def Win32() -> None:
-    for manager in windows_setup.package_list:
-        manager.install_cli_packages()
-
-        if manager.dependencies_installer:
-            manager.dependencies_installer()
-
-
 def help() -> None:
     for option in sys.argv:
         if option == "--help" or option == "-h":
@@ -385,17 +360,14 @@ if __name__ == "__main__":
     help()
 
     try:
-        if sys.platform == "win32":
-            Win32()
 
-        if sys.platform == "cygwin":
-            Cygwin()
+        for sysmanager in supported_os:
+            if sysmanager.os == sys.platform:
+                for manager in sysmanager.package_list:
+                    manager.install_cli_packages()
 
-        if sys.platform == "darwin":
-            Darwin()
-
-        if sys.platform == "linux":
-            Linux()
+                    if manager.dependencies_installer:
+                        manager.dependencies_installer()
 
         if log.skip > (steps / 2):
             log.Info(
