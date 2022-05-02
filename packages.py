@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import subprocess
+import traceback
 import os
 import sys
 from typing import TypedDict, Union, Callable
@@ -49,7 +50,7 @@ class PackageManager:
     def install_cli_packages(self):
         if not which(self.package_manager["cli_tool"]):
             log.Error(
-                "{0}{1}{2} not in path skipping installing".format(
+                "{0}{1} not in path skipping installing".format(
                     Colors.FAIL, self.package_manager["cli_tool"]
                 )
             )
@@ -200,8 +201,8 @@ yay: PackageManager = PackageManager(
     {
         "cli_tool": "yay",
         "modes": {
-            "install": "--save --answerclean=All --answerdiff=None -S",
-            "update": "--save --answerclean=All --answerdiff=None -Yu",
+            "install": "--save --nocleanmenu --nodiffmenu --noconfirm -S",
+            "update": "--save --nocleanmenu --nodiffmenu --noconfirm -Yu",
         },
         "packages": [
             ("nuspell", "nuspell"),
@@ -241,7 +242,7 @@ class SysManager:
 
 
 darwin_setup = SysManager("darwin", [brew, node, rust, rust_up, go, lua, python])
-linux_setup = SysManager("linux", [yay, node, rust, rust_up, go, lua, python])
+linux_setup = SysManager("linux", [node, rust, rust_up, go, lua, python])
 windows_setup = SysManager("win32", [node, rust, rust_up, go, lua, python])
 supported_os = [darwin_setup, linux_setup, windows_setup]
 
@@ -325,6 +326,7 @@ def cmd(call: str) -> None:
         log.Info("Executing {0}{1}{2}".format(Colors.WARNING, call, Colors.ENDC))
         cmdArr = call.split()
         with open(os.devnull, "w") as f:
+            # subprocess.call(cmdArr, stdout=f)
             subprocess.call(
                 cmdArr, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
             )
@@ -382,8 +384,9 @@ def main():
                 return
         log.Error("{0} is not Supported".format(sys.platform))
 
-    except:
-        log.Error("Error While Installing")
+    except Exception as err:
+        log.Error("Error While Installing: {0}".format(err))
+        log.Error("{0}".format(traceback.print_exc()))
         sys.exit(1)
 
 

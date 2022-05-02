@@ -20,6 +20,9 @@ install:
 	@echo "Install"
 	./packages.py
 
+run:
+	docker run -rm -it -v $(pwd):/mnt/workspace danielnehrig/nvim:latest nvim
+
 
 # vim:ft=make
 #
