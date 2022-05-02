@@ -554,6 +554,12 @@ local function init()
       end,
     })
     use({
+      "akinsho/git-conflict.nvim",
+      config = function()
+        require("git-conflict").setup()
+      end,
+    })
+    use({
       "tanvirtin/vgit.nvim",
       requires = {
         "nvim-lua/plenary.nvim",
