@@ -215,6 +215,12 @@ class SysManager:
                     if not find_executable(package[1]):
                         log.Warning("Binary {} not found in path".format(package[1]))
 
+    def count_packages(self):
+        for list in self.package_list:
+            for _ in list.package_manager["packages"]:
+                global steps
+                steps = steps + 1
+
     def __init__(self, os: str, package_list: list[PackageManager]):
         self.os = os
         self.package_list = package_list
@@ -227,14 +233,7 @@ supported_os = [darwin_setup, linux_setup, windows_setup]
 
 # @TODO - Refactor set  steps on OS Func level each os install different amount of packages
 # reduce the setup arrays to sum up the length of the packages array
-steps: int = (
-    len(python.package_manager["packages"])
-    + len(rust.package_manager["packages"])
-    + len(rust_up.package_manager["packages"])
-    + len(lua.package_manager["packages"])
-    + len(go.package_manager["packages"])
-    + len(node.package_manager["packages"])
-)
+steps: int = 0
 now: datetime = datetime.now()
 current_time: str = now.strftime("%H:%M:%S")
 current_folder: str = os.path.abspath(os.getcwd())
@@ -358,6 +357,7 @@ if __name__ == "__main__":
 
         for sysmanager in supported_os:
             if sysmanager.os == sys.platform:
+                sysmanager.count_packages()
                 for manager in sysmanager.package_list:
                     manager.install_cli_packages()
 
