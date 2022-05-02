@@ -162,6 +162,7 @@ class Colors:
 class Log(Colors):
     user: str = getuser()
     counter: int = 1
+    skip: int = 0
     # TODO
     loglevel: str = "info"
 
@@ -201,9 +202,10 @@ class Log(Colors):
         print(st.format(self.now(), self.user, arrow, string))
 
     def Skip(self, string: str) -> None:
-        st: str = self.buildStepString("SKIP", self.OKBLUE)
+        st: str = self.buildStepString("SUCCESS", self.OKBLUE)
         print(st.format(self.now(), self.user, arrow, string, self.counter, steps))
         self.counter = self.counter + 1
+        self.skip = self.skip + 1
 
     def Step(self, string: str) -> None:
         st: str = self.buildStepString("STEP", self.OKBLUE)
@@ -218,7 +220,9 @@ def cmd(call: str) -> None:
         log.Info("Executing {0}{1}{2}".format(Colors.WARNING, call, Colors.ENDC))
         cmdArr = call.split()
         with open(os.devnull, "w") as f:
-            subprocess.call(cmdArr, stdout=f)
+            subprocess.call(
+                cmdArr, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
+            )
             f.close()
     except subprocess.CalledProcessError as err:
         log.Error("Failed to execute {0}".format(call))
@@ -272,7 +276,7 @@ def install_cli_packages(package_manager: PackageManager):
                 )
             else:
                 log.Skip(
-                    "CLI Package {0}{1}{2} in path".format(
+                    "CLI Package {0}{1}{2} in path SKIP".format(
                         Colors.OKBLUE, package[0], Colors.ENDC
                     )
                 )
