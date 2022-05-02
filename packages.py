@@ -124,6 +124,8 @@ darwin_setup = [node, rust, rust_up, go, lua, python]
 linux_setup = [yay, node, rust, rust_up, go, lua, python]
 windows_setup = [node, rust, rust_up, go, lua, python]
 
+# @TODO - Refactor set  steps on OS Func level each os install different amount of packages
+# reduce the setup arrays to sum up the length of the packages array
 steps: int = (
     len(python["packages"])
     + len(rust["packages"])
