@@ -244,7 +244,7 @@ class SysManager:
 
 
 darwin_setup = SysManager("darwin", [brew, node, rust, rust_up, go, lua, python])
-linux_setup = SysManager("linux", [node, rust, rust_up, go, lua, python])
+linux_setup = SysManager("linux", [yay, node, rust, rust_up, go, lua, python])
 windows_setup = SysManager("win32", [node, rust, rust_up, go, lua, python])
 supported_os = [darwin_setup, linux_setup, windows_setup]
 
