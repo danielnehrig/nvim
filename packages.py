@@ -70,7 +70,10 @@ go: PackageManager = {
 rust: PackageManager = {
     "cli_tool": "cargo",
     "modes": {"install": "install", "update": "install"},
-    "packages": [("blackd-client", "blackd-client"), ("stylua", "stylua")],
+    "packages": [
+        ("blackd-client", "blackd-client"),
+        ("stylua", "stylua"),
+    ],
     "dependencies": None,
 }
 
@@ -96,6 +99,7 @@ python: PackageManager = {
     "modes": {"install": "install", "update": "install"},
     "packages": [
         ("black", "black"),
+        ("blackd", "blackd"),
         ("aiohttp", None),
         ("aiohttp_cors", None),
     ],
