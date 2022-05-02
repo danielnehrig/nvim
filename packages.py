@@ -344,7 +344,7 @@ def get_package_mode() -> str:
     return mode
 
 
-if __name__ == "__main__":
+def main():
     log.Info("Detected system is {0}".format(sys.platform))
     help()
 
@@ -361,10 +361,18 @@ if __name__ == "__main__":
 
                 sysmanager.is_cli_packages_installed()
 
-        if log.skip > (log.max_steps / 2):
-            log.Info(
-                "Consider Updating Packages that got skipped with the --update flag"
-            )
+                if log.skip > (log.max_steps / 2):
+                    log.Info(
+                        "Consider Updating Packages that got skipped with the --update flag"
+                    )
+
+                return
+        log.Error("{0} is not Supported".format(sys.platform))
 
     except:
         log.Error("Error While Installing")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
