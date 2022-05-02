@@ -8,7 +8,6 @@ local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 local function init()
   local packer = require("packer")
   packer.init({
-    max_jobs = 50,
     disable_commands = true,
     display = {
       open_fn = require("packer.util").float,
@@ -124,7 +123,10 @@ local function init()
       config = require("config.plugins.neogen").init,
       requires = "nvim-treesitter/nvim-treesitter",
     })
-    use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- comment out code
+    use({
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      requires = "nvim-treesitter/nvim-treesitter",
+    }) -- comment out code
     use({
       "winston0410/commented.nvim",
       keys = { "<space>cc" },
@@ -136,17 +138,57 @@ local function init()
         })
       end,
     }) -- comment out code
-    use({ "nvim-treesitter/nvim-treesitter-textobjects" }) -- custom textobjects
+    use({
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      requires = "nvim-treesitter/nvim-treesitter",
+    }) -- custom textobjects
     use({
       "mizlan/iswap.nvim",
+      requires = "nvim-treesitter/nvim-treesitter",
       config = function()
-        require("iswap").setup({})
+        require("iswap").setup({
+          -- The keys that will be used as a selection, in order
+          -- ('asdfghjklqwertyuiopzxcvbnm' by default)
+          keys = "qwertyuiop",
+
+          -- Grey out the rest of the text when making a selection
+          -- (enabled by default)
+          grey = "disable",
+
+          -- Highlight group for the sniping value (asdf etc.)
+          -- default 'Search'
+          hl_snipe = "ErrorMsg",
+
+          -- Highlight group for the visual selection of terms
+          -- default 'Visual'
+          hl_selection = "WarningMsg",
+
+          -- Highlight group for the greyed background
+          -- default 'Comment'
+          hl_grey = "LineNr",
+
+          -- Automatically swap with only two arguments
+          -- default nil
+          autoswap = true,
+
+          -- Other default options you probably should not change:
+          debug = nil,
+          hl_grey_priority = "1000",
+        })
       end,
     })
-    use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
-    use({ "RRethy/nvim-treesitter-textsubjects" })
+    use({
+      "nvim-treesitter/playground",
+      cmd = "TSPlaygroundToggle",
+      requires = "nvim-treesitter/nvim-treesitter",
+    })
+    use({
+      "RRethy/nvim-treesitter-textsubjects",
+      requires = "nvim-treesitter/nvim-treesitter",
+    })
     use({
       "lewis6991/spellsitter.nvim",
+      requires = "nvim-treesitter/nvim-treesitter",
       config = function()
         require("spellsitter").setup({
           enable = true,
@@ -156,6 +198,7 @@ local function init()
     }) -- spell check treesitter based
     use({
       "windwp/nvim-ts-autotag",
+      requires = "nvim-treesitter/nvim-treesitter",
     }) -- autotag <>
     use({
       "shuntaka9576/preview-swagger.nvim",
@@ -614,6 +657,9 @@ local function init()
       "rcarriga/nvim-notify",
       config = function()
         local notify = require("notify")
+        vim.cmd(
+          "autocmd ColorScheme * highlight NotifyBG guibg=#3d3d3d guifg=#3e4451"
+        )
         notify.setup({
           -- Animation style (see below for details)
           -- stages = "fade",
