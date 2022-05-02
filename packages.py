@@ -19,7 +19,7 @@ class Modes(TypedDict):
 
 
 # The PackageManger that installs your packages
-class PackageManager(TypedDict):
+class PackageManagerDict(TypedDict):
     # cli tool name (package manager name)
     cli_tool: str
     # index[0] is the package name index[1] is the bin name in path
@@ -34,13 +34,13 @@ class PackageManager(TypedDict):
 # This Manager offers the ability to use custom installers as well as generic cones
 # obviously not every package manager has the same way to display what kind of lib has been installed
 # while with binarys its easier where you can just check if its in path
-class Manager:
-    package_manager: PackageManager
+class PackageManager:
+    package_manager: PackageManagerDict
     dependencies_installer: Union[Callable, None] = None
 
     def __init__(
         self,
-        package_manager: PackageManager,
+        package_manager: PackageManagerDict,
         dependencies_installer: Union[Callable, None] = None,
     ):
         self.package_manager = package_manager
@@ -98,7 +98,7 @@ class Manager:
 
 
 # Node NPM Package Manager
-node: Manager = Manager(
+node: PackageManager = PackageManager(
     {
         "cli_tool": "npm",
         "modes": {"install": "install -g", "update": "upgrade -g"},
@@ -121,7 +121,7 @@ node: Manager = Manager(
 )
 
 # Go Go Package Manager
-go: Manager = Manager(
+go: PackageManager = PackageManager(
     {
         "cli_tool": "go",
         "modes": {"install": "install", "update": "install"},
@@ -137,7 +137,7 @@ go: Manager = Manager(
 )
 
 # Rust Cargo Package Manager
-rust: Manager = Manager(
+rust: PackageManager = PackageManager(
     {
         "cli_tool": "cargo",
         "modes": {"install": "install", "update": "install"},
@@ -150,7 +150,7 @@ rust: Manager = Manager(
 )
 
 # Rustup for rust lsp
-rust_up: Manager = Manager(
+rust_up: PackageManager = PackageManager(
     {
         "cli_tool": "rustup",
         "modes": {"install": "+nightly component add", "update": "+nightly update"},
@@ -160,7 +160,7 @@ rust_up: Manager = Manager(
 )
 
 # Rustup for rust lsp
-lua: Manager = Manager(
+lua: PackageManager = PackageManager(
     {
         "cli_tool": "luarocks",
         "modes": {"install": "--local install", "update": "--local install"},
@@ -170,7 +170,7 @@ lua: Manager = Manager(
 )
 
 # Python PIP Package Manager
-python: Manager = Manager(
+python: PackageManager = PackageManager(
     {
         "cli_tool": "pip",
         "modes": {"install": "install", "update": "install"},
@@ -184,7 +184,7 @@ python: Manager = Manager(
 )
 
 # Arch community package manager (uses pacman internally)
-yay: Manager = Manager(
+yay: PackageManager = PackageManager(
     {
         "cli_tool": "yay",
         "modes": {
@@ -205,17 +205,17 @@ yay: Manager = Manager(
 
 
 class SysManager:
-    package_list: list[Manager]
+    package_list: list[PackageManager]
     os: str
 
-    def is_cli_package_installed(self):
+    def is_cli_packages_installed(self):
         for list in self.package_list:
             for package in list.package_manager["packages"]:
                 if package[1]:
                     if not find_executable(package[1]):
                         log.Warning("Binary {} not found in path".format(package[1]))
 
-    def __init__(self, os: str, package_list: list[Manager]):
+    def __init__(self, os: str, package_list: list[PackageManager]):
         self.os = os
         self.package_list = package_list
 
@@ -364,7 +364,7 @@ if __name__ == "__main__":
                     if manager.dependencies_installer:
                         manager.dependencies_installer()
 
-                sysmanager.is_cli_package_installed()
+                sysmanager.is_cli_packages_installed()
 
         if log.skip > (steps / 2):
             log.Info(
