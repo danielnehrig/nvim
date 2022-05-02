@@ -3,8 +3,7 @@
 import subprocess
 import os
 import sys
-from typing import TypedDict
-from typing import Union
+from typing import TypedDict, Union, Callable
 from getpass import getuser
 from datetime import datetime
 from distutils.spawn import find_executable
@@ -29,6 +28,69 @@ class PackageManager(TypedDict):
     modes: Modes
     # dependencies list that have nothing to do with binarys
     dependencies: Union[list[str], None]
+
+
+class Manager:
+    package_manager: PackageManager
+    dependencies_installer: Union[Callable, None] = None
+
+    def __init__(
+        self,
+        package_manager: PackageManager,
+        dependencies_installer: Union[Callable, None] = None,
+    ):
+        self.package_manager = package_manager
+        self.dependencies_installer = dependencies_installer
+
+    def install_cli_packages(self):
+        if not in_path(self.package_manager["cli_tool"]):
+            log.Error(
+                "{0}{1}{2} not in path skipping installing".format(
+                    Colors.FAIL, self.package_manager["cli_tool"]
+                )
+            )
+            return
+        mode = get_package_mode()
+        for package in self.package_manager["packages"]:
+            install = "{0} {1} {2}".format(
+                self.package_manager["cli_tool"],
+                self.package_manager["modes"][mode],
+                package[0],
+            )
+            try:
+                if package[1]:
+                    inPath = in_path(package[1])
+                else:
+                    inPath = False
+                isForce = mode == "update" and True or False
+                for _, option in enumerate(sys.argv):
+                    if option == "--force":
+                        isForce = True
+
+                if not inPath or isForce:
+                    log.Info(
+                        "Installing CLI Package {0}{1}".format(
+                            Colors.OKGREEN, package[0]
+                        )
+                    )
+                    cmd(install)
+                    log.Success(
+                        "Success Installing package {0}{1}".format(
+                            Colors.OKGREEN, package[0]
+                        )
+                    )
+                else:
+                    log.Skip(
+                        "CLI Package {0}{1}{2} in path SKIP".format(
+                            Colors.OKBLUE, package[0], Colors.ENDC
+                        )
+                    )
+            except subprocess.CalledProcessError as e:
+                log.Error(
+                    "Failed to install {0}{1}{2} with code {3}".format(
+                        Colors.FAIL, package, Colors.ENDC, e.returncode
+                    )
+                )
 
 
 # Node NPM Package Manager
@@ -123,9 +185,31 @@ yay: PackageManager = {
     "dependencies": None,
 }
 
-darwin_setup = [node, rust, rust_up, go, lua, python]
-linux_setup = [yay, node, rust, rust_up, go, lua, python]
-windows_setup = [node, rust, rust_up, go, lua, python]
+darwin_setup = [
+    Manager(node),
+    Manager(rust),
+    Manager(rust_up),
+    Manager(go),
+    Manager(lua),
+    Manager(python),
+]
+linux_setup = [
+    Manager(yay),
+    Manager(node),
+    Manager(rust),
+    Manager(rust_up),
+    Manager(go),
+    Manager(lua),
+    Manager(python),
+]
+windows_setup = [
+    Manager(node),
+    Manager(rust),
+    Manager(rust_up),
+    Manager(go),
+    Manager(lua),
+    Manager(python),
+]
 
 # @TODO - Refactor set  steps on OS Func level each os install different amount of packages
 # reduce the setup arrays to sum up the length of the packages array
@@ -241,56 +325,12 @@ def in_path(cmd: str) -> bool:
     return inPath
 
 
-def install_cli_packages(package_manager: PackageManager):
-    if not in_path(package_manager["cli_tool"]):
-        log.Error(
-            "{0}{1}{2} not in path skipping installing".format(
-                Colors.FAIL, package_manager["cli_tool"]
-            )
-        )
-        return
-    mode = get_package_mode()
-    for package in package_manager["packages"]:
-        install = "{0} {1} {2}".format(
-            package_manager["cli_tool"], package_manager["modes"][mode], package[0]
-        )
-        try:
-            if package[1]:
-                inPath = in_path(package[1])
-            else:
-                inPath = False
-            isForce = mode == "update" and True or False
-            for _, option in enumerate(sys.argv):
-                if option == "--force":
-                    isForce = True
-
-            if not inPath or isForce:
-                log.Info(
-                    "Installing CLI Package {0}{1}".format(Colors.OKGREEN, package[0])
-                )
-                cmd(install)
-                log.Success(
-                    "Success Installing package {0}{1}".format(
-                        Colors.OKGREEN, package[0]
-                    )
-                )
-            else:
-                log.Skip(
-                    "CLI Package {0}{1}{2} in path SKIP".format(
-                        Colors.OKBLUE, package[0], Colors.ENDC
-                    )
-                )
-        except subprocess.CalledProcessError as e:
-            log.Error(
-                "Failed to install {0}{1}{2} with code {3}".format(
-                    Colors.FAIL, package, Colors.ENDC, e.returncode
-                )
-            )
-
-
 def Darwin() -> None:
     for manager in darwin_setup:
-        install_cli_packages(manager)
+        manager.install_cli_packages()
+
+        if manager.dependencies_installer:
+            manager.dependencies_installer()
 
 
 def Cygwin() -> None:
@@ -299,12 +339,18 @@ def Cygwin() -> None:
 
 def Linux() -> None:
     for manager in linux_setup:
-        install_cli_packages(manager)
+        manager.install_cli_packages()
+
+        if manager.dependencies_installer:
+            manager.dependencies_installer()
 
 
 def Win32() -> None:
     for manager in windows_setup:
-        install_cli_packages(manager)
+        manager.install_cli_packages()
+
+        if manager.dependencies_installer:
+            manager.dependencies_installer()
 
 
 def help() -> None:
