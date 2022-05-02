@@ -788,9 +788,14 @@ function plugins.bootstrap()
   -- check if packer exists or is installed
   if fn.empty(fn.glob(install_path)) > 0 then
     -- fetch packer
-    execute(
-      "!git clone https://github.com/wbthomason/packer.nvim " .. install_path
-    )
+    vim.fn.system({
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/wbthomason/packer.nvim",
+      install_path,
+    })
     execute("packadd packer.nvim")
     local packer = require("packer")
 

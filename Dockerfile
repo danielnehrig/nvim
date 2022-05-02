@@ -14,7 +14,9 @@ RUN echo 'PATH+="$HOME/.cargo/bin"' >> /home/makepkg/.bashrc
 RUN echo 'PATH+="$HOME/go/bin"' >> /home/makepkg/.bashrc
 RUN echo 'PATH+="$HOME/.local/lib/python3.9/site-packages"' >> /home/makepkg/.bashrc
 COPY . /home/makepkg/.config/nvim/
-RUN DEBUG=true /home/makepkg/.config/nvim/packages.py
+RUN bash
+RUN mkdir /home/makepkg/.config/nvim/plugin
+RUN /home/makepkg/.config/nvim/packages.py
 RUN nvim --headless +PackerSync +q
 
 # Avoid container exit.
