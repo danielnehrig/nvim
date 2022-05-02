@@ -98,132 +98,132 @@ class Manager:
 
 
 # Node NPM Package Manager
-node: PackageManager = {
-    "cli_tool": "npm",
-    "modes": {"install": "install -g", "update": "upgrade -g"},
-    "packages": [
-        ("typescript-language-server", "typescript-language-server"),
-        ("vscode-html-languageserver-bin", "html-languageserver"),
-        ("vscode-langservers-extracted", "vscode-css-language-server"),
-        ("svelte-language-server", "svelteserver"),
-        ("bash-language-server", "bash-language-server"),
-        ("yaml-language-server", "yaml-language-server"),
-        ("intelephense", "intelephense"),
-        ("dockerfile-language-server-nodejs", "docker-langserver"),
-        ("dprint", "dprint"),
-        ("pyright", "pyright"),
-        ("@fsouza/prettierd", "prettierd"),
-        ("eslint_d", "eslint_d"),
-    ],
-    "dependencies": None,
-}
+node: Manager = Manager(
+    {
+        "cli_tool": "npm",
+        "modes": {"install": "install -g", "update": "upgrade -g"},
+        "packages": [
+            ("typescript-language-server", "typescript-language-server"),
+            ("vscode-html-languageserver-bin", "html-languageserver"),
+            ("vscode-langservers-extracted", "vscode-css-language-server"),
+            ("svelte-language-server", "svelteserver"),
+            ("bash-language-server", "bash-language-server"),
+            ("yaml-language-server", "yaml-language-server"),
+            ("intelephense", "intelephense"),
+            ("dockerfile-language-server-nodejs", "docker-langserver"),
+            ("dprint", "dprint"),
+            ("pyright", "pyright"),
+            ("@fsouza/prettierd", "prettierd"),
+            ("eslint_d", "eslint_d"),
+        ],
+        "dependencies": None,
+    }
+)
 
 # Go Go Package Manager
-go: PackageManager = {
-    "cli_tool": "go",
-    "modes": {"install": "install", "update": "install"},
-    "packages": [
-        ("mvdan.cc/sh/v3/cmd/shfmt@latest", "shfmt"),
-        ("github.com/mattn/efm-langserver@latest", "efm-langserver"),
-        ("golang.org/x/tools/gopls@latest", "gopls"),
-        ("golang.org/x/tools/cmd/goimports@latest", "goimports"),
-        ("github.com/segmentio/golines@latest", "golines"),
-    ],
-    "dependencies": None,
-}
+go: Manager = Manager(
+    {
+        "cli_tool": "go",
+        "modes": {"install": "install", "update": "install"},
+        "packages": [
+            ("mvdan.cc/sh/v3/cmd/shfmt@latest", "shfmt"),
+            ("github.com/mattn/efm-langserver@latest", "efm-langserver"),
+            ("golang.org/x/tools/gopls@latest", "gopls"),
+            ("golang.org/x/tools/cmd/goimports@latest", "goimports"),
+            ("github.com/segmentio/golines@latest", "golines"),
+        ],
+        "dependencies": None,
+    }
+)
 
 # Rust Cargo Package Manager
-rust: PackageManager = {
-    "cli_tool": "cargo",
-    "modes": {"install": "install", "update": "install"},
-    "packages": [
-        ("blackd-client", "blackd-client"),
-        ("stylua", "stylua"),
-    ],
-    "dependencies": None,
-}
+rust: Manager = Manager(
+    {
+        "cli_tool": "cargo",
+        "modes": {"install": "install", "update": "install"},
+        "packages": [
+            ("blackd-client", "blackd-client"),
+            ("stylua", "stylua"),
+        ],
+        "dependencies": None,
+    }
+)
 
 # Rustup for rust lsp
-rust_up: PackageManager = {
-    "cli_tool": "rustup",
-    "modes": {"install": "+nightly component add", "update": "+nightly update"},
-    "packages": [("rust-analyzer-preview", "rust-analyzer-preview")],
-    "dependencies": None,
-}
+rust_up: Manager = Manager(
+    {
+        "cli_tool": "rustup",
+        "modes": {"install": "+nightly component add", "update": "+nightly update"},
+        "packages": [("rust-analyzer-preview", "rust-analyzer-preview")],
+        "dependencies": None,
+    }
+)
 
 # Rustup for rust lsp
-lua: PackageManager = {
-    "cli_tool": "luarocks",
-    "modes": {"install": "--local install", "update": "--local install"},
-    "packages": [("luacheck", "luacheck")],
-    "dependencies": None,
-}
+lua: Manager = Manager(
+    {
+        "cli_tool": "luarocks",
+        "modes": {"install": "--local install", "update": "--local install"},
+        "packages": [("luacheck", "luacheck")],
+        "dependencies": None,
+    }
+)
 
 # Python PIP Package Manager
-python: PackageManager = {
-    "cli_tool": "pip",
-    "modes": {"install": "install", "update": "install"},
-    "packages": [
-        ("black", "black"),
-        ("aiohttp", None),
-        ("aiohttp_cors", None),
-    ],
-    "dependencies": None,
-}
+python: Manager = Manager(
+    {
+        "cli_tool": "pip",
+        "modes": {"install": "install", "update": "install"},
+        "packages": [
+            ("black", "black"),
+            ("aiohttp", None),
+            ("aiohttp_cors", None),
+        ],
+        "dependencies": None,
+    }
+)
 
 # Arch community package manager (uses pacman internally)
-yay: PackageManager = {
-    "cli_tool": "yay",
-    "modes": {
-        "install": "--save --answerclean=All --answerdiff=None -S",
-        "update": "--save --answerclean=All --answerdiff=None -Yu",
-    },
-    "packages": [
-        ("nuspell", "nuspell"),
-        ("hunspell-en_us", None),
-        ("hunspell-de", None),
-        ("jdtls", "jdtls"),
-        ("groovy-language-server", "groovy-language-server"),
-        ("dotnet-sdk", "dotnet"),
-    ],
-    "dependencies": None,
-}
+yay: Manager = Manager(
+    {
+        "cli_tool": "yay",
+        "modes": {
+            "install": "--save --answerclean=All --answerdiff=None -S",
+            "update": "--save --answerclean=All --answerdiff=None -Yu",
+        },
+        "packages": [
+            ("nuspell", "nuspell"),
+            ("hunspell-en_us", None),
+            ("hunspell-de", None),
+            ("jdtls", "jdtls"),
+            ("groovy-language-server", "groovy-language-server"),
+            ("dotnet-sdk", "dotnet"),
+        ],
+        "dependencies": None,
+    }
+)
 
-darwin_setup = [
-    Manager(node),
-    Manager(rust),
-    Manager(rust_up),
-    Manager(go),
-    Manager(lua),
-    Manager(python),
-]
-linux_setup = [
-    Manager(yay),
-    Manager(node),
-    Manager(rust),
-    Manager(rust_up),
-    Manager(go),
-    Manager(lua),
-    Manager(python),
-]
-windows_setup = [
-    Manager(node),
-    Manager(rust),
-    Manager(rust_up),
-    Manager(go),
-    Manager(lua),
-    Manager(python),
-]
+
+class SysManager:
+    package_list: list[Manager]
+
+    def __init__(self, package_list: list[Manager]):
+        self.package_list = package_list
+
+
+darwin_setup = SysManager([node, rust, rust_up, go, lua, python])
+linux_setup = SysManager([yay, node, rust, rust_up, go, lua, python])
+windows_setup = SysManager([node, rust, rust_up, go, lua, python])
 
 # @TODO - Refactor set  steps on OS Func level each os install different amount of packages
 # reduce the setup arrays to sum up the length of the packages array
 steps: int = (
-    len(python["packages"])
-    + len(rust["packages"])
-    + len(rust_up["packages"])
-    + len(lua["packages"])
-    + len(go["packages"])
-    + len(node["packages"])
+    len(python.package_manager["packages"])
+    + len(rust.package_manager["packages"])
+    + len(rust_up.package_manager["packages"])
+    + len(lua.package_manager["packages"])
+    + len(go.package_manager["packages"])
+    + len(node.package_manager["packages"])
 )
 now: datetime = datetime.now()
 current_time: str = now.strftime("%H:%M:%S")
@@ -330,7 +330,7 @@ def in_path(cmd: str) -> bool:
 
 
 def Darwin() -> None:
-    for manager in darwin_setup:
+    for manager in darwin_setup.package_list:
         manager.install_cli_packages()
 
         if manager.dependencies_installer:
@@ -342,7 +342,7 @@ def Cygwin() -> None:
 
 
 def Linux() -> None:
-    for manager in linux_setup:
+    for manager in linux_setup.package_list:
         manager.install_cli_packages()
 
         if manager.dependencies_installer:
@@ -350,7 +350,7 @@ def Linux() -> None:
 
 
 def Win32() -> None:
-    for manager in windows_setup:
+    for manager in windows_setup.package_list:
         manager.install_cli_packages()
 
         if manager.dependencies_installer:
