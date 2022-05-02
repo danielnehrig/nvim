@@ -347,5 +347,10 @@ if __name__ == "__main__":
         if sys.platform == "linux":
             Linux()
 
+        if log.skip > (steps / 2):
+            log.Info(
+                "Consider Updating Packages that got skipped with the --upgrade flag"
+            )
+
     except:
         log.Error("Error While Installing")
