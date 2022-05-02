@@ -99,7 +99,6 @@ python: PackageManager = {
     "modes": {"install": "install", "update": "install"},
     "packages": [
         ("black", "black"),
-        ("blackd", "blackd"),
         ("aiohttp", None),
         ("aiohttp_cors", None),
     ],
