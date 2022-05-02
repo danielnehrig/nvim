@@ -7,13 +7,6 @@ local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 
 local function init()
   local packer = require("packer")
-  packer.init({
-    disable_commands = true,
-    display = {
-      open_fn = require("packer.util").float,
-    },
-    git = { clone_timeout = 120 },
-  })
   packer.reset()
 
   packer.startup(function(use)
@@ -342,7 +335,7 @@ local function init()
       config = require("config.plugins.telescope").init,
       requires = {
         { "nvim-telescope/telescope-ui-select.nvim" },
-        { "nvim-lua/plenary.nvim", opt = true },
+        { "nvim-lua/plenary.nvim" },
         { "nvim-telescope/telescope-file-browser.nvim", opt = true },
         { "nvim-telescope/telescope-project.nvim", opt = true },
       },
@@ -679,13 +672,14 @@ local function init()
         vim.notify = notify
       end,
     }) -- notication pop up
+    use({ "nvim-lua/plenary.nvim" })
     use({
       "ThePrimeagen/refactoring.nvim",
       config = require("config.plugins.refactoring").init,
       opt = true,
       requires = {
         { "nvim-treesitter/nvim-treesitter" },
-        { "nvim-lua/plenary.nvim", opt = true },
+        { "nvim-lua/plenary.nvim" },
       },
     }) -- refactoring
     use({
@@ -742,7 +736,7 @@ local function init()
     use({
       "ruifm/gitlinker.nvim",
       requires = {
-        { "nvim-lua/plenary.nvim", opt = true },
+        { "nvim-lua/plenary.nvim" },
       },
       opt = true,
     }) -- get repo file on remote as url
@@ -844,11 +838,6 @@ function plugins.bootstrap()
     })
     execute("packadd packer.nvim")
     local packer = require("packer")
-
-    -- autocmd hook to wait for packer install and then after install load the needed config for plugins
-    packer.on_compile_done = function()
-      require("config.load_config").init()
-    end
 
     -- load packer plugins
     init()

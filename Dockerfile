@@ -16,6 +16,14 @@ COPY --chown=makepkg . /home/makepkg/.config/nvim/
 RUN bash
 RUN mkdir /home/makepkg/.config/nvim/plugin
 RUN /home/makepkg/.config/nvim/packages.py
-RUN nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+RUN nvim --headless\
+ +'autocmd User PackerComplete sleep 100m | qall'\
+ +PackerSync
+RUN nvim --headless\
+ +'autocmd User PackerComplete sleep 100m | qall'\
+ +PackerSync
+RUN nvim --headless\
+ +'autocmd User PackerComplete sleep 100m | qall'\
+ +PackerSync
 # Avoid container exit.
 CMD ["tail", "-f", "/dev/null"]
