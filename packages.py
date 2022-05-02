@@ -215,11 +215,12 @@ class SysManager:
                     if not find_executable(package[1]):
                         log.Warning("Binary {} not found in path".format(package[1]))
 
-    def count_packages(self):
+    def count_packages(self) -> int:
+        steps: int = 0
         for list in self.package_list:
             for _ in list.package_manager["packages"]:
-                global steps
                 steps = steps + 1
+        return steps
 
     def __init__(self, os: str, package_list: list[PackageManager]):
         self.os = os
@@ -231,9 +232,6 @@ linux_setup = SysManager("linux", [yay, node, rust, rust_up, go, lua, python])
 windows_setup = SysManager("win32", [node, rust, rust_up, go, lua, python])
 supported_os = [darwin_setup, linux_setup, windows_setup]
 
-# @TODO - Refactor set  steps on OS Func level each os install different amount of packages
-# reduce the setup arrays to sum up the length of the packages array
-steps: int = 0
 now: datetime = datetime.now()
 current_time: str = now.strftime("%H:%M:%S")
 current_folder: str = os.path.abspath(os.getcwd())
@@ -257,11 +255,12 @@ class Colors:
 
 
 class Log(Colors):
-    user: str = getuser()
     counter: int = 1
+    max_steps: int = 0
     skip: int = 0
-    # TODO
-    loglevel: str = "info"
+
+    def set_max_step(self, steps: int):
+        self.max_steps = steps
 
     def now(self) -> str:
         time: datetime = datetime.now()
@@ -279,34 +278,34 @@ class Log(Colors):
 
     def Success(self, string: str) -> None:
         st: str = self.buildStepString("SUCCESS", self.OKGREEN)
-        print(st.format(self.now(), self.user, arrow, string, self.counter, steps))
+        print(st.format(self.now(), user, arrow, string, self.counter, self.max_steps))
         self.counter = self.counter + 1
 
     def Warning(self, string: str) -> None:
         st: str = self.buildLogString("WARNING", self.WARNING)
-        print(st.format(self.now(), self.user, arrow, string))
+        print(st.format(self.now(), user, arrow, string))
 
     def Error(self, string: str) -> None:
         st: str = self.buildLogString("ERROR", self.FAIL)
-        print(st.format(self.now(), self.user, arrow, string))
+        print(st.format(self.now(), user, arrow, string))
 
     def Critical(self, string: str) -> None:
         st: str = self.buildLogString("CRITICAL", self.FAIL)
-        print(st.format(self.now(), self.user, arrow, string))
+        print(st.format(self.now(), user, arrow, string))
 
     def Info(self, string: str) -> None:
         st: str = self.buildLogString("INFO", self.OKBLUE)
-        print(st.format(self.now(), self.user, arrow, string))
+        print(st.format(self.now(), user, arrow, string))
 
     def Skip(self, string: str) -> None:
         st: str = self.buildStepString("SUCCESS", self.OKGREEN)
-        print(st.format(self.now(), self.user, arrow, string, self.counter, steps))
+        print(st.format(self.now(), user, arrow, string, self.counter, self.max_steps))
         self.counter = self.counter + 1
         self.skip = self.skip + 1
 
     def Step(self, string: str) -> None:
         st: str = self.buildStepString("STEP", self.OKBLUE)
-        print(st.format(self.now(), self.user, arrow, string, self.counter, steps))
+        print(st.format(self.now(), user, arrow, string, self.counter, self.max_steps))
 
 
 log: Log = Log()
@@ -357,7 +356,7 @@ if __name__ == "__main__":
 
         for sysmanager in supported_os:
             if sysmanager.os == sys.platform:
-                sysmanager.count_packages()
+                log.set_max_step(sysmanager.count_packages())
                 for manager in sysmanager.package_list:
                     manager.install_cli_packages()
 
@@ -366,7 +365,7 @@ if __name__ == "__main__":
 
                 sysmanager.is_cli_packages_installed()
 
-        if log.skip > (steps / 2):
+        if log.skip > (log.max_steps / 2):
             log.Info(
                 "Consider Updating Packages that got skipped with the --update flag"
             )
