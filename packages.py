@@ -208,6 +208,13 @@ class SysManager:
     package_list: list[Manager]
     os: str
 
+    def is_cli_package_installed(self):
+        for list in self.package_list:
+            for package in list.package_manager["packages"]:
+                if package[1]:
+                    if not find_executable(package[1]):
+                        log.Warning("Binary {} not found in path".format(package[1]))
+
     def __init__(self, os: str, package_list: list[Manager]):
         self.os = os
         self.package_list = package_list
@@ -356,6 +363,8 @@ if __name__ == "__main__":
 
                     if manager.dependencies_installer:
                         manager.dependencies_installer()
+
+                sysmanager.is_cli_package_installed()
 
         if log.skip > (steps / 2):
             log.Info(
