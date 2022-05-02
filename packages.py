@@ -18,6 +18,7 @@ class Modes(TypedDict):
     update: str
 
 
+# The PackageManger that installs your packages
 class PackageManager(TypedDict):
     # cli tool name (package manager name)
     cli_tool: str
@@ -26,10 +27,13 @@ class PackageManager(TypedDict):
     # the mode key is the internal compression check for behaviour in doing cli commands
     # on a package manager and the value is the command passed to the package manager
     modes: Modes
-    # dependencies list that have nothing to do with binarys
+    # dependencies list that has nothing to do with binarys but are rather libs
     dependencies: Union[list[str], None]
 
 
+# This Manager offers the ability to use custom installers as well as generic cones
+# obviously not every package manager has the same way to display what kind of lib has been installed
+# while with binarys its easier where you can just check if its in path
 class Manager:
     package_manager: PackageManager
     dependencies_installer: Union[Callable, None] = None
@@ -286,7 +290,7 @@ class Log(Colors):
         print(st.format(self.now(), self.user, arrow, string))
 
     def Skip(self, string: str) -> None:
-        st: str = self.buildStepString("SUCCESS", self.OKBLUE)
+        st: str = self.buildStepString("SUCCESS", self.OKGREEN)
         print(st.format(self.now(), self.user, arrow, string, self.counter, steps))
         self.counter = self.counter + 1
         self.skip = self.skip + 1
@@ -395,7 +399,7 @@ if __name__ == "__main__":
 
         if log.skip > (steps / 2):
             log.Info(
-                "Consider Updating Packages that got skipped with the --upgrade flag"
+                "Consider Updating Packages that got skipped with the --update flag"
             )
 
     except:
