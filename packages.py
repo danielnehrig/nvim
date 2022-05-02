@@ -4,9 +4,9 @@ import subprocess
 import os
 import sys
 from typing import TypedDict, Union, Callable
+from shutil import which
 from getpass import getuser
 from datetime import datetime
-from distutils.spawn import find_executable
 
 # Modes available to Package managers
 class Modes(TypedDict):
@@ -47,7 +47,7 @@ class PackageManager:
         self.dependencies_installer = dependencies_installer
 
     def install_cli_packages(self):
-        if not find_executable(self.package_manager["cli_tool"]):
+        if not which(self.package_manager["cli_tool"]):
             log.Error(
                 "{0}{1}{2} not in path skipping installing".format(
                     Colors.FAIL, self.package_manager["cli_tool"]
@@ -63,7 +63,7 @@ class PackageManager:
             )
             try:
                 if package[1]:
-                    inPath = find_executable(package[1])
+                    inPath = which(package[1])
                 else:
                     inPath = False
                 isForce = mode == "update" and True or False
@@ -212,7 +212,7 @@ class SysManager:
         for list in self.package_list:
             for package in list.package_manager["packages"]:
                 if package[1]:
-                    if not find_executable(package[1]):
+                    if not which(package[1]):
                         log.Warning("Binary {} not found in path".format(package[1]))
 
     def count_packages(self) -> int:
