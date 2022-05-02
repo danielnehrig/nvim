@@ -5,8 +5,6 @@ local vim_path = global.vim_path
 local sep_os_replacer = require("config.utils").sep_os_replacer
 local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 
-local tested = 100
-
 local function init()
   local packer = require("packer")
   packer.init({
