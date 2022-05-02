@@ -27,11 +27,7 @@ local luadev = require("lua-dev").setup({
     -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
   },
   lspconfig = {
-    cmd = {
-      sumneko_binary,
-      "-E",
-      sep_os_replacer(sumneko_root_path .. "/bin/main.lua"),
-    },
+    cmd = { "lua-language-server" },
     settings = {
       Lua = {
         diagnostics = {
@@ -66,9 +62,7 @@ function M.reinit()
     },
     lspconfig = {
       cmd = {
-        sumneko_binary,
-        "-E",
-        sep_os_replacer(sumneko_root_path .. "/bin/main.lua"),
+        "lua-language-server",
       },
       settings = {
         Lua = {

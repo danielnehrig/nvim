@@ -12,6 +12,7 @@ COPY --chown=makepkg . /home/makepkg/.config/nvim/
 RUN bash
 RUN mkdir /home/makepkg/.config/nvim/plugin
 RUN /home/makepkg/.config/nvim/packages.py
+# flakey for some reason --headless packersync does not work like without headless
 RUN nvim --headless\
   +'autocmd User PackerComplete sleep 100m | qall'\
   +PackerSync
