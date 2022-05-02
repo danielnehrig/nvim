@@ -183,6 +183,18 @@ python: PackageManager = PackageManager(
     }
 )
 
+# lua-language-server
+brew = PackageManager(
+    {
+        "cli_tool": "brew",
+        "modes": {"install": "install", "update": "update"},
+        "packages": [
+            ("lua-language-server", "lua-language-server"),
+        ],
+        "dependencies": None,
+    }
+)
+
 # Arch community package manager (uses pacman internally)
 yay: PackageManager = PackageManager(
     {
@@ -197,6 +209,7 @@ yay: PackageManager = PackageManager(
             ("hunspell-de", None),
             ("jdtls", "jdtls"),
             ("groovy-language-server", "groovy-language-server"),
+            ("lua-language-server", "lua-language-server"),
             ("dotnet-sdk", "dotnet"),
         ],
         "dependencies": None,
@@ -227,7 +240,7 @@ class SysManager:
         self.package_list = package_list
 
 
-darwin_setup = SysManager("darwin", [node, rust, rust_up, go, lua, python])
+darwin_setup = SysManager("darwin", [brew, node, rust, rust_up, go, lua, python])
 linux_setup = SysManager("linux", [yay, node, rust, rust_up, go, lua, python])
 windows_setup = SysManager("win32", [node, rust, rust_up, go, lua, python])
 supported_os = [darwin_setup, linux_setup, windows_setup]
