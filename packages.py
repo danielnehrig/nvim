@@ -114,6 +114,7 @@ node: PackageManager = PackageManager(
             ("dockerfile-language-server-nodejs", "docker-langserver"),
             ("dprint", "dprint"),
             ("pyright", "pyright"),
+            ("neovim", None),
             ("@fsouza/prettierd", "prettierd"),
             ("eslint_d", "eslint_d"),
         ],
@@ -177,6 +178,7 @@ python: PackageManager = PackageManager(
         "modes": {"install": "install", "update": "install"},
         "packages": [
             ("black", "black"),
+            ("pynvim", None),
             ("aiohttp", None),
             ("aiohttp_cors", None),
         ],
