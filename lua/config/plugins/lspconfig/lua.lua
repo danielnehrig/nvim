@@ -1,8 +1,4 @@
 local cmd = vim.cmd
-local globals = require("config.core.global")
-local sep_os_replacer = require("config.utils").sep_os_replacer
-local sumneko_root_path = sep_os_replacer(globals.lsp_path .. "/lua")
-local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 local lsp = require("config.plugins.lspconfig")
 local lspconfig = require("lspconfig")
 local capabilities =
@@ -31,7 +27,7 @@ local luadev = require("lua-dev").setup({
     settings = {
       Lua = {
         diagnostics = {
-          globals = { "packer_plugins" },
+          globals = { "packer_plugins", "vim" },
         },
       },
     },
@@ -40,7 +36,6 @@ local luadev = require("lua-dev").setup({
     -- root_dir = require("lspconfig/util").root_pattern("."),
     on_attach = function(client, bufnr)
       client.server_capabilities.document_formatting = false
-      vim.pretty_print(client.server_capabilities)
       lsp.on_attach(client, bufnr)
     end,
   },

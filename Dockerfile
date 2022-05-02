@@ -9,6 +9,7 @@ RUN echo 'PATH+=":$HOME/.cargo/bin"' >> /home/makepkg/.bashrc
 RUN echo 'PATH+=":$HOME/go/bin"' >> /home/makepkg/.bashrc
 RUN echo 'PATH+=":$HOME/.local/lib/python3.9/site-packages"' >> /home/makepkg/.bashrc
 RUN echo 'export npm_config_prefix="$HOME/.local"' >> /home/makepkg/.bashrc
+RUN npm set prefix="$HOME/.local"
 COPY --chown=makepkg . /home/makepkg/.config/nvim/
 RUN bash
 RUN mkdir /home/makepkg/.config/nvim/plugin
@@ -23,6 +24,7 @@ RUN nvim --headless\
 RUN nvim --headless\
   +'autocmd User PackerComplete sleep 100m | qall'\
   +PackerSync
+RUN nvim --headless +'TSInstall rust go lua dockerfile yaml typescript javascript java tsc tsdoc c org scss css toml make json html php' +'sleep 20' +qa
 # Avoid container exit.
 WORKDIR /mnt/workspace
 CMD ["tail", "-f", "/dev/null"]
