@@ -289,10 +289,6 @@ class Log(Colors):
         st: str = self.buildLogString("ERROR", self.FAIL)
         print(st.format(self.now(), user, arrow, string))
 
-    def Critical(self, string: str) -> None:
-        st: str = self.buildLogString("CRITICAL", self.FAIL)
-        print(st.format(self.now(), user, arrow, string))
-
     def Info(self, string: str) -> None:
         st: str = self.buildLogString("INFO", self.OKBLUE)
         print(st.format(self.now(), user, arrow, string))
