@@ -27,6 +27,8 @@ class PackageManager(TypedDict):
     # the mode key is the internal compression check for behaviour in doing cli commands
     # on a package manager and the value is the command passed to the package manager
     modes: Modes
+    # dependencies list that have nothing to do with binarys
+    dependencies: Union[list[str], None]
 
 
 # Node NPM Package Manager
@@ -47,6 +49,7 @@ node: PackageManager = {
         ("@fsouza/prettierd", "prettierd"),
         ("eslint_d", "eslint_d"),
     ],
+    "dependencies": None,
 }
 
 # Go Go Package Manager
@@ -60,6 +63,7 @@ go: PackageManager = {
         ("golang.org/x/tools/cmd/goimports@latest", "goimports"),
         ("github.com/segmentio/golines@latest", "golines"),
     ],
+    "dependencies": None,
 }
 
 # Rust Cargo Package Manager
@@ -67,6 +71,7 @@ rust: PackageManager = {
     "cli_tool": "cargo",
     "modes": {"install": "install", "update": "install"},
     "packages": [("blackd-client", "blackd-client"), ("stylua", "stylua")],
+    "dependencies": None,
 }
 
 # Rustup for rust lsp
@@ -74,6 +79,7 @@ rust_up: PackageManager = {
     "cli_tool": "rustup",
     "modes": {"install": "+nightly component add", "update": "+nightly update"},
     "packages": [("rust-analyzer-preview", "rust-analyzer-preview")],
+    "dependencies": None,
 }
 
 # Rustup for rust lsp
@@ -81,6 +87,7 @@ lua: PackageManager = {
     "cli_tool": "luarocks",
     "modes": {"install": "--local install", "update": "--local install"},
     "packages": [("luacheck", "luacheck")],
+    "dependencies": None,
 }
 
 # Python PIP Package Manager
@@ -92,6 +99,7 @@ python: PackageManager = {
         ("aiohttp", None),
         ("aiohttp_cors", None),
     ],
+    "dependencies": None,
 }
 
 # Arch community package manager (uses pacman internally)
@@ -109,6 +117,7 @@ yay: PackageManager = {
         ("groovy-language-server", "groovy-language-server"),
         ("dotnet-sdk", "dotnet"),
     ],
+    "dependencies": None,
 }
 
 darwin_setup = [node, rust, rust_up, go, lua, python]
@@ -280,7 +289,6 @@ def Cygwin() -> None:
 
 
 def Linux() -> None:
-    # install_cli_packages(yay)
     for manager in linux_setup:
         install_cli_packages(manager)
 
