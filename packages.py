@@ -111,10 +111,15 @@ yay: PackageManager = {
     ],
 }
 
+darwin_setup = [node, rust, rust_up, go, lua, python]
+linux_setup = [yay, node, rust, rust_up, go, lua, python]
+windows_setup = [node, rust, rust_up, go, lua, python]
+
 steps: int = (
-    len(yay["packages"])
-    + len(python["packages"])
+    len(python["packages"])
     + len(rust["packages"])
+    + len(rust_up["packages"])
+    + len(lua["packages"])
     + len(go["packages"])
     + len(node["packages"])
 )
@@ -142,7 +147,7 @@ class Colors:
 
 class Log(Colors):
     user: str = getuser()
-    counter: int = 0
+    counter: int = 1
     # TODO
     loglevel: str = "info"
 
@@ -265,69 +270,9 @@ def install_cli_packages(package_manager: PackageManager):
             )
 
 
-def java_debug() -> None:
-    if not os.path.isdir(dap_path + "java-debug"):
-        if not in_path("npm"):
-            log.Warning("{0} not in path skipping installing".format("npm"))
-            return
-        log.Info("Install Java Debug")
-        cmd(
-            "git clone https://github.com/microsoft/java-debug "
-            + dap_path
-            + "java-debug"
-        )
-        cmd(
-            "git clone https://github.com/microsoft/vscode-java-test "
-            + dap_path
-            + "vscode-java-test"
-        )
-        os.chdir(dap_path + "java-debug")
-        cmd("./mvnw clean install")
-        os.chdir(current_folder)
-        os.chdir(dap_path + "vscode-java-test")
-        cmd("npm install")
-        cmd("npm run build-plugin")
-        os.chdir(current_folder)
-        log.Success("Java Debug Installed")
-
-
-def sumneko_lua() -> None:
-    if not os.path.isdir(lsp_path + "lua"):
-        log.Info("Install lua langserver")
-        cmd(
-            "git clone https://github.com/sumneko/lua-language-server "
-            + lsp_path
-            + "lua"
-        )
-        os.chdir(lsp_path + "lua")
-        cmd("git submodule update --init --recursive")
-        os.chdir(current_folder)
-        os.chdir(lsp_path + "lua/3rd/luamake")
-        cmd("compile/install.sh")
-        os.chdir(current_folder)
-        os.chdir(lsp_path + "lua")
-        cmd("3rd/luamake/luamake rebuild")
-        os.chdir(current_folder)
-        log.Success("Sumneko LSP Installed")
-
-
-def jdtls() -> None:
-    log.Warning(sys.platform + " JDTLS Needs Implementation")
-
-
 def Darwin() -> None:
-    log.Step("DAP Setup")
-    java_debug()
-
-    log.Step("LSP Setup")
-    sumneko_lua()
-    jdtls()
-    install_cli_packages(node)
-    install_cli_packages(go)
-    install_cli_packages(rust)
-    install_cli_packages(rust_up)
-    install_cli_packages(lua)
-    install_cli_packages(python)
+    for manager in darwin_setup:
+        install_cli_packages(manager)
 
 
 def Cygwin() -> None:
@@ -335,25 +280,14 @@ def Cygwin() -> None:
 
 
 def Linux() -> None:
-    log.Step("DAP Setup")
-    java_debug()
-
-    log.Step("LSP Setup")
-    sumneko_lua()
-
     # install_cli_packages(yay)
-    install_cli_packages(node)
-    install_cli_packages(go)
-    install_cli_packages(rust)
-    install_cli_packages(rust_up)
-    install_cli_packages(lua)
-    install_cli_packages(python)
+    for manager in linux_setup:
+        install_cli_packages(manager)
 
 
 def Win32() -> None:
-    install_cli_packages(node)
-    install_cli_packages(rust)
-    install_cli_packages(python)
+    for manager in windows_setup:
+        install_cli_packages(manager)
 
 
 def help() -> None:
