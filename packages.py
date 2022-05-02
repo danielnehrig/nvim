@@ -89,8 +89,8 @@ python: PackageManager = {
     "modes": {"install": "install", "update": "install"},
     "packages": [
         ("black", "black"),
-        ("aiohttp", "aiohttp"),
-        ("aiohttp_cors", "aiohttp_cors"),
+        ("aiohttp", None),
+        ("aiohttp_cors", None),
     ],
 }
 
@@ -301,7 +301,7 @@ def help() -> None:
                 "  --force, -f\t| will force install without check if already installed\n"
                 "  --update, -u\t| will update packages\n"
             )
-            sys.exit(1)
+            sys.exit(0)
 
 
 def get_package_mode() -> str:
