@@ -1,11 +1,13 @@
 FROM archlinux/archlinux:latest
 COPY . /root/.config/nvim/
 
-RUN pacman -Sy && pacman -S --needed --noconfirm sudo base-devel git lolcat bat nodejs npm python python-pip rustup lua go luarocks ripgrep
+RUN pacman -Sy \
+ && pacman -S --needed --noconfirm sudo base-devel # Install sudo
 RUN useradd builduser -m # Create the builduser
 RUN passwd -d builduser # Delete the buildusers password
 RUN printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers # Allow the builduser passwordless sudo
 
+RUN pacman -S --needed --noconfirm git lolcat bat nodejs npm python python-pip rustup lua go luarocks ripgrep
 RUN sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/yay-git.git && cd yay-git && makepkg -si --noconfirm' \
   && rm -rf yay-git
 RUN sudo -u builduser yay --save --nocleanmenu --nodiffmenu --noconfirm -Syu \
