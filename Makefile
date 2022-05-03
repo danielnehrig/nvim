@@ -20,8 +20,14 @@ install:
 	@echo "Install"
 	./packages.py
 
+build:
+	docker build . -t nvim:test
+
+dev:
+	docker run -it --entrypoint /bin/bash -v $(pwd):/mnt/workspace danielnehrig/nvim:test -c "source /root/.bashrc && nvim"
+
 run:
-	docker run -rm -it -v $(pwd):/mnt/workspace danielnehrig/nvim:latest nvim
+	docker run -it --entrypoint /bin/bash -v $(pwd):/mnt/workspace danielnehrig/nvim:latest -c "source /root/.bashrc && nvim"
 
 
 # vim:ft=make
