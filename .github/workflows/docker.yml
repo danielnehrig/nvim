@@ -1,5 +1,13 @@
 name: ci
 
+on:
+  workflow_dispatch:
+    inputs:
+      body:
+        default: ""
+      test:
+        default: "false"
+
 jobs:
   docker:
     runs-on: ubuntu-latest
