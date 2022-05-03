@@ -54,23 +54,26 @@ function LSP.on_attach(client, bufnr)
     { buffer = bufnr }
   )
 
-  local au_lsp = vim.api.nvim_create_augroup("lsp", { clear = true })
-
-  if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_autocmd("CursorHold", {
-      pattern = "*",
+  if client.resolved_capabilities.document_highlight then
+    local ft = "*." .. client.config.filetypes[1]
+    local au_lsp = vim.api.nvim_create_augroup(
+      "lsp_" .. client.name,
+      { clear = true }
+    )
+    vim.api.nvim_create_autocmd({ "CursorHold" }, {
+      pattern = ft,
       callback = vim.lsp.buf.document_highlight,
       desc = "Highlight lsp references",
       group = au_lsp,
     })
-    vim.api.nvim_create_autocmd("CursorHoldI", {
-      pattern = "*",
+    vim.api.nvim_create_autocmd({ "CursorHoldI" }, {
+      pattern = ft,
       callback = vim.lsp.buf.document_highlight,
       desc = "Highlight lsp references",
       group = au_lsp,
     })
-    vim.api.nvim_create_autocmd("CursorMoved", {
-      pattern = "*",
+    vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+      pattern = ft,
       callback = vim.lsp.buf.clear_references,
       desc = "Highlight lsp references",
       group = au_lsp,
