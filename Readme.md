@@ -5,12 +5,13 @@
 https://user-images.githubusercontent.com/4050749/136713743-4117a967-c5f5-4735-ad1c-9a6743fb743c.mp4
 
 
+Try it out yourself!
 ```bash
 docker run -it \
   --entrypoint /bin/bash \
   -v $(pwd):/mnt/workspace \
   danielnehrig/nvim:latest \
-  -c "source /root/.bashrc && nvim"`
+  -c "source /root/.bashrc && nvim"
 
 ```
 
