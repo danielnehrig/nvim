@@ -11,7 +11,7 @@ RUN pacman -S --needed --noconfirm git lolcat bat nodejs npm python python-pip r
 RUN sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/yay-git.git && cd yay-git && makepkg -si --noconfirm' \
   && rm -rf yay-git
 RUN sudo -u builduser yay --save --nocleanmenu --nodiffmenu --noconfirm -Syu \
-  && sudo -u builduser yay --save --nocleanmenu --nodiffmenu --noconfirm -S neovim-git \
+  && sudo -u builduser yay --save --nocleanmenu --nodiffmenu --noconfirm -S neovim \
   && rustup install nightly
 RUN echo 'PATH+=":$HOME/.local/bin"' >> /root/.bashrc \
   && echo 'PATH+=":$HOME/.cargo/bin"' >> /root/.bashrc \
