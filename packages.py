@@ -18,6 +18,17 @@ class Modes(TypedDict):
     # might make this optional
     update: str
 
+# Modes available to Package managers
+class CliOptions(TypedDict):
+    sudo: tuple[bool, str]
+    update: bool
+    force: bool
+
+cli_options: CliOptions = {
+    "sudo": (True if "--sudo" in sys.argv else False, sys.argv[sys.argv.index("--sudo") + 1] if "--sudo" in sys.argv else ""),
+    "update": True if "--update" in sys.argv else False,
+    "force": True if "--force" in sys.argv else False,
+}
 
 # The PackageManger that installs your packages
 class PackageManagerDict(TypedDict):
