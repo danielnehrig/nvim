@@ -21,7 +21,7 @@ RUN echo 'PATH+=":$HOME/.local/bin"' >> /root/.bashrc \
   && echo 'export npm_config_prefix="$HOME/.local"' >> /root/.bashrc \
   && npm set prefix="$HOME/.local"
 RUN sudo -u builduser yay -Sc --noconfirm
-RUN /root/.config/nvim/packages.py
+RUN /root/.config/nvim/packages.py --sudo builduser
 # flakey for some reason --headless packersync does not work like without headless
 RUN nvim --headless\
   +'autocmd User PackerComplete sleep 100m | qall'\
