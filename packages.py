@@ -8,8 +8,10 @@ from typing import TypedDict, Union, Callable
 from getpass import getuser
 from datetime import datetime
 
+
 def which(program):
     import os
+
     def is_exe(fpath):
         return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
 
@@ -24,6 +26,7 @@ def which(program):
                 return exe_file
 
     return None
+
 
 def cmd(call: str) -> int:
     try:
@@ -41,6 +44,7 @@ def cmd(call: str) -> int:
         log.Error("Trace {0}".format(err))
         return err.returncode
 
+
 # Modes available to Package managers
 class Modes(TypedDict):
     # Install Packages
@@ -50,18 +54,25 @@ class Modes(TypedDict):
     # might make this optional
     update: str
 
+
 # CliOptions struct
 class CliOptions(TypedDict):
     sudo: tuple[bool, str]
     update: bool
     force: bool
+    uninstall: bool
     mode: str
 
+
 cli_options: CliOptions = {
-    "sudo": (True if "--sudo" in sys.argv else False, sys.argv[sys.argv.index("--sudo") + 1] if "--sudo" in sys.argv else ""),
-    "update": True if "--update" in sys.argv else False,
-    "force": True if "--force" in sys.argv else False,
-    "mode": "update" if "--update" in sys.argv else "install"
+    "sudo": (
+        True if "--sudo" or "-s" in sys.argv else False,
+        sys.argv[sys.argv.index("--sudo") + 1] if "--sudo" in sys.argv else "",
+    ),
+    "update": True if "--update" or "-u" in sys.argv else False,
+    "force": True if "--force" or "-f" in sys.argv else False,
+    "mode": "update" if "--update" in sys.argv else "install",
+    "uninstall": True if "--uninstall" in sys.argv else False,
 }
 
 # The PackageManger that installs your packages
@@ -221,9 +232,11 @@ lua: PackageManager = PackageManager(
     }
 )
 
+
 def py_dep():
     result = cmd("pip3.9 list | grep 'NOPE'")
     print(result)
+
 
 # Python PIP Package Manager
 python: PackageManager = PackageManager(
@@ -238,7 +251,6 @@ python: PackageManager = PackageManager(
         ],
         "dependencies": ["pynvim", "aiohttp", "aiohttp_cors"],
     }
-
 )
 
 # lua-language-server
@@ -378,8 +390,6 @@ class Log(Colors):
 log: Log = Log()
 
 
-
-
 def help() -> None:
     for option in sys.argv:
         if option == "--help" or option == "-h":
@@ -390,6 +400,8 @@ def help() -> None:
             print(
                 "  --force, -f\t| will force install without check if already installed\n"
                 "  --update, -u\t| will update packages\n"
+                "  --uninstall, -u\t| will uninstall all packages\n"
+                "  --sudo [user], -u\t| run yay as sudo\n"
             )
             sys.exit(0)
 
