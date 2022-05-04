@@ -18,16 +18,18 @@ class Modes(TypedDict):
     # might make this optional
     update: str
 
-# Modes available to Package managers
+# CliOptions struct
 class CliOptions(TypedDict):
     sudo: tuple[bool, str]
     update: bool
     force: bool
+    mode: str
 
 cli_options: CliOptions = {
     "sudo": (True if "--sudo" in sys.argv else False, sys.argv[sys.argv.index("--sudo") + 1] if "--sudo" in sys.argv else ""),
     "update": True if "--update" in sys.argv else False,
     "force": True if "--force" in sys.argv else False,
+    "mode": "update" if "--update" in sys.argv else "install"
 }
 
 # The PackageManger that installs your packages
@@ -66,13 +68,12 @@ class PackageManager:
                 )
             )
             return
-        mode = get_package_mode()
+        mode = cli_options["mode"]
 
         sudo = ""
         if self.package_manager["cli_tool"] == "yay":
-            for _, option in enumerate(sys.argv):
-                if option == "--sudo":
-                    sudo = "sudo -u {0} ".format(sys.argv[2])
+            if cli_options["sudo"]:
+                sudo = "sudo -u {0} ".format(sys.argv[sys.argv.index("--sudo") + 1])
 
         for package in self.package_manager["packages"]:
             install = "{0}{1} {2} {3}".format(
@@ -86,10 +87,8 @@ class PackageManager:
                     inPath = which(package[1])
                 else:
                     inPath = False
-                isForce = mode == "update" and True or False
-                for _, option in enumerate(sys.argv):
-                    if option == "--force":
-                        isForce = True
+
+                isForce = cli_options["force"] or cli_options["update"]
 
                 if not inPath or isForce:
                     log.Info(
@@ -369,15 +368,6 @@ def help() -> None:
                 "  --update, -u\t| will update packages\n"
             )
             sys.exit(0)
-
-
-def get_package_mode() -> str:
-    mode = "install"
-    for option in sys.argv:
-        if option == "--update" or option == "-u":
-            mode = "update"
-
-    return mode
 
 
 def main():
