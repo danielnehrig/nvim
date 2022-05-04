@@ -5,9 +5,41 @@ import traceback
 import os
 import sys
 from typing import TypedDict, Union, Callable
-from shutil import which
 from getpass import getuser
 from datetime import datetime
+
+def which(program):
+    import os
+    def is_exe(fpath):
+        return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
+
+    fpath, _ = os.path.split(program)
+    if fpath:
+        if is_exe(program):
+            return program
+    else:
+        for path in os.environ["PATH"].split(os.pathsep):
+            exe_file = os.path.join(path, program)
+            if is_exe(exe_file):
+                return exe_file
+
+    return None
+
+def cmd(call: str) -> int:
+    try:
+        log.Info("Executing {0}{1}{2}".format(Colors.WARNING, call, Colors.ENDC))
+        cmdArr = call.split()
+        with open(os.devnull, "w") as f:
+            # subprocess.call(cmdArr, stdout=f)
+            result = subprocess.call(
+                cmdArr, shell=True, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
+            )
+            f.close()
+            return result
+    except subprocess.CalledProcessError as err:
+        log.Error("Failed to execute {0}".format(call))
+        log.Error("Trace {0}".format(err))
+        return err.returncode
 
 # Modes available to Package managers
 class Modes(TypedDict):
@@ -72,8 +104,8 @@ class PackageManager:
 
         sudo = ""
         if self.package_manager["cli_tool"] == "yay":
-            if cli_options["sudo"]:
-                sudo = "sudo -u {0} ".format(sys.argv[sys.argv.index("--sudo") + 1])
+            if cli_options["sudo"][0]:
+                sudo = "sudo -u {0} ".format(cli_options["sudo"][1])
 
         for package in self.package_manager["packages"]:
             install = "{0}{1} {2} {3}".format(
@@ -136,7 +168,7 @@ node: PackageManager = PackageManager(
             ("@fsouza/prettierd", "prettierd"),
             ("eslint_d", "eslint_d"),
         ],
-        "dependencies": None,
+        "dependencies": ["neovim"],
     }
 )
 
@@ -174,7 +206,7 @@ rust_up: PackageManager = PackageManager(
     {
         "cli_tool": "rustup",
         "modes": {"install": "+nightly component add", "update": "+nightly update"},
-        "packages": [("rust-analyzer-preview", "rust-analyzer-preview")],
+        "packages": [("rust-analyzer-preview", None)],
         "dependencies": None,
     }
 )
@@ -189,6 +221,10 @@ lua: PackageManager = PackageManager(
     }
 )
 
+def py_dep():
+    result = cmd("pip3.9 list | grep 'NOPE'")
+    print(result)
+
 # Python PIP Package Manager
 python: PackageManager = PackageManager(
     {
@@ -200,8 +236,9 @@ python: PackageManager = PackageManager(
             ("aiohttp", None),
             ("aiohttp_cors", None),
         ],
-        "dependencies": None,
+        "dependencies": ["pynvim", "aiohttp", "aiohttp_cors"],
     }
+
 )
 
 # lua-language-server
@@ -341,19 +378,6 @@ class Log(Colors):
 log: Log = Log()
 
 
-def cmd(call: str) -> None:
-    try:
-        log.Info("Executing {0}{1}{2}".format(Colors.WARNING, call, Colors.ENDC))
-        cmdArr = call.split()
-        with open(os.devnull, "w") as f:
-            # subprocess.call(cmdArr, stdout=f)
-            subprocess.call(
-                cmdArr, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
-            )
-            f.close()
-    except subprocess.CalledProcessError as err:
-        log.Error("Failed to execute {0}".format(call))
-        log.Error("Trace {0}".format(err))
 
 
 def help() -> None:
