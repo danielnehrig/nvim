@@ -67,8 +67,16 @@ class PackageManager:
             )
             return
         mode = get_package_mode()
+
+        sudo = ""
+        if self.package_manager["cli_tool"] == "yay":
+            for _, option in enumerate(sys.argv):
+                if option == "--sudo":
+                    sudo = "sudo -u {0} ".format(sys.argv[2])
+
         for package in self.package_manager["packages"]:
-            install = "{0} {1} {2}".format(
+            install = "{0}{1} {2} {3}".format(
+                sudo,
                 self.package_manager["cli_tool"],
                 self.package_manager["modes"][mode],
                 package[0],
