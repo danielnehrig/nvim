@@ -45,7 +45,7 @@ function LSP.on_attach(client, bufnr)
     { buffer = bufnr }
   )
   map("n", "<space>g=", function()
-    vim.lsp.buf.format({ async = true })
+    vim.lsp.buf.formatting_sync()
   end, { buffer = bufnr })
   map("n", "<space>gi", vim.lsp.buf.incoming_calls, { buffer = bufnr })
   map("n", "<space>go", vim.lsp.buf.outgoing_calls, { buffer = bufnr })
