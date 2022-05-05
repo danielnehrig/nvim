@@ -207,6 +207,7 @@ rust: PackageManager = PackageManager(
         "packages": [
             ("blackd-client", "blackd-client"),
             ("stylua", "stylua"),
+            ("rslint_cli", "rslint"),
         ],
         "dependencies": None,
     }
