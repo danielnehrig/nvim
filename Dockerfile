@@ -8,6 +8,7 @@ RUN useradd builduser -m \
   && printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
 RUN pacman -S --needed --noconfirm neovim git lolcat bat nodejs npm python python-pip rustup lua go luarocks ripgrep \
+  && pacman -Sc \
   && rustup install nightly \
   && echo 'PATH+=":$HOME/.local/bin"' >> /root/.bashrc \
   && echo 'PATH+=":$HOME/.cargo/bin"' >> /root/.bashrc \
@@ -16,7 +17,6 @@ RUN pacman -S --needed --noconfirm neovim git lolcat bat nodejs npm python pytho
   && echo 'PATH+=":$HOME/root/.luarocks/bin"' >> /root/.bashrc \
   && echo 'export npm_config_prefix="$HOME/.local"' >> /root/.bashrc \
   && npm set prefix="$HOME/.local"
-RUN sudo -u builduser yay -Sc --noconfirm
 RUN /root/.config/nvim/packages.py --sudo builduser
 
 # flakey for some reason --headless packersync does not work like without headless
