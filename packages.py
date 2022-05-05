@@ -28,21 +28,22 @@ def which(program):
     return None
 
 
-def cmd(call: str) -> int:
+def cmd(call: str) -> None:
     try:
         log.Info("Executing {0}{1}{2}".format(Colors.WARNING, call, Colors.ENDC))
         cmdArr = call.split()
         with open(os.devnull, "w") as f:
             # subprocess.call(cmdArr, stdout=f)
-            result = subprocess.call(
-                cmdArr, shell=True, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
-            )
+            if cli_options["debug"]:
+                subprocess.call(cmdArr)
+            else:
+                subprocess.call(
+                    cmdArr, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
+                )
             f.close()
-            return result
     except subprocess.CalledProcessError as err:
         log.Error("Failed to execute {0}".format(call))
         log.Error("Trace {0}".format(err))
-        return err.returncode
 
 
 # Modes available to Package managers
@@ -62,15 +63,17 @@ class CliOptions(TypedDict):
     force: bool
     uninstall: bool
     mode: str
+    debug: bool
 
 
 cli_options: CliOptions = {
     "sudo": (
-        True if "--sudo" or "-s" in sys.argv else False,
+        True if "--sudo" in sys.argv else False,
         sys.argv[sys.argv.index("--sudo") + 1] if "--sudo" in sys.argv else "",
     ),
-    "update": True if "--update" or "-u" in sys.argv else False,
-    "force": True if "--force" or "-f" in sys.argv else False,
+    "debug": True if "--debug" in sys.argv else False,
+    "update": True if "--update" in sys.argv else False,
+    "force": True if "--force" in sys.argv else False,
     "mode": "update" if "--update" in sys.argv else "install",
     "uninstall": True if "--uninstall" in sys.argv else False,
 }
@@ -401,8 +404,9 @@ def help() -> None:
             print(
                 "  --force, -f\t| will force install without check if already installed\n"
                 "  --update, -u\t| will update packages\n"
-                "  --uninstall, -u\t| will uninstall all packages\n"
-                "  --sudo [user], -u\t| run yay as sudo\n"
+                "  --uninstall \t| will uninstall all packages\n"
+                "  --sudo [user], -s\t| run yay as sudo\n"
+                "  --debug, -d\t| run yay as sudo\n"
             )
             sys.exit(0)
 
@@ -410,6 +414,7 @@ def help() -> None:
 def main():
     help()
     log.Info("Detected system is {0}".format(sys.platform))
+    print(cli_options)
 
     try:
 
