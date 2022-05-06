@@ -1,3 +1,5 @@
+![docker build]( https://img.shields.io/github/workflow/status/danielnehrig/nvim/ci?label=build&logo=docker&style=plastic )
+
 # NVIM Config and VIM Migration to NVIM Story
 
 ## Preview
@@ -5,14 +7,23 @@
 https://user-images.githubusercontent.com/4050749/136713743-4117a967-c5f5-4735-ad1c-9a6743fb743c.mp4
 
 
-Try it out yourself!
+Try it out yourself!  
+(stable version)  
 ```bash
 docker run -it \
   --entrypoint /bin/bash \
   -v $(pwd):/mnt/workspace \
   danielnehrig/nvim:latest \
   -c "source /root/.bashrc && nvim"
-
+```
+  
+(nightly version)  
+```bash
+docker run -it \
+  --entrypoint /bin/bash \
+  -v $(pwd):/mnt/workspace \
+  danielnehrig/nvim:nightly \
+  -c "source /root/.bashrc && nvim"
 ```
 
 ## Synposis
