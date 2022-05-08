@@ -78,6 +78,15 @@ local function init()
       requires = { "nvim-lua/plenary.nvim" },
       config = require("config.plugins.crates").init,
     }) -- rust crates info
+
+    use({
+      "ldelossa/gh.nvim",
+      requires = { "ldelossa/litee.nvim" },
+      config = function()
+        require("litee.lib").setup()
+        require("litee.gh").setup()
+      end,
+    })
     use({
       "danielnehrig/github-ci.nvim",
       requires = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
