@@ -517,7 +517,7 @@ local function init()
           default_title = "Links:",
           -- Default picker to display links with
           -- Options: "default" (vim.ui.select) or "telescope"
-          default_picker = "default",
+          default_picker = "telescope",
           -- Set the default protocol for us to prefix URLs with if they don't start with http/https
           default_prefix = "https://",
           -- Command or method to open links with

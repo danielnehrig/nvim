@@ -143,7 +143,7 @@ function LSP.init()
     "docker",
     "yaml",
     "bash",
-    -- "eslint",
+    "eslint",
     "ts",
     "java",
     "php",
