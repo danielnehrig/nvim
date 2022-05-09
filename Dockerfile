@@ -7,9 +7,10 @@ RUN useradd builduser -m \
   && passwd -d builduser \
   && printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
-RUN pacman -S --needed --noconfirm neovim git lolcat bat nodejs npm python python-pip rustup lua go luarocks ripgrep
+RUN pacman -S --needed --noconfirm git lolcat bat nodejs npm python python-pip rustup lua go luarocks ripgrep
 RUN sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/yay-git.git && cd yay-git && makepkg -si --noconfirm' \
   && rm -rf yay-git \
+  && yay -S neovim-git \
   && pacman -Sc \
   && rustup install nightly \
   && echo 'PATH+=":$HOME/.local/bin"' >> /root/.bashrc \
