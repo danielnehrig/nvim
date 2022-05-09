@@ -1,4 +1,12 @@
+local fs = require("config.core.fs")
+
+local formatter = "dprint"
+local command = string.format(
+  "%s fmt --config ~/.config/dprint.json --stdin ${FILEEXT}",
+  fs.executable(formatter)
+)
+
 return {
-  formatCommand = "dprint fmt --config ~/.config/dprint.json --stdin ${FILEEXT}",
+  formatCommand = command,
   formatStdin = true,
 }
