@@ -78,6 +78,15 @@ local function init()
       requires = { "nvim-lua/plenary.nvim" },
       config = require("config.plugins.crates").init,
     }) -- rust crates info
+
+    use({
+      "ldelossa/gh.nvim",
+      requires = { "ldelossa/litee.nvim" },
+      config = function()
+        require("litee.lib").setup()
+        require("litee.gh").setup()
+      end,
+    })
     use({
       "danielnehrig/github-ci.nvim",
       requires = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
@@ -508,7 +517,7 @@ local function init()
           default_title = "Links:",
           -- Default picker to display links with
           -- Options: "default" (vim.ui.select) or "telescope"
-          default_picker = "default",
+          default_picker = "telescope",
           -- Set the default protocol for us to prefix URLs with if they don't start with http/https
           default_prefix = "https://",
           -- Command or method to open links with

@@ -8,8 +8,10 @@ from typing import TypedDict, Union, Callable
 from getpass import getuser
 from datetime import datetime
 
+
 def which(program):
     import os
+
     def is_exe(fpath):
         return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
 
@@ -25,21 +27,24 @@ def which(program):
 
     return None
 
-def cmd(call: str) -> int:
+
+def cmd(call: str) -> None:
     try:
         log.Info("Executing {0}{1}{2}".format(Colors.WARNING, call, Colors.ENDC))
         cmdArr = call.split()
         with open(os.devnull, "w") as f:
             # subprocess.call(cmdArr, stdout=f)
-            result = subprocess.call(
-                cmdArr, shell=True, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
-            )
+            if cli_options["debug"]:
+                subprocess.call(cmdArr)
+            else:
+                subprocess.call(
+                    cmdArr, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
+                )
             f.close()
-            return result
     except subprocess.CalledProcessError as err:
         log.Error("Failed to execute {0}".format(call))
         log.Error("Trace {0}".format(err))
-        return err.returncode
+
 
 # Modes available to Package managers
 class Modes(TypedDict):
@@ -50,18 +55,27 @@ class Modes(TypedDict):
     # might make this optional
     update: str
 
+
 # CliOptions struct
 class CliOptions(TypedDict):
     sudo: tuple[bool, str]
     update: bool
     force: bool
+    uninstall: bool
     mode: str
+    debug: bool
+
 
 cli_options: CliOptions = {
-    "sudo": (True if "--sudo" in sys.argv else False, sys.argv[sys.argv.index("--sudo") + 1] if "--sudo" in sys.argv else ""),
+    "sudo": (
+        True if "--sudo" in sys.argv else False,
+        sys.argv[sys.argv.index("--sudo") + 1] if "--sudo" in sys.argv else "",
+    ),
+    "debug": True if "--debug" in sys.argv else False,
     "update": True if "--update" in sys.argv else False,
     "force": True if "--force" in sys.argv else False,
-    "mode": "update" if "--update" in sys.argv else "install"
+    "mode": "update" if "--update" in sys.argv else "install",
+    "uninstall": True if "--uninstall" in sys.argv else False,
 }
 
 # The PackageManger that installs your packages
@@ -196,6 +210,7 @@ rust: PackageManager = PackageManager(
         "packages": [
             ("blackd-client", "blackd-client"),
             ("stylua", "stylua"),
+            ("rslint_cli", "rslint"),
         ],
         "dependencies": None,
     }
@@ -221,9 +236,11 @@ lua: PackageManager = PackageManager(
     }
 )
 
+
 def py_dep():
     result = cmd("pip3.9 list | grep 'NOPE'")
     print(result)
+
 
 # Python PIP Package Manager
 python: PackageManager = PackageManager(
@@ -238,7 +255,6 @@ python: PackageManager = PackageManager(
         ],
         "dependencies": ["pynvim", "aiohttp", "aiohttp_cors"],
     }
-
 )
 
 # lua-language-server
@@ -378,8 +394,6 @@ class Log(Colors):
 log: Log = Log()
 
 
-
-
 def help() -> None:
     for option in sys.argv:
         if option == "--help" or option == "-h":
@@ -390,6 +404,9 @@ def help() -> None:
             print(
                 "  --force, -f\t| will force install without check if already installed\n"
                 "  --update, -u\t| will update packages\n"
+                "  --uninstall \t| will uninstall all packages\n"
+                "  --sudo [user], -s\t| run yay as sudo\n"
+                "  --debug, -d\t| run yay as sudo\n"
             )
             sys.exit(0)
 
@@ -397,6 +414,7 @@ def help() -> None:
 def main():
     help()
     log.Info("Detected system is {0}".format(sys.platform))
+    print(cli_options)
 
     try:
 

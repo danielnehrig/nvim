@@ -1,18 +1,36 @@
-# NVIM Config and VIM Migration to NVIM Story
+<div align="center">
+
+  <h1>NVIM Config</h1>
+
+![docker build]( https://img.shields.io/github/workflow/status/danielnehrig/nvim/ci?label=build&logo=docker&style=for-the-badge )
+[![Lua](https://img.shields.io/badge/Lua-blue.svg?style=for-the-badge&logo=lua)](http://www.lua.org)
+[![Neovim Stable](https://img.shields.io/badge/Neovim%20Stable-green.svg?style=for-the-badge&logo=neovim)](https://neovim.io)
+[![Neovim Nightly](https://img.shields.io/badge/Neovim%20Nightly-red.svg?style=for-the-badge&logo=neovim)](https://neovim.io)
+![Work In Progress](https://img.shields.io/badge/Work%20In%20Progress-orange?style=for-the-badge)
+</div>
 
 ## Preview
 
 https://user-images.githubusercontent.com/4050749/136713743-4117a967-c5f5-4735-ad1c-9a6743fb743c.mp4
 
 
-Try it out yourself!
+Try it out yourself!  
+(stable version)  
 ```bash
 docker run -it \
   --entrypoint /bin/bash \
   -v $(pwd):/mnt/workspace \
   danielnehrig/nvim:latest \
   -c "source /root/.bashrc && nvim"
-
+```
+  
+(nightly version)  
+```bash
+docker run -it \
+  --entrypoint /bin/bash \
+  -v $(pwd):/mnt/workspace \
+  danielnehrig/nvim:nightly \
+  -c "source /root/.bashrc && nvim"
 ```
 
 ## Synposis
