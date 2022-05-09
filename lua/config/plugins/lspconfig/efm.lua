@@ -38,7 +38,9 @@ lspconfig.efm.setup({
     ".eslintrc.json",
     ".prettierrc",
     ".prettierrc.json",
-    "stylua.toml"
+    "stylua.toml",
+    ".luacheck",
+    "dpring.json"
   ),
   init_options = {
     documentFormatting = true,
@@ -64,6 +66,7 @@ lspconfig.efm.setup({
       rust = { rustfmt },
       go = { gofmt, goimports, golines },
       markdown = { dprint },
+      md = { dprint },
       json = { dprint },
       toml = { dprint },
       python = { python },
@@ -80,6 +83,7 @@ lspconfig.efm.setup({
     "toml",
     "go",
     "markdown",
+    "md",
     "javascript",
     "javascriptreact",
     "typescriptreact",

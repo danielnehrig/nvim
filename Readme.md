@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>NVIM Config</h1>
+    <h1>NVIM Config</h1>
 
 ![docker build](https://img.shields.io/github/workflow/status/danielnehrig/nvim/ci?label=build&logo=docker&style=for-the-badge)
 [![Lua](https://img.shields.io/badge/Lua-blue.svg?style=for-the-badge&logo=lua)](http://www.lua.org)
@@ -37,7 +37,7 @@ docker run -it \
 
 ## Synposis
 
-I've been using vim for about 7-8 years now\
+I've been using vim for about 7-8 years now  
 while i was aware that neovim was a thing\
 i didn't really understand or tried to understand\
 which problems it tries to solve which vim has\
