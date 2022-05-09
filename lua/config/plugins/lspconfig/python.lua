@@ -11,7 +11,7 @@ local config = {
   flags = { debounce_text_changes = 500 },
   root_dir = require("lspconfig/util").root_pattern(),
   on_attach = function(client, bufnr)
-    client.server_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
     lsp.on_attach(client, bufnr)
   end,
 }
