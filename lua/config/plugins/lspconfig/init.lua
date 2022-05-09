@@ -14,6 +14,7 @@ function LSP.on_attach(client, bufnr)
     lsp_status.on_attach(client)
   end
 
+  vim.pretty_print(client.server_capabilities)
   map("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
   map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
   map(

@@ -2,7 +2,7 @@ local cmd = vim.cmd
 local lsp = require("config.plugins.lspconfig")
 local lspconfig = require("lspconfig")
 local capabilities =
-require("config.plugins.lspconfig.capabilities").capabilities
+  require("config.plugins.lspconfig.capabilities").capabilities
 local M = {}
 
 -- Lua Settings for nvim config and plugin development
@@ -11,7 +11,7 @@ if not packer_plugins["lua-dev.nvim"].loaded then
 end
 
 IS_NVIM = string.match(vim.fn.getcwd(), ".*/dotfiles.*") ~= nil and true
-    or false
+  or false
 
 local luadev = require("lua-dev").setup({
   library = {
@@ -36,7 +36,7 @@ local luadev = require("lua-dev").setup({
     -- root_dir = require("lspconfig/util").root_pattern("."),
     on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = false
-      client.server_capabilities.document_formatting = false
+      client.server_capabilities.documentFormattingProvider = false
       lsp.on_attach(client, bufnr)
     end,
   },
@@ -46,7 +46,7 @@ lspconfig.sumneko_lua.setup(luadev)
 
 function M.reinit()
   IS_NVIM = string.match(vim.fn.getcwd(), ".*/dotfiles.*") ~= nil and true
-      or false
+    or false
 
   local luadev_reinit = require("lua-dev").setup({
     library = {
@@ -73,7 +73,7 @@ function M.reinit()
       -- root_dir = require("lspconfig/util").root_pattern("."),
       on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
-        client.server_capabilities.document_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
         lsp.on_attach(client, bufnr)
       end,
     },
