@@ -10,7 +10,7 @@ local function load_plugins()
       {
         "nvim-telescope/telescope.nvim",
         requires = {
-          "nvim-lua/plenary.nvim"
+          "nvim-lua/plenary.nvim",
         },
       },
       {
@@ -121,16 +121,11 @@ _G.load_config = function()
   vim.wo.foldnestmax = 3
   vim.wo.foldminlines = 1
 
-  vim.keymap.set(
-      { "n" },
-      "<space>ff",
-      ":Telescope find_files<CR>",
-      {
-        silent = true,
-      }
-    )
+  vim.keymap.set({ "n" }, "<space>ff", ":Telescope find_files<CR>", {
+    silent = true,
+  })
   require("nvim-treesitter.configs").setup({
-    ensure_installed = {"lua"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = { "lua" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
       enable = true,
     },
