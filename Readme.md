@@ -1,4 +1,8 @@
 ![docker build]( https://img.shields.io/github/workflow/status/danielnehrig/nvim/ci?label=build&logo=docker&style=plastic )
+[![Lua](https://img.shields.io/badge/Lua-blue.svg?style=for-the-badge&logo=lua)](http://www.lua.org)
+[![Neovim Stable](https://img.shields.io/badge/Neovim%20Nightly-green.svg?style=for-the-badge&logo=neovim)](https://neovim.io)
+[![Neovim Nightly](https://img.shields.io/badge/Neovim%20Nightly-green.svg?style=for-the-badge&logo=neovim)](https://neovim.io)
+![Work In Progress](https://img.shields.io/badge/Work%20In%20Progress-orange?style=for-the-badge)
 
 # NVIM Config and VIM Migration to NVIM Story
 
