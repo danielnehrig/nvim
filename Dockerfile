@@ -34,6 +34,7 @@ RUN nvim --headless\
 RUN nvim --headless +'TSInstall bash python cpp rust go lua dockerfile yaml typescript javascript java tsx tsdoc c org scss css toml make json html php' +'sleep 30' +qa
 # Avoid container exit.
 WORKDIR /mnt/workspace
-ENTRYPOINT ["/bin/bash", "-c", "source", "/root/.bashrc", "&&"]
+EXPOSE 5555
+ENTRYPOINT ["/bin/bash", "-c", "source /root/.bashrc && nvim"]
 CMD ["tail", "-f", "/dev/null"]
 
