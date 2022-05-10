@@ -145,5 +145,5 @@ _DAP:_
 ### Setup
 
 1. `./package.py`
-2. `nvim +'PackerSync' +'TSInstall all'`
+2. `nvim +'autocmd User PackerComplete TSInstall all' +'PackerSync'`
 3. _optional:_ `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
