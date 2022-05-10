@@ -24,17 +24,14 @@ RUN /root/.config/nvim/packages.py --sudo builduser
 
 # flakey for some reason --headless packersync does not work like without headless
 RUN nvim --headless\
-  +'autocmd User PackerComplete sleep 100m | qall'\
-  +PackerSync
-RUN nvim --headless\
-  +'autocmd User PackerComplete sleep 100m | qall'\
-  +PackerSync
+  +'autocmd User PackerComplete sleep 100m | qall'
 RUN nvim --headless\
   +'autocmd User PackerComplete sleep 100m | qall'\
   +PackerSync
 RUN nvim --headless +'TSInstall bash python cpp rust go lua dockerfile yaml typescript javascript java tsx tsdoc c org scss css toml make json html php' +'sleep 30' +qa
 # Avoid container exit.
 WORKDIR /mnt/workspace
-ENTRYPOINT ["/bin/bash", "-c", "source", "/root/.bashrc", "&&"]
+EXPOSE 5555
+ENTRYPOINT ["/bin/bash", "-c", "source /root/.bashrc && nvim"]
 CMD ["tail", "-f", "/dev/null"]
 

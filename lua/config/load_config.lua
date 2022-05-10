@@ -11,6 +11,7 @@ M.init = function()
   require("config.plugins.treesitter").init()
   require("config.plugins.build"):init()
   require("config.plugins.bufferline").init()
+  require("config.core.commands").init()
 
   -- the init is loaded over a autocmd for lazyload
   -- require("plugins.wildmenu")
