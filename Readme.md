@@ -49,13 +49,13 @@ i thought lets give it a shot how it works for neovim\
 this is when i realized that neovim had a LUA JIT\
 implemented at that moment i was sold to it due to prior lua experience\
 i investigated the lua plugin ecosystem while fairly small at that time\
-it grew and grew and grew... it looked promising\
+it grew and grew and grew... It looked promising\
 now we are here back at it again configuring the same editor\
 with better features\
 this time getting a IDE like experience\
 getting rid of prior pain points with vim\
-and getting rid of bad habbits.\
-the journy begings
+and getting rid of bad habits.\
+the journey begins
 
 Started 09.04.21
 
@@ -71,17 +71,17 @@ The Config should fully support:
 
 CONFIG SETUP:
 
-- IDE capabilities (lsp,debug,project managment,build,lint,test) ✅
-- Debloating the Config (staying under 100ms bootup time) ✅
+- IDE capabilities (lsp,debug,project management,build,lint,test) ✅
+- Debloating the Config (staying under 100ms boot up time) ✅
 - remove unused plugins ✅
 - move to the build in LSP ✅
 - add formatting and linting ✅
 - Debug ✅
-- intutive mappings ✅
+- intuitive mappings ✅
 - fast tab/buffer navigation ✅
-- project managment ✅
-- session managment ✅
-- file managment ✅
+- project management ✅
+- session management ✅
+- file management ✅
 - lazy load plugins ✅
 - Treesitter Setup ✅
 - Refactoring ✅
@@ -120,6 +120,9 @@ _Package managers:_
 - _node_
 - _go_
 - _rust/cargo_
+- _luarocks_
+- _brew_ (mac support)
+- _yay_ (archlinux support)
 
 _NVIM V ^0.7.\*_
 
@@ -139,15 +142,8 @@ _DAP:_
 - Some Adapters can be installed with Dap install
 - Java Adapter has to be installed manually
 
-_GH:_ _(plugins.gh)_
-
-- Add a env var with ur github username
-- Add a env var with your github token
-  _hint:_ i use bitwarden and populate with the cli the credentials for the env
-
 ### Setup
 
-- Run ./package.py to install debug adapters and lsp
-- Run nvim and let it do its thing until its done
-- Run `TSInstall maintained`
-- Run in nvim `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
+1. `./package.py`
+2. `nvim +'PackerSync' +'TSInstall all'`
+3. _optional:_ `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
