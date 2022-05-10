@@ -1,6 +1,6 @@
 <div align="center">
 
-    <h1>NVIM Config</h1>
+<h1>NVIM Config</h1>
 
 ![docker build](https://img.shields.io/github/workflow/status/danielnehrig/nvim/ci?label=build&logo=docker&style=for-the-badge)
 [![Lua](https://img.shields.io/badge/Lua-blue.svg?style=for-the-badge&logo=lua)](http://www.lua.org)
