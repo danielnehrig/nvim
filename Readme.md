@@ -22,25 +22,21 @@
 
 https://user-images.githubusercontent.com/4050749/136713743-4117a967-c5f5-4735-ad1c-9a6743fb743c.mp4
 
-Try it out yourself!\
-(stable version)
+__Try it out yourself!__\
+_(stable version)_
 
 ```bash
 docker run -it \
-  --entrypoint /bin/bash \
   -v $(pwd):/mnt/workspace \
-  danielnehrig/nvim:latest \
-  -c "source /root/.bashrc && nvim"
+  danielnehrig/nvim:latest
 ```
 
-(nightly version)
+_(nightly version)_
 
 ```bash
 docker run -it \
-  --entrypoint /bin/bash \
   -v $(pwd):/mnt/workspace \
-  danielnehrig/nvim:nightly \
-  -c "source /root/.bashrc && nvim"
+  danielnehrig/nvim:nightly
 ```
 
 ## Synposis
@@ -72,9 +68,13 @@ Started 09.04.21
 The Config should fully support:
 
 - Typescript / Javascript
+- CSS/SASS/SCSS
 - Rust
 - Java
 - Go
+- Dockerfile
+- Yaml
+- Json
 - Python
 
 CONFIG SETUP:
@@ -150,10 +150,16 @@ _DAP:_
 - Some Adapters can be installed with Dap install
 - Java Adapter has to be installed manually
 
-### Setup
+### Manual Setup
 
 0. `git clone https://github.com/danielnehrig/nvim ~/.config/nvim && cd ~/.config/nvim`
 1. `./package.py`
 2. `nvim +'autocmd User PackerComplete sleep 100ms | qa'`
 3. `nvim +'autocmd User PackerComplete TSInstall all' +'PackerSync'`
 4. _optional:_ `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
+
+#### Auto Setup
+
+__DESTRUCTIVE__\
+_NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/danielnehrig/nvim/master/autoinstall.sh)"`

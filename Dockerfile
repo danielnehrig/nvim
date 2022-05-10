@@ -23,11 +23,7 @@ RUN /root/.config/nvim/packages.py --sudo builduser
 
 # flakey for some reason --headless packersync does not work like without headless
 RUN nvim --headless\
-  +'autocmd User PackerComplete sleep 100m | qall'\
-  +PackerSync
-RUN nvim --headless\
-  +'autocmd User PackerComplete sleep 100m | qall'\
-  +PackerSync
+  +'autocmd User PackerComplete sleep 100m | qall'
 RUN nvim --headless\
   +'autocmd User PackerComplete sleep 100m | qall'\
   +PackerSync
