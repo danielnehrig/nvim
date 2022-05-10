@@ -144,6 +144,7 @@ _DAP:_
 
 ### Setup
 
+0. `git clone https://github.com/danielnehrig/nvim ~/.config/nvim && cd ~/.config/nvim`
 1. `./package.py`
 2. `nvim +'autocmd User PackerComplete TSInstall all' +'PackerSync'`
 3. _optional:_ `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
