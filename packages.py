@@ -180,6 +180,7 @@ node: PackageManager = PackageManager(
             ("pyright", "pyright"),
             ("neovim", None),
             ("@fsouza/prettierd", "prettierd"),
+            ("prettier", "prettier"),
             ("eslint_d", "eslint_d"),
         ],
         "dependencies": ["neovim"],
@@ -264,6 +265,7 @@ brew = PackageManager(
         "modes": {"install": "install", "update": "update"},
         "packages": [
             ("lua-language-server", "lua-language-server"),
+            ("jq", "jq"),
         ],
         "dependencies": None,
     }

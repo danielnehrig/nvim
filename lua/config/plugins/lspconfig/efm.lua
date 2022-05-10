@@ -3,6 +3,8 @@ local lspconfig = require("lspconfig")
 -- efm setups
 local eslint = require("config.plugins.efm.eslint")
 local rslint = require("config.plugins.efm.rslint")
+local jq = require("config.plugins.efm.jq")
+local json_prettier = require("config.plugins.efm.json-prettier")
 local prettier = require("config.plugins.efm.prettier")
 local stylua = require("config.plugins.efm.stylua")
 local luacheck = require("config.plugins.efm.luacheck")
@@ -38,14 +40,16 @@ lspconfig.efm.setup({
     ".eslintrc.json",
     ".prettierrc",
     ".prettierrc.json",
-    "stylua.toml"
+    "stylua.toml",
+    ".luacheck",
+    "dpring.json"
   ),
   init_options = {
     documentFormatting = true,
-    documentSymbol = false,
-    completion = false,
-    codeAction = false,
-    hover = false,
+    documentSymbol = true,
+    completion = true,
+    codeAction = true,
+    hover = true,
   },
   settings = {
     rootMarkers = {
@@ -64,6 +68,8 @@ lspconfig.efm.setup({
       rust = { rustfmt },
       go = { gofmt, goimports, golines },
       markdown = { dprint },
+      json = { json_prettier, jq },
+      toml = { dprint },
       python = { python },
       bash = { shellcheck, shfmt },
       sh = { shellcheck, shfmt },
@@ -74,6 +80,8 @@ lspconfig.efm.setup({
     "python",
     "bash",
     "sh",
+    "json",
+    "toml",
     "go",
     "markdown",
     "javascript",
