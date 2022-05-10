@@ -10,6 +10,14 @@
 
 </div>
 
+- [Preview](#preview)
+- [Synposis](#synposis)
+- [The Main Goals](#the-main-goals)
+- [Philosophy and side infos](#philosophy-and-side-infos)
+  - [Nvim Log](#nvim-log)
+  - [Requirements](#requirements)
+  - [Setup](#setup)
+
 ## Preview
 
 https://user-images.githubusercontent.com/4050749/136713743-4117a967-c5f5-4735-ad1c-9a6743fb743c.mp4
@@ -37,7 +45,7 @@ docker run -it \
 
 ## Synposis
 
-I've been using vim for about 7-8 years now  
+I've been using vim for about 7-8 years now\
 while i was aware that neovim was a thing\
 i didn't really understand or tried to understand\
 which problems it tries to solve which vim has\
