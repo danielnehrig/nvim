@@ -45,14 +45,14 @@ function LSP.on_attach(client, bufnr)
     { buffer = bufnr }
   )
   map("n", "<space>g=", function()
-    vim.lsp.buf.formatting_sync()
+    vim.lsp.buf.formatting_seq_sync({}, 10000)
   end, { buffer = bufnr })
   map("n", "<space>gi", vim.lsp.buf.incoming_calls, { buffer = bufnr })
   map("n", "<space>go", vim.lsp.buf.outgoing_calls, { buffer = bufnr })
   map(
     "n",
     "<space>gd",
-    "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single' })<CR>",
+    "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single', source = 'if_many' })<CR>",
     { buffer = bufnr }
   )
 
@@ -102,7 +102,10 @@ end
 
 -- LSP Settings
 function LSP.settings()
-  vim.diagnostic.config({ virtual_text = false })
+  vim.diagnostic.config({
+    virtual_text = false,
+  })
+
   -- enable border for hover
   vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, {
@@ -115,14 +118,6 @@ function LSP.settings()
     vim.lsp.handlers.signature_help,
     {
       border = "single",
-    }
-  )
-
-  -- disable virtual text
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-      virtual_text = false,
     }
   )
 end
@@ -143,7 +138,7 @@ function LSP.init()
     "docker",
     "yaml",
     "bash",
-    "eslint",
+    -- "eslint",
     "ts",
     "java",
     "php",

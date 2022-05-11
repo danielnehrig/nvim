@@ -685,7 +685,6 @@ local function init()
     use({
       "ThePrimeagen/refactoring.nvim",
       config = require("config.plugins.refactoring").init,
-      opt = true,
       requires = {
         { "nvim-treesitter/nvim-treesitter" },
         { "nvim-lua/plenary.nvim" },

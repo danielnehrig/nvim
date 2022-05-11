@@ -23,6 +23,7 @@ function M.open_diag_float()
     end
   end
   vim.diagnostic.open_float({
+    source = true,
     focusable = false,
     focus = false,
     border = "single",
