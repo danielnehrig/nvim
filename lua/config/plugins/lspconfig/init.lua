@@ -35,7 +35,6 @@ function LSP.on_attach(client, bufnr)
   map("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
   map("n", "<space>gw", vim.lsp.buf.document_symbol, { buffer = bufnr })
   map("n", "<space>gW", vim.lsp.buf.workspace_symbol, { buffer = bufnr })
-  map("n", "<space>gh", vim.lsp.buf.hover, { buffer = bufnr })
   map("n", "<Leader>gf", vim.lsp.buf.code_action, { buffer = bufnr })
   map("v", "<Leader>gf", vim.lsp.buf.range_code_action, { buffer = bufnr })
   map(
@@ -45,7 +44,7 @@ function LSP.on_attach(client, bufnr)
     { buffer = bufnr }
   )
   map("n", "<space>g=", function()
-    vim.lsp.buf.formatting_seq_sync({}, 10000)
+    vim.lsp.buf.formatting_seq_sync({}, 2500)
   end, { buffer = bufnr })
   map("n", "<space>gi", vim.lsp.buf.incoming_calls, { buffer = bufnr })
   map("n", "<space>go", vim.lsp.buf.outgoing_calls, { buffer = bufnr })
@@ -138,7 +137,7 @@ function LSP.init()
     "docker",
     "yaml",
     "bash",
-    -- "eslint",
+    "eslint",
     "ts",
     "java",
     "php",
