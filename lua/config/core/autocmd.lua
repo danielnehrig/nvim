@@ -101,6 +101,14 @@ function M.autocmds()
       vim.notify("Conflict detected in " .. vim.fn.expand("<afile>"))
     end,
   })
+
+  vim.api.nvim_create_autocmd("ModeChanged", {
+    pattern = { "*:i*", "i*:*" },
+    group = au_utils,
+    callback = function()
+      vim.o.relativenumber = vim.v.event.new_mode:match("^i") == nil
+    end,
+  })
 end
 
 return M

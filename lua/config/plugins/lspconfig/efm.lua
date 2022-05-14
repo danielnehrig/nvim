@@ -1,8 +1,8 @@
 local lspconfig = require("lspconfig")
 
 -- efm setups
-local eslint = require("config.plugins.efm.eslint")
-local rslint = require("config.plugins.efm.rslint")
+-- local eslint = require("config.plugins.efm.eslint")
+-- local rslint = require("config.plugins.efm.rslint")
 local jq = require("config.plugins.efm.jq")
 local json_prettier = require("config.plugins.efm.json-prettier")
 local prettier = require("config.plugins.efm.prettier")
@@ -20,8 +20,7 @@ local golines = require("config.plugins.efm.golines")
 -- formatting and linting with efm
 lspconfig.efm.setup({
   on_attach = function(client)
-    client.server_capabilities.documentFormattingProvider = false
-    if client.resolved_capabilities.documentFormattingProvider then
+    if client.supports_method "textDocument/formatting" then
       local au_lsp = vim.api.nvim_create_augroup("efm_lsp", { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
@@ -60,10 +59,10 @@ lspconfig.efm.setup({
       "cargo.toml",
     },
     languages = {
-      typescript = { rslint, prettier, eslint },
-      typescriptreact = { rslint, prettier, eslint },
-      javascript = { rslint, prettier, eslint },
-      javascriptreact = { rslint, prettier, eslint },
+      typescript = { prettier },
+      typescriptreact = { prettier },
+      javascript = { prettier },
+      javascriptreact = { prettier },
       lua = { stylua, luacheck },
       rust = { rustfmt },
       go = { gofmt, goimports, golines },

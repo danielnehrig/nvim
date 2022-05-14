@@ -65,16 +65,10 @@ function M.mappings()
     require("config.plugins.gitlinker"):visual()
   end)
 
-  -- refactor: NOTE: Lazyloaded
-  set("v", "<Leader>re", function()
-    require("config.plugins.refactoring").extract()
-  end)
-  set("v", "<Leader>rf", function()
-    require("config.plugins.refactoring").extract_to_file()
-  end)
+  -- refactor
   set("v", "<Leader>rt", function()
     require("telescope").extensions.refactoring.refactors()
-  end)
+  end, { noremap = true })
 
   -- marker: NOTE: Lazyloaded
   set("v", "<Leader>1", ":<c-u>HSHighlight 1<CR>")
