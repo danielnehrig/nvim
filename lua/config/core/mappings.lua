@@ -66,9 +66,12 @@ function M.mappings()
   end)
 
   -- refactor
-  set("v", "<Leader>rt", function()
-    require("telescope").extensions.refactoring.refactors()
-  end, { noremap = true })
+  set(
+    "v",
+    "<Leader>rt",
+    "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+    { noremap = true }
+  )
 
   -- marker: NOTE: Lazyloaded
   set("v", "<Leader>1", ":<c-u>HSHighlight 1<CR>")
