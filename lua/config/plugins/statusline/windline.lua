@@ -5,6 +5,11 @@ local themes = {
 local M = {}
 
 M.switch_theme = function(arg)
+  local present, _ = pcall(require, "windline")
+  if not present then
+    vim.notify(string.format("windline not installed"))
+    return
+  end
   require("config.plugins.statusline.theme." .. arg).theme.config()
 end
 

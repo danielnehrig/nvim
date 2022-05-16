@@ -3,7 +3,11 @@ local M = {}
 M.theme = {
   name = "slanted_lsp",
   config = function()
-    local windline = require("windline")
+    local present, windline = pcall(require, "windline")
+    if not present then
+      vim.notify(string.format("windline not installed"))
+      return
+    end
     local helper = require("windline.helpers")
     local b_components = require("windline.components.basic")
     local animation = require("wlanimation")

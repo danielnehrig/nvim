@@ -30,7 +30,6 @@ function M.init()
       initial_mode = "insert",
       selection_strategy = "reset",
       sorting_strategy = "descending",
-      layout_strategy = "horizontal",
       file_sorter = require("telescope.sorters").get_fuzzy_file,
       file_ignore_patterns = { ".git/", "node_modules", "__snapshots_-" },
       generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
@@ -56,28 +55,6 @@ function M.init()
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     },
     extensions = {
-      ["ui-select"] = {
-        require("telescope.themes").get_dropdown({
-          -- even more opts
-        }),
-
-        -- pseudo code / specification for writing custom displays, like the one
-        -- for "codeactions"
-        -- specific_opts = {
-        --   [kind] = {
-        --     make_indexed = function(items) -> indexed_items, width,
-        --     make_displayer = function(widths) -> displayer
-        --     make_display = function(displayer) -> function(e)
-        --     make_ordinal = function(e) -> string
-        --   },
-        --   -- for example to disable the custom builtin "codeactions" display
-        --      do the following
-        --   codeactions = false,
-        -- }
-      },
-      file_browser = {
-        theme = "ivy",
-      },
       project = {
         -- base_dirs = {
         -- "~/code",
