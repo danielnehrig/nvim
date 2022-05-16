@@ -2,6 +2,14 @@ local M = {}
 
 M.ts = {
   {
+    "ThePrimeagen/refactoring.nvim",
+    config = require("config.plugins.refactoring").init,
+    requires = {
+      { "nvim-treesitter/nvim-treesitter" },
+      { "nvim-lua/plenary.nvim" },
+    },
+  },
+  {
     "SmiteshP/nvim-gps",
     requires = "nvim-treesitter/nvim-treesitter",
     config = function()
