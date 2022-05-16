@@ -6,6 +6,7 @@ M.__index = M
 -- load configs for packer plugins
 M.init = function()
   require("impatient").enable_profile()
+  require("config.packer-config.funcs").switch_theme("tokyonight")
   require("config.plugins.web-devicons").init()
   require("config.plugins.autopairs").init()
   require("config.plugins.treesitter").init()

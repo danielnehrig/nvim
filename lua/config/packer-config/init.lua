@@ -33,42 +33,10 @@ local function init()
         require("colorizer").setup()
       end,
     }) -- colors hex
-    use({
-      "folke/tokyonight.nvim",
-      config = function()
-        vim.o.background = "dark" -- or light if you so prefer
-        vim.g.tokyonight_style = "night"
-        vim.g.tokyonight_transparent = not vim.g.neovide and true or false
-        vim.g.tokyonight_transparent_sidebar = not vim.g.neovide and true
-          or false
-
-        vim.cmd([[colorscheme tokyonight]])
-        require("config.core.highlights")
-      end,
-    })
-    use({
-      "Murtaza-Udaipurwala/gruvqueen",
-      disable = true,
-      config = function()
-        vim.o.background = "dark" -- or light if you so prefer
-        require("gruvqueen").setup({
-          config = {
-            disable_bold = true,
-            italic_comments = true,
-            italic_keywords = true,
-            italic_functions = true,
-            italic_variables = true,
-            invert_selection = false,
-            style = "mix", -- possible values: 'original', 'mix', 'material'
-            transparent_background = not vim.g.neovide and true or false,
-            -- bg_color = "black",
-          },
-        })
-
-        vim.cmd([[colorscheme gruvqueen]])
-        require("config.core.highlights")
-      end,
-    }) -- Color scheme
+    -- colorschemes
+    for _, theme in pairs(require("config.packer-config.themes").ts_themes) do
+      use(theme.packer_cfg)
+    end
 
     -- language
     use({ "mfussenegger/nvim-jdtls", opt = true })
