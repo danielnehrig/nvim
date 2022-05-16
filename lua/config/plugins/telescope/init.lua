@@ -2,12 +2,11 @@ local M = {}
 M.__index = M
 
 function M.init()
-  vim.cmd([[packadd plenary.nvim]])
-  vim.cmd([[packadd refactoring.nvim]])
-  vim.cmd([[packadd telescope-project.nvim]])
-  vim.cmd([[packadd telescope-file-browser.nvim]])
-
-  local telescope = require("telescope")
+  local present, telescope = pcall(require, "telescope")
+  if not present then
+    vim.notify("telescope is not installed")
+    return
+  end
   local action_set = require("telescope.actions.set")
   telescope.setup({
     pickers = {
@@ -24,27 +23,42 @@ function M.init()
       },
     },
     defaults = {
-      prompt_prefix = "🔍 ",
-      selection_caret = "> ",
+      vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+      },
+      prompt_prefix = "   ",
+      selection_caret = "  ",
       entry_prefix = "  ",
       initial_mode = "insert",
       selection_strategy = "reset",
-      sorting_strategy = "descending",
+      sorting_strategy = "ascending",
+      layout_strategy = "horizontal",
+      layout_config = {
+        horizontal = {
+          prompt_position = "top",
+          preview_width = 0.55,
+          results_width = 0.8,
+        },
+        vertical = {
+          mirror = false,
+        },
+        width = 0.87,
+        height = 0.80,
+        preview_cutoff = 120,
+      },
       file_sorter = require("telescope.sorters").get_fuzzy_file,
-      file_ignore_patterns = { ".git/", "node_modules", "__snapshots_-" },
+      file_ignore_patterns = { "node_modules" },
       generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+      path_display = { "truncate" },
       winblend = 0,
       border = {},
-      borderchars = {
-        "─",
-        "│",
-        "─",
-        "│",
-        "╭",
-        "╮",
-        "╯",
-        "╰",
-      },
+      borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
       color_devicons = true,
       use_less = true,
       set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
@@ -53,6 +67,9 @@ function M.init()
       qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
       -- Developer configurations: Not meant for general override
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+      mappings = {
+        n = { ["q"] = require("telescope.actions").close },
+      },
     },
     extensions = {
       project = {
