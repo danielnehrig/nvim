@@ -15,7 +15,7 @@ local function init()
     use({
       "windwp/windline.nvim",
     }) -- Statusline
-    use({ "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" }) -- Bufferline
+    use({ "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" })
     use({
       "norcalli/nvim-colorizer.lua",
       ft = {
