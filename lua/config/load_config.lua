@@ -7,15 +7,12 @@ M.__index = M
 M.init = function()
   require("impatient").enable_profile()
   require("config.packer-config.funcs").switch_theme("tokyonight")
+  require("config.plugins.statusline.windline").slanted_lsp()
   require("config.plugins.web-devicons").init()
   require("config.plugins.autopairs").init()
   require("config.plugins.treesitter").init()
   require("config.plugins.build"):init()
   require("config.plugins.bufferline").init()
-  require("config.core.commands").init()
-
-  -- the init is loaded over a autocmd for lazyload
-  -- require("plugins.wildmenu")
 
   -- load last to overwrite every highlight that has been added by a plugin
   require("config.core.highlights")

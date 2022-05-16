@@ -14,9 +14,6 @@ local function init()
     use({ "lewis6991/impatient.nvim" })
     use({
       "windwp/windline.nvim",
-      config = function()
-        require("config.plugins.statusline.windline")
-      end,
     }) -- Statusline
     use({ "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" }) -- Bufferline
     use({

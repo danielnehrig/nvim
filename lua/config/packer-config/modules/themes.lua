@@ -6,8 +6,47 @@ vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = not vim.g.neovide and true or false
 vim.g.tokyonight_transparent_sidebar = not vim.g.neovide and true or false
 
+-- Lua:
+-- For dark theme
+vim.g.vscode_style = "dark"
+-- Enable transparent background
+vim.g.vscode_transparent = 1
+-- Enable italic comment
+vim.g.vscode_italic_comment = 1
+-- Disable nvim-tree background color
+vim.g.vscode_disable_nvimtree_bg = true
+
 -- treesitter themes
 M.ts_themes = {
+  ["aurora"] = {
+    colorscheme = "aurora",
+    packadd = "aurora",
+    toggle = function() end,
+    packer_cfg = {
+      "ray-x/aurora",
+      opt = true,
+    },
+  },
+  ["vscode"] = {
+    colorscheme = "vscode",
+    packadd = "vscode.nvim",
+    packer_cfg = {
+      "Mofiqul/vscode.nvim",
+      opt = true,
+      config = function() end,
+    },
+  },
+  ["material"] = {
+    colorscheme = "material",
+    packadd = "material.nvim",
+    packer_cfg = {
+      "marko-cerovac/material.nvim",
+      config = function()
+        require("material").setup()
+      end,
+      opt = true,
+    },
+  },
   ["gruvbox"] = {
     colorscheme = "gruvqueen",
     packadd = "gruvqueen",
@@ -29,9 +68,6 @@ M.ts_themes = {
             -- bg_color = "black",
           },
         })
-
-        vim.cmd([[colorscheme gruvqueen]])
-        require("config.core.highlights")
       end,
     },
   },
@@ -41,10 +77,6 @@ M.ts_themes = {
     packer_cfg = {
       "folke/tokyonight.nvim",
       opt = true,
-      config = function()
-        vim.cmd([[colorscheme tokyonight]])
-        require("config.core.highlights")
-      end,
     },
   },
 }
