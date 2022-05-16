@@ -10,26 +10,11 @@ local function init()
   packer.reset()
 
   packer.startup(function(use)
-    -- theme
     use({ "lewis6991/impatient.nvim" })
-    use({
-      "windwp/windline.nvim",
-    }) -- Statusline
-    use({ "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" })
-    use({
-      "norcalli/nvim-colorizer.lua",
-      ft = {
-        "css",
-        "scss",
-        "sass",
-        "javascriptreact",
-        "typescriptreact",
-        "lua",
-      },
-      config = function()
-        require("colorizer").setup()
-      end,
-    }) -- colors hex
+
+    for _, theme in pairs(require("config.packer-config.modules.themes").theme) do
+      use(theme)
+    end
 
     for _, theme in
       pairs(require("config.packer-config.modules.themes").ts_themes)
@@ -61,50 +46,12 @@ local function init()
       use(completion)
     end
 
-    -- language
-    use({ "mfussenegger/nvim-jdtls", opt = true })
-    use({
-      "Saecki/crates.nvim",
-      ft = { "toml", "rs" },
-      requires = { "nvim-lua/plenary.nvim" },
-      config = require("config.plugins.crates").init,
-    })
+    for _, language in
+      pairs(require("config.packer-config.modules.language").language)
+    do
+      use(language)
+    end
 
-    use({
-      "vuki656/package-info.nvim",
-      requires = "MunifTanjim/nui.nvim",
-      ft = { "json" },
-      config = function()
-        require("package-info").setup()
-      end,
-    }) -- package.json info
-    use({ "rust-lang/rust.vim", ft = { "rust", "rs" } }) -- rust language tools
-    use({
-      "iamcco/markdown-preview.nvim",
-      run = "cd app && yarn install",
-      ft = { "markdown", "md" },
-      cmd = "MarkdownPreview",
-    }) -- markdown previewer
-    use({
-      "metakirby5/codi.vim",
-      cmd = { "Codi" },
-      ft = { "javascript", "typescript", "lua" },
-    }) -- code playground in buffer executed
-    use({
-      "shuntaka9576/preview-swagger.nvim",
-      run = "yarn install",
-      ft = { "yaml", "yml" },
-      cmd = "SwaggerPreview",
-    }) -- openapi preview
-
-    -- navigation
-    use({
-      "ahmedkhalf/Project.nvim",
-      disable = true,
-      config = function()
-        require("project_nvim").setup()
-      end,
-    })
     use({
       "nvim-telescope/telescope.nvim",
       cmd = { "Telescope" },
@@ -115,15 +62,14 @@ local function init()
         { "nvim-telescope/telescope-file-browser.nvim", opt = true },
         { "nvim-telescope/telescope-project.nvim", opt = true },
       },
-    }) -- fuzzy finder
+    })
     use({
       "kyazdani42/nvim-tree.lua",
       requires = "kyazdani42/nvim-web-devicons",
       config = require("config.plugins.nvimTree").init,
       cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
-    }) -- Drawerboard style like nerdtree
+    })
 
-    -- movement
     use({
       "abecodes/tabout.nvim",
       config = function()
@@ -162,23 +108,16 @@ local function init()
 
         fineline.setup({
           cmdline = {
-            -- Prompt can influence the completion engine.
-            -- Change it to something that works for you
             prompt = ": ",
-
-            -- Let the user handle the keybindings
             enable_keymaps = false,
           },
           popup = {
             buf_options = {
-              -- Setup a special file type if you need to
               filetype = "fineline",
             },
           },
           hooks = {
             set_keymaps = function(imap, _)
-              -- Restore default keybindings...
-              -- Except for `<Tab>`, that's what everyone uses to autocomplete
               imap("<Esc>", fno.close)
               imap("<C-c>", fno.close)
 
@@ -227,7 +166,7 @@ local function init()
     use({
       "vimwiki/vimwiki",
       cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
-    }) -- wiki
+    })
     use({
       "kdav5758/HighStr.nvim",
       opt = true,
@@ -252,67 +191,18 @@ local function init()
           },
         })
       end,
-    }) -- highlight regions
+    })
 
-    -- misc
-    use({ "windwp/nvim-projectconfig", disable = true }) -- project dependable cfg
     use({
       "glepnir/dashboard-nvim",
       setup = require("config.plugins.dashboard").dashboard,
-    }) -- dashboard
+    })
     use({
       "lukas-reineke/indent-blankline.nvim",
       config = require("config.plugins.indent-blankline").init,
       event = "BufRead",
-    }) -- show indentation
+    })
 
-    -- testing / building
-    use({
-      "rcarriga/vim-ultest",
-      cmd = { "Ultest" },
-      requires = { "vim-test/vim-test" },
-      run = ":UpdateRemotePlugins",
-    }) -- testing
-    use({
-      "vim-test/vim-test",
-      cmd = { "TestFile" },
-      requires = {
-        {
-          "neomake/neomake",
-          cmd = { "Neomake" },
-        },
-        { "tpope/vim-dispatch", cmd = { "Dispatch" } },
-      },
-      wants = { "vim-dispatch", "neomake" },
-    }) -- testing
-
-    -- debug
-    use({ "jbyuki/one-small-step-for-vimkind" }) -- lua debug
-    use({ "mfussenegger/nvim-dap-python", opt = true }) -- python debug
-    use({
-      "Pocco81/DAPInstall.nvim",
-      cmd = { "DIInstall", "DIList" },
-      config = function()
-        local dap_install = require("dap-install")
-
-        dap_install.setup({
-          installation_path = sep_os_replacer(
-            vim.fn.stdpath("data") .. "/dapinstall/"
-          ),
-        })
-      end,
-    }) -- install dap adapters
-    use({
-      "mfussenegger/nvim-dap",
-      opt = true,
-    }) -- dap
-    use({
-      "rcarriga/nvim-dap-ui",
-      opt = true,
-      requires = { "mfussenegger/nvim-dap" },
-    }) -- dap ui
-
-    -- lib
     use({ "wbthomason/packer.nvim", opt = true }) -- packer
   end)
 end

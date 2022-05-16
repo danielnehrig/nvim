@@ -27,6 +27,13 @@ vim.g.tokyodark_enable_italic_comment = true
 vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
+M.theme = {
+  {
+    "windwp/windline.nvim",
+  },
+  { "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" },
+}
+
 -- treesitter themes
 M.ts_themes = {
   ["tokyo-dark"] = {

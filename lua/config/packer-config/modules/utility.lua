@@ -1,6 +1,20 @@
 local M = {}
 M.utility = {
   {
+    "norcalli/nvim-colorizer.lua",
+    ft = {
+      "css",
+      "scss",
+      "sass",
+      "javascriptreact",
+      "typescriptreact",
+      "lua",
+    },
+    config = function()
+      require("colorizer").setup()
+    end,
+  },
+  {
     "axieax/urlview.nvim",
     config = function()
       require("urlview").setup({
