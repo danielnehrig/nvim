@@ -386,6 +386,13 @@ local function init()
 
     -- quality of life
     use({
+      "SmiteshP/nvim-gps",
+      requires = "nvim-treesitter/nvim-treesitter",
+      config = function()
+        require("nvim-gps").setup()
+      end,
+    })
+    use({
       "ur4ltz/surround.nvim",
       config = function()
         require("surround").setup({ mappings_style = "surround" })

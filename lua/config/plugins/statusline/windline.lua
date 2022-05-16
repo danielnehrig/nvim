@@ -315,22 +315,20 @@ basic.lsp_names = {
   end,
 }
 
-basic.gh_num = {
-  name = "gh_num",
+basic.gps = {
+  name = "gps",
   hl_colors = {
-    green = { "green", "black" },
-    magenta = { "magenta", "black_light" },
-    sep = { "black", "transparent" },
-    sepdebug = { "black", "yellow" },
-    spacer = { "black", "black_light" },
+    loc = { "white", "transparent" },
   },
   width = breakpoint_width,
   text = function()
-    if git_comps.is_git(0) then
-      local num = require("github-notifications").statusline_notification_count
+    local gps = require("nvim-gps")
+
+    if gps.is_available() then
+      local location = gps.get_location()
       return {
-        { " ", "spacer" },
-        { num, "magenta" },
+        { " ", "" },
+        { location, "loc" },
       }
     end
     return ""
@@ -417,7 +415,7 @@ local dashboard = {
   show_last_status = true,
 }
 
-local left = { basic.vi_mode, basic.file, basic.divider }
+local left = { basic.vi_mode, basic.file, basic.gps, basic.divider }
 local right = {
   basic.dap,
   basic.lsp_names,
