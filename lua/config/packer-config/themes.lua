@@ -3,8 +3,8 @@ local M = {}
 -- globals
 vim.o.background = "dark"
 vim.g.tokyonight_style = "night"
-vim.g.tokyonight_transparent = true
-vim.g.tokyonight_transparent_sidebar = true
+vim.g.tokyonight_transparent = not vim.g.neovide and true or false
+vim.g.tokyonight_transparent_sidebar = not vim.g.neovide and true or false
 
 -- treesitter themes
 M.ts_themes = {
@@ -25,7 +25,7 @@ M.ts_themes = {
             italic_variables = true,
             invert_selection = false,
             style = "mix", -- possible values: 'original', 'mix', 'material'
-            transparent_background = true,
+            transparent_background = not vim.g.neovide and true or false,
             -- bg_color = "black",
           },
         })
