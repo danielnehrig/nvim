@@ -33,9 +33,35 @@ local function init()
         require("colorizer").setup()
       end,
     }) -- colors hex
-    -- colorschemes
-    for _, theme in pairs(require("config.packer-config.themes").ts_themes) do
+
+    for _, theme in
+      pairs(require("config.packer-config.modules.themes").ts_themes)
+    do
       use(theme.packer_cfg)
+    end
+
+    for _, utility in
+      pairs(require("config.packer-config.modules.utility").utility)
+    do
+      use(utility)
+    end
+
+    for _, git in pairs(require("config.packer-config.modules.git").git) do
+      use(git)
+    end
+
+    for _, ts in pairs(require("config.packer-config.modules.treesitter").ts) do
+      use(ts)
+    end
+
+    for _, lsp in pairs(require("config.packer-config.modules.lsp").lsp) do
+      use(lsp)
+    end
+
+    for _, completion in
+      pairs(require("config.packer-config.modules.completion").completion)
+    do
+      use(completion)
     end
 
     -- language
@@ -45,25 +71,8 @@ local function init()
       ft = { "toml", "rs" },
       requires = { "nvim-lua/plenary.nvim" },
       config = require("config.plugins.crates").init,
-    }) -- rust crates info
+    })
 
-    use({
-      "ldelossa/gh.nvim",
-      requires = { "ldelossa/litee.nvim" },
-      config = function()
-        require("litee.lib").setup()
-        require("litee.gh").setup()
-      end,
-    })
-    use({
-      "danielnehrig/github-ci.nvim",
-      requires = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
-      cmd = { "GithubCI" },
-      config = function()
-        vim.cmd([[packadd nvim-notify]])
-        require("githubci").setup()
-      end,
-    })
     use({
       "vuki656/package-info.nvim",
       requires = "MunifTanjim/nui.nvim",
@@ -72,7 +81,6 @@ local function init()
         require("package-info").setup()
       end,
     }) -- package.json info
-    use({ "folke/lua-dev.nvim", opt = true }) -- lua nvim setup
     use({ "rust-lang/rust.vim", ft = { "rust", "rs" } }) -- rust language tools
     use({
       "iamcco/markdown-preview.nvim",
@@ -85,218 +93,12 @@ local function init()
       cmd = { "Codi" },
       ft = { "javascript", "typescript", "lua" },
     }) -- code playground in buffer executed
-    use({ "nvim-treesitter/nvim-treesitter" }) -- syntax highlight indent etc
-    use({ "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" })
-    use({
-      "danymat/neogen",
-      cmd = { "DocGen" },
-      config = require("config.plugins.neogen").init,
-      requires = "nvim-treesitter/nvim-treesitter",
-    })
-    use({
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      requires = "nvim-treesitter/nvim-treesitter",
-    }) -- comment out code
-    use({
-      "winston0410/commented.nvim",
-      keys = { "<space>cc" },
-      config = function()
-        require("commented").setup({
-          hooks = {
-            before_comment = require("ts_context_commentstring.internal").update_commentstring,
-          },
-        })
-      end,
-    }) -- comment out code
-    use({
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      requires = "nvim-treesitter/nvim-treesitter",
-    }) -- custom textobjects
-    use({
-      "mizlan/iswap.nvim",
-      requires = "nvim-treesitter/nvim-treesitter",
-      config = function()
-        require("iswap").setup({
-          -- The keys that will be used as a selection, in order
-          -- ('asdfghjklqwertyuiopzxcvbnm' by default)
-          keys = "qwertyuiop",
-
-          -- Grey out the rest of the text when making a selection
-          -- (enabled by default)
-          grey = "disable",
-
-          -- Highlight group for the sniping value (asdf etc.)
-          -- default 'Search'
-          hl_snipe = "ErrorMsg",
-
-          -- Highlight group for the visual selection of terms
-          -- default 'Visual'
-          hl_selection = "WarningMsg",
-
-          -- Highlight group for the greyed background
-          -- default 'Comment'
-          hl_grey = "LineNr",
-
-          -- Automatically swap with only two arguments
-          -- default nil
-          autoswap = true,
-
-          -- Other default options you probably should not change:
-          debug = nil,
-          hl_grey_priority = "1000",
-        })
-      end,
-    })
-    use({
-      "nvim-treesitter/playground",
-      cmd = "TSPlaygroundToggle",
-      requires = "nvim-treesitter/nvim-treesitter",
-    })
-    use({
-      "RRethy/nvim-treesitter-textsubjects",
-      requires = "nvim-treesitter/nvim-treesitter",
-    })
-    use({
-      "lewis6991/spellsitter.nvim",
-      requires = "nvim-treesitter/nvim-treesitter",
-      config = function()
-        require("spellsitter").setup({
-          enable = true,
-          captures = { "comment" },
-        })
-      end,
-    }) -- spell check treesitter based
-    use({
-      "windwp/nvim-ts-autotag",
-      requires = "nvim-treesitter/nvim-treesitter",
-    }) -- autotag <>
     use({
       "shuntaka9576/preview-swagger.nvim",
       run = "yarn install",
       ft = { "yaml", "yml" },
       cmd = "SwaggerPreview",
     }) -- openapi preview
-
-    -- completion
-    use({ "ray-x/lsp_signature.nvim", opt = true, disable = true }) -- auto signature trigger
-    use({ "hrsh7th/cmp-nvim-lsp-signature-help" }) -- auto signature trigger
-    use({
-      "folke/trouble.nvim",
-      config = function()
-        require("trouble").setup()
-      end,
-      cmd = { "Trouble" },
-      requires = "kyazdani42/nvim-web-devicons",
-    }) -- window for showing LSP detected issues in code
-    use({
-      "folke/todo-comments.nvim",
-      config = require("config.plugins.todo").init,
-      wants = "telescope.nvim",
-      cmd = { "TodoQuickFix", "TodoTrouble", "TodoTelescope" },
-    }) -- show todos in qf
-    use({
-      "nvim-lua/lsp-status.nvim",
-    }) -- lsp status
-    use({
-      "onsails/lspkind-nvim",
-      config = function()
-        require("lspkind").init({
-          -- enables text annotations
-          mode = "symbol_text",
-          -- default: true
-
-          -- default symbol map
-          -- can be either 'default' (requires nerd-fonts font) or
-          -- 'codicons' for codicon preset (requires vscode-codicons font)
-          --
-          -- default: 'default'
-          preset = "codicons",
-
-          -- override preset symbols
-          --
-          -- default: {}
-          symbol_map = {
-            Text = "",
-            Method = "",
-            Function = "",
-            Constructor = "",
-            Field = "ﰠ",
-            Variable = "",
-            Class = "ﴯ",
-            Interface = "",
-            Module = "",
-            Property = "ﰠ",
-            Unit = "塞",
-            Value = "",
-            Enum = "",
-            Keyword = "",
-            Snippet = "",
-            Color = "",
-            File = "",
-            Reference = "",
-            Folder = "",
-            EnumMember = "",
-            Constant = "",
-            Struct = "פּ",
-            Event = "",
-            Operator = "",
-            TypeParameter = "",
-          },
-        })
-      end,
-    }) -- lsp extensions stuff
-    use({
-      "jghauser/mkdir.nvim",
-      config = function()
-        require("mkdir")
-      end,
-    }) -- create folders if not existing
-    use({
-      "folke/lsp-colors.nvim",
-      config = function()
-        require("lsp-colors").setup({
-          Error = "#db4b4b",
-          Warning = "#e0af68",
-          Information = "#0db9d7",
-          Hint = "#10B981",
-        })
-      end,
-    }) -- lsp diag colors
-    use({
-      "neovim/nvim-lspconfig",
-      config = require("config.plugins.lspconfig").init,
-      requires = {
-        "nvim-lua/lsp-status.nvim",
-        after = { "neovim/nvim-lspconfig" },
-      },
-    }) -- default configs for lsp and setup lsp
-    use({
-      "hrsh7th/nvim-cmp",
-      config = require("config.plugins.cmp").init,
-      requires = {
-        { "hrsh7th/cmp-cmdline" },
-        { "hrsh7th/cmp-buffer" },
-        { "hrsh7th/cmp-nvim-lsp" },
-        { "hrsh7th/cmp-path" },
-        { "f3fora/cmp-spell" },
-        -- { "f3fora/cmp-nuspell", rocks = { "lua-nuspell" } },
-        { "saadparwaiz1/cmp_luasnip" },
-        { "L3MON4D3/LuaSnip" },
-        { "rafamadriz/friendly-snippets" },
-        {
-          "kristijanhusak/orgmode.nvim",
-          config = function()
-            require("orgmode").setup({
-              org_agenda_files = { "~/org/*" },
-              org_default_notes_file = "~/org/refile.org",
-            })
-          end,
-          keys = { "<space>oc", "<space>oa" },
-          ft = { "org" },
-          wants = "nvim-cmp",
-        },
-      },
-    }) -- cmp completion engine
 
     -- navigation
     use({
@@ -325,7 +127,6 @@ local function init()
     }) -- Drawerboard style like nerdtree
 
     -- movement
-    use({ "ggandor/lightspeed.nvim" })
     use({
       "abecodes/tabout.nvim",
       config = function()
@@ -354,164 +155,7 @@ local function init()
 
     -- quality of life
     use({
-      "SmiteshP/nvim-gps",
-      requires = "nvim-treesitter/nvim-treesitter",
-      config = function()
-        require("nvim-gps").setup()
-      end,
-    })
-    use({
-      "ur4ltz/surround.nvim",
-      config = function()
-        require("surround").setup({ mappings_style = "surround" })
-      end,
-    })
-    use({
       "p00f/cphelper.nvim",
-    })
-    use({
-      "anuvyklack/pretty-fold.nvim",
-      disable = true, -- crash because of this shit
-      config = function()
-        require("pretty-fold").setup({
-          keep_indentation = false,
-          fill_char = "━",
-          sections = {
-            left = {
-              "━ ",
-              function()
-                return string.rep("*", vim.v.foldlevel)
-              end,
-              " ━┫",
-              "content",
-              "┣",
-            },
-            right = {
-              "┫ ",
-              "number_of_folded_lines",
-              ": ",
-              "percentage",
-              " ┣━━",
-            },
-          },
-        })
-        require("pretty-fold").ft_setup("cpp", {
-          process_comment_signs = false,
-          comment_signs = {
-            "/**", -- C++ Doxygen comments
-          },
-          stop_words = {
-            "%s%*", -- a space and star char
-            "@brief%s*", -- '@brief' and any number of spaces after
-            -- or in sigle pattern:
-            -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
-          },
-        })
-        require("pretty-fold").ft_setup("javascriptreact", {
-          process_comment_signs = false,
-          comment_signs = {
-            "/**", -- C++ Doxygen comments
-          },
-          stop_words = {
-            "%s%*", -- a space and star char
-            "@brief%s*", -- '@brief' and any number of spaces after
-            -- or in sigle pattern:
-            -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
-          },
-        })
-        require("pretty-fold").ft_setup("typescript", {
-          process_comment_signs = false,
-          comment_signs = {
-            "/**", -- C++ Doxygen comments
-          },
-          stop_words = {
-            "%s%*", -- a space and star char
-            "@brief%s*", -- '@brief' and any number of spaces after
-            -- or in sigle pattern:
-            -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
-          },
-        })
-        require("pretty-fold").ft_setup("typescriptreact", {
-          process_comment_signs = false,
-          comment_signs = {
-            "/**", -- C++ Doxygen comments
-          },
-          stop_words = {
-            "%s%*", -- a space and star char
-            "@brief%s*", -- '@brief' and any number of spaces after
-            -- or in sigle pattern:
-            -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
-          },
-        })
-        require("pretty-fold").ft_setup("typescript", {
-          process_comment_signs = false,
-          comment_signs = {
-            "/**", -- C++ Doxygen comments
-          },
-          stop_words = {
-            "%s%*", -- a space and star char
-            "@brief%s*", -- '@brief' and any number of spaces after
-            -- or in sigle pattern:
-            -- '%*%s*@brief%s*', -- * -> any number of spaces -> @brief -> all spaces after
-          },
-        })
-        require("pretty-fold.preview").setup({ border = "rounded" })
-      end,
-    })
-    use({
-      "andweeb/presence.nvim",
-      config = function()
-        require("presence"):setup({
-          -- General options
-          auto_update = true,
-          neovim_image_text = "The One True Text Editor",
-          main_image = "neovim",
-          client_id = "793271441293967371",
-          log_level = nil,
-          debounce_timeout = 10,
-          enable_line_number = false,
-          blacklist = {},
-          buttons = true,
-
-          -- Rich Presence text options
-          editing_text = "Editing %s",
-          file_explorer_text = "Browsing %s",
-          git_commit_text = "Committing changes",
-          plugin_manager_text = "Managing plugins",
-          reading_text = "Reading %s",
-          workspace_text = "Working on %s",
-          line_number_text = "Line %s out of %s",
-        })
-      end,
-    })
-    use({
-      "axieax/urlview.nvim",
-      config = function()
-        require("urlview").setup({
-          -- Prompt title (`<context> <default_title>`, e.g. `Buffer Links:`)
-          default_title = "Links:",
-          -- Default picker to display links with
-          -- Options: "default" (vim.ui.select) or "telescope"
-          default_picker = "telescope",
-          -- Set the default protocol for us to prefix URLs with if they don't start with http/https
-          default_prefix = "https://",
-          -- Command or method to open links with
-          -- Options: "netrw", "system" (default OS browser); or "firefox", "chromium" etc.
-          navigate_method = "system",
-          -- Logs user warnings
-          debug = true,
-          -- Custom search captures
-          -- NOTE: captures follow Lua pattern matching (https://riptutorial.com/lua/example/20315/lua-pattern-matching)
-          custom_searches = {
-            -- KEY: search source name
-            -- VALUE: custom search function or table (map with keys capture, format)
-            jira = {
-              capture = "AXIE%-%d+",
-              format = "https://jira.axieax.com/browse/%s",
-            },
-          },
-        })
-      end,
     })
     use({
       "VonHeikemen/fine-cmdline.nvim",
@@ -551,49 +195,6 @@ local function init()
         { "MunifTanjim/nui.nvim" },
       },
     })
-    use({ "junegunn/vim-easy-align", cmd = { "EasyAlign" } })
-    use({ "nathom/filetype.nvim" })
-    use({
-      "luukvbaal/stabilize.nvim",
-      config = function()
-        require("stabilize").setup({
-          force = true, -- stabilize window even when current cursor position will be hidden behind new window
-          forcemark = nil, -- set context mark to register on force event which can be jumped to with '<forcemark>
-          ignore = { -- do not manage windows matching these file/buftypes
-            filetype = { "packer", "Dashboard", "Trouble", "TelescopePrompt" },
-            buftype = {
-              "packer",
-              "Dashboard",
-              "terminal",
-              "quickfix",
-              "loclist",
-            },
-          },
-          nested = nil, -- comma-separated list of autocmds that wil trigger the plugins window restore function
-        })
-      end,
-    })
-    use({
-      "akinsho/git-conflict.nvim",
-      config = function()
-        require("git-conflict").setup()
-      end,
-    })
-    use({
-      "tanvirtin/vgit.nvim",
-      requires = {
-        "nvim-lua/plenary.nvim",
-      },
-      config = function()
-        require("vgit").setup({
-          settings = {
-            live_gutter = {
-              enabled = false,
-            },
-          },
-        })
-      end,
-    })
     use({
       "rmagatti/auto-session",
       disable = true,
@@ -611,51 +212,6 @@ local function init()
         require("auto-session").setup(opts)
       end,
     })
-    use({ "Xuyuanp/scrollbar.nvim", disable = true })
-    use({
-      "ten3roberts/window-picker.nvim",
-      config = function()
-        require("window-picker").setup({
-          -- Default keys to annotate, keys will be used in order. The default uses the
-          -- most accessible keys from the home row and then top row.
-          keys = "alskdjfhgwoeiruty",
-          -- Swap windows by holding shift + letter
-          swap_shift = true,
-          -- Windows containing filetype to exclude
-          exclude = { qf = true, NvimTree = true, aerial = true },
-          -- Flash the cursor line of the newly focused window for 300ms.
-          -- Set to 0 or false to disable.
-          flash_duration = 300,
-        })
-      end,
-    })
-    use({ "kevinhwang91/nvim-bqf", ft = "qf" }) -- better quickfix
-    use({
-      "rcarriga/nvim-notify",
-      config = function()
-        local notify = require("notify")
-        vim.cmd(
-          "autocmd ColorScheme * highlight NotifyBG guibg=#3d3d3d guifg=#3e4451"
-        )
-        notify.setup({
-          -- Animation style (see below for details)
-          -- stages = "fade",
-          -- Default timeout for notifications
-          timeout = 3000,
-          -- For stages that change opacity this is treated as the highlight behind the window
-          background_colour = "NotifyBG",
-          -- Icons for the different levels
-          icons = {
-            ERROR = "",
-            WARN = "",
-            INFO = "",
-            DEBUG = "",
-            TRACE = "✎",
-          },
-        })
-        vim.notify = notify
-      end,
-    }) -- notication pop up
     use({ "nvim-lua/plenary.nvim" })
     use({
       "ThePrimeagen/refactoring.nvim",
@@ -670,8 +226,6 @@ local function init()
       keys = { "<C-a>" },
       config = require("config.plugins.nvimux").init,
     }) -- tmux in nvim
-    use({ "lambdalisue/suda.vim", cmd = { "SudaWrite" } }) -- save as root
-    use({ "junegunn/vim-slash", keys = { "/" } }) -- better search
     use({ "windwp/nvim-autopairs" }) -- autopairs "" {}
     use({
       "vimwiki/vimwiki",
@@ -714,40 +268,6 @@ local function init()
       config = require("config.plugins.indent-blankline").init,
       event = "BufRead",
     }) -- show indentation
-
-    -- git
-    use({
-      "ruifm/gitlinker.nvim",
-      requires = {
-        { "nvim-lua/plenary.nvim" },
-      },
-      opt = true,
-    }) -- get repo file on remote as url
-    use({
-      "lewis6991/gitsigns.nvim",
-      event = { "BufRead", "BufNewFile" },
-      config = require("config.plugins.gitsigns").init,
-      requires = {
-        { "nvim-lua/plenary.nvim", after = "gitsigns.nvim" },
-      },
-    }) -- like gitgutter shows hunks etc on sign column
-    use({
-      "tpope/vim-fugitive",
-      disable = true,
-      cmd = { "Git", "Git mergetool" },
-    }) -- git integration
-    use({ "kdheepak/lazygit.nvim" })
-    use({
-      "TimUntersberger/neogit",
-      config = function()
-        local neogit = require("neogit")
-        neogit.setup({
-          disable_signs = true,
-          disable_hint = false,
-        })
-      end,
-      requires = "nvim-lua/plenary.nvim",
-    })
 
     -- testing / building
     use({

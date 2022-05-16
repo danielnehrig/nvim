@@ -1,5 +1,5 @@
 local async = require("plenary.async")
-local themes = require("config.packer-config.themes").ts_themes
+local themes = require("config.packer-config.modules.themes").ts_themes
 local M = {}
 
 M.packer_sync = function()
