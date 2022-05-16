@@ -6,18 +6,97 @@ vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = not vim.g.neovide and true or false
 vim.g.tokyonight_transparent_sidebar = not vim.g.neovide and true or false
 
--- Lua:
--- For dark theme
 vim.g.vscode_style = "dark"
--- Enable transparent background
 vim.g.vscode_transparent = 1
--- Enable italic comment
 vim.g.vscode_italic_comment = 1
--- Disable nvim-tree background color
 vim.g.vscode_disable_nvimtree_bg = true
+
+vim.g.sonokai_style = "andromeda"
+vim.g.sonokai_better_performance = 1
+
+-- Example config in Lua
+vim.g.gruvbox_baby_function_style = "NONE"
+vim.g.gruvbox_baby_keyword_style = "italic"
+
+-- Each highlight group must follow the structure:
+-- ColorGroup = {fg = "foreground color", bg = "background_color", style = "some_style(:h attr-list)"}
+-- See also :h highlight-guifg
+-- Example:
+vim.g.gruvbox_baby_highlights = {
+  Normal = { fg = "#123123", bg = "NONE", style = "underline" },
+}
+
+-- Enable telescope theme
+vim.g.gruvbox_baby_telescope_theme = 1
+
+-- Enable transparent mode
+vim.g.gruvbox_baby_transparent_mode = 1
 
 -- treesitter themes
 M.ts_themes = {
+  ["gruvbox-baby"] = {
+    colorscheme = "gruvbox-baby",
+    packadd = "gruvbox-baby",
+    packer_cfg = {
+      "luisiacc/gruvbox-baby",
+      opt = true,
+    },
+  },
+  ["github"] = {
+    colorscheme = "github_dark",
+    packadd = "github-nvim-theme",
+    packer_cfg = {
+      "projekt0n/github-nvim-theme",
+      opt = true,
+      config = function()
+        -- Example config in Lua
+        require("github-theme").setup({
+          theme_style = "dark",
+          function_style = "italic",
+          sidebars = { "qf", "nvim-tree", "vista_kind", "terminal", "packer" },
+
+          -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+          colors = { hint = "orange", error = "#ff0000" },
+
+          -- Overwrite the highlight groups
+          overrides = function(c)
+            return {
+              htmlTag = {
+                fg = c.red,
+                bg = "#282c34",
+                sp = c.hint,
+                style = "underline",
+              },
+              DiagnosticHint = { link = "LspDiagnosticsDefaultHint" },
+              -- this will remove the highlight groups
+              TSField = {},
+            }
+          end,
+        })
+      end,
+    },
+  },
+  ["onedark"] = {
+    colorscheme = "onedark",
+    packadd = "onedark.nvim",
+    packer_cfg = {
+      "navarasu/onedark.nvim",
+      config = function()
+        require("onedark").setup({
+          style = "darker",
+        })
+      end,
+      opt = true,
+    },
+  },
+  ["sonokai"] = {
+    colorscheme = "sonokai",
+    packadd = "sonokai",
+    packer_cfg = {
+      "sainnhe/sonokai",
+      opt = true,
+    },
+  },
   ["aurora"] = {
     colorscheme = "aurora",
     packadd = "aurora",
