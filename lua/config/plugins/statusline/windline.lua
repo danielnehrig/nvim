@@ -121,7 +121,7 @@ basic.file = {
 
     if width > breakpoint_width then
       return {
-        { b_components.cache_file_size(), "default" },
+        -- { b_components.cache_file_size(), "default" },
         { " ", "" },
         icon_comp(bufnr),
         { " ", "" },
