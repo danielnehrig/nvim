@@ -33,13 +33,13 @@ M.switch_theme = function(arg)
       vim.cmd,
       string.format("colorscheme %s", colorscheme)
     )
+
     if not colorscheme_ok then
       vim.notify(string.format("colorscheme %s not found", colorscheme))
+      return
     end
 
-    if colorscheme_ok and packadd_ok then
-      require("config.core.highlights")
-    end
+    require("config.core.highlights")
   end
 end
 

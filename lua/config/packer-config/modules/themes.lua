@@ -28,13 +28,12 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
-  {
-    "windwp/windline.nvim",
-  },
+  { "windwp/windline.nvim" },
   { "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" },
 }
 
--- treesitter themes
+-- @TODO add option to add own colorschemes
+-- treesitter brought to you by packer themes
 M.ts_themes = {
   ["tokyo-dark"] = {
     colorscheme = "tokyodark",
