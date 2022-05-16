@@ -7,9 +7,9 @@ vim.g.tokyonight_transparent = not vim.g.neovide and true or false
 vim.g.tokyonight_transparent_sidebar = not vim.g.neovide and true or false
 
 vim.g.vscode_style = "dark"
-vim.g.vscode_transparent = 1
+vim.g.vscode_transparent = not vim.g.neovide and 1 or 0
 vim.g.vscode_italic_comment = 1
-vim.g.vscode_disable_nvimtree_bg = true
+vim.g.vscode_disable_nvimtree_bg = not vim.g.neovide and true or false
 
 vim.g.sonokai_style = "andromeda"
 vim.g.sonokai_better_performance = 1
@@ -20,9 +20,9 @@ vim.g.gruvbox_baby_highlights = {
   Normal = { fg = "#123123", bg = "NONE", style = "underline" },
 }
 vim.g.gruvbox_baby_telescope_theme = 1
-vim.g.gruvbox_baby_transparent_mode = 1
+vim.g.gruvbox_baby_transparent_mode = not vim.g.neovide and 1 or 0
 
-vim.g.tokyodark_transparent_background = true
+vim.g.tokyodark_transparent_background = not vim.g.neovide and true or false
 vim.g.tokyodark_enable_italic_comment = true
 vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"

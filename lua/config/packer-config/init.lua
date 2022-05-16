@@ -52,6 +52,10 @@ local function init()
       use(language)
     end
 
+    for _, debug in pairs(require("config.packer-config.modules.debug").debug) do
+      use(debug)
+    end
+
     use({
       "nvim-telescope/telescope.nvim",
       cmd = { "Telescope" },
