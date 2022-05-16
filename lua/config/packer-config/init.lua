@@ -6,184 +6,200 @@ local sep_os_replacer = require("config.utils").sep_os_replacer
 local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 
 local function init()
-  local packer = require("packer")
+  local present, packer = pcall(require, "packer")
+  if not present then
+    vim.notify("packer is not installed")
+    return
+  end
   packer.reset()
-
-  packer.startup(function(use)
-    use({ "lewis6991/impatient.nvim" })
-
-    for _, theme in pairs(require("config.packer-config.modules.themes").theme) do
-      use(theme)
-    end
-
-    for _, theme in
-      pairs(require("config.packer-config.modules.themes").ts_themes)
-    do
-      use(theme.packer_cfg)
-    end
-
-    for _, utility in
-      pairs(require("config.packer-config.modules.utility").utility)
-    do
-      use(utility)
-    end
-
-    for _, git in pairs(require("config.packer-config.modules.git").git) do
-      use(git)
-    end
-
-    for _, ts in pairs(require("config.packer-config.modules.treesitter").ts) do
-      use(ts)
-    end
-
-    for _, lsp in pairs(require("config.packer-config.modules.lsp").lsp) do
-      use(lsp)
-    end
-
-    for _, completion in
-      pairs(require("config.packer-config.modules.completion").completion)
-    do
-      use(completion)
-    end
-
-    for _, language in
-      pairs(require("config.packer-config.modules.language").language)
-    do
-      use(language)
-    end
-
-    for _, debug in pairs(require("config.packer-config.modules.debug").debug) do
-      use(debug)
-    end
-
-    use({
-      "nvim-telescope/telescope.nvim",
-      cmd = { "Telescope" },
-      config = require("config.plugins.telescope").init,
-      requires = {
-        { "nvim-telescope/telescope-ui-select.nvim" },
-        { "nvim-lua/plenary.nvim" },
-        { "nvim-telescope/telescope-file-browser.nvim", opt = true },
-        { "nvim-telescope/telescope-project.nvim", opt = true },
-      },
-    })
-    use({
-      "kyazdani42/nvim-tree.lua",
-      requires = "kyazdani42/nvim-web-devicons",
-      config = require("config.plugins.nvimTree").init,
-      cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
-    })
-
-    use({
-      "abecodes/tabout.nvim",
-      config = function()
-        require("tabout").setup({
-          tabkey = "<Tab>",
-          backwards_tabkey = "<S-Tab>",
-          act_as_tab = true,
-          act_as_shift_tab = false,
-          enable_backwards = true,
-          completion = true,
-          tabouts = {
-            { open = "'", close = "'" },
-            { open = '"', close = '"' },
-            { open = "`", close = "`" },
-            { open = "(", close = ")" },
-            { open = "[", close = "]" },
-            { open = "{", close = "}" },
-          },
-          ignore_beginning = true,
-          exclude = {},
-        })
+  packer.init({
+    display = {
+      open_fn = function()
+        return require("packer.util").float({ border = "double" })
       end,
-      wants = { "nvim-treesitter" },
-      after = { "nvim-cmp" },
-    })
+    },
+    git = {
+      clone_timeout = 6000, -- seconds
+    },
+    auto_clean = true,
+    compile_on_sync = true,
+    snapshot = nil,
+  })
+  local use = packer.use
 
-    -- quality of life
-    use({
-      "p00f/cphelper.nvim",
-    })
-    use({
-      "VonHeikemen/fine-cmdline.nvim",
-      config = function()
-        local fineline = require("fine-cmdline")
-        local fno = fineline.fn
+  use({ "lewis6991/impatient.nvim" })
 
-        fineline.setup({
-          cmdline = {
-            prompt = ": ",
-            enable_keymaps = false,
+  for _, theme in pairs(require("config.packer-config.modules.themes").theme) do
+    use(theme)
+  end
+
+  for _, theme in
+    pairs(require("config.packer-config.modules.themes").ts_themes)
+  do
+    use(theme.packer_cfg)
+  end
+
+  for _, utility in
+    pairs(require("config.packer-config.modules.utility").utility)
+  do
+    use(utility)
+  end
+
+  for _, git in pairs(require("config.packer-config.modules.git").git) do
+    use(git)
+  end
+
+  for _, ts in pairs(require("config.packer-config.modules.treesitter").ts) do
+    use(ts)
+  end
+
+  for _, lsp in pairs(require("config.packer-config.modules.lsp").lsp) do
+    use(lsp)
+  end
+
+  for _, completion in
+    pairs(require("config.packer-config.modules.completion").completion)
+  do
+    use(completion)
+  end
+
+  for _, language in
+    pairs(require("config.packer-config.modules.language").language)
+  do
+    use(language)
+  end
+
+  for _, debug in pairs(require("config.packer-config.modules.debug").debug) do
+    use(debug)
+  end
+
+  use({
+    "nvim-telescope/telescope.nvim",
+    cmd = { "Telescope" },
+    config = require("config.plugins.telescope").init,
+    requires = {
+      { "nvim-telescope/telescope-ui-select.nvim" },
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope-file-browser.nvim", opt = true },
+      { "nvim-telescope/telescope-project.nvim", opt = true },
+    },
+  })
+  use({
+    "kyazdani42/nvim-tree.lua",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = require("config.plugins.nvimTree").init,
+    cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
+  })
+
+  use({
+    "abecodes/tabout.nvim",
+    config = function()
+      require("tabout").setup({
+        tabkey = "<Tab>",
+        backwards_tabkey = "<S-Tab>",
+        act_as_tab = true,
+        act_as_shift_tab = false,
+        enable_backwards = true,
+        completion = true,
+        tabouts = {
+          { open = "'", close = "'" },
+          { open = '"', close = '"' },
+          { open = "`", close = "`" },
+          { open = "(", close = ")" },
+          { open = "[", close = "]" },
+          { open = "{", close = "}" },
+        },
+        ignore_beginning = true,
+        exclude = {},
+      })
+    end,
+    wants = { "nvim-treesitter" },
+    after = { "nvim-cmp" },
+  })
+
+  -- quality of life
+  use({
+    "p00f/cphelper.nvim",
+  })
+  use({
+    "VonHeikemen/fine-cmdline.nvim",
+    config = function()
+      local fineline = require("fine-cmdline")
+      local fno = fineline.fn
+
+      fineline.setup({
+        cmdline = {
+          prompt = ": ",
+          enable_keymaps = false,
+        },
+        popup = {
+          buf_options = {
+            filetype = "fineline",
           },
-          popup = {
-            buf_options = {
-              filetype = "fineline",
-            },
-          },
-          hooks = {
-            set_keymaps = function(imap, _)
-              imap("<Esc>", fno.close)
-              imap("<C-c>", fno.close)
+        },
+        hooks = {
+          set_keymaps = function(imap, _)
+            imap("<Esc>", fno.close)
+            imap("<C-c>", fno.close)
 
-              imap("<Up>", fno.up_search_history)
-              imap("<Down>", fno.down_search_history)
-            end,
-          },
-        })
-      end,
-      requires = {
-        { "MunifTanjim/nui.nvim" },
-      },
-    })
-    use({ "nvim-lua/plenary.nvim" })
-    use({
-      "hkupty/nvimux",
-      keys = { "<C-a>" },
-      config = require("config.plugins.nvimux").init,
-    }) -- tmux in nvim
-    use({ "windwp/nvim-autopairs" }) -- autopairs "" {}
-    use({
-      "vimwiki/vimwiki",
-      cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
-    })
-    use({
-      "kdav5758/HighStr.nvim",
-      opt = true,
-      cmd = { "HSHighlight", "HSRmHighlight" },
-      config = function()
-        local high_str = require("high-str")
-        high_str.setup({
-          verbosity = 0,
-          saving_path = "~/highstr/",
-          highlight_colors = {
-            -- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
-            color_0 = { "#000000", "smart" }, -- Chartreuse yellow
-            color_1 = { "#e5c07b", "smart" }, -- Pastel yellow
-            color_2 = { "#7FFFD4", "smart" }, -- Aqua menthe
-            color_3 = { "#8A2BE2", "smart" }, -- Proton purple
-            color_4 = { "#FF4500", "smart" }, -- Orange red
-            color_5 = { "#008000", "smart" }, -- Office green
-            color_6 = { "#0000FF", "smart" }, -- Just blue
-            color_7 = { "#FFC0CB", "smart" }, -- Blush pink
-            color_8 = { "#FFF9E3", "smart" }, -- Cosmic latte
-            color_9 = { "#7d5c34", "smart" }, -- Fallow brown
-          },
-        })
-      end,
-    })
+            imap("<Up>", fno.up_search_history)
+            imap("<Down>", fno.down_search_history)
+          end,
+        },
+      })
+    end,
+    requires = {
+      { "MunifTanjim/nui.nvim" },
+    },
+  })
+  use({ "nvim-lua/plenary.nvim" })
+  use({
+    "hkupty/nvimux",
+    keys = { "<C-a>" },
+    config = require("config.plugins.nvimux").init,
+  }) -- tmux in nvim
+  use({ "windwp/nvim-autopairs" }) -- autopairs "" {}
+  use({
+    "vimwiki/vimwiki",
+    cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
+  })
+  use({
+    "kdav5758/HighStr.nvim",
+    opt = true,
+    cmd = { "HSHighlight", "HSRmHighlight" },
+    config = function()
+      local high_str = require("high-str")
+      high_str.setup({
+        verbosity = 0,
+        saving_path = "~/highstr/",
+        highlight_colors = {
+          -- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
+          color_0 = { "#000000", "smart" }, -- Chartreuse yellow
+          color_1 = { "#e5c07b", "smart" }, -- Pastel yellow
+          color_2 = { "#7FFFD4", "smart" }, -- Aqua menthe
+          color_3 = { "#8A2BE2", "smart" }, -- Proton purple
+          color_4 = { "#FF4500", "smart" }, -- Orange red
+          color_5 = { "#008000", "smart" }, -- Office green
+          color_6 = { "#0000FF", "smart" }, -- Just blue
+          color_7 = { "#FFC0CB", "smart" }, -- Blush pink
+          color_8 = { "#FFF9E3", "smart" }, -- Cosmic latte
+          color_9 = { "#7d5c34", "smart" }, -- Fallow brown
+        },
+      })
+    end,
+  })
 
-    use({
-      "glepnir/dashboard-nvim",
-      setup = require("config.plugins.dashboard").dashboard,
-    })
-    use({
-      "lukas-reineke/indent-blankline.nvim",
-      config = require("config.plugins.indent-blankline").init,
-      event = "BufRead",
-    })
+  use({
+    "glepnir/dashboard-nvim",
+    setup = require("config.plugins.dashboard").dashboard,
+  })
+  use({
+    "lukas-reineke/indent-blankline.nvim",
+    config = require("config.plugins.indent-blankline").init,
+    event = "BufRead",
+  })
 
-    use({ "wbthomason/packer.nvim", opt = true }) -- packer
-  end)
+  use({ "wbthomason/packer.nvim", opt = true }) -- packer
 end
 
 local plugins = {}
