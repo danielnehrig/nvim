@@ -7,7 +7,7 @@ M.__index = M
 M.init = function()
   require("impatient").enable_profile()
   require("config.packer-config.funcs").switch_theme("tokyonight")
-  require("config.plugins.statusline.windline").slanted_lsp()
+  require("config.plugins.statusline.theme.slanted_lsp").theme.config()
   require("config.plugins.web-devicons").init()
   require("config.plugins.autopairs").init()
   require("config.plugins.treesitter").init()
