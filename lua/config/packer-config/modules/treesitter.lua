@@ -1,0 +1,106 @@
+local M = {}
+
+M.ts = {
+  {
+    "ThePrimeagen/refactoring.nvim",
+    config = require("config.plugins.refactoring").init,
+    requires = {
+      { "nvim-treesitter/nvim-treesitter" },
+      { "nvim-lua/plenary.nvim" },
+    },
+  },
+  {
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-gps").setup()
+    end,
+  },
+  { "nvim-treesitter/nvim-treesitter" },
+  { "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" },
+  {
+    "danymat/neogen",
+    cmd = { "DocGen" },
+    config = require("config.plugins.neogen").init,
+    requires = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    requires = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "winston0410/commented.nvim",
+    keys = { "<space>cc" },
+    config = function()
+      require("commented").setup({
+        hooks = {
+          before_comment = require("ts_context_commentstring.internal").update_commentstring,
+        },
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    requires = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "mizlan/iswap.nvim",
+    requires = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("iswap").setup({
+        -- The keys that will be used as a selection, in order
+        -- ('asdfghjklqwertyuiopzxcvbnm' by default)
+        keys = "qwertyuiop",
+
+        -- Grey out the rest of the text when making a selection
+        -- (enabled by default)
+        grey = "disable",
+
+        -- Highlight group for the sniping value (asdf etc.)
+        -- default 'Search'
+        hl_snipe = "ErrorMsg",
+
+        -- Highlight group for the visual selection of terms
+        -- default 'Visual'
+        hl_selection = "WarningMsg",
+
+        -- Highlight group for the greyed background
+        -- default 'Comment'
+        hl_grey = "LineNr",
+
+        -- Automatically swap with only two arguments
+        -- default nil
+        autoswap = true,
+
+        -- Other default options you probably should not change:
+        debug = nil,
+        hl_grey_priority = "1000",
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/playground",
+    cmd = "TSPlaygroundToggle",
+    requires = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "RRethy/nvim-treesitter-textsubjects",
+    requires = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "lewis6991/spellsitter.nvim",
+    requires = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("spellsitter").setup({
+        enable = true,
+        captures = { "comment" },
+      })
+    end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    requires = "nvim-treesitter/nvim-treesitter",
+  },
+}
+
+return M

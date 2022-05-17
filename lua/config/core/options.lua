@@ -103,7 +103,7 @@ function M.load_options()
   opt.fillchars:append("foldopen:-")
   opt.fillchars:append("foldclose:+")
   wo.foldnestmax = 3
-  wo.foldminlines = 1
+  wo.foldlevel = 4
   opt.foldcolumn = "auto:3"
 
   -- scroller

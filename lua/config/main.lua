@@ -37,6 +37,7 @@ if not g.vscode then
   require("config.core.options").load_options()
   require("config.core.mappings").mappings()
   require("config.core.autocmd").autocmds()
+  require("config.core.commands").init()
 
   local pack = require("config.packer-config")
   pack.bootstrap()

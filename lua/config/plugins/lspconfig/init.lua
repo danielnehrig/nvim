@@ -1,3 +1,4 @@
+local global = require("config.core.global")
 local map = vim.keymap.set
 local fn = vim.fn
 
@@ -6,11 +7,8 @@ LSP.__index = LSP
 
 -- custom attach config for most LSP configs
 function LSP.on_attach(client, bufnr)
-  if
-    packer_plugins["lsp-status.nvim"]
-    and packer_plugins["lsp-status.nvim"].loaded
-  then
-    local lsp_status = require("config.plugins.lspStatus").lsp_status
+  local present, lsp_status = pcall(require, "lsp-status")
+  if present then
     lsp_status.on_attach(client)
   end
 
@@ -44,7 +42,7 @@ function LSP.on_attach(client, bufnr)
     { buffer = bufnr }
   )
   map("n", "<space>g=", function()
-    vim.lsp.buf.formatting_seq_sync({}, 2500)
+    vim.lsp.buf.formatting_sync({}, 2500)
   end, { buffer = bufnr })
   map("n", "<space>gi", vim.lsp.buf.incoming_calls, { buffer = bufnr })
   map("n", "<space>go", vim.lsp.buf.outgoing_calls, { buffer = bufnr })
@@ -109,14 +107,14 @@ function LSP.settings()
   vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, {
       -- Use a sharp border with `FloatBorder` highlights
-      border = "single",
+      border = global.border_style,
     })
 
   -- enable border for signature
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     vim.lsp.handlers.signature_help,
     {
-      border = "single",
+      border = global.border_style,
     }
   )
 end
