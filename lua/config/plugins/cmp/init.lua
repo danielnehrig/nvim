@@ -1,3 +1,4 @@
+local global = require("config.core.global")
 local M = {}
 
 function M.init()
@@ -39,10 +40,10 @@ function M.init()
     },
     window = {
       completion = {
-        border = "rounded",
+        border = global.border_style,
       },
       documentation = {
-        border = "rounded",
+        border = global.border_style,
       },
     },
     completion = {

@@ -1,3 +1,4 @@
+local global = require("config.core.global")
 local map = vim.keymap.set
 local fn = vim.fn
 
@@ -106,14 +107,14 @@ function LSP.settings()
   vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, {
       -- Use a sharp border with `FloatBorder` highlights
-      border = "single",
+      border = global.border_style,
     })
 
   -- enable border for signature
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     vim.lsp.handlers.signature_help,
     {
-      border = "single",
+      border = global.border_style,
     }
   )
 end
