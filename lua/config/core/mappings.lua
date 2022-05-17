@@ -73,18 +73,6 @@ function M.mappings()
     { noremap = true }
   )
 
-  -- marker: NOTE: Lazyloaded
-  set("v", "<Leader>1", ":<c-u>HSHighlight 1<CR>")
-  set("v", "<Leader>2", ":<c-u>HSHighlight 2<CR>")
-  set("v", "<Leader>3", ":<c-u>HSHighlight 3<CR>")
-  set("v", "<Leader>4", ":<c-u>HSHighlight 4<CR>")
-  set("v", "<Leader>5", ":<c-u>HSHighlight 5<CR>")
-  set("v", "<Leader>6", ":<c-u>HSHighlight 6<CR>")
-  set("v", "<Leader>7", ":<c-u>HSHighlight 7<CR>")
-  set("v", "<Leader>8", ":<c-u>HSHighlight 8<CR>")
-  set("v", "<Leader>9", ":<c-u>HSHighlight 9<CR>")
-  set("v", "<Leader>0", ":<c-u>HSRmHighlight<CR>")
-
   -- trouble
   set("n", "<Leader>gt", ":Trouble<CR>")
 

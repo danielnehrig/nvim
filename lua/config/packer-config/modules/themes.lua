@@ -28,6 +28,15 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = require("config.plugins.indent-blankline").init,
+    event = "BufRead",
+  },
+  {
+    "glepnir/dashboard-nvim",
+    setup = require("config.plugins.dashboard").dashboard,
+  },
   { "windwp/windline.nvim" },
   { "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" },
 }
