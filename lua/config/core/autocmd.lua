@@ -29,7 +29,7 @@ function M.autocmds()
   })
   vim.api.nvim_create_autocmd("ColorScheme", {
     pattern = "*",
-    command = "highlight FoldColumn guibg=none ctermbg=none",
+    command = "highlight FoldColumn guifg=#a485dd guibg=none ctermbg=none",
     group = au_highlight,
   })
   vim.api.nvim_create_autocmd("ColorScheme", {
