@@ -460,6 +460,7 @@ M.theme = {
         colors.FilenameBg = colors.black_light
         colors.transparent = "none"
         colors.grey = "#2a203a"
+        colors.black = "#111111"
         colors.dark_red = "#8a2f8e"
         colors.dark_green = "#2f8e60"
         colors.orange = "#d8a657"
