@@ -49,9 +49,7 @@ M.utility = {
     "rcarriga/nvim-notify",
     config = function()
       local notify = require("notify")
-      vim.cmd(
-        "autocmd ColorScheme * highlight NotifyBG guibg=#3d3d3d guifg=#3e4451"
-      )
+      vim.cmd("highlight! NotifyBG guibg=#3d3d3d guifg=#3e4451")
       notify.setup({
         -- Animation style (see below for details)
         -- stages = "fade",
