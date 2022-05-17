@@ -1,6 +1,5 @@
 local cmd = vim.cmd
 
-local au_highlight = vim.api.nvim_create_augroup("highlight", { clear = true })
 if not vim.g.neovide then
   cmd("highlight! Normal guibg = none")
 end
@@ -25,39 +24,3 @@ cmd("highlight! TelescopeNormal guibg=none ctermbg=none")
 cmd("highlight! TelescopePromptBorder guibg=none ctermbg=none")
 cmd("highlight! TelescopeResultsBorder  guibg=none ctermbg=none")
 cmd("highlight! TelescopePreviewBorder  guibg=none ctermbg=none")
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  command = "highlight Pmenu guibg=none",
-  group = au_highlight,
-})
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  command = "highlight FloatBorder guibg=none ctermbg=none",
-  group = au_highlight,
-})
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  command = "highlight NormalFloat guifg=#fff guibg=none ctermbg=none",
-  group = au_highlight,
-})
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  command = "highlight FoldColumn guibg=none ctermbg=none",
-  group = au_highlight,
-})
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  command = "highlight GitSignsChange ctermbg=none guibg=none",
-  group = au_highlight,
-})
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  command = "highlight GitSignsDelete ctermbg=none guibg=none",
-  group = au_highlight,
-})
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  command = "highlight GitSignsAdd ctermbg=none guibg=none",
-  group = au_highlight,
-})
