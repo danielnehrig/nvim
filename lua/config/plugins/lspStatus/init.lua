@@ -1,19 +1,21 @@
-local lsp_status = require("lsp-status")
 local LSP = require("config.plugins.lspconfig.capabilities")
 local M = {}
 
--- the inited instance of lsp-status for usage in statusline
-M.lsp_status = lsp_status
-
 -- init lsp-status
 function M.init()
+  local present, lsp_status = pcall(require, "lsp-status")
+  if not present then
+    vim.notify("lsp-status not installed")
+    return
+  end
+
   LSP.capabilities = vim.tbl_extend(
     "keep",
     LSP.capabilities or {},
     lsp_status.capabilities
   )
 
-  M.lsp_status.config({
+  lsp_status.config({
     select_symbol = function(cursor_pos, symbol)
       if symbol.valueRange then
         local value_range = {
@@ -31,7 +33,9 @@ function M.init()
       end
     end,
   })
-  M.lsp_status.register_progress()
+  lsp_status.register_progress()
+
+  return lsp_status
 end
 
 return M

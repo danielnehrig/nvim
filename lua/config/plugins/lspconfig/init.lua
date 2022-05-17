@@ -6,11 +6,8 @@ LSP.__index = LSP
 
 -- custom attach config for most LSP configs
 function LSP.on_attach(client, bufnr)
-  if
-    packer_plugins["lsp-status.nvim"]
-    and packer_plugins["lsp-status.nvim"].loaded
-  then
-    local lsp_status = require("config.plugins.lspStatus").lsp_status
+  local present, lsp_status = pcall(require, "lsp-status")
+  if present then
     lsp_status.on_attach(client)
   end
 
@@ -44,7 +41,7 @@ function LSP.on_attach(client, bufnr)
     { buffer = bufnr }
   )
   map("n", "<space>g=", function()
-    vim.lsp.buf.formatting_seq_sync({}, 2500)
+    vim.lsp.buf.formatting_sync({}, 2500)
   end, { buffer = bufnr })
   map("n", "<space>gi", vim.lsp.buf.incoming_calls, { buffer = bufnr })
   map("n", "<space>go", vim.lsp.buf.outgoing_calls, { buffer = bufnr })

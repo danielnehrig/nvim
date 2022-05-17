@@ -305,18 +305,20 @@ M.theme = {
       text = function()
         if lsp_comps.check_lsp() then
           local debug = require("config.plugins.dap.attach")
-          local lsp_status = require("config.plugins.lspStatus").lsp_status
-          return {
-            {
-              helper.separators.slant_left,
-              debug:session() and "sepdebug" or "sep",
-            },
-            { " ", "spacer" },
-            { lsp_comps.lsp_name(), "magenta" },
-            { " ", "spacer" },
-            { helper.separators.slant_left_thin, "magenta" },
-            { lsp_status.status(), "magenta" },
-          }
+          local lsp_present, lsp_status = pcall(require, "lsp-status")
+          if lsp_present then
+            return {
+              {
+                helper.separators.slant_left,
+                debug:session() and "sepdebug" or "sep",
+              },
+              { " ", "spacer" },
+              { lsp_comps.lsp_name(), "magenta" },
+              { " ", "spacer" },
+              { helper.separators.slant_left_thin, "magenta" },
+              { lsp_status.status(), "magenta" },
+            }
+          end
         end
         return ""
       end,
@@ -329,14 +331,16 @@ M.theme = {
       },
       width = breakpoint_width,
       text = function()
-        local gps = require("nvim-gps")
+        local gps_present, gps = pcall(require, "nvim-gps")
 
-        if gps.is_available() then
-          local location = gps.get_location()
-          return {
-            { " ", "" },
-            { location, "loc" },
-          }
+        if gps_present then
+          if gps.is_available() then
+            local location = gps.get_location()
+            return {
+              { " ", "" },
+              { location, "loc" },
+            }
+          end
         end
         return ""
       end,
