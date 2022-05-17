@@ -42,6 +42,11 @@ M.packer = {
     cmd = { "Telescope" },
     config = require("config.plugins.telescope").init,
     requires = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        opt = true,
+        run = "make",
+      },
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-file-browser.nvim", opt = true },
