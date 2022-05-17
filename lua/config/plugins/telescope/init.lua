@@ -7,6 +7,7 @@ function M.init()
     vim.notify("telescope is not installed")
     return
   end
+  vim.cmd("packadd telescope-native-fzf.nvim")
   local action_set = require("telescope.actions.set")
   telescope.setup({
     pickers = {

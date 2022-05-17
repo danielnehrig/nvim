@@ -44,7 +44,6 @@ M.packer = {
     requires = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        opt = true,
         run = "make",
       },
       { "nvim-telescope/telescope-ui-select.nvim" },
