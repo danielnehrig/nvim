@@ -3,7 +3,6 @@ local sep_os_replacer = require("config.utils").sep_os_replacer
 local M = {}
 
 M.debug = {
-
   {
     "rcarriga/vim-ultest",
     cmd = { "Ultest" },

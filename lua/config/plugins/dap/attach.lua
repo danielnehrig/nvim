@@ -84,9 +84,9 @@ function Debug:getStatus()
         return type .. " " .. self.dap.status()
       end
     end
+    return "Detached"
   end
-
-  return "Detached"
+  return nil
 end
 
 if not debug_instance then

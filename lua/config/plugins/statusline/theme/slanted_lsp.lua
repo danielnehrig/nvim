@@ -356,15 +356,13 @@ M.theme = {
       width = breakpoint_width,
       text = function()
         local debug = require("config.plugins.dap.attach")
-        if debug.dap then
-          if debug.dap.session() then
-            local status = debug:getStatus()
-            return {
-              { helper.separators.slant_left, "sep" },
-              { " ", "spacer" },
-              { "DAP: " .. status .. " ", "yellow" },
-            }
-          end
+        local status = debug:getStatus()
+        if status then
+          return {
+            { helper.separators.slant_left, "sep" },
+            { " ", "spacer" },
+            { "DAP: " .. status .. " ", "yellow" },
+          }
         end
         return ""
       end,
