@@ -1,9 +1,13 @@
-local cmd = vim.cmd
 local M = {}
 
 function M.init()
-  cmd([[packadd nvim-web-devicons]])
-  require("nvim-web-devicons").setup({
+  local present, devicon = pcall(require, "nvim-web-devicons")
+  if not present then
+    vim.notify("devicons not installed")
+    return
+  end
+
+  devicon.setup({
     override = {
       html = {
         icon = "",

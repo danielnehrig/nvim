@@ -16,7 +16,7 @@ M.init = function()
   require("config.plugins.web-devicons").init()
   require("config.plugins.autopairs").init()
   require("config.plugins.treesitter").init()
-  require("config.plugins.build"):init()
+  require("config.plugins.build").init()
   require("config.plugins.bufferline").init()
 
   -- load last to overwrite every highlight that has been added by a plugin
