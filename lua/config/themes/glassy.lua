@@ -17,6 +17,7 @@ local hl_groups = {
   "NormalFloat",
   "Normal",
   "Folded",
+  "FoldColumn",
   "NvimTreeNormal",
   "NvimTreeNormalNC",
   "NvimTreeCursorLine",

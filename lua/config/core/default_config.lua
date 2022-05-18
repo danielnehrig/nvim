@@ -2,7 +2,7 @@ local default_config = {}
 
 default_config.ui = {
   changed_themes = {},
-  transparent = true,
+  transparent = false,
   colorscheme = {
     name = "radium",
     toggle = { "tokyodark", "onedark" },
