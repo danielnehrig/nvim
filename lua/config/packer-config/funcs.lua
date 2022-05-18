@@ -39,7 +39,7 @@ M.switch_theme = function(arg)
       return
     end
 
-    require("config.core.highlights")
+    -- require("config.core.highlights")
   end
 end
 

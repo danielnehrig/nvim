@@ -12,11 +12,12 @@ M.init = function()
   end
   impatient.enable_profile()
   local global = require("config.core.global")
-  require("config.packer-config.funcs").switch_theme(
-    global.config.colorscheme.name
-  )
+  --  require("config.packer-config.funcs").switch_theme(
+  --  global.config.ui.colorscheme.name
+  --  )
+  require("config.themes").load_theme()
   require("config.plugins.statusline.windline").switch_theme(
-    global.config.statusline.name
+    global.config.ui.statusline.name
   )
   require("config.plugins.web-devicons").init()
   require("config.plugins.autopairs").init()
@@ -25,7 +26,7 @@ M.init = function()
   require("config.plugins.bufferline").init()
 
   -- load last to overwrite every highlight that has been added by a plugin
-  require("config.core.highlights")
+  -- require("config.core.highlights")
 end
 
 return M

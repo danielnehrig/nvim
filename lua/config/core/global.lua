@@ -63,6 +63,23 @@ function global.reload(plugins)
   return status
 end
 
+function global:reload_theme(theme_name)
+  local reload_plugin = self.reload
+
+  if theme_name == nil or theme_name == "" then
+    theme_name = self.config.colorscheme.name
+  end
+
+  require("config.packer-config.funcs").switch_theme(theme_name)
+
+  if not reload_plugin({ "config.plugins.statusline.windline" }) then
+    print("Error: Not able to reload all plugins.")
+    return false
+  end
+
+  return true
+end
+
 function global:create_config()
   self.config = require("config.core.default_config")
   local custom_config = vim.fn.filereadable(

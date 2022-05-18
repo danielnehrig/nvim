@@ -1,11 +1,15 @@
-local default_config = {
+local default_config = {}
+
+default_config.ui = {
+  changed_themes = {},
+  transparent = true,
   colorscheme = {
-    transparent = true,
-    name = "tokyodark",
+    name = "radium",
     toggle = { "tokyodark", "onedark" },
   },
   statusline = {
     name = "slanted_lsp",
+    seperator = "default",
   },
 }
 
