@@ -68,9 +68,7 @@ end
 
 function Debug:session()
   if self.dap then
-    if self.dap.session() then
-      return true
-    end
+    return true
   end
 
   return false
