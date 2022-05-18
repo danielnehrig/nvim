@@ -1,8 +1,8 @@
-require("config.plugins.dap.attach"):addPlug()
+require("config.plugins.configs.dap.attach"):addPlug()
 local global = require("config.core.global")
 local sep_os_replacer = require("config.utils").sep_os_replacer
-local capabilities = require("config.plugins.lspconfig").capabilities
-local lsp = require("config.plugins.lspconfig")
+local capabilities = require("config.plugins.configs.lspconfig").capabilities
+local lsp = require("config.plugins.configs.lspconfig")
 local map = vim.keymap.set
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")

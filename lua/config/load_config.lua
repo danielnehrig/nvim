@@ -13,14 +13,14 @@ M.init = function()
   impatient.enable_profile()
   local global = require("config.core.global")
   require("config.themes").load_theme()
-  require("config.plugins.statusline.windline").switch_theme(
+  require("config.plugins.configs.statusline.windline").switch_theme(
     global.config.ui.statusline.name
   )
-  require("config.plugins.web-devicons").init()
-  require("config.plugins.autopairs").init()
-  require("config.plugins.treesitter").init()
-  require("config.plugins.build").init()
-  require("config.plugins.bufferline").init()
+  require("config.plugins.configs.web-devicons").init()
+  require("config.plugins.configs.autopairs").init()
+  require("config.plugins.configs.treesitter").init()
+  require("config.plugins.configs.build").init()
+  require("config.plugins.configs.bufferline").init()
 
   -- load last to overwrite every highlight that has been added by a plugin
   -- require("config.core.highlights")

@@ -49,20 +49,20 @@ function M.mappings()
 
   -- dap NOTE: Lazyloaded
   set("n", "<Leader>dc", function()
-    require("config.plugins.dap.attach"):addPlug()
+    require("config.plugins.configs.dap.attach"):addPlug()
     require("dap").continue()
   end)
   set("n", "<Leader>db", function()
-    require("config.plugins.dap.attach"):addPlug()
+    require("config.plugins.configs.dap.attach"):addPlug()
     require("dap").toggle_breakpoint()
   end)
 
   -- gitlinker: NOTE: Lazyloaded
   set("n", "<Leader>gy", function()
-    require("config.plugins.gitlinker"):normal()
+    require("config.plugins.configs.gitlinker"):normal()
   end)
   set("v", "<Leader>gy", function()
-    require("config.plugins.gitlinker"):visual()
+    require("config.plugins.configs.gitlinker"):visual()
   end)
 
   -- refactor

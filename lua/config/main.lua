@@ -39,7 +39,7 @@ if not g.vscode then
   require("config.core.autocmd").autocmds()
   require("config.core.commands").init()
 
-  local pack = require("config.packer-config")
+  local pack = require("config.plugins")
   pack.bootstrap()
   pack.load_compile()
 
