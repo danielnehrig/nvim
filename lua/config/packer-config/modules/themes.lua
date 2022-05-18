@@ -94,7 +94,7 @@ M.ts_themes = {
       end,
     },
   },
-  ["onedark"] = {
+  ["onedark.nvim"] = {
     colorscheme = "onedark",
     packadd = "onedark.nvim",
     packer_cfg = {

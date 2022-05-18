@@ -12,9 +12,6 @@ M.init = function()
   end
   impatient.enable_profile()
   local global = require("config.core.global")
-  --  require("config.packer-config.funcs").switch_theme(
-  --  global.config.ui.colorscheme.name
-  --  )
   require("config.themes").load_theme()
   require("config.plugins.statusline.windline").switch_theme(
     global.config.ui.statusline.name

@@ -5,7 +5,7 @@ M.get_colors = function(type)
   local name = global.config.ui.colorscheme.name
 
   -- theme paths
-  local user_path = "config.themes." .. name
+  local user_path = "config.themes.hl." .. name
 
   local present2, user_theme = pcall(require, user_path)
 
