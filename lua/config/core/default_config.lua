@@ -5,7 +5,7 @@ default_config.ui = {
   transparent = false,
   colorscheme = {
     name = "radium",
-    toggle = { "tokyodark", "onedark" },
+    toggle = { "radium", "onedark" },
   },
   statusline = {
     name = "slanted_lsp",

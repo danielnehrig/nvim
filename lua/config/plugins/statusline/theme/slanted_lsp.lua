@@ -1,3 +1,6 @@
+local tmp_base16 = require("config.themes").get_colors("base_16")
+-- local tmp_colors = require("config.themes").get_colors("base_30")
+
 local M = {}
 
 M.theme = {
@@ -464,6 +467,7 @@ M.theme = {
         colors.grey = "#2a203a"
         colors.black = "#111111"
         colors.dark_red = "#8a2f8e"
+        colors.magenta = tmp_base16.base0E
         colors.dark_green = "#2f8e60"
         colors.orange = "#d8a657"
         colors.debug_yellow = "#eae611"

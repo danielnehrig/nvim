@@ -12,7 +12,7 @@ M.get_colors = function(type)
   if present2 then
     return user_theme[type]
   else
-    error("No such theme bruh >_< ")
+    error("No such theme")
   end
 end
 
