@@ -11,6 +11,7 @@ function global:load_variables()
   self.is_linux = os_name == "Linux"
   self.is_windows = os_name == "Windows"
   self.os_name = os_name
+  self.border_style = "rounded"
   self.sumenko_os = os_name == "Darwin" and "macOS" or "Linux"
   self.vim_path = vim.fn.stdpath("config")
   self.path_sep = path_sep

@@ -1,6 +1,12 @@
 local M = {}
 
 function M.init()
+  local present, treesitter = pcall(require, "nvim-treesitter.configs")
+  if not present then
+    vim.notify("treesitter not intalled")
+    return
+  end
+
   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
   parser_config.org = {
     install_info = {
@@ -25,7 +31,7 @@ function M.init()
     },
   }
 
-  require("nvim-treesitter.configs").setup({
+  treesitter.setup({
     -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
       enable = true,

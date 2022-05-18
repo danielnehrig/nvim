@@ -1,3 +1,4 @@
+local global = require("config.core.global")
 local M = {}
 
 function M.toggle_qf()
@@ -26,7 +27,7 @@ function M.open_diag_float()
     source = true,
     focusable = false,
     focus = false,
-    border = "single",
+    border = global.border_style,
   })
 end
 

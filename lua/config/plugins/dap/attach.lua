@@ -68,9 +68,7 @@ end
 
 function Debug:session()
   if self.dap then
-    if self.dap.session() then
-      return true
-    end
+    return true
   end
 
   return false
@@ -84,9 +82,9 @@ function Debug:getStatus()
         return type .. " " .. self.dap.status()
       end
     end
+    return "Detached"
   end
-
-  return "Detached"
+  return nil
 end
 
 if not debug_instance then

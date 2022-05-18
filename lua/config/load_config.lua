@@ -5,16 +5,19 @@ M.__index = M
 -- and or if packer plugins are installed
 -- load configs for packer plugins
 M.init = function()
-  require("impatient").enable_profile()
+  local present, impatient = pcall(require, "impatient")
+  if not present then
+    vim.notify(string.format("impatient not installed"))
+    return
+  end
+  impatient.enable_profile()
+  require("config.packer-config.funcs").switch_theme("tokyo-dark")
+  require("config.plugins.statusline.theme.slanted_lsp").theme.config()
   require("config.plugins.web-devicons").init()
   require("config.plugins.autopairs").init()
   require("config.plugins.treesitter").init()
-  require("config.plugins.build"):init()
+  require("config.plugins.build").init()
   require("config.plugins.bufferline").init()
-  require("config.core.commands").init()
-
-  -- the init is loaded over a autocmd for lazyload
-  -- require("plugins.wildmenu")
 
   -- load last to overwrite every highlight that has been added by a plugin
   require("config.core.highlights")

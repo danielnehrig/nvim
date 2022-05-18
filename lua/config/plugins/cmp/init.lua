@@ -1,10 +1,12 @@
 local M = {}
 
 function M.init()
-  if not packer_plugins["plenary.nvim"].loaded then
-    vim.cmd([[packadd plenary.nvim]])
+  local present, cmp = pcall(require, "cmp")
+  if not present then
+    vim.notify("cmp is not installed")
+    return
   end
-  local cmp = require("cmp")
+
   local lspkind = require("lspkind")
   local luasnip = require("luasnip")
   require("config.plugins.cmp.luasnip").init()
@@ -38,12 +40,8 @@ function M.init()
       end,
     },
     window = {
-      completion = {
-        border = "rounded",
-      },
-      documentation = {
-        border = "rounded",
-      },
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
     completion = {
       completeopt = "menu,menuone,noselect,noinsert",
