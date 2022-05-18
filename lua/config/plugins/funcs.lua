@@ -1,5 +1,5 @@
 local async = require("plenary.async")
-local themes = require("config.plugins.configs.modules.themes").ts_themes
+local themes = require("config.plugins.modules.themes").ts_themes
 local global = require("config.core.global")
 
 local M = {}
