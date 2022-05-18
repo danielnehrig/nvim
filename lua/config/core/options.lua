@@ -14,6 +14,7 @@ function M.load_options()
   opt.list = false
   opt.listchars:append("eol:↴")
   opt.laststatus = 3
+  opt.cursorline = true
 
   -- Set so that folders are index for find command
   opt.path = "**/*"
