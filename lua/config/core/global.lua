@@ -24,10 +24,8 @@ function global:load_variables()
   )
 end
 
-global:load_variables()
-
 --- Reload the Config
-function global.reload()
+function global.reload_all()
   for k, _ in pairs(package.loaded) do
     if string.match(k, "^config") then
       package.loaded[k] = nil
@@ -38,4 +36,50 @@ function global.reload()
   vim.cmd("doautocmd VimEnter")
 end
 
-return global
+function global.reload(plugins)
+  local status = true
+  local function _reload_plugin(plugin)
+    local loaded = package.loaded[plugin]
+    if loaded then
+      package.loaded[plugin] = nil
+    end
+    local ok, err = pcall(require, plugin)
+    if not ok then
+      print("Error: Cannot load " .. plugin .. " plugin!\n" .. err .. "\n")
+      status = false
+    end
+  end
+
+  if type(plugins) == "string" then
+    _reload_plugin(plugins)
+  elseif type(plugins) == "table" then
+    for _, plugin in ipairs(plugins) do
+      _reload_plugin(plugin)
+    end
+  end
+
+  vim.notify("config reloaded")
+  global:create_config()
+  return status
+end
+
+function global:create_config()
+  self.config = require("config.core.default_config")
+  local custom_config = vim.fn.filereadable(
+    vim.fn.stdpath("config") .. "/lua/config/custom/init.lua"
+  ) == 1
+
+  if custom_config then
+    local user_config = require("config.custom")
+    self.config = vim.tbl_deep_extend("force", self.config, user_config)
+  end
+end
+
+local global_instance = nil
+if not global_instance then
+  global_instance = global
+  global_instance:load_variables()
+  global_instance:create_config()
+end
+
+return global_instance

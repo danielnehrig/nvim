@@ -1,2 +1,3 @@
 plugin
+lua/config/custom
 .nvim

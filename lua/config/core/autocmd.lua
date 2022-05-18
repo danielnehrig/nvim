@@ -65,7 +65,7 @@ function M.autocmds()
   vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.lua",
     callback = function()
-      require("config.core.global").reload()
+      require("config.core.global").reload_all()
     end,
     group = au_pack,
   })

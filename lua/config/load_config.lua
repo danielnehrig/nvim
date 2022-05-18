@@ -11,8 +11,13 @@ M.init = function()
     return
   end
   impatient.enable_profile()
-  require("config.packer-config.funcs").switch_theme("tokyo-dark")
-  require("config.plugins.statusline.theme.slanted_lsp").theme.config()
+  local global = require("config.core.global")
+  require("config.packer-config.funcs").switch_theme(
+    global.config.colorscheme.name
+  )
+  require("config.plugins.statusline.windline").switch_theme(
+    global.config.statusline.name
+  )
   require("config.plugins.web-devicons").init()
   require("config.plugins.autopairs").init()
   require("config.plugins.treesitter").init()
