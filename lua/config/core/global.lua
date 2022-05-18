@@ -31,6 +31,7 @@ function global.reload_all()
       package.loaded[k] = nil
     end
   end
+  global:create_config()
   vim.notify("Config Reload")
   vim.cmd("luafile " .. vim.env.MYVIMRC)
   vim.cmd("doautocmd VimEnter")
@@ -52,34 +53,18 @@ function global.reload(plugins)
 
   if type(plugins) == "string" then
     _reload_plugin(plugins)
+    vim.notify(string.format("Plugin %s reloaded", plugins))
   elseif type(plugins) == "table" then
     for _, plugin in ipairs(plugins) do
       _reload_plugin(plugin)
+      vim.notify(string.format("Plugins %s reloaded", unpack(plugins)))
     end
   end
 
-  vim.notify("config reloaded")
-  global:create_config()
   return status
 end
 
-function global:reload_theme(theme_name)
-  local reload_plugin = self.reload
-
-  if theme_name == nil or theme_name == "" then
-    theme_name = self.config.colorscheme.name
-  end
-
-  require("config.packer-config.funcs").switch_theme(theme_name)
-
-  if not reload_plugin({ "config.plugins.statusline.windline" }) then
-    print("Error: Not able to reload all plugins.")
-    return false
-  end
-
-  return true
-end
-
+-- merges default and user config
 function global:create_config()
   self.config = require("config.core.default_config")
   local custom_config = vim.fn.filereadable(

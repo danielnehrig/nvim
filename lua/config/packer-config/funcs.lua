@@ -3,6 +3,7 @@ local themes = require("config.packer-config.modules.themes").ts_themes
 local global = require("config.core.global")
 local M = {}
 
+-- Takes a Snapshot before syncing
 M.packer_sync = function()
   async.run(function()
     vim.notify.async("Syncing packer.", "info", {
@@ -14,6 +15,8 @@ M.packer_sync = function()
   vim.cmd("PackerSync")
 end
 
+-- combines packer colorschemes
+-- with internal colorschemes
 M.switch_theme = function(arg)
   local colorscheme = nil
   local packadd = nil
@@ -32,14 +35,52 @@ M.switch_theme = function(arg)
       return
     end
 
+    local highlights_raw = vim.split(
+      vim.api.nvim_exec("filter BufferLine hi", true),
+      "\n"
+    )
+    local highlight_groups = {}
+
+    for _, raw_hi in ipairs(highlights_raw) do
+      table.insert(highlight_groups, string.match(raw_hi, "BufferLine%a+"))
+    end
+
+    for _, highlight in ipairs(highlight_groups) do
+      vim.cmd([[hi clear ]] .. highlight)
+    end
+
     local colorscheme_ok, _ = pcall(
       vim.cmd,
       string.format("colorscheme %s", colorscheme)
     )
 
     if not colorscheme_ok then
-      vim.notify(string.format("colorscheme %s not found", colorscheme))
+      vim.notify(
+        string.format(
+          "colorscheme %s not found or error on setting",
+          colorscheme
+        )
+      )
       return
+    end
+
+    local highlights = {}
+
+    global.reload({ "config.plugins.statusline.windline" })
+    require("config.plugins.statusline.windline").switch_theme(
+      global.config.ui.statusline.name
+    )
+
+    if global.config.ui.transparent then
+      highlights = vim.tbl_deep_extend(
+        "force",
+        highlights,
+        require("config.themes.glassy")
+      )
+    end
+
+    for hl, col in pairs(highlights) do
+      vim.api.nvim_set_hl(0, hl, col)
     end
 
     return
@@ -60,6 +101,11 @@ M.switch_theme = function(arg)
   if colorscheme then
     global.config.ui.colorscheme.name = colorscheme
     require("config.themes").load_theme()
+
+    global.reload({ "config.plugins.statusline.windline" })
+    require("config.plugins.statusline.windline").switch_theme(
+      global.config.ui.statusline.name
+    )
     return
   end
 
