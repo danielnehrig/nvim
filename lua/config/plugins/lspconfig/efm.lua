@@ -1,8 +1,8 @@
 local lspconfig = require("lspconfig")
 
 -- efm setups
--- local eslint = require("config.plugins.efm.eslint")
--- local rslint = require("config.plugins.efm.rslint")
+local eslint = require("config.plugins.efm.eslint")
+local rslint = require("config.plugins.efm.rslint")
 local jq = require("config.plugins.efm.jq")
 local json_prettier = require("config.plugins.efm.json-prettier")
 local prettier = require("config.plugins.efm.prettier")
@@ -60,10 +60,10 @@ lspconfig.efm.setup({
       "cargo.toml",
     },
     languages = {
-      typescript = { prettier },
-      typescriptreact = { prettier },
-      javascript = { prettier },
-      javascriptreact = { prettier },
+      typescript = { rslint, prettier, eslint },
+      typescriptreact = { rslint, prettier, eslint },
+      javascript = { rslint, prettier },
+      javascriptreact = { rslint, prettier },
       lua = { stylua, luacheck },
       rust = { rustfmt },
       go = { gofmt, goimports, golines },

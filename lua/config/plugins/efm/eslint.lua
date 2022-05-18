@@ -24,6 +24,5 @@ return {
     ".eslintrc.json",
     ".eslintrc.yaml",
     ".eslintrc.yml",
-    "package.json",
   },
 }
