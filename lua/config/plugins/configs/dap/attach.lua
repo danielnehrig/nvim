@@ -2,11 +2,12 @@ local set = vim.keymap.set
 local M = {}
 
 function M.init()
-  local present, _ = pcall(require, "dap")
-  if not present then
-    local dap_present, _ = pcall(vim.cmd, "packadd nvim-dap")
-    local dapui_present, _ = pcall(vim.cmd, "packadd nvim-dap-ui")
-    if dap_present and dapui_present then
+  local dap_present, _ = pcall(require, "dap")
+  local dapui_present, _ = pcall(require, "dapui")
+  if not dap_present or not dapui_present then
+    local dap_add, _ = pcall(vim.cmd, "packadd nvim-dap")
+    local dapui_add, _ = pcall(vim.cmd, "packadd nvim-dap-ui")
+    if dap_add and dapui_add then
       require("config.plugins.configs.dap")
       M.mappings()
     else

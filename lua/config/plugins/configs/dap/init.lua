@@ -247,6 +247,8 @@ dap.configurations.rust[1].program = function()
 end
 
 local dapui_present, dapui = pcall(require, "dapui")
-if dapui_present then
-  dapui.setup()
+if not dapui_present then
+  vim.notify("dapui not loaded")
+  return
 end
+dapui.setup()
