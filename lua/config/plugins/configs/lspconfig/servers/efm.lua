@@ -4,7 +4,9 @@ local lspconfig = require("lspconfig")
 local eslint = require("config.plugins.configs.lspconfig.efm.eslint")
 local rslint = require("config.plugins.configs.lspconfig.efm.rslint")
 local jq = require("config.plugins.configs.lspconfig.efm.jq")
-local json_prettier = require("config.plugins.configs.lspconfig.efm.json-prettier")
+local json_prettier = require(
+  "config.plugins.configs.lspconfig.efm.json-prettier"
+)
 local prettier = require("config.plugins.configs.lspconfig.efm.prettier")
 local stylua = require("config.plugins.configs.lspconfig.efm.stylua")
 local luacheck = require("config.plugins.configs.lspconfig.efm.luacheck")
@@ -26,7 +28,7 @@ lspconfig.efm.setup({
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
         callback = function()
-          vim.lsp.buf.formatting_seq_sync({}, 2500)
+          vim.lsp.buf.formatting_seq_sync({}, 2000)
         end,
         group = au_lsp,
       })

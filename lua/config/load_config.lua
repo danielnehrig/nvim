@@ -22,6 +22,7 @@ M.init = function()
   require("config.plugins.configs.treesitter").init()
   require("config.plugins.configs.build").init()
   require("config.plugins.configs.bufferline").init()
+  require("config.plugins.configs.dap")
 
   -- load last to overwrite every highlight that has been added by a plugin
   -- require("config.core.highlights")

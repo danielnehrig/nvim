@@ -3,6 +3,7 @@ local g = vim.g
 local M = {}
 
 function M.init()
+  vim.g.exclude_ft = { "quickfix", "terminal", "dap-repl", "repl", "" }
   g.mapleader = " "
   -- tabnew and tabprev
   vim.api.nvim_set_keymap("n", "<Leader>tp", [[<Cmd>BufferPrevious<CR>]], opt)

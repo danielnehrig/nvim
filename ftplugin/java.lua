@@ -1,4 +1,4 @@
-require("config.plugins.configs.dap.attach"):addPlug()
+require("config.plugins.configs.dap.attach").init()
 local global = require("config.core.global")
 local sep_os_replacer = require("config.utils").sep_os_replacer
 local capabilities = require("config.plugins.configs.lspconfig").capabilities

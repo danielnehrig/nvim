@@ -307,13 +307,13 @@ M.theme = {
       width = breakpoint_width,
       text = function()
         if lsp_comps.check_lsp() then
-          local debug = require("config.plugins.configs.dap.attach")
+          local dap_present, _ = pcall(require, "dap")
           local lsp_present, lsp_status = pcall(require, "lsp-status")
           if lsp_present then
             return {
               {
                 helper.separators.slant_left,
-                debug:session() and "sepdebug" or "sep",
+                dap_present and "sepdebug" or "sep",
               },
               { " ", "spacer" },
               { lsp_comps.lsp_name(), "magenta" },
@@ -359,7 +359,7 @@ M.theme = {
       width = breakpoint_width,
       text = function()
         local debug = require("config.plugins.configs.dap.attach")
-        local status = debug:getStatus()
+        local status = debug.getStatus()
         if status then
           return {
             { helper.separators.slant_left, "sep" },

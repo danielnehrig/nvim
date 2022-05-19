@@ -76,6 +76,13 @@ function M.autocmds()
     end,
     group = au_pack,
   })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "PackerCompileComplete",
+    callback = function()
+      vim.notify("Packer Compiled!")
+    end,
+    group = au_pack,
+  })
   -- ft
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown,org,txt,tex",
@@ -147,7 +154,9 @@ function M.autocmds()
     pattern = { "*:i*", "i*:*" },
     group = au_utils,
     callback = function()
-      vim.o.relativenumber = vim.v.event.new_mode:match("^i") == nil
+      if vim.bo.filetype ~= "TelescopePrompt" then
+        vim.o.relativenumber = vim.v.event.new_mode:match("^i") == nil
+      end
     end,
   })
 end

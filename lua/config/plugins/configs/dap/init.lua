@@ -1,6 +1,12 @@
-local dap = require("dap")
 local global = require("config.core.global")
 local sep_os_replacer = require("config.utils").sep_os_replacer
+
+local present, dap = pcall(require, "dap")
+
+if not present then
+  vim.notify("DAP not loaded")
+  return
+end
 
 vim.fn.sign_define(
   "DapBreakpoint",
@@ -240,4 +246,7 @@ dap.configurations.rust[1].program = function()
   )
 end
 
-require("dapui").setup()
+local dapui_present, dapui = pcall(require, "dapui")
+if dapui_present then
+  dapui.setup()
+end

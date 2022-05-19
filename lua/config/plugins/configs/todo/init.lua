@@ -1,7 +1,13 @@
 local M = {}
 
 function M.init()
-  require("todo-comments").setup({
+  local present, todo = pcall(require, "todo-comments")
+  if not present then
+    vim.notify("Todo comments not installed")
+    return
+  end
+
+  todo.setup({
     signs = true, -- show icons in the signs column
     keywords = {
       FIX = {

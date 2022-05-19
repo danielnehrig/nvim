@@ -1,32 +1,33 @@
 local set = vim.keymap.set
+local M = {}
 
-local Debug = {
-  dap = nil,
-}
+function M.init()
+  local present, _ = pcall(require, "dap")
+  if not present then
+    local dap_present, _ = pcall(vim.cmd, "packadd nvim-dap")
+    local dapui_present, _ = pcall(vim.cmd, "packadd nvim-dap-ui")
+    if dap_present and dapui_present then
+      require("config.plugins.configs.dap")
+      M.mappings()
+    else
+      vim.notify("Error adding DAP")
+    end
 
-local debug_instance = nil
-
-Debug.__index = Debug
-
-function Debug.new(o)
-  o = o or {}
-  setmetatable(o, Debug)
-  return o
-end
-
-function Debug:addPlug()
-  if not packer_plugins["nvim-dap"].loaded then
-    vim.cmd([[packadd nvim-dap]])
-    vim.cmd([[packadd nvim-dap-ui]])
-    self.dap = require("dap")
-    self.mappings()
-
-    require("config.plugins.configs.dap")
+    return
   end
+
+  require("config.plugins.configs.dap")
+  M.mappings()
 end
 
-function Debug.mappings()
-  vim.cmd([[au FileType dap-repl lua require('dap.ext.autocompl').attach()]])
+function M.mappings()
+  vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "lua" },
+    callback = function()
+      require("dap.ext.autocompl").attach()
+    end,
+  })
+
   set("n", "<Leader>ds", function()
     require("dap").close()
   end)
@@ -60,35 +61,20 @@ function Debug.mappings()
   end)
 end
 
-function Debug:attach()
-  if self.dap then
-    self.dap.continue()
-  end
-end
-
-function Debug:session()
-  if self.dap then
-    return true
-  end
-
-  return false
-end
-
-function Debug:getStatus()
-  if self.dap then
-    if self.dap.session() then
-      if self.dap.session().config then
-        local type = self.dap.session().config.type
-        return type .. " " .. self.dap.status()
+function M.getStatus()
+  local present, dap = pcall(require, "dap")
+  if present then
+    if dap then
+      if dap.session() then
+        if dap.session().config then
+          local type = dap.session().config.type
+          return type .. " " .. dap.status()
+        end
       end
+      return "Detached"
     end
-    return "Detached"
   end
   return nil
 end
 
-if not debug_instance then
-  debug_instance = Debug.new()
-end
-
-return debug_instance
+return M

@@ -49,11 +49,11 @@ function M.mappings()
 
   -- dap NOTE: Lazyloaded
   set("n", "<Leader>dc", function()
-    require("config.plugins.configs.dap.attach"):addPlug()
+    require("config.plugins.configs.dap.attach").init()
     require("dap").continue()
   end)
   set("n", "<Leader>db", function()
-    require("config.plugins.configs.dap.attach"):addPlug()
+    require("config.plugins.configs.dap.attach").init()
     require("dap").toggle_breakpoint()
   end)
 
