@@ -81,11 +81,11 @@ function M.init()
         -- the default case_mode is "smart_case"
       },
       project = {
-        -- base_dirs = {
-        -- "~/code",
-        -- "~/dotfiles",
-        -- "~/dotfiles/.config/nvim",
-        -- },
+        base_dirs = {
+          "~/code",
+          "~/dotfiles",
+          "~/dotfiles/.config/nvim",
+        },
         max_depth = 4,
         hidden_files = true,
       },
