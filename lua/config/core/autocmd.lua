@@ -57,7 +57,7 @@ function M.autocmds()
   })
   vim.api.nvim_create_autocmd("DirChanged", {
     callback = function()
-      require("config.plugins.configs.lspconfig.lua").reinit()
+      require("config.plugins.configs.lspconfig.servers.lua").reinit()
     end,
     group = au_utils,
   })
