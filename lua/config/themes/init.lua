@@ -83,4 +83,11 @@ M.toggle_theme = function()
   end
 end
 
+M.toggle_transparent = function()
+  require("config.core.config").config.ui.transparent =
+    not use_config().ui.transparent
+
+  M.load_theme()
+end
+
 return M
