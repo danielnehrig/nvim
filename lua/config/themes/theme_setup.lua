@@ -1,7 +1,7 @@
 local merge_tb = vim.tbl_deep_extend
-local global = require("config.core.global")
+local use_config = require("config.core.config").get_config
 
-local ui = global.config.ui
+local ui = use_config().ui
 
 local highlights = {}
 local hl_dir = vim.fn.stdpath("config") .. "/lua/config/themes/integrations"

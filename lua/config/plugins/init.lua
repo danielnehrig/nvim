@@ -33,15 +33,11 @@ local function init()
     use(theme)
   end
 
-  for _, theme in
-    pairs(require("config.plugins.modules.themes").ts_themes)
-  do
+  for _, theme in pairs(require("config.plugins.modules.themes").ts_themes) do
     use(theme.packer_cfg)
   end
 
-  for _, utility in
-    pairs(require("config.plugins.modules.utility").utility)
-  do
+  for _, utility in pairs(require("config.plugins.modules.utility").utility) do
     use(utility)
   end
 
@@ -63,9 +59,7 @@ local function init()
     use(completion)
   end
 
-  for _, language in
-    pairs(require("config.plugins.modules.language").language)
-  do
+  for _, language in pairs(require("config.plugins.modules.language").language) do
     use(language)
   end
 

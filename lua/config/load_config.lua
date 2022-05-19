@@ -1,3 +1,4 @@
+local use_config = require("config.core.config").get_config
 local M = {}
 M.__index = M
 
@@ -14,7 +15,7 @@ M.init = function()
   local global = require("config.core.global")
   require("config.themes").load_theme()
   require("config.plugins.configs.statusline.windline").switch_theme(
-    global.config.ui.statusline.name
+    use_config().ui.statusline.name
   )
   require("config.plugins.configs.web-devicons").init()
   require("config.plugins.configs.autopairs").init()

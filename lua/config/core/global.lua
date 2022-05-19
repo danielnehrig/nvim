@@ -31,7 +31,6 @@ function global.reload_all()
       package.loaded[k] = nil
     end
   end
-  global:create_config()
   vim.notify("Config Reload")
   vim.cmd("luafile " .. vim.env.MYVIMRC)
   vim.cmd("doautocmd VimEnter")
@@ -64,24 +63,10 @@ function global.reload(plugins)
   return status
 end
 
--- merges default and user config
-function global:create_config()
-  self.config = require("config.core.default_config")
-  local custom_config = vim.fn.filereadable(
-    vim.fn.stdpath("config") .. "/lua/config/custom/init.lua"
-  ) == 1
-
-  if custom_config then
-    local user_config = require("config.custom")
-    self.config = vim.tbl_deep_extend("force", self.config, user_config)
-  end
-end
-
 local global_instance = nil
 if not global_instance then
   global_instance = global
   global_instance:load_variables()
-  global_instance:create_config()
 end
 
 return global_instance

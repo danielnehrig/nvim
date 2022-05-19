@@ -1,8 +1,8 @@
-local global = require("config.core.global")
+local use_config = require("config.core.config").get_config
 local M = {}
 
 M.get_colors = function(type)
-  local name = global.config.ui.colorscheme.name
+  local name = use_config().ui.colorscheme.name
 
   -- theme paths
   local user_path = "config.themes.hl." .. name
@@ -17,7 +17,7 @@ M.get_colors = function(type)
 end
 
 M.override_theme = function(default_theme, theme_name)
-  local changed_themes = global.config.ui.changed_themes
+  local changed_themes = use_config().ui.changed_themes
 
   if changed_themes[theme_name] then
     return vim.tbl_deep_extend(

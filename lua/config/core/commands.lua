@@ -5,11 +5,11 @@ M.init = function()
   end, {})
 
   vim.api.nvim_create_user_command("Colorscheme", function(tbl)
-    require("config.plugins.funcs").switch_theme(tbl.args)
+    require("config.utils").switch_theme(tbl.args)
   end, {
     nargs = 1,
     complete = function(_, _, _)
-      return require("config.plugins.funcs").get_themes()
+      return require("config.utils").get_themes()
     end,
   })
 
