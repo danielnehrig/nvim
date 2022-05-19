@@ -3,6 +3,10 @@ local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
 local M = {}
 
 function M.load_options()
+  g.did_load_filetypes = 0
+  g.toggle_theme_icon = "   "
+  g.do_filetype_lua = 1
+
   opt.shadafile = "NONE"
   opt.number = true -- enable numbers
   opt.relativenumber = true -- enable numbers to be relative
@@ -15,6 +19,8 @@ function M.load_options()
   opt.listchars:append("eol:↴")
   opt.laststatus = 3
   opt.cursorline = true
+  opt.confirm = true
+  opt.title = true
 
   -- Set so that folders are index for find command
   opt.path = "**/*"
@@ -71,7 +77,7 @@ function M.load_options()
     -- vim.g.neovide_transparency = 0.5
   end
 
-  opt.updatetime = 60 -- update interval for gitsigns
+  opt.updatetime = 250 -- update interval for gitsigns
   opt.inccommand = "nosplit"
   opt.incsearch = true
   opt.timeoutlen = 500
@@ -86,8 +92,9 @@ function M.load_options()
 
   -- for indentline
   -- indentation settings
-  opt.expandtab = true
   opt.shiftwidth = 2
+  opt.expandtab = true
+  opt.smartindent = true
 
   -- spell
   opt.spelllang = "en,de"
@@ -113,6 +120,37 @@ function M.load_options()
     body = "▎",
     tail = "▎",
   }
+
+  local default_plugins = {
+    "2html_plugin",
+    "getscript",
+    "getscriptPlugin",
+    "gzip",
+    "logipat",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "matchit",
+    "tar",
+    "tarPlugin",
+    "rrhelper",
+    "spellfile_plugin",
+    "vimball",
+    "vimballPlugin",
+    "zip",
+    "zipPlugin",
+  }
+
+  for _, plugin in pairs(default_plugins) do
+    g["loaded_" .. plugin] = 1
+  end
+
+  vim.schedule(function()
+    vim.opt.shadafile = vim.fn.expand("$HOME")
+      .. "/.local/share/nvim/shada/main.shada"
+    vim.cmd([[ silent! rsh ]])
+  end)
 end
 
 M.fold_column_toggle = function()

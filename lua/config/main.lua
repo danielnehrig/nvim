@@ -6,28 +6,6 @@
 -- because of lazyloading
 local g, opt = vim.g, vim.opt
 
--- disable plugins
-local disabled_built_ins = {
-  "gzip",
-  "zip",
-  "zipPlugin",
-  "tar",
-  "tarPlugin",
-  "getscript",
-  "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "2html_plugin",
-  "logipat",
-  "rrhelper",
-}
-
-for _, plugin in pairs(disabled_built_ins) do
-  g["loaded_" .. plugin] = 1
-end
-
-g.did_load_filetypes = 1
-
 -- check if we are in VSCode nvim
 -- if not do not apply plugins
 -- slows down VSCode and makes it non usable
