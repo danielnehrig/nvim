@@ -54,4 +54,33 @@ M.load_theme = function()
   require("config.themes.theme_setup")
 end
 
+M.toggle_theme = function()
+  local themes = use_config().ui.colorscheme.toggle
+
+  local theme1 = themes[1]
+  local theme2 = themes[2]
+
+  if vim.g.toggle_theme_icon == "   " then
+    vim.g.toggle_theme_icon = "   "
+  else
+    vim.g.toggle_theme_icon = "   "
+  end
+
+  if use_config().ui.colorscheme.name == theme1 then
+    require("config.core.config").config.ui.colorscheme.name = theme2
+
+    M.load_theme()
+    -- change_theme(theme1, theme2)
+  elseif use_config().ui.colorscheme.name == theme2 then
+    require("config.core.config").config.ui.colorscheme.name = theme1
+
+    M.load_theme()
+    -- change_theme(theme2, theme1)
+  else
+    vim.notify(
+      "Set your current theme to one of those mentioned in the theme_toggle table (chadrc)"
+    )
+  end
+end
+
 return M
