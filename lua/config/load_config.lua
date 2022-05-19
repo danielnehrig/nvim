@@ -6,13 +6,6 @@ M.__index = M
 -- and or if packer plugins are installed
 -- load configs for packer plugins
 M.init = function()
-  local present, impatient = pcall(require, "impatient")
-  if not present then
-    vim.notify(string.format("impatient not installed"))
-    return
-  end
-  impatient.enable_profile()
-  local global = require("config.core.global")
   require("config.themes").load_theme()
   require("config.plugins.configs.statusline.windline").switch_theme(
     use_config().ui.statusline.name
