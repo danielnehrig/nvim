@@ -62,7 +62,7 @@ function M.load_options()
   if globals.is_darwin then
     vim.o.guifont = "FiraCode Nerd Font Mono:h16" -- set font
   else
-    vim.o.guifont = "Fira Code Regular Nerd Font Complete Mono:h12" -- set font
+    vim.o.guifont = "Fira Code Regular Nerd Font Complete Mono:h12:b:i:u:s" -- set font
   end
   opt.showcmd = false -- disable showcmd keys bottom right
   opt.showmode = false -- modes

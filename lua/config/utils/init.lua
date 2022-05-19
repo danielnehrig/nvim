@@ -131,7 +131,10 @@ M.switch_theme = function(arg)
     require("config.core.config").config.ui.colorscheme.name = colorscheme
     require("config.themes").load_theme()
 
-    global.reload({ "config.plugins.configs.statusline.windline" })
+    require("plenary.reload").reload_module(
+      "config.plugins.configs.statusline.theme."
+        .. use_config().ui.statusline.name
+    )
     require("config.plugins.configs.statusline.windline").switch_theme(
       use_config().ui.statusline.name
     )

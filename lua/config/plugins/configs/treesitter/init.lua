@@ -32,7 +32,6 @@ function M.init()
   }
 
   treesitter.setup({
-    -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
       enable = true,
     },
@@ -40,6 +39,10 @@ function M.init()
       enable = true,
     },
     yati = { enable = true },
+    matchup = {
+      enable = true,
+      disable = { "c", "ruby" },
+    },
     autotag = {
       enable = true,
       filetypes = {

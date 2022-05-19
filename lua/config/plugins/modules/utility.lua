@@ -1,6 +1,13 @@
 local M = {}
 M.utility = {
   {
+    "max397574/better-escape.nvim",
+    event = "InsertCharPre",
+    config = function()
+      require("config.plugins.configs.betterescape").init()
+    end,
+  },
+  {
     "norcalli/nvim-colorizer.lua",
     ft = {
       "css",

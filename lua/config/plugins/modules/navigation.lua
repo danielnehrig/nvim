@@ -2,6 +2,12 @@ local M = {}
 
 M.packer = {
   {
+    "andymass/vim-matchup",
+    setup = function()
+      vim.g.matchup_matchparen_offscreen = {}
+    end,
+  },
+  {
     "VonHeikemen/fine-cmdline.nvim",
     config = function()
       local fineline = require("fine-cmdline")

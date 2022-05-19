@@ -301,7 +301,7 @@ M.theme = {
         green = { "green", "black" },
         magenta = { "magenta", "black" },
         sep = { "black", "transparent" },
-        sepdebug = { "black", "debug_yellow" },
+        sepdebug = { "black", "debug_bg" },
         spacer = { "black", "black" },
       },
       width = breakpoint_width,
@@ -352,9 +352,9 @@ M.theme = {
     basic.dap = {
       name = "dap",
       hl_colors = {
-        yellow = { "debug_red", "debug_yellow" },
-        spacer = { "debug_yellow", "debug_yellow" },
-        sep = { "debug_yellow", "transparent" },
+        dap_status = { "debug_fg", "debug_bg", "bold" },
+        spacer = { "debug_bg", "debug_bg" },
+        sep = { "debug_bg", "transparent" },
       },
       width = breakpoint_width,
       text = function()
@@ -364,7 +364,7 @@ M.theme = {
           return {
             { helper.separators.slant_left, "sep" },
             { " ", "spacer" },
-            { "DAP: " .. status .. " ", "yellow" },
+            { status .. " ", "dap_status" },
           }
         end
         return ""
@@ -464,14 +464,14 @@ M.theme = {
         colors.FilenameFg = colors.white_light
         colors.FilenameBg = colors.black_light
         colors.transparent = "none"
-        colors.grey = "#2a203a"
-        colors.black = "#111111"
-        colors.dark_red = "#8a2f8e"
-        colors.magenta = tmp_base16.base0E
-        colors.dark_green = "#2f8e60"
-        colors.orange = "#d8a657"
-        colors.debug_yellow = "#eae611"
-        colors.debug_red = "#ff6902"
+        colors.grey = tmp_base16.base03
+        colors.black = tmp_base16.base00
+        colors.dark_red = tmp_base16.base0F
+        colors.magenta = tmp_base16.base08
+        colors.dark_green = tmp_base16.base08
+        colors.orange = tmp_base16.base09
+        colors.debug_bg = tmp_base16.base08
+        colors.debug_fg = tmp_base16.base0B
 
         colors.wavedefault = colors.black
 
