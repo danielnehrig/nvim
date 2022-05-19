@@ -163,3 +163,9 @@ _DAP:_
 __DESTRUCTIVE__\
 _NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/danielnehrig/nvim/master/autoinstall.sh)"`
+
+## Customize
+
+We have a config layer copy and paste the default config layout from `config.core.default_config`
+and create folder and file `rootFolder/lua/config/custom/init.lua`
+paste in the default_configs values and adjust accordingly
