@@ -1,14 +1,17 @@
 local M = {}
 M.utility = {
-  {
-    "max397574/better-escape.nvim",
+  ["folke/which-key.nvim"] = {
+    config = function()
+      require("config.plugins.configs.which").init()
+    end,
+  },
+  ["max397574/better-escape.nvim"] = {
     event = "InsertCharPre",
     config = function()
       require("config.plugins.configs.betterescape").init()
     end,
   },
-  {
-    "norcalli/nvim-colorizer.lua",
+  ["norcalli/nvim-colorizer.lua"] = {
     ft = {
       "css",
       "scss",
@@ -21,8 +24,7 @@ M.utility = {
       require("colorizer").setup()
     end,
   },
-  {
-    "axieax/urlview.nvim",
+  ["axieax/urlview.nvim"] = {
     config = function()
       require("urlview").setup({
         -- Prompt title (`<context> <default_title>`, e.g. `Buffer Links:`)
@@ -50,10 +52,9 @@ M.utility = {
       })
     end,
   },
-  { "lambdalisue/suda.vim", cmd = { "SudaWrite" } }, -- save as root
-  { "junegunn/vim-slash", keys = { "/" } }, -- better search
-  {
-    "rcarriga/nvim-notify",
+  ["lambdalisue/suda.vim"] = { cmd = { "SudaWrite" } }, -- save as root
+  ["junegunn/vim-slash"] = { keys = { "/" } }, -- better search
+  ["rcarriga/nvim-notify"] = {
     config = function()
       local notify = require("notify")
       vim.cmd("highlight! NotifyBG guibg=#3d3d3d guifg=#3e4451")
@@ -76,8 +77,7 @@ M.utility = {
       vim.notify = notify
     end,
   }, -- notication pop up
-  {
-    "ten3roberts/window-picker.nvim",
+  ["ten3roberts/window-picker.nvim"] = {
     config = function()
       require("window-picker").setup({
         -- Default keys to annotate, keys will be used in order. The default uses the
@@ -93,9 +93,8 @@ M.utility = {
       })
     end,
   },
-  { "kevinhwang91/nvim-bqf", ft = "qf" }, -- better quickfix
-  {
-    "luukvbaal/stabilize.nvim",
+  ["kevinhwang91/nvim-bqf"] = { ft = "qf" }, -- better quickfix
+  ["luukvbaal/stabilize.nvim"] = {
     config = function()
       require("stabilize").setup({
         force = true,
@@ -114,10 +113,9 @@ M.utility = {
       })
     end,
   },
-  { "junegunn/vim-easy-align", cmd = { "EasyAlign" } },
-  { "nathom/filetype.nvim" },
-  {
-    "andweeb/presence.nvim",
+  ["junegunn/vim-easy-align"] = { cmd = { "EasyAlign" } },
+  ["nathom/filetype.nvim"] = {},
+  ["andweeb/presence.nvim"] = {
     config = function()
       require("presence"):setup({
         -- General options
@@ -142,21 +140,18 @@ M.utility = {
       })
     end,
   },
-  { "ggandor/lightspeed.nvim" },
-  {
-    "jghauser/mkdir.nvim",
+  ["ggandor/lightspeed.nvim"] = {},
+  ["jghauser/mkdir.nvim"] = {
     config = function()
       require("mkdir")
     end,
   }, -- create folders if not existing
-  {
-    "folke/todo-comments.nvim",
+  ["folke/todo-comments.nvim"] = {
     config = require("config.plugins.configs.todo").init,
     wants = "telescope.nvim",
     cmd = { "TodoQuickFix", "TodoTrouble", "TodoTelescope" },
   }, -- show todos in qf
-  {
-    "ur4ltz/surround.nvim",
+  ["ur4ltz/surround.nvim"] = {
     config = function()
       require("surround").setup({ mappings_style = "surround" })
     end,

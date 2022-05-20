@@ -4,7 +4,6 @@ local M = {}
 
 function M.load_options()
   g.did_load_filetypes = 0
-  g.toggle_theme_icon = "   "
   g.do_filetype_lua = 1
 
   opt.shadafile = "NONE"

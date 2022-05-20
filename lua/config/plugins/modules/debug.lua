@@ -3,14 +3,12 @@ local sep_os_replacer = require("config.utils").sep_os_replacer
 local M = {}
 
 M.debug = {
-  {
-    "rcarriga/vim-ultest",
+  ["rcarriga/vim-ultest"] = {
     cmd = { "Ultest" },
     requires = { "vim-test/vim-test" },
     run = ":UpdateRemotePlugins",
   },
-  {
-    "vim-test/vim-test",
+  ["vim-test/vim-test"] = {
     cmd = { "TestFile" },
     requires = {
       {
@@ -21,10 +19,9 @@ M.debug = {
     },
     wants = { "vim-dispatch", "neomake" },
   },
-  { "jbyuki/one-small-step-for-vimkind" },
-  { "mfussenegger/nvim-dap-python", opt = true },
-  {
-    "Pocco81/DAPInstall.nvim",
+  ["jbyuki/one-small-step-for-vimkind"] = {},
+  ["mfussenegger/nvim-dap-python"] = { opt = true },
+  ["Pocco81/DAPInstall.nvim"] = {
     cmd = { "DIInstall", "DIList" },
     config = function()
       local dap_install = require("dap-install")
@@ -36,12 +33,10 @@ M.debug = {
       })
     end,
   },
-  {
-    "mfussenegger/nvim-dap",
+  ["mfussenegger/nvim-dap"] = {
     opt = true,
   },
-  {
-    "rcarriga/nvim-dap-ui",
+  ["rcarriga/nvim-dap-ui"] = {
     opt = true,
     requires = { "mfussenegger/nvim-dap" },
   },

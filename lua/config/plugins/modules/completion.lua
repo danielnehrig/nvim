@@ -1,7 +1,6 @@
 local M = {}
 M.completion = {
-  {
-    "hrsh7th/nvim-cmp",
+  ["hrsh7th/nvim-cmp"] = {
     config = require("config.plugins.configs.cmp").init,
     requires = {
       { "hrsh7th/cmp-cmdline" },
@@ -27,9 +26,8 @@ M.completion = {
       },
     },
   },
-  { "hrsh7th/cmp-nvim-lsp-signature-help" },
-  {
-    "onsails/lspkind-nvim",
+  ["hrsh7th/cmp-nvim-lsp-signature-help"] = {},
+  ["onsails/lspkind-nvim"] = {
     config = function()
       require("lspkind").init({
         mode = "symbol_text",
