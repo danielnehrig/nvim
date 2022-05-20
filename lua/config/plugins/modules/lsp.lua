@@ -1,8 +1,7 @@
 local M = {}
 
 M.lsp = {
-  {
-    "folke/lsp-colors.nvim",
+  ["folke/lsp-colors.nvim"] = {
     config = function()
       require("lsp-colors").setup({
         Error = "#db4b4b",
@@ -12,22 +11,18 @@ M.lsp = {
       })
     end,
   },
-  { "folke/lua-dev.nvim", opt = true }, -- lua nvim setup
-  {
-    "neovim/nvim-lspconfig",
+  ["folke/lua-dev.nvim"] = { opt = true }, -- lua nvim setup
+  ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
   },
-  {
-    "folke/trouble.nvim",
+  ["folke/trouble.nvim"] = {
     config = function()
       require("trouble").setup()
     end,
     cmd = { "Trouble" },
     requires = "kyazdani42/nvim-web-devicons",
   },
-  {
-    "nvim-lua/lsp-status.nvim",
-  },
+  ["nvim-lua/lsp-status.nvim"] = {},
 }
 
 return M

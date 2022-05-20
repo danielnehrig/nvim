@@ -1,30 +1,26 @@
 local M = {}
 
 M.git = {
-  {
-    "ldelossa/gh.nvim",
+  ["ldelossa/gh.nvim"] = {
     requires = { "ldelossa/litee.nvim" },
     config = function()
       require("litee.lib").setup()
       require("litee.gh").setup()
     end,
   },
-  {
-    "lewis6991/gitsigns.nvim",
+  ["lewis6991/gitsigns.nvim"] = {
     event = { "BufRead", "BufNewFile" },
     config = require("config.plugins.configs.gitsigns").init,
     requires = {
       { "nvim-lua/plenary.nvim", after = "gitsigns.nvim" },
     },
   },
-  {
-    "tpope/vim-fugitive",
+  ["tpope/vim-fugitive"] = {
     opt = true,
     cmd = { "Git", "Git mergetool" },
   },
-  { "kdheepak/lazygit.nvim", cmd = { "LazyGit" } },
-  {
-    "TimUntersberger/neogit",
+  ["kdheepak/lazygit.nvim"] = { cmd = { "LazyGit" } },
+  ["TimUntersberger/neogit"] = {
     config = function()
       local neogit = require("neogit")
       neogit.setup({
@@ -34,15 +30,13 @@ M.git = {
     end,
     requires = "nvim-lua/plenary.nvim",
   },
-  {
-    "ruifm/gitlinker.nvim",
+  ["ruifm/gitlinker.nvim"] = {
     requires = {
       { "nvim-lua/plenary.nvim" },
     },
     opt = true,
   },
-  {
-    "tanvirtin/vgit.nvim",
+  ["tanvirtin/vgit.nvim"] = {
     requires = {
       "nvim-lua/plenary.nvim",
     },
@@ -56,14 +50,12 @@ M.git = {
       })
     end,
   },
-  {
-    "akinsho/git-conflict.nvim",
+  ["akinsho/git-conflict.nvim"] = {
     config = function()
       require("git-conflict").setup()
     end,
   },
-  {
-    "danielnehrig/github-ci.nvim",
+  ["danielnehrig/github-ci.nvim"] = {
     requires = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
     cmd = { "GithubCI" },
     config = function()

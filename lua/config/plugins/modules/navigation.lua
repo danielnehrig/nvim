@@ -1,14 +1,12 @@
 local M = {}
 
 M.packer = {
-  {
-    "andymass/vim-matchup",
+  ["andymass/vim-matchup"] = {
     setup = function()
       vim.g.matchup_matchparen_offscreen = {}
     end,
   },
-  {
-    "VonHeikemen/fine-cmdline.nvim",
+  ["VonHeikemen/fine-cmdline.nvim"] = {
     config = function()
       local fineline = require("fine-cmdline")
       local fno = fineline.fn
@@ -38,13 +36,11 @@ M.packer = {
       { "MunifTanjim/nui.nvim" },
     },
   },
-  {
-    "hkupty/nvimux",
+  ["hkupty/nvimux"] = {
     keys = { "<C-a>" },
     config = require("config.plugins.configs.nvimux").init,
   },
-  {
-    "nvim-telescope/telescope.nvim",
+  ["nvim-telescope/telescope.nvim"] = {
     cmd = { "Telescope" },
     config = require("config.plugins.configs.telescope").init,
     requires = {
@@ -58,14 +54,12 @@ M.packer = {
       { "nvim-telescope/telescope-project.nvim" },
     },
   },
-  {
-    "kyazdani42/nvim-tree.lua",
+  ["kyazdani42/nvim-tree.lua"] = {
     requires = "kyazdani42/nvim-web-devicons",
     config = require("config.plugins.configs.nvimTree").init,
     cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
   },
-  {
-    "abecodes/tabout.nvim",
+  ["abecodes/tabout.nvim"] = {
     config = function()
       require("tabout").setup({
         tabkey = "<Tab>",

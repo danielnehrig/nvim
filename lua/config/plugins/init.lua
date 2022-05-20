@@ -29,48 +29,8 @@ local function init()
 
   use({ "lewis6991/impatient.nvim" })
 
-  for _, theme in pairs(require("config.plugins.modules.themes").theme) do
-    use(theme)
-  end
-
-  for _, theme in pairs(require("config.plugins.modules.themes").ts_themes) do
-    use(theme.packer_cfg)
-  end
-
-  for _, utility in pairs(require("config.plugins.modules.utility").utility) do
-    use(utility)
-  end
-
-  for _, git in pairs(require("config.plugins.modules.git").git) do
-    use(git)
-  end
-
-  for _, ts in pairs(require("config.plugins.modules.treesitter").ts) do
-    use(ts)
-  end
-
-  for _, lsp in pairs(require("config.plugins.modules.lsp").lsp) do
-    use(lsp)
-  end
-
-  for _, completion in
-    pairs(require("config.plugins.modules.completion").completion)
-  do
-    use(completion)
-  end
-
-  for _, language in pairs(require("config.plugins.modules.language").language) do
-    use(language)
-  end
-
-  for _, debug in pairs(require("config.plugins.modules.debug").debug) do
-    use(debug)
-  end
-
-  for _, navigation in
-    pairs(require("config.plugins.modules.navigation").packer)
-  do
-    use(navigation)
+  for _, plugin in pairs(require("config.plugins.modules").plugins) do
+    use(plugin)
   end
 
   use({ "windwp/nvim-autopairs" }) -- autopairs "" {}

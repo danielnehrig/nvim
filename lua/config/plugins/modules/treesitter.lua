@@ -1,35 +1,30 @@
 local M = {}
 
 M.ts = {
-  {
-    "ThePrimeagen/refactoring.nvim",
+  ["ThePrimeagen/refactoring.nvim"] = {
     config = require("config.plugins.configs.refactoring").init,
     requires = {
       { "nvim-treesitter/nvim-treesitter" },
       { "nvim-lua/plenary.nvim" },
     },
   },
-  {
-    "SmiteshP/nvim-gps",
+  ["SmiteshP/nvim-gps"] = {
     requires = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-gps").setup()
     end,
   },
-  { "nvim-treesitter/nvim-treesitter" },
-  { "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" },
-  {
-    "danymat/neogen",
+  ["nvim-treesitter/nvim-treesitter"] = {},
+  ["yioneko/nvim-yati"] = { requires = "nvim-treesitter/nvim-treesitter" },
+  ["danymat/neogen"] = {
     cmd = { "DocGen" },
     config = require("config.plugins.configs.neogen").init,
     requires = "nvim-treesitter/nvim-treesitter",
   },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
+  ["JoosepAlviste/nvim-ts-context-commentstring"] = {
     requires = "nvim-treesitter/nvim-treesitter",
   },
-  {
-    "winston0410/commented.nvim",
+  ["winston0410/commented.nvim"] = {
     keys = { "<space>cc" },
     config = function()
       require("commented").setup({
@@ -39,12 +34,10 @@ M.ts = {
       })
     end,
   },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
+  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
     requires = "nvim-treesitter/nvim-treesitter",
   },
-  {
-    "mizlan/iswap.nvim",
+  ["mizlan/iswap.nvim"] = {
     requires = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("iswap").setup({
@@ -78,17 +71,14 @@ M.ts = {
       })
     end,
   },
-  {
-    "nvim-treesitter/playground",
+  ["nvim-treesitter/playground"] = {
     cmd = "TSPlaygroundToggle",
     requires = "nvim-treesitter/nvim-treesitter",
   },
-  {
-    "RRethy/nvim-treesitter-textsubjects",
+  ["RRethy/nvim-treesitter-textsubjects"] = {
     requires = "nvim-treesitter/nvim-treesitter",
   },
-  {
-    "lewis6991/spellsitter.nvim",
+  ["lewis6991/spellsitter.nvim"] = {
     requires = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("spellsitter").setup({
@@ -97,8 +87,7 @@ M.ts = {
       })
     end,
   },
-  {
-    "windwp/nvim-ts-autotag",
+  ["windwp/nvim-ts-autotag"] = {
     requires = "nvim-treesitter/nvim-treesitter",
   },
 }
