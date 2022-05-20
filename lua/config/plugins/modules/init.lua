@@ -12,16 +12,20 @@ local packer = require("config.plugins.modules.navigation").packer
 local M = {}
 
 local plugin_table = {}
-plugin_table = vim.tbl_deep_extend("force", plugin_table, theme)
-plugin_table = vim.tbl_deep_extend("force", plugin_table, git)
-plugin_table = vim.tbl_deep_extend("force", plugin_table, utility)
-plugin_table = vim.tbl_deep_extend("force", plugin_table, ts)
-plugin_table = vim.tbl_deep_extend("force", plugin_table, lsp)
-plugin_table = vim.tbl_deep_extend("force", plugin_table, completion)
-plugin_table = vim.tbl_deep_extend("force", plugin_table, language)
-plugin_table = vim.tbl_deep_extend("force", plugin_table, debug)
-plugin_table = vim.tbl_deep_extend("force", plugin_table, packer)
-plugin_table = vim.tbl_deep_extend("force", plugin_table, ts_themes)
+plugin_table = vim.tbl_deep_extend(
+  "force",
+  plugin_table,
+  theme,
+  git,
+  utility,
+  ts_themes,
+  lsp,
+  ts,
+  completion,
+  debug,
+  packer,
+  language
+)
 
 M.plugins = {}
 for key, _ in pairs(plugin_table) do
