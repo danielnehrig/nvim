@@ -5,6 +5,7 @@ if not vim.g.neovide then
   cmd("highlight! SignColumn guibg = none")
   cmd("highlight! LineNr guibg = none")
   cmd("highlight! VertSplit guibg = none")
+  cmd("highlight! FoldColumn guifg=#a485dd guibg=none ctermbg=none")
 end
 cmd(
   "highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080"
@@ -24,4 +25,3 @@ cmd("highlight! TelescopeNormal guibg=none ctermbg=none")
 cmd("highlight! TelescopePromptBorder guibg=none ctermbg=none")
 cmd("highlight! TelescopeResultsBorder  guibg=none ctermbg=none")
 cmd("highlight! TelescopePreviewBorder  guibg=none ctermbg=none")
-cmd("highlight! FoldColumn guifg=#a485dd guibg=none ctermbg=none")

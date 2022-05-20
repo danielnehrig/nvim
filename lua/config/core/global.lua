@@ -52,34 +52,21 @@ function global.reload(plugins)
 
   if type(plugins) == "string" then
     _reload_plugin(plugins)
+    vim.notify(string.format("Plugin %s reloaded", plugins))
   elseif type(plugins) == "table" then
     for _, plugin in ipairs(plugins) do
       _reload_plugin(plugin)
+      vim.notify(string.format("Plugins %s reloaded", unpack(plugins)))
     end
   end
 
-  vim.notify("config reloaded")
-  global:create_config()
   return status
-end
-
-function global:create_config()
-  self.config = require("config.core.default_config")
-  local custom_config = vim.fn.filereadable(
-    vim.fn.stdpath("config") .. "/lua/config/custom/init.lua"
-  ) == 1
-
-  if custom_config then
-    local user_config = require("config.custom")
-    self.config = vim.tbl_deep_extend("force", self.config, user_config)
-  end
 end
 
 local global_instance = nil
 if not global_instance then
   global_instance = global
   global_instance:load_variables()
-  global_instance:create_config()
 end
 
 return global_instance
