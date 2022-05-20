@@ -13,4 +13,8 @@ default_config.ui = {
   },
 }
 
+default_config.plugins = {
+  user = {},
+}
+
 return default_config

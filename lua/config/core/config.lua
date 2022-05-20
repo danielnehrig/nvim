@@ -35,4 +35,16 @@ M.get_config = function()
   return config
 end
 
+M.remove_default_plugins = function(plugins)
+  local removals = M.get_config().plugins.remove or {}
+
+  if not vim.tbl_isempty(removals) then
+    for _, plugin in pairs(removals) do
+      plugins[plugin] = nil
+    end
+  end
+
+  return plugins
+end
+
 return M
