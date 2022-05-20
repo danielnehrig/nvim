@@ -169,3 +169,11 @@ _NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
 We have a config layer copy and paste the default config layout from `config.core.default_config`
 and create folder and file `rootFolder/lua/config/custom/init.lua`
 paste in the default_configs values and adjust accordingly
+
+### Inspriations and sources
+
+- Lvim
+- nvchad and module suite
+  - Theme based solution (which i incorporated packer themes in)
+  - If the theme modules wouldn't be strictly written for nvchad i would have used their module
+- base16
