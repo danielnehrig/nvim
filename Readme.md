@@ -20,7 +20,7 @@
 
 ## Preview
 
-https://user-images.githubusercontent.com/4050749/136713743-4117a967-c5f5-4735-ad1c-9a6743fb743c.mp4
+https://user-images.githubusercontent.com/4050749/169545588-198c7dab-11fa-4306-bcd0-9f1eea4b0556.mp4
 
 __Try it out yourself!__\
 _(stable version)_
