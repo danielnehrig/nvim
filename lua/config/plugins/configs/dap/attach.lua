@@ -69,7 +69,7 @@ function M.getStatus()
       if dap.session() then
         if dap.session().config then
           local type = dap.session().config.type
-          return type .. "ﮣ" .. dap.status()
+          return type .. " ﮣ " .. dap.status()
         end
       end
       return "DAP"
