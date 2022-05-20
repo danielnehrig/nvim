@@ -16,10 +16,9 @@ local white = colors.white
 local yellow = colors.yellow
 local orange = colors.orange
 
--- highlight groups & colors
 return {
 
-  Comment = { fg = grey_fg },
+  Comment = { fg = grey_fg, italic = true },
 
   -- line numbers
   CursorLineNr = { fg = white },
