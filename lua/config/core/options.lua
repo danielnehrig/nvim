@@ -76,7 +76,7 @@ function M.load_options()
     -- vim.g.neovide_transparency = 0.5
   end
 
-  opt.updatetime = 250 -- update interval for gitsigns
+  opt.updatetime = 60 -- update interval for gitsigns
   opt.inccommand = "nosplit"
   opt.incsearch = true
   opt.timeoutlen = 500
