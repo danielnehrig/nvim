@@ -2,8 +2,8 @@ local M = {}
 
 M.general = {
   v = {
-    { "J", ":m '>+1<CR>gv=gv" },
-    { "K", ":m '<-2<CR>gv=gv" },
+    { "J", "<Cmd>m '>+1<CR>gv=gv" },
+    { "K", "<Cmd>m '<-2<CR>gv=gv" },
     { "<leader>p", '"_dP' },
     { "<leader>D", '"_d' },
   },
@@ -12,10 +12,10 @@ M.general = {
     { "<leader>D", '"_d' },
     { "<C-d>", "<C-d>zz" },
     { "<C-u>", "<C-u>zz" },
-    { "<A-h>", ":vert resize +5<CR>" },
-    { "<A-j>", ":resize  +5<CR>" },
-    { "<A-k>", ":resize  -5<CR>" },
-    { "<A-l>", ":vert resize -5<CR>" },
+    { "<A-h>", "<Cmd>vert resize +5<CR>" },
+    { "<A-j>", "<Cmd>resize  +5<CR>" },
+    { "<A-k>", "<Cmd>resize  -5<CR>" },
+    { "<A-l>", "<Cmd>vert resize -5<CR>" },
   },
   i = { { "jj", "<ESC>" } },
 }
@@ -28,17 +28,17 @@ M.quickfix = {
         require("config.utils").toggle_qf()
       end,
     },
-    { "<Leader>qn", ":cnext<CR>" },
-    { "<Leader>qp", ":cprev<CR>" },
+    { "<Leader>qn", "<Cmd>cnext<CR>" },
+    { "<Leader>qp", "<Cmd>cprev<CR>" },
   },
 }
 
 M.loclist = {
   n = {
-    { "<Leader>lc", ":lclose<CR>" },
-    { "<Leader>lo", ":lopen<CR>" },
-    { "<Leader>ln", ":lnext<CR>" },
-    { "<Leader>lp", ":lprev<CR>" },
+    { "<Leader>lc", "<Cmd>lclose<CR>" },
+    { "<Leader>lo", "<Cmd>lopen<CR>" },
+    { "<Leader>ln", "<Cmd>lnext<CR>" },
+    { "<Leader>lp", "<Cmd>lprev<CR>" },
   },
 }
 
@@ -48,24 +48,23 @@ M.others = {
     {
       "<Leader>gy",
       function()
-        require("config.plugins.configs.gitlinker"):normal()
+        require("config.plugins.configs.gitlinker").normal()
       end,
     },
-    { "<Leader>gt", ":Trouble<CR>" },
-    { "<Leader>ms", ":Neomake<CR>" },
-    { "<Leader>mt", ":TestFile<CR>" },
-    { "<Leader>mu", ":Ultest<CR>" },
-    { "<Leader>nf", ":DocGen<CR>" },
-    { "<Leader>w", ":WindowPick<CR>" },
+    { "<Leader>gt", "<Cmd>Trouble<CR>" },
+    { "<Leader>ms", "<Cmd>Neomake<CR>" },
+    { "<Leader>mt", "<Cmd>TestFile<CR>" },
+    { "<Leader>mu", "<Cmd>Ultest<CR>" },
+    { "<Leader>nf", "<Cmd>DocGen<CR>" },
+    { "<Leader>w", "<Cmd>WindowPick<CR>" },
   },
   v = {
     {
       "<Leader>gy",
       function()
-        require("config.plugins.configs.gitlinker"):visual()
+        require("config.plugins.configs.gitlinker").visual()
       end,
     },
-
     {
       "<Leader>rt",
       "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
@@ -78,21 +77,21 @@ M.telescope = {
   n = {
     {
       "<Leader>ff",
-      "<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>",
+      "<Cmd>enew|Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>",
     },
-    { "<Leader>fg", ":Telescope live_grep<CR>" },
-    { "<Leader>fb", ":Telescope file_browser<CR>" },
-    { "<Leader>fs", ":Telescope git_status<CR>" },
-    { "<Leader>fh", ":Telescope help_tags<CR>" },
-    { "<Leader>fo", ":Telescope oldfiles<CR>" },
-    { "<Leader>fp", ":Telescope project<CR>" },
+    { "<Leader>fg", "<Cmd>enew|Telescope live_grep<CR>" },
+    { "<Leader>fb", "<Cmd>enew|Telescope file_browser<CR>" },
+    { "<Leader>fs", "<Cmd>enew|Telescope git_status<CR>" },
+    { "<Leader>fh", "<Cmd>enew|Telescope help_tags<CR>" },
+    { "<Leader>fo", "<Cmd>enew|Telescope oldfiles<CR>" },
+    { "<Leader>fp", "<Cmd>enew|Telescope project<CR>" },
   },
 }
 
 M.tree = {
   n = {
-    { "<Leader>n", ":NvimTreeFindFile<CR>" },
-    { "<C-n>", ":NvimTreeToggle<CR>" },
+    { "<Leader>n", "<Cmd>NvimTreeFindFile<CR>" },
+    { "<C-n>", "<Cmd>NvimTreeToggle<CR>" },
   },
 }
 
