@@ -2,19 +2,19 @@ local M = {}
 
 function M.init()
   local present, cmp = pcall(require, "cmp")
-  local k_present, lspkind = pcall(require, "lspkind")
   if not present then
     vim.notify("cmp is not installed or loaded")
-    return
-  end
-  if not k_present then
-    vim.notify("lspkind is not installed or loaded")
     return
   end
 
   cmp.setup({
     formatting = {
       format = function(entry, vim_item)
+        local k_present, lspkind = pcall(require, "lspkind")
+        if not k_present then
+          vim.notify("lspkind is not installed or loaded")
+          return
+        end
         -- fancy icons and a name of kind
         vim_item.kind = lspkind.presets.default[vim_item.kind]
           .. " "
