@@ -45,9 +45,7 @@ M.completion = {
   ["hrsh7th/cmp-path"] = {
     after = "cmp-spell",
   },
-  ["hrsh7th/cmp-nvim-lsp"] = {
-    after = "cmp-path",
-  },
+  ["hrsh7th/cmp-nvim-lsp"] = {},
   ["hrsh7th/cmp-buffer"] = {
     after = "cmp-nvim-lsp",
   },
