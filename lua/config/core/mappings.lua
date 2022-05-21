@@ -77,14 +77,14 @@ M.telescope = {
   n = {
     {
       "<Leader>ff",
-      "<Cmd>enew|Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>",
+      "<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>",
     },
-    { "<Leader>fg", "<Cmd>enew|Telescope live_grep<CR>" },
-    { "<Leader>fb", "<Cmd>enew|Telescope file_browser<CR>" },
-    { "<Leader>fs", "<Cmd>enew|Telescope git_status<CR>" },
-    { "<Leader>fh", "<Cmd>enew|Telescope help_tags<CR>" },
-    { "<Leader>fo", "<Cmd>enew|Telescope oldfiles<CR>" },
-    { "<Leader>fp", "<Cmd>enew|Telescope project<CR>" },
+    { "<Leader>fg", "<Cmd>Telescope live_grep<CR>" },
+    { "<Leader>fb", "<Cmd>Telescope file_browser<CR>" },
+    { "<Leader>fs", "<Cmd>Telescope git_status<CR>" },
+    { "<Leader>fh", "<Cmd>Telescope help_tags<CR>" },
+    { "<Leader>fo", "<Cmd>Telescope oldfiles<CR>" },
+    { "<Leader>fp", "<Cmd>Telescope project<CR>" },
   },
 }
 
