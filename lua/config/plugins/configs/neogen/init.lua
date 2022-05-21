@@ -3,7 +3,10 @@ local set = vim.keymap.set
 local M = {}
 
 M.init = function()
-  local neogen = require("neogen")
+  local present, neogen = pcall(require, "neogen")
+  if not present then
+    return
+  end
   neogen.setup({})
 
   vim.cmd([[silent! command DocGen lua require('neogen').generate()]])

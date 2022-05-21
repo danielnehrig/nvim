@@ -1,18 +1,13 @@
 local cmd = vim.cmd
-local gitlinker = nil
 local M = {}
 
 function M.init()
-  if not packer_plugins["plenary.nvim"].loaded then
-    cmd([[packadd plenary.nvim]])
+  local add, _ = pcall(vim.cmd, "packadd gitlinker.nvim")
+  if not add then
+    return
   end
-
-  if not packer_plugins["gitlinker.nvim"].loaded then
-    cmd([[packadd gitlinker.nvim]])
-    gitlinker = require("gitlinker")
-  end
-
-  if not packer_plugins["gitlinker.nvim"].loaded then
+  local present, gitlinker = pcall(require, "gitlinker")
+  if not present then
     return
   end
 
@@ -35,16 +30,22 @@ function M.init()
   })
 end
 
-function M:normal()
-  self.init()
+function M.normal()
+  local present, gitlinker = pcall(require, "gitlinker")
+  if not present then
+    M.init()
+  end
   gitlinker.get_buf_range_url(
     "n",
     { action_callback = require("gitlinker.actions").open_in_browser }
   )
 end
 
-function M:visual()
-  self.init()
+function M.visual()
+  local present, gitlinker = pcall(require, "gitlinker")
+  if not present then
+    M.init()
+  end
   gitlinker.get_buf_range_url(
     "v",
     { action_callback = require("gitlinker.actions").open_in_browser }

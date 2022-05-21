@@ -1,7 +1,10 @@
 local M = {}
 
 function M.init()
-  local nvimux = require("nvimux")
+  local present, nvimux = pcall(require, "nvimux")
+  if not present then
+    return
+  end
   nvimux.setup({
     config = {
       prefix = "<C-a>",
