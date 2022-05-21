@@ -33,7 +33,13 @@ local function init()
     use(plugin)
   end
 
-  use({ "windwp/nvim-autopairs" }) -- autopairs "" {}
+  use({
+    "windwp/nvim-autopairs",
+    after = "nvim-cmp",
+    config = function()
+      require("config.plugins.configs.autopairs").init()
+    end,
+  }) -- autopairs "" {}
   use({
     "vimwiki/vimwiki",
     cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },

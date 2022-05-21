@@ -1,33 +1,64 @@
 local M = {}
 M.completion = {
+  ["zbirenbaum/copilot.lua"] = {
+    event = { "VimEnter" },
+    config = function()
+      vim.defer_fn(function()
+        require("copilot").setup()
+      end, 100)
+    end,
+  },
+  ["rafamadriz/friendly-snippets"] = {
+    module = "cmp_nvim_lsp",
+    event = "InsertEnter",
+  },
   ["hrsh7th/nvim-cmp"] = {
     config = require("config.plugins.configs.cmp").init,
-    requires = {
-      { "hrsh7th/cmp-cmdline" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-path" },
-      { "f3fora/cmp-spell" },
-      -- { "f3fora/cmp-nuspell", rocks = { "lua-nuspell" } },
-      { "saadparwaiz1/cmp_luasnip" },
-      { "L3MON4D3/LuaSnip" },
-      { "rafamadriz/friendly-snippets" },
-      {
-        "kristijanhusak/orgmode.nvim",
-        config = function()
-          require("orgmode").setup({
-            org_agenda_files = { "~/org/*" },
-            org_default_notes_file = "~/org/refile.org",
-          })
-        end,
-        keys = { "<space>oc", "<space>oa" },
-        ft = { "org" },
-        wants = "nvim-cmp",
-      },
-    },
   },
-  ["hrsh7th/cmp-nvim-lsp-signature-help"] = {},
+  ["zbirenbaum/copilot-cmp"] = {
+    after = { "copilot.lua", "nvim-cmp" },
+  },
+  ["kristijanhusak/orgmode.nvim"] = {
+    config = function()
+      require("orgmode").setup({
+        org_agenda_files = { "~/org/*" },
+        org_default_notes_file = "~/org/refile.org",
+      })
+    end,
+    keys = { "<space>oc", "<space>oa" },
+    ft = { "org" },
+    wants = "nvim-cmp",
+  },
+  ["L3MON4D3/LuaSnip"] = {
+    wants = "friendly-snippets",
+    config = function()
+      require("config.plugins.configs.cmp.luasnip").init()
+    end,
+    after = "nvim-cmp",
+  },
+  ["saadparwaiz1/cmp_luasnip"] = {
+    after = "LuaSnip",
+  },
+  ["f3fora/cmp-spell"] = {
+    after = "cmp_luasnip",
+  },
+  ["hrsh7th/cmp-path"] = {
+    after = "cmp-spell",
+  },
+  ["hrsh7th/cmp-nvim-lsp"] = {
+    after = "cmp-path",
+  },
+  ["hrsh7th/cmp-buffer"] = {
+    after = "cmp-nvim-lsp",
+  },
+  ["hrsh7th/cmp-cmdline"] = {
+    after = "nvim-cmp",
+  },
+  ["hrsh7th/cmp-nvim-lsp-signature-help"] = {
+    after = "cmp-cmdline",
+  },
   ["onsails/lspkind-nvim"] = {
+    wants = "nvim-cmp",
     config = function()
       require("lspkind").init({
         mode = "symbol_text",

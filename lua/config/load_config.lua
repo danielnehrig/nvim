@@ -11,7 +11,6 @@ M.init = function()
     use_config().ui.statusline.name
   )
   require("config.plugins.configs.web-devicons").init()
-  require("config.plugins.configs.autopairs").init()
   require("config.plugins.configs.treesitter").init()
   require("config.plugins.configs.build").init()
   require("config.plugins.configs.bufferline").init()

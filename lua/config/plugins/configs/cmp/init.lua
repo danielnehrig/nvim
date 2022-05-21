@@ -2,14 +2,15 @@ local M = {}
 
 function M.init()
   local present, cmp = pcall(require, "cmp")
+  local k_present, lspkind = pcall(require, "lspkind")
   if not present then
-    vim.notify("cmp is not installed")
+    vim.notify("cmp is not installed or loaded")
     return
   end
-
-  local lspkind = require("lspkind")
-  local luasnip = require("luasnip")
-  require("config.plugins.configs.cmp.luasnip").init()
+  if not k_present then
+    vim.notify("lspkind is not installed or loaded")
+    return
+  end
 
   cmp.setup({
     formatting = {
@@ -22,13 +23,14 @@ function M.init()
         -- set a name for each source
         vim_item.menu = ({
           path = "[Path]",
-          -- cmp_tabnine = "[TabNine]",
           nvim_lsp = "[LSP]",
+          copilot = "[Copilot]",
           spell = "[Spell]",
           cmdline = "[CMD]",
           cmp_git = "[GIT]",
           luasnip = "[LuaSnip]",
           nvim_lua = "[NLua]",
+          buffer = "[Buffer]",
         })[entry.source.name]
         return vim_item
       end,
@@ -36,7 +38,7 @@ function M.init()
     snippet = {
       expand = function(args)
         -- For `luasnip` user.
-        luasnip.lsp_expand(args.body)
+        require("luasnip").lsp_expand(args.body)
       end,
     },
     window = {
@@ -52,6 +54,7 @@ function M.init()
     },
     mapping = {
       ["<S-Tab>"] = cmp.mapping(function(fallback)
+        local luasnip = require("luasnip")
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip and luasnip.jumpable(-1) then
@@ -65,6 +68,7 @@ function M.init()
         "c",
       }),
       ["<Tab>"] = cmp.mapping(function(fallback)
+        local luasnip = require("luasnip")
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip and luasnip.expand_or_jumpable() then
@@ -130,6 +134,7 @@ function M.init()
     -- preselect = cmp.PreselectMode.Item,
     sources = {
       { name = "nvim_lsp_signature_help" },
+      { name = "copilot" },
       { name = "nvim_lsp" },
       -- { name = "cmp_tabnine" },
       { name = "luasnip" },
@@ -158,29 +163,6 @@ function M.init()
       { name = "buffer" },
     },
   })
-
-  cmp.setup.filetype({ "fineline" }, {
-    sources = {
-      { name = "path" }, -- You can specify the `cmp_git` source if you were installed it.
-      { name = "cmdline" },
-    },
-  })
-
-  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-  --  local tabnine = require("cmp_tabnine.config")
-  --  tabnine:setup({
-  --  max_lines = 1000,
-  --  max_num_results = 20,
-  --  sort = true,
-  --  run_on_every_keystroke = true,
-  --  snippet_placeholder = "..",
-  --  ignored_file_types = { -- default is not to ignore
-  --  -- uncomment to ignore in lua:
-  --  -- lua = true
-  --  },
-  --  })
 end
 
 return M
