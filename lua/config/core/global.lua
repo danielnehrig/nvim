@@ -24,10 +24,8 @@ function global:load_variables()
   )
 end
 
-global:load_variables()
-
 --- Reload the Config
-function global.reload()
+function global.reload_all()
   for k, _ in pairs(package.loaded) do
     if string.match(k, "^config") then
       package.loaded[k] = nil
@@ -38,4 +36,37 @@ function global.reload()
   vim.cmd("doautocmd VimEnter")
 end
 
-return global
+function global.reload(plugins)
+  local status = true
+  local function _reload_plugin(plugin)
+    local loaded = package.loaded[plugin]
+    if loaded then
+      package.loaded[plugin] = nil
+    end
+    local ok, err = pcall(require, plugin)
+    if not ok then
+      print("Error: Cannot load " .. plugin .. " plugin!\n" .. err .. "\n")
+      status = false
+    end
+  end
+
+  if type(plugins) == "string" then
+    _reload_plugin(plugins)
+    vim.notify(string.format("Plugin %s reloaded", plugins))
+  elseif type(plugins) == "table" then
+    for _, plugin in ipairs(plugins) do
+      _reload_plugin(plugin)
+      vim.notify(string.format("Plugins %s reloaded", unpack(plugins)))
+    end
+  end
+
+  return status
+end
+
+local global_instance = nil
+if not global_instance then
+  global_instance = global
+  global_instance:load_variables()
+end
+
+return global_instance

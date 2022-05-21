@@ -57,7 +57,7 @@ function M.autocmds()
   })
   vim.api.nvim_create_autocmd("DirChanged", {
     callback = function()
-      require("config.plugins.lspconfig.lua").reinit()
+      require("config.plugins.configs.lspconfig.servers.lua").reinit()
     end,
     group = au_utils,
   })
@@ -65,7 +65,7 @@ function M.autocmds()
   vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.lua",
     callback = function()
-      require("config.core.global").reload()
+      -- require("config.core.global").reload_all()
     end,
     group = au_pack,
   })
@@ -73,6 +73,13 @@ function M.autocmds()
     pattern = "PackerComplete",
     callback = function()
       require("packer").compile()
+    end,
+    group = au_pack,
+  })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "PackerCompileComplete",
+    callback = function()
+      vim.notify("Packer Compiled!")
     end,
     group = au_pack,
   })
@@ -147,7 +154,9 @@ function M.autocmds()
     pattern = { "*:i*", "i*:*" },
     group = au_utils,
     callback = function()
-      vim.o.relativenumber = vim.v.event.new_mode:match("^i") == nil
+      if vim.bo.filetype ~= "TelescopePrompt" then
+        vim.o.relativenumber = vim.v.event.new_mode:match("^i") == nil
+      end
     end,
   })
 end

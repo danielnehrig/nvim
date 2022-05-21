@@ -20,7 +20,7 @@
 
 ## Preview
 
-https://user-images.githubusercontent.com/4050749/136713743-4117a967-c5f5-4735-ad1c-9a6743fb743c.mp4
+https://user-images.githubusercontent.com/4050749/169545588-198c7dab-11fa-4306-bcd0-9f1eea4b0556.mp4
 
 __Try it out yourself!__\
 _(stable version)_
@@ -163,3 +163,17 @@ _DAP:_
 __DESTRUCTIVE__\
 _NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/danielnehrig/nvim/master/autoinstall.sh)"`
+
+## Customize
+
+We have a config layer copy and paste the default config layout from `config.core.default_config`
+and create folder and file `rootFolder/lua/config/custom/init.lua`
+paste in the default_configs values and adjust accordingly
+
+### Inspriations and sources
+
+- Lvim
+- nvchad and module suite
+  - Theme based solution (which i incorporated packer themes in)
+  - If the theme modules wouldn't be strictly written for nvchad i would have used their module
+- base16
