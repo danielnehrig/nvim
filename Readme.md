@@ -12,15 +12,15 @@
 
 - [Preview](#preview)
   - [Try it out with Docker!](#try-it-out-with-docker)
-- [Pitch](#pitch)
-- [The Main Goals](#the-main-goals)
-- [Philosophy and side infos](#philosophy-and-side-infos)
-  - [Nvim Log](#nvim-log)
-  - [Setup](#setup)
-    - [Manual Setup](#manual-setup)
-    - [Auto Setup](#auto-setup)
-    - [Requirements](#requirements)
-    - [Customize](#customize)
+  - [Pitch](#pitch)
+  - [The Main Goals](#the-main-goals)
+  - [Philosophy and side infos](#philosophy-and-side-infos)
+    - [Nvim Log](#nvim-log)
+- [Setup](#setup)
+  - [Manual Setup](#manual-setup)
+  - [Auto Setup](#auto-setup)
+  - [Requirements](#requirements)
+  - [Customize](#customize)
 - [Inspirations and sources](#inspirations-and-sources)
 
 # Preview
@@ -128,9 +128,9 @@ _[Logs](./nvim.log) created on_
 - 32GB Ram
 - Arch Linux
 
-## Setup
+# Setup
 
-### Manual Setup
+## Manual Setup
 
 0. `git clone https://github.com/danielnehrig/nvim ~/.config/nvim && cd ~/.config/nvim`
 1. `./package.py`
@@ -138,13 +138,13 @@ _[Logs](./nvim.log) created on_
 3. `nvim +'autocmd User PackerComplete TSInstall all' +'PackerSync'`
 4. _optional:_ `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
 
-### Auto Setup
+## Auto Setup
 
 **DESTRUCTIVE**\
 _NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/danielnehrig/nvim/master/autoinstall.sh)"`
 
-### Requirements
+## Requirements
 
 _Font:_
 
@@ -178,7 +178,7 @@ _DAP:_
 - Some Adapters can be installed with Dap install
 - Java Adapter has to be installed manually
 
-### Customize
+## Customize
 
 We have a config layer copy and paste the default config layout from `config.core.default_config`
 and create folder and file `rootFolder/lua/config/custom/init.lua`
