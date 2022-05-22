@@ -53,24 +53,24 @@ Focus on idiomatic mappings with simplicity
 
 <details>
 <summary>Synopsis</summary>
-I've been using vim for about 7-8 years now\
-while i was aware that neovim was a thing\
-i didn't really understand or tried to understand\
-which problems it tries to solve which vim has\
-one day I jumped about features for the 0.5.0 upcoming release\
-which was about the native LSP in neovim\
-while i was using YCM at that time for VIM\
-(which i was pretty happy with)\
-i thought lets give it a shot how it works for neovim\
-this is when i realized that neovim had a LUA JIT\
-implemented at that moment i was sold to it due to prior lua experience\
-i investigated the lua plugin ecosystem while fairly small at that time\
-it grew and grew and grew... It looked promising\
-now we are here back at it again configuring the same editor\
-with better features\
-this time getting a IDE like experience\
-getting rid of prior pain points with vim\
-and getting rid of bad habits.\
+I've been using vim for about 7-8 years now
+while i was aware that neovim was a thing
+i didn't really understand or tried to understand
+which problems it tries to solve which vim has
+one day I jumped about features for the 0.5.0 upcoming release
+which was about the native LSP in neovim
+while i was using YCM at that time for VIM
+(which i was pretty happy with)
+i thought lets give it a shot how it works for neovim
+this is when i realized that neovim had a LUA JIT
+implemented at that moment i was sold to it due to prior lua experience
+i investigated the lua plugin ecosystem while fairly small at that time
+it grew and grew and grew... It looked promising
+now we are here back at it again configuring the same editor
+with better features
+this time getting a IDE like experience
+getting rid of prior pain points with vim
+and getting rid of bad habits.
 the journey begins
 </details>
 
@@ -194,15 +194,15 @@ paste in the default_configs values and adjust accordingly
 ## Mappings
 
 <details>
-<summary>Requirements</summary>
-Space is the leader key
-d - is for Debug
-g - is for misc LSP actions
-q - quickfix
-l - loclist
-u - utility (disable diagnostic etc)
-f - file related (telescope)
-w - window
+<summary>Maps</summary>
+- Space is the leader key
+- d - is for Debug
+- g - is for misc LSP actions
+- q - quickfix
+- l - loclist
+- u - utility (disable diagnostic etc)
+- f - file related (telescope)
+- w - window
 </details>
 
 # Inspirations and sources
