@@ -21,6 +21,7 @@
   - [Auto Setup](#auto-setup)
   - [Requirements](#requirements)
   - [Customize](#customize)
+  - [Mappings](#mappings)
 - [Inspirations and sources](#inspirations-and-sources)
 
 # Preview
@@ -146,7 +147,7 @@ _NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
 
 ## Requirements
 
-Most of the requirements can be installed over the `./package.py` script\
+Most of the requirements can be installed over the `./package.py` script
 
 <details>
 <summary>Requirements</summary>
@@ -181,6 +182,7 @@ _DAP:_
 
 - Some Adapters can be installed with Dap install
 - Java Adapter has to be installed manually
+
 </details>
 
 ## Customize
@@ -188,7 +190,6 @@ _DAP:_
 We have a config layer copy and paste the default config layout from `config.core.default_config`
 and create folder and file `rootFolder/lua/config/custom/init.lua`
 paste in the default_configs values and adjust accordingly
-
 
 ## Mappings
 
