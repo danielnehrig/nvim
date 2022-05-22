@@ -102,7 +102,6 @@ function M.init()
           config = {
             sources = {
               { name = "spell" },
-              -- { name = "nuspell" },
             },
           },
         })
