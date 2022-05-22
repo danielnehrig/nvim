@@ -151,7 +151,8 @@ Most of the requirements can be installed over the `./package.py` script
 
 <details>
 <summary>Requirements</summary>
-_Font:_
+
+Font:
 
 - Nerd Font any Monospaced One (if not monospaced the dashboard logo will not work)
 
@@ -195,7 +196,9 @@ paste in the default_configs values and adjust accordingly
 
 <details>
 <summary>Maps</summary>
+
 - Space is the leader key
+
 - d - is for Debug
 - g - is for misc LSP actions
 - q - quickfix
@@ -203,6 +206,7 @@ paste in the default_configs values and adjust accordingly
 - u - utility (disable diagnostic etc)
 - f - file related (telescope)
 - w - window
+
 </details>
 
 # Inspirations and sources
