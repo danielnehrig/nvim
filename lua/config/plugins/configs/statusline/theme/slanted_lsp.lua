@@ -427,7 +427,7 @@ M.theme = {
       show_last_status = true,
     }
 
-    local left = { basic.vi_mode, basic.file, basic.gps, basic.divider }
+    local left = { basic.vi_mode, basic.file, basic.divider }
     local right = {
       basic.dap,
       basic.lsp_names,
@@ -495,6 +495,14 @@ M.theme = {
         dashboard,
       },
     })
+    local winbar = {
+      filetypes = { "winbar" },
+      active = {
+        basic.gps,
+        basic.divider,
+      },
+    }
+    windline.add_status(winbar)
 
     animation.stop_all()
 
