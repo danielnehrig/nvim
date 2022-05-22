@@ -146,6 +146,10 @@ _NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
 
 ## Requirements
 
+Most of the requirements can be installed over the `./package.py` script\
+
+<details>
+<summary>Requirements</summary>
 _Font:_
 
 - Nerd Font any Monospaced One (if not monospaced the dashboard logo will not work)
@@ -177,12 +181,28 @@ _DAP:_
 
 - Some Adapters can be installed with Dap install
 - Java Adapter has to be installed manually
+</details>
 
 ## Customize
 
 We have a config layer copy and paste the default config layout from `config.core.default_config`
 and create folder and file `rootFolder/lua/config/custom/init.lua`
 paste in the default_configs values and adjust accordingly
+
+
+## Mappings
+
+<details>
+<summary>Requirements</summary>
+Space is the leader key
+d - is for Debug
+g - is for misc LSP actions
+q - quickfix
+l - loclist
+u - utility (disable diagnostic etc)
+f - file related (telescope)
+w - window
+</details>
 
 # Inspirations and sources
 
