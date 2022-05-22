@@ -1,5 +1,14 @@
 local M = {}
 M.utility = {
+  ["windwp/nvim-autopairs"] = {
+    after = "nvim-cmp",
+    config = function()
+      require("config.plugins.configs.autopairs").init()
+    end,
+  },
+  ["vimwiki/vimwiki"] = {
+    cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
+  },
   ["folke/which-key.nvim"] = {
     config = function()
       require("config.plugins.configs.which").init()

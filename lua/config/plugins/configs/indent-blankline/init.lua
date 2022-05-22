@@ -1,10 +1,26 @@
 local M = {}
 
 function M.init()
-  require("indent_blankline").setup({
+  local present, blank = pcall(require, "indent_blankline")
+  if not present then
+    return
+  end
+  blank.setup({
+    indentLine_enabled = 0,
     char = "▏",
-    buftype_exclude = { "terminal", "dashboard", "nofile" },
-    filetype_exclude = { "dashboard", "terminal", "git", "octo" },
+    filetype_exclude = {
+      "help",
+      "terminal",
+      "dashboard",
+      "packer",
+      "lspinfo",
+      "TelescopePrompt",
+      "TelescopeResults",
+      "lsp-installer",
+      "",
+    },
+    buftype_exclude = { "terminal", "dashboard" },
+    show_first_indent_level = false,
     show_current_context = true,
     use_treesitter = true,
     space_char_blankline = " ",

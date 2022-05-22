@@ -11,8 +11,8 @@ local function init()
     vim.notify("packer is not installed")
     return
   end
-  packer.reset()
-  packer.init({
+
+  local packer_options = {
     display = {
       open_fn = function()
         return require("packer.util").float({ border = "double" })
@@ -24,7 +24,11 @@ local function init()
     auto_clean = true,
     compile_on_sync = true,
     snapshot = nil,
-  })
+  }
+
+  packer.reset()
+  packer.init(packer_options)
+
   local use = packer.use
 
   use({ "lewis6991/impatient.nvim" })
@@ -32,18 +36,6 @@ local function init()
   for _, plugin in pairs(require("config.plugins.modules").plugins) do
     use(plugin)
   end
-
-  use({
-    "windwp/nvim-autopairs",
-    after = "nvim-cmp",
-    config = function()
-      require("config.plugins.configs.autopairs").init()
-    end,
-  }) -- autopairs "" {}
-  use({
-    "vimwiki/vimwiki",
-    cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
-  })
 
   use({ "nvim-lua/plenary.nvim" })
   use({ "wbthomason/packer.nvim", opt = true }) -- packer

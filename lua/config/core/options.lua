@@ -20,6 +20,7 @@ function M.load_options()
   opt.cursorline = true
   opt.confirm = true
   opt.title = true
+  opt.shortmess:append("sI")
 
   -- Set so that folders are index for find command
   opt.path = "**/*"

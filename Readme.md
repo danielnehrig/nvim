@@ -2,7 +2,7 @@
 
 <h1>NVIM Config</h1>
 
-![docker build](https://img.shields.io/github/workflow/status/danielnehrig/nvim/ci?label=build&logo=docker&style=for-the-badge)
+[![docker build](https://img.shields.io/github/workflow/status/danielnehrig/nvim/ci?label=build&logo=docker&style=for-the-badge)](https://hub.docker.com/r/danielnehrig/nvim/tags)
 [![Lua](https://img.shields.io/badge/Lua-blue.svg?style=for-the-badge&logo=lua)](http://www.lua.org)
 [![Neovim Stable](https://img.shields.io/badge/Neovim%20Stable-green.svg?style=for-the-badge&logo=neovim)](https://neovim.io)
 [![Neovim Nightly](https://img.shields.io/badge/Neovim%20Nightly-red.svg?style=for-the-badge&logo=neovim)](https://neovim.io)
@@ -11,18 +11,24 @@
 </div>
 
 - [Preview](#preview)
-- [Synposis](#synposis)
-- [The Main Goals](#the-main-goals)
-- [Philosophy and side infos](#philosophy-and-side-infos)
-  - [Nvim Log](#nvim-log)
+  - [Try it out with Docker!](#try-it-out-with-docker)
+  - [Pitch](#pitch)
+  - [The Main Goals](#the-main-goals)
+  - [Philosophy and side infos](#philosophy-and-side-infos)
+    - [Nvim Log](#nvim-log)
+- [Setup](#setup)
+  - [Manual Setup](#manual-setup)
+  - [Auto Setup](#auto-setup)
   - [Requirements](#requirements)
-  - [Setup](#setup)
+  - [Customize](#customize)
+- [Inspirations and sources](#inspirations-and-sources)
 
-## Preview
+# Preview
 
 https://user-images.githubusercontent.com/4050749/169545588-198c7dab-11fa-4306-bcd0-9f1eea4b0556.mp4
 
-__Try it out yourself!__\
+## Try it out with Docker!
+
 _(stable version)_
 
 ```bash
@@ -39,8 +45,13 @@ docker run -it \
   danielnehrig/nvim:nightly
 ```
 
-## Synposis
+## Pitch
 
+This Config represent a full IDE experience\
+Focus on idiomatic mappings with simplicity
+
+<details>
+<summary>Synopsis</summary>
 I've been using vim for about 7-8 years now\
 while i was aware that neovim was a thing\
 i didn't really understand or tried to understand\
@@ -60,6 +71,7 @@ this time getting a IDE like experience\
 getting rid of prior pain points with vim\
 and getting rid of bad habits.\
 the journey begins
+</details>
 
 Started 09.04.21
 
@@ -116,7 +128,23 @@ _[Logs](./nvim.log) created on_
 - 32GB Ram
 - Arch Linux
 
-### Requirements
+# Setup
+
+## Manual Setup
+
+0. `git clone https://github.com/danielnehrig/nvim ~/.config/nvim && cd ~/.config/nvim`
+1. `./package.py`
+2. `nvim +'autocmd User PackerComplete sleep 100ms | qa'`
+3. `nvim +'autocmd User PackerComplete TSInstall all' +'PackerSync'`
+4. _optional:_ `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
+
+## Auto Setup
+
+**DESTRUCTIVE**\
+_NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/danielnehrig/nvim/master/autoinstall.sh)"`
+
+## Requirements
 
 _Font:_
 
@@ -150,27 +178,13 @@ _DAP:_
 - Some Adapters can be installed with Dap install
 - Java Adapter has to be installed manually
 
-### Manual Setup
-
-0. `git clone https://github.com/danielnehrig/nvim ~/.config/nvim && cd ~/.config/nvim`
-1. `./package.py`
-2. `nvim +'autocmd User PackerComplete sleep 100ms | qa'`
-3. `nvim +'autocmd User PackerComplete TSInstall all' +'PackerSync'`
-4. _optional:_ `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
-
-#### Auto Setup
-
-__DESTRUCTIVE__\
-_NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/danielnehrig/nvim/master/autoinstall.sh)"`
-
 ## Customize
 
 We have a config layer copy and paste the default config layout from `config.core.default_config`
 and create folder and file `rootFolder/lua/config/custom/init.lua`
 paste in the default_configs values and adjust accordingly
 
-### Inspriations and sources
+# Inspirations and sources
 
 - Lvim
 - nvchad and module suite
