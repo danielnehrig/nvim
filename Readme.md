@@ -137,7 +137,6 @@ _[Logs](./nvim.log) created on_
 1. `./package.py`
 2. `nvim +'autocmd User PackerComplete sleep 100ms | qa'`
 3. `nvim +'autocmd User PackerComplete TSInstall all' +'PackerSync'`
-4. _optional:_ `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
 
 ## Auto Setup
 

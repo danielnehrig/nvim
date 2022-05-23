@@ -1,18 +1,18 @@
 require("config.plugins.configs.dap.attach").init()
 local global = require("config.core.global")
-local sep_os_replacer = require("config.utils").sep_os_replacer
+local build_path_string = require("config.utils").build_path_string
 local capabilities = require("config.plugins.configs.lspconfig").capabilities
 local lsp = require("config.plugins.configs.lspconfig")
 local map = vim.keymap.set
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace = sep_os_replacer(
+local workspace = build_path_string(
   global.home .. "/code/workspace/" .. workspace_dir
 )
 
 local bundles = {
   vim.fn.glob(
-    sep_os_replacer(
+    build_path_string(
       global.dap_path
         .. "/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
     )
@@ -22,7 +22,7 @@ vim.list_extend(
   bundles,
   vim.split(
     vim.fn.glob(
-      sep_os_replacer(global.dap_path .. "/vscode-java-test/server/*.jar")
+      build_path_string(global.dap_path .. "/vscode-java-test/server/*.jar")
     ),
     "\n"
   )

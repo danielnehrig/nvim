@@ -1,4 +1,4 @@
-local sep_os_replacer = require("config.utils").sep_os_replacer
+local build_path_string = require("config.utils").build_path_string
 
 local M = {}
 
@@ -21,18 +21,7 @@ M.debug = {
   },
   ["jbyuki/one-small-step-for-vimkind"] = {},
   ["mfussenegger/nvim-dap-python"] = { opt = true },
-  ["Pocco81/DAPInstall.nvim"] = {
-    cmd = { "DIInstall", "DIList" },
-    config = function()
-      local dap_install = require("dap-install")
-
-      dap_install.setup({
-        installation_path = sep_os_replacer(
-          vim.fn.stdpath("data") .. "/dapinstall/"
-        ),
-      })
-    end,
-  },
+  ["Pocco81/dap-buddy.nvim"] = {},
   ["mfussenegger/nvim-dap"] = {
     opt = true,
   },

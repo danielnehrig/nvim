@@ -1,11 +1,11 @@
 local lsp = require("config.plugins.configs.lspconfig")
 local capabilities = require("config.plugins.configs.lspconfig").capabilities
 local lspconfig = require("lspconfig")
-local sep_os_replacer = require("config.utils").sep_os_replacer
+local build_path_string = require("config.utils").build_path_string
 
 local home = require("config.core.global").home
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace = sep_os_replacer(home .. "/code/workspace/" .. workspace_dir)
+local workspace = build_path_string(home .. "/code/workspace/" .. workspace_dir)
 
 -- jdtls is a sh script in path which bootsup jdtls
 -- yay -S jdtls (for pacman based systems)
