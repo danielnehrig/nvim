@@ -1,5 +1,4 @@
 local global = require("config.core.global")
-local map = vim.keymap.set
 local fn = vim.fn
 
 local LSP = {}
