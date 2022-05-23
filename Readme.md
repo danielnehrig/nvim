@@ -154,7 +154,8 @@ Most of the requirements can be installed over the `./package.py` script
 
 Font:
 
-- Nerd Font any Monospaced One (if not monospaced the dashboard logo will not work)
+_Nerd Font any Monospaced One (if not monospaced the dashboard logo will not work)_
+__i use FiraCode Nerd Font Mono for regular and bold and VictorMono Nerd Font for italics__
 
 _Package managers:_
 
