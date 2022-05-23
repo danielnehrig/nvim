@@ -21,6 +21,7 @@
   - [Auto Setup](#auto-setup)
   - [Requirements](#requirements)
   - [Customize](#customize)
+  - [Mappings](#mappings)
 - [Inspirations and sources](#inspirations-and-sources)
 
 # Preview
@@ -52,24 +53,24 @@ Focus on idiomatic mappings with simplicity
 
 <details>
 <summary>Synopsis</summary>
-I've been using vim for about 7-8 years now\
-while i was aware that neovim was a thing\
-i didn't really understand or tried to understand\
-which problems it tries to solve which vim has\
-one day I jumped about features for the 0.5.0 upcoming release\
-which was about the native LSP in neovim\
-while i was using YCM at that time for VIM\
-(which i was pretty happy with)\
-i thought lets give it a shot how it works for neovim\
-this is when i realized that neovim had a LUA JIT\
-implemented at that moment i was sold to it due to prior lua experience\
-i investigated the lua plugin ecosystem while fairly small at that time\
-it grew and grew and grew... It looked promising\
-now we are here back at it again configuring the same editor\
-with better features\
-this time getting a IDE like experience\
-getting rid of prior pain points with vim\
-and getting rid of bad habits.\
+I've been using vim for about 7-8 years now
+while i was aware that neovim was a thing
+i didn't really understand or tried to understand
+which problems it tries to solve which vim has
+one day I jumped about features for the 0.5.0 upcoming release
+which was about the native LSP in neovim
+while i was using YCM at that time for VIM
+(which i was pretty happy with)
+i thought lets give it a shot how it works for neovim
+this is when i realized that neovim had a LUA JIT
+implemented at that moment i was sold to it due to prior lua experience
+i investigated the lua plugin ecosystem while fairly small at that time
+it grew and grew and grew... It looked promising
+now we are here back at it again configuring the same editor
+with better features
+this time getting a IDE like experience
+getting rid of prior pain points with vim
+and getting rid of bad habits.
 the journey begins
 </details>
 
@@ -136,7 +137,6 @@ _[Logs](./nvim.log) created on_
 1. `./package.py`
 2. `nvim +'autocmd User PackerComplete sleep 100ms | qa'`
 3. `nvim +'autocmd User PackerComplete TSInstall all' +'PackerSync'`
-4. _optional:_ `DIInstall python` `DIInstall chrome` `DIInstall jsnode`
 
 ## Auto Setup
 
@@ -146,9 +146,15 @@ _NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
 
 ## Requirements
 
-_Font:_
+Most of the requirements can be installed over the `./package.py` script
 
-- Nerd Font any Monospaced One (if not monospaced the dashboard logo will not work)
+<details>
+<summary>Requirements</summary>
+
+Font:
+
+_Nerd Font any Monospaced One (if not monospaced the dashboard logo will not work)_
+__i use FiraCode Nerd Font Mono for regular and bold and VictorMono Nerd Font for italics__
 
 _Package managers:_
 
@@ -178,11 +184,30 @@ _DAP:_
 - Some Adapters can be installed with Dap install
 - Java Adapter has to be installed manually
 
+</details>
+
 ## Customize
 
 We have a config layer copy and paste the default config layout from `config.core.default_config`
 and create folder and file `rootFolder/lua/config/custom/init.lua`
 paste in the default_configs values and adjust accordingly
+
+## Mappings
+
+<details>
+<summary>Maps</summary>
+
+- Space is the leader key
+
+- d - is for Debug
+- g - is for misc LSP actions
+- q - quickfix
+- l - loclist
+- u - utility (disable diagnostic etc)
+- f - file related (telescope)
+- w - window
+
+</details>
 
 # Inspirations and sources
 
