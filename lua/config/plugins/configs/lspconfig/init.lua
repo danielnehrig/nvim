@@ -12,46 +12,7 @@ function LSP.on_attach(client, bufnr)
     lsp_status.on_attach(client)
   end
 
-  map("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
-  map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
-  map(
-    "n",
-    "<C-w>gd",
-    "<cmd>split | lua vim.lsp.buf.definition()<CR>",
-    { buffer = bufnr }
-  )
-  map("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
-  map("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
-  map("n", "gs", vim.lsp.buf.signature_help, { buffer = bufnr })
-  map("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
-  map(
-    "n",
-    "<C-w>gi",
-    "<cmd>split | lua vim.lsp.buf.implementation()<CR>",
-    { buffer = bufnr }
-  )
-  map("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
-  map("n", "<space>gw", vim.lsp.buf.document_symbol, { buffer = bufnr })
-  map("n", "<space>gW", vim.lsp.buf.workspace_symbol, { buffer = bufnr })
-  map("n", "<Leader>gf", vim.lsp.buf.code_action, { buffer = bufnr })
-  map("v", "<Leader>gf", vim.lsp.buf.range_code_action, { buffer = bufnr })
-  map(
-    "n",
-    "<space>gr",
-    "<cmd>lua require('config.plugins.configs.lspconfig.utils').rename()<CR>",
-    { buffer = bufnr }
-  )
-  map("n", "<space>g=", function()
-    vim.lsp.buf.formatting_sync({}, 2500)
-  end, { buffer = bufnr })
-  map("n", "<space>gi", vim.lsp.buf.incoming_calls, { buffer = bufnr })
-  map("n", "<space>go", vim.lsp.buf.outgoing_calls, { buffer = bufnr })
-  map(
-    "n",
-    "<space>gd",
-    "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single', source = 'if_many' })<CR>",
-    { buffer = bufnr }
-  )
+  require("config.core.mappings").set_lsp_mapping(bufnr)
 
   if client.resolved_capabilities.document_highlight then
     local ft = "*." .. client.config.filetypes[1]

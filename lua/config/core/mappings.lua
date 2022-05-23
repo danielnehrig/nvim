@@ -176,6 +176,65 @@ M.map = {
   M.tree,
 }
 
+function M.set_lsp_mapping(bufnr)
+  M.lsp = {
+    n = {
+      { "gD", vim.lsp.buf.declaration, { buffer = bufnr } },
+      { "gd", vim.lsp.buf.definition, { buffer = bufnr } },
+      {
+        "<C-w>gd",
+        "<cmd>split | lua vim.lsp.buf.definition()<CR>",
+        { buffer = bufnr },
+      },
+      { "K", vim.lsp.buf.hover, { buffer = bufnr } },
+      { "gr", vim.lsp.buf.references, { buffer = bufnr } },
+      { "gs", vim.lsp.buf.signature_help, { buffer = bufnr } },
+      { "gi", vim.lsp.buf.implementation, { buffer = bufnr } },
+      {
+        "<C-w>gi",
+        "<cmd>split | lua vim.lsp.buf.implementation()<CR>",
+        { buffer = bufnr },
+      },
+      { "gt", vim.lsp.buf.type_definition, { buffer = bufnr } },
+      { "<space>gw", vim.lsp.buf.document_symbol, { buffer = bufnr } },
+      { "<space>gW", vim.lsp.buf.workspace_symbol, { buffer = bufnr } },
+      { "<Leader>gf", vim.lsp.buf.code_action, { buffer = bufnr } },
+      {
+        "<space>gr",
+        "<cmd>lua require('config.plugins.configs.lspconfig.utils').rename()<CR>",
+        { buffer = bufnr },
+      },
+      {
+        "<space>g=",
+        function()
+          vim.lsp.buf.formatting_sync({}, 2500)
+        end,
+        { buffer = bufnr },
+      },
+      { "<space>gi", vim.lsp.buf.incoming_calls, { buffer = bufnr } },
+      { "<space>go", vim.lsp.buf.outgoing_calls, { buffer = bufnr } },
+      {
+        "<space>gd",
+        "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single', source = 'if_many' })<CR>",
+        { buffer = bufnr },
+      },
+    },
+    v = {
+      { "<Leader>gf", vim.lsp.buf.range_code_action, { buffer = bufnr } },
+    },
+  }
+
+  for mode, map in pairs(M.lsp) do
+    for _, conf in ipairs(map) do
+      if conf[3] then
+        vim.keymap.set(mode, conf[1], conf[2], conf[3])
+      else
+        vim.keymap.set(mode, conf[1], conf[2])
+      end
+    end
+  end
+end
+
 function M.mappings()
   -- apply mappings
   for _, section in ipairs(M.map) do
