@@ -7,7 +7,7 @@ lspconfig.eslint.setup({
   capabilities = capabilities,
   flags = { debounce_text_changes = 500 },
   on_attach = function(client, bufnr)
-    if client.supports_method "textDocument/formatting" then
+    if client.supports_method("textDocument/formatting") then
       local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
