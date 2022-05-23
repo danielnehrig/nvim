@@ -2,7 +2,7 @@ local execute = vim.api.nvim_command
 local fn = vim.fn
 local global = require("config.core.global")
 local vim_path = global.vim_path
-local sep_os_replacer = require("config.utils").sep_os_replacer
+local build_path_string = require("config.utils").build_path_string
 local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 
 local function init()
@@ -46,7 +46,7 @@ plugins._index = plugins
 
 -- Bootstrap Packer and the Plugins + loads configs afterwards
 function plugins.bootstrap()
-  local install_path = sep_os_replacer(
+  local install_path = build_path_string(
     fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
   )
   -- check if packer exists or is installed

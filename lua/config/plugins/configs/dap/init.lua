@@ -1,5 +1,5 @@
 local global = require("config.core.global")
-local sep_os_replacer = require("config.utils").sep_os_replacer
+local build_path_string = require("config.utils").build_path_string
 
 local present, dap = pcall(require, "dap")
 
@@ -29,7 +29,7 @@ dap.adapters.node2 = {
   type = "executable",
   command = "node",
   args = {
-    sep_os_replacer(
+    build_path_string(
       global.dap_path .. "/jsnode/vscode-node-debug2/out/src/nodeDebug.js"
     ),
   },
@@ -39,7 +39,7 @@ dap.adapters.chrome = {
   type = "executable",
   command = "node",
   args = {
-    sep_os_replacer(
+    build_path_string(
       global.dap_path .. "/chrome/vscode-chrome-debug/out/src/chromeDebug.js"
     ),
   },
@@ -55,7 +55,7 @@ dap.adapters.go = {
   type = "executable",
   command = "node",
   args = {
-    sep_os_replacer(global.dap_path .. "/go/vscode-go/dist/debugAdapter.js"),
+    build_path_string(global.dap_path .. "/go/vscode-go/dist/debugAdapter.js"),
   },
 }
 
@@ -99,11 +99,11 @@ dap.configurations.dart = {
     type = "dart",
     request = "launch",
     name = "Launch flutter",
-    dartSdkPath = sep_os_replacer(
+    dartSdkPath = build_path_string(
       os.getenv("HOME") .. "/flutter/bin/cache/dart-sdk/"
     ),
-    flutterSdkPath = sep_os_replacer(os.getenv("HOME") .. "/flutter"),
-    program = sep_os_replacer("${workspaceFolder}/lib/main.dart"),
+    flutterSdkPath = build_path_string(os.getenv("HOME") .. "/flutter"),
+    program = build_path_string("${workspaceFolder}/lib/main.dart"),
     cwd = "${workspaceFolder}",
   },
 }
@@ -253,7 +253,7 @@ dap.configurations.rust = dap.configurations.cpp
 -- overwrite program
 dap.configurations.rust[1].externalConsole = true
 dap.configurations.rust[1].program = function()
-  return sep_os_replacer(
+  return build_path_string(
     vim.fn.getcwd() .. "/target/debug/" .. "${workspaceFolderBasename}"
   )
 end

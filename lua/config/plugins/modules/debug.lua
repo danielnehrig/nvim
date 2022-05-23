@@ -1,4 +1,4 @@
-local sep_os_replacer = require("config.utils").sep_os_replacer
+local build_path_string = require("config.utils").build_path_string
 
 local M = {}
 

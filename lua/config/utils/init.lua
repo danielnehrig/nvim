@@ -37,7 +37,7 @@ end
 --- Replaces / or \\ depending on os to path to correct places
 --- @param str string
 --- @return string
-function M.sep_os_replacer(str)
+function M.build_path_string(str)
   local result = str
   local path_sep = package.config:sub(1, 1)
   result = result:gsub("/", path_sep)

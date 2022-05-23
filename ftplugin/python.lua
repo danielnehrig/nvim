@@ -1,6 +1,6 @@
 local global = require("config.core.global")
 local set = vim.keymap.set
-local sep_os_replacer = require("config.utils").sep_os_replacer
+local build_path_string = require("config.utils").build_path_string
 
 local init = false
 _G.load_py_dap = function()
@@ -8,7 +8,7 @@ _G.load_py_dap = function()
     require("config.plugins.configs.dap.attach").init()
     vim.cmd([[ packadd nvim-dap-python ]])
     require("dap-python").setup(
-      sep_os_replacer(global.dap_path .. "/python/bin/python")
+      build_path_string(global.dap_path .. "/python/bin/python")
     )
     init = true
   end
