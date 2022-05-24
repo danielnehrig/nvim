@@ -27,7 +27,7 @@ M.quickfix = {
       function()
         require("config.utils").toggle_qf()
       end,
-      { desco = "Open QF" },
+      { desc = "Open QF" },
     },
     { "<Leader>qn", "<Cmd>cnext<CR>", { desc = "Next Item" } },
     { "<Leader>qp", "<Cmd>cprev<CR>", { desc = "Prev Item" } },
