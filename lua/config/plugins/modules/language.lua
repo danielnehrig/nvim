@@ -20,6 +20,10 @@ M.language = {
     ft = { "markdown", "md" },
     cmd = "MarkdownPreview",
   },
+  ["michaelb/sniprun"] = {
+    cmd = { "SnipRun" },
+    run = "bash ./install.sh",
+  },
   ["metakirby5/codi.vim"] = {
     cmd = { "Codi" },
     ft = { "javascript", "typescript", "lua" },
