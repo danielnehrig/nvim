@@ -105,10 +105,13 @@ function M.autocmds()
     "BufNewFile",
     "BufRead",
     "WinEnter",
-    "TermLeave",
   }, {
     pattern = "*.*",
-    command = "set showtabline=2",
+    callback = function()
+      vim.wo.number = true
+      vim.wo.relativenumber = true
+      vim.o.showtabline = 2
+    end,
     group = au_ft,
   })
   vim.api.nvim_create_autocmd("FileType", {
@@ -125,6 +128,13 @@ function M.autocmds()
       require("cmp").setup.buffer({ sources = { { name = "crates" } } })
     end,
     group = au_cmp,
+  })
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "dashboard",
+    callback = function()
+      vim.wo.number = false
+    end,
+    group = au_ft,
   })
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "*.org",
