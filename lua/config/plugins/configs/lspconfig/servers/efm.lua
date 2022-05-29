@@ -1,6 +1,7 @@
 local lspconfig = require("lspconfig")
 
 -- efm setups
+local vale = require("config.plugins.configs.lspconfig.efm.vale")
 local eslint = require("config.plugins.configs.lspconfig.efm.eslint")
 local rslint = require("config.plugins.configs.lspconfig.efm.rslint")
 local jq = require("config.plugins.configs.lspconfig.efm.jq")
@@ -44,6 +45,7 @@ lspconfig.efm.setup({
     ".prettierrc.json",
     "stylua.toml",
     ".luacheck",
+    ".vale.ini",
     "dpring.json"
   ),
   init_options = {
@@ -60,6 +62,7 @@ lspconfig.efm.setup({
       ".git/",
       ".zshrc",
       "cargo.toml",
+      ".vale.ini",
     },
     languages = {
       typescript = { rslint, prettier, eslint },
@@ -69,7 +72,9 @@ lspconfig.efm.setup({
       lua = { stylua, luacheck },
       rust = { rustfmt },
       go = { gofmt, goimports, golines },
-      markdown = { dprint },
+      markdown = { dprint, vale },
+      txt = { vale },
+      org = { vale },
       json = { json_prettier, jq },
       toml = { dprint },
       python = { python },
@@ -85,6 +90,8 @@ lspconfig.efm.setup({
     "json",
     "toml",
     "go",
+    "txt",
+    "org",
     "markdown",
     "javascript",
     "javascriptreact",

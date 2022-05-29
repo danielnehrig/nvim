@@ -1,0 +1,6 @@
+{{- range .Files}}
+	{{- $p := .Path -}}
+	{{- range .Alerts -}}
+		{{- printf "%s:%d:%d:%s:[%s] %s" $p .Line (index .Span 0) .Severity .Check .Message }}
+	{{end -}}
+{{end}}

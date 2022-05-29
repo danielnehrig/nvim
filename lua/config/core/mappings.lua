@@ -83,6 +83,11 @@ M.telescope = {
       "<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<CR>",
       { desc = "FindFiles" },
     },
+    {
+      "<Leader>fF",
+      "<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files hidden=true no_ignore=true prompt_prefix=🔍<CR>",
+      { desc = "FindFiles" },
+    },
     { "<Leader>fg", "<Cmd>Telescope live_grep<CR>", { desc = "Grep" } },
     {
       "<Leader>fb",
@@ -186,6 +191,25 @@ M.util = {
   },
 }
 
+M.diag = {
+  ["n"] = {
+    {
+      "<leader>gn",
+      function()
+        vim.diagnostic.goto_next()
+      end,
+      { desc = "Goto Next Diagnostic Item", silent = false },
+    },
+    {
+      "<leader>gp",
+      function()
+        vim.diagnostic.goto_prev()
+      end,
+      { desc = "Goto Previous Diagnostic Item", silent = false },
+    },
+  },
+}
+
 M.map = {
   M.general,
   M.telescope,
@@ -195,6 +219,7 @@ M.map = {
   M.quickfix,
   M.util,
   M.tree,
+  M.diag,
 }
 
 function M.set_lsp_mapping(bufnr)

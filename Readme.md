@@ -54,6 +54,7 @@ Focus on idiomatic mappings with simplicity
 <details>
 <summary>Synopsis</summary>
 I've been using vim for about 7-8 years now
+
 while i was aware that neovim was a thing
 i didn't really understand or tried to understand
 which problems it tries to solve which vim has
@@ -72,6 +73,7 @@ this time getting a IDE like experience
 getting rid of prior pain points with vim
 and getting rid of bad habits.
 the journey begins
+
 </details>
 
 Started 09.04.21
@@ -154,7 +156,7 @@ Most of the requirements can be installed over the `./package.py` script
 Font:
 
 _Nerd Font any Monospaced One (if not monospaced the dashboard logo will not work)_
-__i use FiraCode Nerd Font Mono for regular and bold and VictorMono Nerd Font for italics__
+**i use FiraCode Nerd Font Mono for regular and bold and VictorMono Nerd Font for italics**
 
 _Package managers:_
 

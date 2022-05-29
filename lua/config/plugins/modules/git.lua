@@ -1,13 +1,13 @@
 local M = {}
 
 M.git = {
-  ["ldelossa/gh.nvim"] = {
-    requires = { "ldelossa/litee.nvim" },
-    config = function()
-      require("litee.lib").setup()
-      require("litee.gh").setup()
-    end,
-  },
+  --  ["ldelossa/gh.nvim"] = {
+  --  requires = { "ldelossa/litee.nvim" },
+  --  config = function()
+  --  require("litee.lib").setup()
+  --  require("litee.gh").setup()
+  --  end,
+  --  },
   ["lewis6991/gitsigns.nvim"] = {
     event = { "BufRead", "BufNewFile" },
     config = require("config.plugins.configs.gitsigns").init,
