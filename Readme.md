@@ -53,7 +53,7 @@ Focus on idiomatic mappings with simplicity
 
 <details>
 <summary>Synopsis</summary>
-I've been using vim for about 7-8 years now  
+I've been using vim for about 7-8 years now
 
 while i was aware that neovim was a thing
 i didn't really understand or tried to understand
@@ -73,6 +73,7 @@ this time getting a IDE like experience
 getting rid of prior pain points with vim
 and getting rid of bad habits.
 the journey begins
+
 </details>
 
 Started 09.04.21
