@@ -265,6 +265,7 @@ brew = PackageManager(
         "modes": {"install": "install", "update": "update"},
         "packages": [
             ("lua-language-server", "lua-language-server"),
+            ("vale", "vale"),
             ("jq", "jq"),
         ],
         "dependencies": None,
@@ -283,6 +284,8 @@ yay: PackageManager = PackageManager(
             ("nuspell", "nuspell"),
             ("hunspell-en_us", None),
             ("hunspell-de", None),
+            ("vale-git", "vale"),
+            ("jq", "jq"),
             ("jdtls", "jdtls"),
             ("groovy-language-server", "groovy-language-server"),
             ("lua-language-server", "lua-language-server"),
