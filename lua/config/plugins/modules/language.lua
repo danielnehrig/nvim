@@ -1,6 +1,16 @@
 local M = {}
 
+vim.g.languagetool_server_jar =
+  "/usr/local/opt/languagetool/libexec/languagetool-server.jar"
+
 M.language = {
+  ["rhysd/vim-grammarous"] = {
+    --  cmd = {
+    --  "LanguageToolCheck",
+    --  "LanguageToolSummary",
+    --  "LanguageToolClear",
+    --  },
+  },
   ["mfussenegger/nvim-jdtls"] = { opt = true },
   ["Saecki/crates.nvim"] = {
     ft = { "toml", "rs" },
