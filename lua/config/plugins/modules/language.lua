@@ -5,11 +5,9 @@ vim.g.languagetool_server_jar =
 
 M.language = {
   ["rhysd/vim-grammarous"] = {
-    --  cmd = {
-    --  "LanguageToolCheck",
-    --  "LanguageToolSummary",
-    --  "LanguageToolClear",
-    --  },
+    cmd = {
+      "GrammarousCheck",
+    },
   },
   ["mfussenegger/nvim-jdtls"] = { opt = true },
   ["Saecki/crates.nvim"] = {

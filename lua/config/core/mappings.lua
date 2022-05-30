@@ -8,7 +8,7 @@ M.general = {
     { "<leader>D", '"_d' },
   },
   n = {
-    { "<leader>Y", 'gg"+yG' },
+    { "<leader>Y", 'gg"+yG', { desc = "Copy whole File" } },
     { "<leader>D", '"_d', { desc = "Delete into Void" } },
     { "<C-d>", "<C-d>zz" },
     { "<C-u>", "<C-u>zz" },
@@ -210,6 +210,36 @@ M.diag = {
   },
 }
 
+M.gram = {
+  n = {
+    {
+      "<leader>ggf",
+      "<Plug>(grammarous-fixall)",
+      { desc = "Grammer Fix All", silent = false },
+    },
+    {
+      "<leader>ggo",
+      "<Plug>(grammarous-open-info-window)",
+      { desc = "Grammer Open", silent = false },
+    },
+    {
+      "<leader>ggn",
+      "<Plug>(grammarous-move-to-next-error)",
+      { desc = "Grammer Go Next", silent = false },
+    },
+    {
+      "<leader>ggp",
+      "<Plug>(grammarous-move-to-previous-error)",
+      { desc = "Grammer Go Prev", silent = false },
+    },
+    {
+      "<leader>ggi",
+      "<Plug>(grammarous-fixit)",
+      { desc = "Grammer Fix It", silent = false },
+    },
+  },
+}
+
 M.map = {
   M.general,
   M.telescope,
@@ -220,6 +250,7 @@ M.map = {
   M.util,
   M.tree,
   M.diag,
+  M.gram,
 }
 
 function M.set_lsp_mapping(bufnr)

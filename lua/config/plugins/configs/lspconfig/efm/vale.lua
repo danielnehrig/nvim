@@ -6,8 +6,6 @@ local command = string.format(
   vim.fn.expand("$HOME/.config/nvim/utils/linter-config/output.tmpl")
 )
 
-print(command)
-
 return {
   prefix = linter,
   lintCommand = command,
