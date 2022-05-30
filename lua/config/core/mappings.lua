@@ -237,6 +237,11 @@ M.gram = {
       "<Plug>(grammarous-fixit)",
       { desc = "Grammer Fix It", silent = false },
     },
+    {
+      "<leader>ggc",
+      "<cmd>GrammarousCheck<CR>",
+      { desc = "Grammer Check", silent = false },
+    },
   },
 }
 
