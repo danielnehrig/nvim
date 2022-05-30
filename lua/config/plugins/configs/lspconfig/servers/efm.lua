@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local lsp = require("config.plugins.configs.lspconfig")
 
 -- efm setups
 local vale = require("config.plugins.configs.lspconfig.efm.vale")
@@ -22,7 +23,7 @@ local golines = require("config.plugins.configs.lspconfig.efm.golines")
 
 -- formatting and linting with efm
 lspconfig.efm.setup({
-  on_attach = function(client)
+  on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = true
     if client.resolved_capabilities.document_formatting then
       local au_lsp = vim.api.nvim_create_augroup("efm_lsp", { clear = true })
@@ -34,6 +35,7 @@ lspconfig.efm.setup({
         group = au_lsp,
       })
     end
+    lsp.on_attach(client, bufnr)
   end,
   root_dir = require("lspconfig/util").root_pattern(
     "package.json",
