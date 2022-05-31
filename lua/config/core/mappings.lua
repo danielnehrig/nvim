@@ -45,6 +45,7 @@ M.loclist = {
 
 M.others = {
   n = {
+    { "<Leader>vh", "<cmd>VGit buffer_history_preview<CR>" },
     { "<C-p>", "<cmd>FineCmdline<CR>" },
     {
       "<Leader>gy",
