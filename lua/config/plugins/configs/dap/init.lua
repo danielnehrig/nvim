@@ -164,15 +164,15 @@ dap.configurations.typescriptreact = {
       ["webpack://_N_E/./*"] = "${webRoot}/*",
       ["webpack:///./*"] = "${webRoot}/*",
     },
-    {
-      type = "node2",
-      name = "node attach",
-      request = "attach",
-      program = "${file}",
-      cwd = vim.fn.getcwd(),
-      sourceMaps = true,
-      protocol = "inspector",
-    },
+  },
+  {
+    type = "node2",
+    name = "node attach",
+    request = "attach",
+    program = "${file}",
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = "inspector",
   },
 }
 
