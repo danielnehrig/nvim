@@ -226,6 +226,15 @@ dap.configurations.javascriptreact = {
       ["webpack:///./*"] = "${webRoot}/*",
     },
   },
+  {
+    type = "node2",
+    name = "node attach",
+    request = "attach",
+    program = "${file}",
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = "inspector",
+  },
 }
 
 dap.configurations.cpp = {
