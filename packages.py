@@ -9,10 +9,10 @@ from getpass import getuser
 from datetime import datetime
 
 
-def which(program):
+def which(program: str) -> Union[str, None]:
     import os
 
-    def is_exe(fpath):
+    def is_exe(fpath: str) -> bool:
         return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
 
     fpath, _ = os.path.split(program)
