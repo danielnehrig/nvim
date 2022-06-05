@@ -327,12 +327,7 @@ windows_setup = SysManager("win32", [node, rust, rust_up, go, lua, python])
 supported_os = [darwin_setup, linux_setup, windows_setup]
 
 now: datetime = datetime.now()
-current_time: str = now.strftime("%H:%M:%S")
-current_folder: str = os.path.abspath(os.getcwd())
 user: str = getuser()
-home: str = "{0}{1}".format(os.environ.get("HOME"), "/")
-dap_path: str = home + ".local/share/nvim/dapinstall/"
-lsp_path: str = home + ".local/share/nvim/lsp/"
 
 arrow: str = "==>"
 
