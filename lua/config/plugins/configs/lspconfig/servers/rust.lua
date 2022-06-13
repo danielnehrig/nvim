@@ -16,6 +16,12 @@ lspconfig.rust_analyzer.setup({
         group = au_lsp,
       })
     end
+    local n_present, navic = pcall(require, "nvim-navic")
+    if n_present then
+      if client.supports_method("textDocument/documentSymbol") then
+        navic.attach(client, bufnr)
+      end
+    end
     lsp.on_attach(client, bufnr)
   end,
   cmd = { "rustup", "run", "nightly", "rust-analyzer" },

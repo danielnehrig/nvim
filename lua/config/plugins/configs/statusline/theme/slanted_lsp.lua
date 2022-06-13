@@ -334,7 +334,7 @@ M.theme = {
       },
       width = breakpoint_width,
       text = function()
-        local gps_present, gps = pcall(require, "nvim-gps")
+        local gps_present, gps = pcall(require, "nvim-navic")
 
         if gps_present then
           if gps.is_available() then

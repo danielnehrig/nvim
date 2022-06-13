@@ -36,6 +36,12 @@ local luadev = require("lua-dev").setup({
     -- root_dir = require("lspconfig/util").root_pattern("."),
     on_attach = function(client, bufnr)
       client.server_capabilities.documentFormattingProvider = false
+      local n_present, navic = pcall(require, "nvim-navic")
+      if n_present then
+        if client.supports_method("textDocument/documentSymbol") then
+          navic.attach(client, bufnr)
+        end
+      end
       lsp.on_attach(client, bufnr)
     end,
   },
@@ -72,6 +78,12 @@ function M.reinit()
       -- root_dir = require("lspconfig/util").root_pattern("."),
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
+        local n_present, navic = pcall(require, "nvim-navic")
+        if n_present then
+          if client.supports_method("textDocument/documentSymbol") then
+            navic.attach(client, bufnr)
+          end
+        end
         lsp.on_attach(client, bufnr)
       end,
     },
