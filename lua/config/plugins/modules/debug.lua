@@ -1,6 +1,13 @@
 local M = {}
 
 M.debug = {
+  ["rcarriga/neotest"] = {
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+    },
+  },
   ["rcarriga/vim-ultest"] = {
     cmd = { "Ultest" },
     requires = { "vim-test/vim-test" },

@@ -122,7 +122,6 @@ M.utility = {
       })
     end,
   },
-  ["junegunn/vim-easy-align"] = { cmd = { "EasyAlign" } },
   ["nathom/filetype.nvim"] = {},
   ["andweeb/presence.nvim"] = {
     config = function()
