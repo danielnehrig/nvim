@@ -41,12 +41,12 @@ M.packer = {
     config = require("config.plugins.configs.nvimux").init,
   },
   ["nvim-telescope/telescope.nvim"] = {
-    cmd = { "Telescope" },
+    -- cmd = { "Telescope" },
     config = require("config.plugins.configs.telescope").init,
     requires = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+        run = "make",
       },
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-lua/plenary.nvim" },

@@ -96,6 +96,7 @@ function LSP.init()
     "yaml",
     "bash",
     "eslint",
+    "html",
     "ts",
     "java",
     "php",

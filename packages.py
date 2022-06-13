@@ -9,10 +9,10 @@ from getpass import getuser
 from datetime import datetime
 
 
-def which(program):
+def which(program: str) -> Union[str, None]:
     import os
 
-    def is_exe(fpath):
+    def is_exe(fpath: str) -> bool:
         return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
 
     fpath, _ = os.path.split(program)
@@ -265,6 +265,8 @@ brew = PackageManager(
         "modes": {"install": "install", "update": "update"},
         "packages": [
             ("lua-language-server", "lua-language-server"),
+            ("languagetool", "languagetool"),
+            ("vale", "vale"),
             ("jq", "jq"),
         ],
         "dependencies": None,
@@ -283,6 +285,9 @@ yay: PackageManager = PackageManager(
             ("nuspell", "nuspell"),
             ("hunspell-en_us", None),
             ("hunspell-de", None),
+            ("vale-git", "vale"),
+            ("languagetool", "languagetool"),
+            ("jq", "jq"),
             ("jdtls", "jdtls"),
             ("groovy-language-server", "groovy-language-server"),
             ("lua-language-server", "lua-language-server"),
@@ -322,12 +327,7 @@ windows_setup = SysManager("win32", [node, rust, rust_up, go, lua, python])
 supported_os = [darwin_setup, linux_setup, windows_setup]
 
 now: datetime = datetime.now()
-current_time: str = now.strftime("%H:%M:%S")
-current_folder: str = os.path.abspath(os.getcwd())
 user: str = getuser()
-home: str = "{0}{1}".format(os.environ.get("HOME"), "/")
-dap_path: str = home + ".local/share/nvim/dapinstall/"
-lsp_path: str = home + ".local/share/nvim/lsp/"
 
 arrow: str = "==>"
 

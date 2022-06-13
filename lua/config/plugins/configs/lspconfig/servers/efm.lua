@@ -1,6 +1,8 @@
 local lspconfig = require("lspconfig")
+local lsp = require("config.plugins.configs.lspconfig")
 
 -- efm setups
+local vale = require("config.plugins.configs.lspconfig.efm.vale")
 local eslint = require("config.plugins.configs.lspconfig.efm.eslint")
 local rslint = require("config.plugins.configs.lspconfig.efm.rslint")
 local jq = require("config.plugins.configs.lspconfig.efm.jq")
@@ -21,7 +23,7 @@ local golines = require("config.plugins.configs.lspconfig.efm.golines")
 
 -- formatting and linting with efm
 lspconfig.efm.setup({
-  on_attach = function(client)
+  on_attach = function(client, bufr)
     if client.supports_method("textDocument/formatting") then
       local au_lsp = vim.api.nvim_create_augroup("efm_lsp", { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
@@ -32,6 +34,7 @@ lspconfig.efm.setup({
         group = au_lsp,
       })
     end
+    lsp.on_attach(client, bufnr)
   end,
   root_dir = require("lspconfig/util").root_pattern(
     "package.json",
@@ -43,6 +46,7 @@ lspconfig.efm.setup({
     ".prettierrc.json",
     "stylua.toml",
     ".luacheck",
+    ".vale.ini",
     "dpring.json"
   ),
   init_options = {
@@ -59,6 +63,7 @@ lspconfig.efm.setup({
       ".git/",
       ".zshrc",
       "cargo.toml",
+      ".vale.ini",
     },
     languages = {
       typescript = { rslint, prettier, eslint },
@@ -68,7 +73,9 @@ lspconfig.efm.setup({
       lua = { stylua, luacheck },
       rust = { rustfmt },
       go = { gofmt, goimports, golines },
-      markdown = { dprint },
+      markdown = { dprint, vale },
+      txt = { vale },
+      org = { vale },
       json = { json_prettier, jq },
       toml = { dprint },
       python = { python },
@@ -84,6 +91,8 @@ lspconfig.efm.setup({
     "json",
     "toml",
     "go",
+    "txt",
+    "org",
     "markdown",
     "javascript",
     "javascriptreact",

@@ -1,6 +1,14 @@
 local M = {}
 
+vim.g.languagetool_server_jar =
+  "/usr/local/opt/languagetool/libexec/languagetool-server.jar"
+
 M.language = {
+  ["rhysd/vim-grammarous"] = {
+    cmd = {
+      "GrammarousCheck",
+    },
+  },
   ["mfussenegger/nvim-jdtls"] = { opt = true },
   ["Saecki/crates.nvim"] = {
     ft = { "toml", "rs" },
@@ -19,6 +27,10 @@ M.language = {
     run = "cd app && yarn install",
     ft = { "markdown", "md" },
     cmd = "MarkdownPreview",
+  },
+  ["michaelb/sniprun"] = {
+    cmd = { "SnipRun" },
+    run = "bash ./install.sh",
   },
   ["metakirby5/codi.vim"] = {
     cmd = { "Codi" },

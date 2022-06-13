@@ -29,7 +29,7 @@ lspconfig.rust_analyzer.setup({
         loadOutDirsFromCheck = true,
       },
       checkOnSave = {
-        enable = false,
+        enable = true,
         command = "clippy",
       },
       procMacro = {

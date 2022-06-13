@@ -24,6 +24,7 @@ M.completion = {
         org_agenda_files = { "~/org/*" },
         org_default_notes_file = "~/org/refile.org",
       })
+      require("orgmode").setup_ts_grammar()
     end,
     keys = { "<space>oc", "<space>oa" },
     ft = { "org" },

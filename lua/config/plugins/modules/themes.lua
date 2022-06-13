@@ -28,6 +28,12 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
+  ["m-demare/hlargs.nvim"] = {
+    requires = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("hlargs").setup()
+    end,
+  },
   ["lukas-reineke/indent-blankline.nvim"] = {
     config = require("config.plugins.configs.indent-blankline").init,
     event = "BufRead",

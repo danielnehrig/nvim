@@ -48,30 +48,32 @@ docker run -it \
 
 ## Pitch
 
-This Config represent a full IDE experience\
+This Config represents a full IDE experience\
 Focus on idiomatic mappings with simplicity
 
 <details>
 <summary>Synopsis</summary>
 I've been using vim for about 7-8 years now
-while i was aware that neovim was a thing
-i didn't really understand or tried to understand
+
+While I was aware that neovim was a thing
+I didn't really understand or tried to understand
 which problems it tries to solve which vim has
 one day I jumped about features for the 0.5.0 upcoming release
 which was about the native LSP in neovim
-while i was using YCM at that time for VIM
-(which i was pretty happy with)
-i thought lets give it a shot how it works for neovim
-this is when i realized that neovim had a LUA JIT
-implemented at that moment i was sold to it due to prior lua experience
-i investigated the lua plugin ecosystem while fairly small at that time
+while I was using YCM at that time for VIM
+(which I was pretty happy with)
+I thought lets give it a shot how it works for neovim
+this is when I realized that neovim had a LUA JIT
+implemented at that moment I was sold to it due to prior lua experience
+I investigated the lua plugin ecosystem while fairly small at that time
 it grew and grew and grew... It looked promising
 now we are here back at it again configuring the same editor
 with better features
-this time getting a IDE like experience
+this time getting an IDE like experience
 getting rid of prior pain points with vim
 and getting rid of bad habits.
-the journey begins
+The journey begins
+
 </details>
 
 Started 09.04.21
@@ -92,8 +94,8 @@ The Config should fully support:
 
 CONFIG SETUP:
 
-- IDE capabilities (lsp,debug,project management,build,lint,test) ✅
-- Debloating the Config (staying under 100ms boot up time) ✅
+- IDE capabilities (lsp, debug, project management, build, lint, test) ✅
+- Debloating the Config (staying under 100ms boot uptime) ✅
 - remove unused plugins ✅
 - move to the build in LSP ✅
 - add formatting and linting ✅
@@ -110,13 +112,13 @@ CONFIG SETUP:
 ## Philosophy and side infos
 
 Vim is a modal text editing solution so is neovim\
-it does not strive to be a IDE but it offers IDE like capabilities\
+it does not strive to be an ID, but it offers IDE like capabilities\
 with it's exposed lua API and the Community revolving around it\
-creating a big up and coming plugin ecosystem\
+creating a big up-and-coming plugin ecosystem\
 since vim/neovim are writtin in c it's a blazing fast editor\
 vs its competitors
-while it has it's plugin ecosystem and IDE like capabilities\
-it does not offer a out of the box solution like VSCode\
+while it has its plugin ecosystem and IDE like capabilities\
+it does not offer an out-of-the-box solution like VSCode\
 for that case boilerplate configurations like Lunarvim or Lvim are out there\
 even this config would be a great place to start to have IDE like capabilities\
 it's inspired by Lvim though not cloned
@@ -126,7 +128,7 @@ it's inspired by Lvim though not cloned
 _[Logs](./nvim.log) created on_
 
 - i9 9900k 5Ghz
-- 32GB Ram
+- 32 GB Ram
 - Arch Linux
 
 # Setup
@@ -154,7 +156,7 @@ Most of the requirements can be installed over the `./package.py` script
 Font:
 
 _Nerd Font any Monospaced One (if not monospaced the dashboard logo will not work)_
-__i use FiraCode Nerd Font Mono for regular and bold and VictorMono Nerd Font for italics__
+**I use FiraCode Nerd Font Mono for regular and bold and VictorMono Nerd Font for italics**
 
 _Package managers:_
 
@@ -171,7 +173,7 @@ _NVIM V ^0.7.\*_
 _LSPs in path:_
 
 - pyright
-- efm (for lint and formatting mainly lua and js,ts)
+- efm (for lint and formatting mainly lua and JS, TS)
 - typescript-language-server
 - rust-analyzer
 - gopls
@@ -213,6 +215,6 @@ paste in the default_configs values and adjust accordingly
 
 - Lvim
 - nvchad and module suite
-  - Theme based solution (which i incorporated packer themes in)
-  - If the theme modules wouldn't be strictly written for nvchad i would have used their module
+  - Theme based solution (which I incorporated packer themes in)
+  - If the theme modules wouldn't be strictly written for nvchad I would have used their module
 - base16

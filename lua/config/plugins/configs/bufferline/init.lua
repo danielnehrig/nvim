@@ -4,7 +4,7 @@ local M = {}
 
 function M.init()
   vim.g.bufferline = {
-    exclude_ft = { "quickfix", "terminal", "dap-repl", "repl", "" },
+    exclude_ft = { "quickfix", "terminal", "dap-repl", "repl", "qf", "" },
   }
 
   g.mapleader = " "
