@@ -113,6 +113,7 @@ function M.load_options()
   wo.foldnestmax = 3
   wo.foldlevel = 4
   opt.foldcolumn = "auto:3"
+  g.cursorhold_updatetime = 100
 
   -- scroller
   vim.g.scrollbar_shape = {

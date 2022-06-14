@@ -1,21 +1,13 @@
 local config = {}
 
 function config.dashboard()
-  vim.g.dashboard_footer_icon = "ﬦ "
-  vim.g.dashboard_preview_command = "cat"
-  vim.g.dashboard_preview_pipeline = "lolcat"
-  vim.g.dashboard_preview_file = vim.fn.stdpath("config") .. "/neovim.cat"
-  vim.g.dashboard_preview_file_height = 12
-  vim.g.dashboard_preview_file_width = 80
-  vim.g.dashboard_default_executive = "telescope"
-  vim.g.dashboard_custom_section = {
-    repo1 = {
-      description = {
-        "",
-      },
-      command = "",
-    },
-  }
+  local present, db = pcall(require, "dashboard")
+  db.preview_command = "cat | lolcat -F 0.3"
+  db.preview_file_path = vim.fn.stdpath("config") .. "/neovim.cat"
+  db.preview_file_height = 12
+  db.preview_file_width = 80
+  db.hide_tabline = true
+  db.hide_statusline = true
 end
 
 return config
