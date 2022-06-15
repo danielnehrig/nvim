@@ -119,7 +119,7 @@ return {
   },
   NavicIconsStruct = {
     default = true,
-    fg = theme_30.purple,
+    fg = theme_30.red,
     sp = "none",
   },
   NavicIconsModule = {
