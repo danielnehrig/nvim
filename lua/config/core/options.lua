@@ -101,18 +101,15 @@ function M.load_options()
   opt.spell = false
 
   -- fold settings
-  wo.foldmethod = "expr"
-  o.foldtext =
-    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
-  wo.foldexpr = "nvim_treesitter#foldexpr()"
-  wo.fillchars = "fold:\\"
-  opt.fillchars:append({ eob = " " }) -- disable eob marker for dashboard asthetics
-  opt.fillchars:append("fold:•")
-  opt.fillchars:append("foldopen:-")
-  opt.fillchars:append("foldclose:+")
+  -- wo.foldmethod = "expr"
+  --  o.foldtext =
+  --  [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+  -- wo.foldexpr = "nvim_treesitter#foldexpr()"
+  --  wo.fillchars = "fold:\\"
+  opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
   wo.foldnestmax = 3
   wo.foldlevel = 4
-  opt.foldcolumn = "auto:3"
+  opt.foldcolumn = "1"
   g.cursorhold_updatetime = 100
 
   -- scroller

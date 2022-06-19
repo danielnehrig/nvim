@@ -23,6 +23,7 @@ M.language = {
     end,
   },
   ["rust-lang/rust.vim"] = { ft = { "rust", "rs" } },
+  ["simrat39/rust-tools.nvim"] = {},
   ["iamcco/markdown-preview.nvim"] = {
     run = "cd app && yarn install",
     ft = { "markdown", "md" },
