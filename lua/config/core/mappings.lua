@@ -164,22 +164,22 @@ M.util = {
   },
   n = {
     {
-      "<C-d>a",
+      "<C-r>a",
       'copilot#Accept("\\<CR>")',
       { desc = "Copilot Accept", expr = true, silent = false },
     },
     {
-      "<C-d>]",
+      "<C-r>]",
       "<Plug>(copilot-next)",
       { desc = "Copilot Next", silent = false },
     },
     {
-      "<C-d>d",
+      "<C-r>d",
       "<Plug>(copilot-dismiss)",
       { desc = "Copilot Dismiss", silent = false },
     },
     {
-      "<C-s>[",
+      "<C-r>[",
       "<Plug>(copilot-previous)",
       { desc = "Copilot Prev", silent = false },
     },
