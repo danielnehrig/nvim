@@ -349,6 +349,20 @@ M.theme = {
       end,
     }
 
+    basic.path = {
+      name = "gps",
+      hl_colors = {
+        loc = { "white", "transparent" },
+      },
+      width = breakpoint_width,
+      text = function()
+        return {
+          { vim.fn.expand("%"):gsub("/", " > "), "" },
+          { "", "loc" },
+        }
+      end,
+    }
+
     basic.dap = {
       name = "dap",
       hl_colors = {
@@ -498,6 +512,7 @@ M.theme = {
     local winbar = {
       filetypes = { "winbar" },
       active = {
+        basic.path,
         basic.gps,
         basic.divider,
       },
