@@ -15,6 +15,12 @@ function M.init()
           vim.notify("lspkind is not installed or loaded")
           return
         end
+
+        if entry.source.name == "copilot" then
+          vim_item.kind = "[] Copilot"
+          vim_item.kind_hl_group = "CmpItemKindCopilot"
+          return vim_item
+        end
         -- fancy icons and a name of kind
         vim_item.kind = lspkind.presets.default[vim_item.kind]
           .. " "
@@ -45,10 +51,10 @@ function M.init()
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
     },
-    completion = {
-      completeopt = "menu,menuone,noselect,noinsert",
-      keyword_length = 1,
-    },
+    --  completion = {
+    --  completeopt = "menu,menuone,noselect,noinsert",
+    --  keyword_length = 0,
+    --  },
     experimental = {
       ghost_text = true,
     },
@@ -97,6 +103,17 @@ function M.init()
       end, {
         "i",
       }),
+      ["<C-x><C-c>"] = cmp.mapping(function(_)
+        cmp.complete({
+          config = {
+            sources = {
+              { name = "copilot" },
+            },
+          },
+        })
+      end, {
+        "i",
+      }),
       ["<C-x><C-s>"] = cmp.mapping(function(_)
         cmp.complete({
           config = {
@@ -133,8 +150,8 @@ function M.init()
     -- preselect = cmp.PreselectMode.Item,
     sources = {
       { name = "nvim_lsp_signature_help" },
-      { name = "copilot" },
-      { name = "nvim_lsp" },
+      { name = "copilot", group_index = 2 },
+      { name = "nvim_lsp", group_index = 2 },
       -- { name = "cmp_tabnine" },
       { name = "luasnip" },
       { name = "path" },
@@ -143,12 +160,14 @@ function M.init()
   })
 
   cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = "buffer" },
     },
   })
 
   cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = "path" },
     }, {

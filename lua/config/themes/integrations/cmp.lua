@@ -10,6 +10,7 @@ return {
 
   -- cmp item kinds
   CmpItemKindConstant = { fg = base16.base09 },
+  CmpItemKindCopilot = { fg = "#6CC644" },
   CmpItemKindFunction = { fg = base16.base0D },
   CmpItemKindIdentifier = { fg = base16.base08 },
   CmpItemKindField = { fg = base16.base08 },
