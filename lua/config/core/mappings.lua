@@ -140,7 +140,49 @@ M.dap = {
 
 -- utility binds
 M.util = {
+  i = {
+    {
+      "<C-d>a",
+      'copilot#Accept("\\<CR>")',
+      { desc = "Copilot Accept", expr = true, silent = false },
+    },
+    {
+      "<C-d>]",
+      "<Plug>(copilot-next)",
+      { desc = "Copilot Next", silent = false },
+    },
+    {
+      "<C-d>d",
+      "<Plug>(copilot-dismiss)",
+      { desc = "Copilot Dismiss", silent = false },
+    },
+    {
+      "<C-s>[",
+      "<Plug>(copilot-previous)",
+      { desc = "Copilot Prev", silent = false },
+    },
+  },
   n = {
+    {
+      "<C-d>a",
+      'copilot#Accept("\\<CR>")',
+      { desc = "Copilot Accept", expr = true, silent = false },
+    },
+    {
+      "<C-d>]",
+      "<Plug>(copilot-next)",
+      { desc = "Copilot Next", silent = false },
+    },
+    {
+      "<C-d>d",
+      "<Plug>(copilot-dismiss)",
+      { desc = "Copilot Dismiss", silent = false },
+    },
+    {
+      "<C-s>[",
+      "<Plug>(copilot-previous)",
+      { desc = "Copilot Prev", silent = false },
+    },
     {
       "<leader>r",
       function()
