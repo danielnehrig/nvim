@@ -63,7 +63,9 @@ M.lsp = {
     cmd = { "Trouble" },
     requires = "kyazdani42/nvim-web-devicons",
   },
-  ["nvim-lua/lsp-status.nvim"] = {},
+  ["tomtomjhj/lsp-status.nvim"] = {
+    branch = "deprecated",
+  },
 }
 
 return M
