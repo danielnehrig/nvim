@@ -51,10 +51,9 @@ function M.init()
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
     },
-    --  completion = {
-    --  completeopt = "menu,menuone,noselect,noinsert",
-    --  keyword_length = 0,
-    --  },
+    completion = {
+      keyword_length = 1,
+    },
     experimental = {
       ghost_text = true,
     },
@@ -103,17 +102,6 @@ function M.init()
       end, {
         "i",
       }),
-      ["<C-x><C-c>"] = cmp.mapping(function(_)
-        cmp.complete({
-          config = {
-            sources = {
-              { name = "copilot" },
-            },
-          },
-        })
-      end, {
-        "i",
-      }),
       ["<C-x><C-s>"] = cmp.mapping(function(_)
         cmp.complete({
           config = {
@@ -150,8 +138,8 @@ function M.init()
     -- preselect = cmp.PreselectMode.Item,
     sources = {
       { name = "nvim_lsp_signature_help" },
-      { name = "copilot", group_index = 2 },
-      { name = "nvim_lsp", group_index = 2 },
+      --{ name = "copilot", group_index = 2 },
+      { name = "nvim_lsp" },
       -- { name = "cmp_tabnine" },
       { name = "luasnip" },
       { name = "path" },
