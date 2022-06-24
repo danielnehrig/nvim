@@ -163,26 +163,26 @@ M.util = {
     },
   },
   n = {
-    {
-      "<C-r>a",
-      'copilot#Accept("\\<CR>")',
-      { desc = "Copilot Accept", expr = true, silent = false },
-    },
-    {
-      "<C-r>]",
-      "<Plug>(copilot-next)",
-      { desc = "Copilot Next", silent = false },
-    },
-    {
-      "<C-r>d",
-      "<Plug>(copilot-dismiss)",
-      { desc = "Copilot Dismiss", silent = false },
-    },
-    {
-      "<C-r>[",
-      "<Plug>(copilot-previous)",
-      { desc = "Copilot Prev", silent = false },
-    },
+    --  {
+    --  "<C-r>a",
+    --  'copilot#Accept("\\<CR>")',
+    --  { desc = "Copilot Accept", expr = true, silent = false },
+    --  },
+    --  {
+    --  "<C-r>]",
+    --  "<Plug>(copilot-next)",
+    --  { desc = "Copilot Next", silent = false },
+    --  },
+    --  {
+    --  "<C-r>d",
+    --  "<Plug>(copilot-dismiss)",
+    --  { desc = "Copilot Dismiss", silent = false },
+    --  },
+    --  {
+    --  "<C-r>[",
+    --  "<Plug>(copilot-previous)",
+    --  { desc = "Copilot Prev", silent = false },
+    --  },
     {
       "<leader>r",
       function()
