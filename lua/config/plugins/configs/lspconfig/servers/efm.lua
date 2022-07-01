@@ -23,13 +23,13 @@ local golines = require("config.plugins.configs.lspconfig.efm.golines")
 
 -- formatting and linting with efm
 lspconfig.efm.setup({
-  on_attach = function(client, bufr)
+  on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
       local au_lsp = vim.api.nvim_create_augroup("efm_lsp", { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
         callback = function()
-          vim.lsp.buf.format({ async = true })
+          vim.lsp.buf.format({ async = false })
         end,
         group = au_lsp,
       })
