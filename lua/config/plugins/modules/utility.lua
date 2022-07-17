@@ -1,5 +1,11 @@
 local M = {}
 M.utility = {
+  ["https://github.com/andythigpen/nvim-coverage"] = {
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("user.coverage")
+    end,
+  },
   ["windwp/nvim-autopairs"] = {
     after = "nvim-cmp",
     config = function()
