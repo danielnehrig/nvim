@@ -8,11 +8,6 @@ M.debug = {
       "antoinemadec/FixCursorHold.nvim",
     },
   },
-  ["rcarriga/vim-ultest"] = {
-    cmd = { "Ultest" },
-    requires = { "vim-test/vim-test" },
-    run = ":UpdateRemotePlugins",
-  },
   ["vim-test/vim-test"] = {
     cmd = { "TestFile" },
     requires = {

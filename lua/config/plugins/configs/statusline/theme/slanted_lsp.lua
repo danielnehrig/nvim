@@ -349,6 +349,20 @@ M.theme = {
       end,
     }
 
+    basic.path = {
+      name = "gps",
+      hl_colors = {
+        loc = { "white", "transparent" },
+      },
+      width = breakpoint_width,
+      text = function()
+        return {
+          { vim.fn.expand("%"):gsub("/", " > "), "" },
+          { "", "loc" },
+        }
+      end,
+    }
+
     basic.dap = {
       name = "dap",
       hl_colors = {
@@ -427,7 +441,7 @@ M.theme = {
       show_last_status = true,
     }
 
-    local left = { basic.vi_mode, basic.file, basic.gps, basic.divider }
+    local left = { basic.vi_mode, basic.file, basic.divider }
     local right = {
       basic.dap,
       basic.lsp_names,
@@ -495,6 +509,15 @@ M.theme = {
         dashboard,
       },
     })
+    local winbar = {
+      filetypes = { "winbar" },
+      active = {
+        basic.path,
+        basic.gps,
+        basic.divider,
+      },
+    }
+    windline.add_status(winbar)
 
     animation.stop_all()
 

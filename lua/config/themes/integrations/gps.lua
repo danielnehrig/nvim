@@ -1,117 +1,195 @@
 local theme = require("config.themes").get_colors("base_16")
+local theme_30 = require("config.themes").get_colors("base_30")
 
 return {
   NavicSeparator = {
+    default = true,
     fg = theme.base0F,
     sp = "none",
   },
 
   NavicText = {
-    fg = theme.base0A,
+    default = true,
+    fg = theme_30.green,
     sp = "none",
   },
 
   NavicOperator = {
+    default = true,
     fg = theme.base08,
     sp = "none",
   },
 
   NavicEvent = {
+    default = true,
     fg = theme.base09,
     sp = "none",
   },
 
   NavicFile = {
+    default = true,
     fg = theme.base09,
     sp = "none",
   },
 
   NavicModule = {
+    default = true,
     fg = theme.base09,
     sp = "none",
   },
   NavicNamespace = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.blue,
     sp = "none",
   },
   NavicPackage = {
+    default = true,
     fg = theme.base0F,
     sp = "none",
   },
   NavicClass = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.yellow,
+    sp = "none",
+  },
+  NavicIconsClass = {
+    default = true,
+    fg = theme_30.yellow,
     sp = "none",
   },
   NavicMethod = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.purple,
+    sp = "none",
+  },
+  NavicIconsMethod = {
+    default = true,
+    fg = theme_30.purple,
     sp = "none",
   },
   NavicProperty = {
+    default = true,
+    fg = theme.base0F,
+    sp = "none",
+  },
+  NavicIconsProperty = {
+    default = true,
     fg = theme.base0F,
     sp = "none",
   },
   NavicField = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.yellow,
+    sp = "none",
+  },
+  NavicIconsField = {
+    default = true,
+    fg = theme_30.yellow,
     sp = "none",
   },
   NavicConstructor = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.red,
     sp = "none",
   },
   NavicEnum = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.purple,
+    sp = "none",
+  },
+  NavicIconsEnum = {
+    default = true,
+    fg = theme_30.purple,
     sp = "none",
   },
   NavicInterface = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.blue,
     sp = "none",
   },
   NavicFunction = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.purple,
+    sp = "none",
+  },
+  NavicIconsFunction = {
+    default = true,
+    fg = theme_30.purple,
+    sp = "none",
+  },
+  NavicIconsStruct = {
+    default = true,
+    fg = theme_30.red,
+    sp = "none",
+  },
+  NavicIconsModule = {
+    default = true,
+    fg = theme_30.teal,
     sp = "none",
   },
   NavicVariable = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.green,
     sp = "none",
   },
   NavicConstant = {
+    default = true,
     fg = theme.base0F,
     sp = "none",
   },
   NavicString = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.green,
     sp = "none",
   },
   NavicNumber = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.blue,
     sp = "none",
   },
   NavicBoolean = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.blue,
     sp = "none",
   },
   NavicArray = {
+    default = true,
     fg = theme.base0F,
     sp = "none",
   },
   NavicObject = {
+    default = true,
+    fg = theme.base0F,
+    sp = "none",
+  },
+  NavicIconsObject = {
+    default = true,
+    fg = theme.base0F,
+    sp = "none",
+  },
+  NavicIconsFile = {
+    default = true,
     fg = theme.base0F,
     sp = "none",
   },
   NavicKey = {
+    default = true,
     fg = theme.base0F,
     sp = "none",
   },
   NavicNull = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.teal,
     sp = "none",
   },
   NavicEnumMember = {
+    default = true,
     fg = theme.base0F,
     sp = "none",
   },
   NavicStruct = {
-    fg = theme.base0F,
+    default = true,
+    fg = theme_30.red,
     sp = "none",
   },
 }

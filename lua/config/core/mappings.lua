@@ -57,7 +57,6 @@ M.others = {
     { "<Leader>gt", "<Cmd>Trouble<CR>", { desc = "Trouble LSP" } },
     { "<Leader>ms", "<Cmd>Neomake<CR>", { desc = "Make" } },
     { "<Leader>mt", "<Cmd>TestFile<CR>", { desc = "TestFile" } },
-    { "<Leader>mu", "<Cmd>Ultest<CR>", { desc = "Ultest" } },
     { "<Leader>nf", "<Cmd>DocGen<CR>", { desc = "DocGen" } },
     { "<Leader>w", "<Cmd>WindowPick<CR>", { desc = "WindowPick" } },
   },
@@ -140,7 +139,49 @@ M.dap = {
 
 -- utility binds
 M.util = {
+  i = {
+    {
+      "<C-d>a",
+      'copilot#Accept("\\<CR>")',
+      { desc = "Copilot Accept", expr = true, silent = false },
+    },
+    {
+      "<C-d>]",
+      "<Plug>(copilot-next)",
+      { desc = "Copilot Next", silent = false },
+    },
+    {
+      "<C-d>d",
+      "<Plug>(copilot-dismiss)",
+      { desc = "Copilot Dismiss", silent = false },
+    },
+    {
+      "<C-s>[",
+      "<Plug>(copilot-previous)",
+      { desc = "Copilot Prev", silent = false },
+    },
+  },
   n = {
+    --  {
+    --  "<C-r>a",
+    --  'copilot#Accept("\\<CR>")',
+    --  { desc = "Copilot Accept", expr = true, silent = false },
+    --  },
+    --  {
+    --  "<C-r>]",
+    --  "<Plug>(copilot-next)",
+    --  { desc = "Copilot Next", silent = false },
+    --  },
+    --  {
+    --  "<C-r>d",
+    --  "<Plug>(copilot-dismiss)",
+    --  { desc = "Copilot Dismiss", silent = false },
+    --  },
+    --  {
+    --  "<C-r>[",
+    --  "<Plug>(copilot-previous)",
+    --  { desc = "Copilot Prev", silent = false },
+    --  },
     {
       "<leader>r",
       function()

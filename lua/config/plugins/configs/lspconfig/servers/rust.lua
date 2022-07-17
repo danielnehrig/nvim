@@ -6,12 +6,12 @@ local capabilities =
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
   on_attach = function(client, bufnr)
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
       local au_lsp = vim.api.nvim_create_augroup("rust_lsp", { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
         callback = function()
-          vim.lsp.buf.formatting_sync()
+          vim.lsp.buf.format({ async = false })
         end,
         group = au_lsp,
       })

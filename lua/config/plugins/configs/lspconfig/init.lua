@@ -13,7 +13,7 @@ function LSP.on_attach(client, bufnr)
 
   require("config.core.mappings").set_lsp_mapping(bufnr)
 
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     local ft = "*." .. client.config.filetypes[1]
     local au_lsp = vim.api.nvim_create_augroup(
       "lsp_" .. client.name,
