@@ -3,7 +3,7 @@ M.utility = {
   ["https://github.com/andythigpen/nvim-coverage"] = {
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("user.coverage")
+      require("coverage").setup()
     end,
   },
   ["windwp/nvim-autopairs"] = {
