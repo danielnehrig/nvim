@@ -8,7 +8,6 @@ function M.load_options()
 
   g.copilot_no_tab_map = true
   g.copilot_enabled = true
-  opt.shadafile = "NONE"
   opt.number = true -- enable numbers
   opt.relativenumber = true -- enable numbers to be relative
   -- opt.backupcopy = "auto" -- fix for when files are not detected changed
