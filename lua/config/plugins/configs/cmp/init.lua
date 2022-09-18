@@ -70,7 +70,6 @@ function M.init()
       end, {
         "i",
         "s",
-        "c",
       }),
       ["<Tab>"] = cmp.mapping(function(fallback)
         local luasnip = require("luasnip")
@@ -89,7 +88,6 @@ function M.init()
       end, {
         "i",
         "s",
-        "c",
       }),
       ["<C-x><C-o>"] = cmp.mapping(function(_)
         cmp.complete({
@@ -154,14 +152,14 @@ function M.init()
     },
   })
 
-  cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = "path" },
-    }, {
-      { name = "cmdline" },
-    }),
-  })
+  --  cmp.setup.cmdline(":", {
+  --  mapping = cmp.mapping.preset.cmdline(),
+  --  sources = cmp.config.sources({
+  --  { name = "path" },
+  --  }, {
+  --  { name = "cmdline" },
+  --  }),
+  --  })
 
   cmp.setup.filetype({ "gitcommit" }, {
     sources = {

@@ -13,22 +13,24 @@ M.packer = {
 
       fineline.setup({
         cmdline = {
+          enable_keymaps = true,
+          smart_history = true,
           prompt = ": ",
-          enable_keymaps = false,
         },
         popup = {
-          buf_options = {
-            filetype = "fineline",
+          position = {
+            row = "10%",
+            col = "50%",
           },
-        },
-        hooks = {
-          set_keymaps = function(imap, _)
-            imap("<Esc>", fno.close)
-            imap("<C-c>", fno.close)
-
-            imap("<Up>", fno.up_search_history)
-            imap("<Down>", fno.down_search_history)
-          end,
+          size = {
+            width = "60%",
+          },
+          border = {
+            style = "rounded",
+          },
+          win_options = {
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+          },
         },
       })
     end,
