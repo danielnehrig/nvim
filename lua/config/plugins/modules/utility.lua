@@ -51,7 +51,7 @@ M.utility = {
         default_prefix = "https://",
         -- Command or method to open links with
         -- Options: "netrw", "system" (default OS browser); or "firefox", "chromium" etc.
-        navigate_method = "system",
+        default_action = "system",
         -- Logs user warnings
         debug = true,
         -- Custom search captures
