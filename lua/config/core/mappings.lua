@@ -384,21 +384,23 @@ function M.set_lsp_mapping(bufnr)
       },
     },
     v = {
-      {
-        "<Leader>gf",
-        vim.lsp.buf.range_code_action,
-        { desc = "Code Action", buffer = bufnr },
-      },
+      --  {
+      --  "<Leader>gf",
+      --  vim.lsp.buf.range_code_action,
+      --  { desc = "Code Action", buffer = bufnr },
+      --  },
     },
   }
 
   for mode, map in pairs(M.lsp) do
     for _, conf in ipairs(map) do
-      if conf[3] then
-        vim.keymap.set(mode, conf[1], conf[2], conf[3])
-      else
+      --  if conf[3] then
+      --  vim.keymap.set(mode, conf[1], conf[2], conf[3])
+      --  else
+      if conf then
         vim.keymap.set(mode, conf[1], conf[2])
       end
+      --  end
     end
   end
 end
@@ -408,10 +410,12 @@ function M.mappings()
   for _, section in ipairs(M.map) do
     for mode, map in pairs(section) do
       for _, conf in ipairs(map) do
-        if conf[3] then
-          vim.keymap.set(mode, conf[1], conf[2], conf[3])
-        else
-          vim.keymap.set(mode, conf[1], conf[2])
+        if conf then
+          if conf[3] then
+            vim.keymap.set(mode, conf[1], conf[2], conf[3])
+          else
+            vim.keymap.set(mode, conf[1], conf[2])
+          end
         end
       end
     end
