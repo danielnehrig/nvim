@@ -6,38 +6,6 @@ M.packer = {
       vim.g.matchup_matchparen_offscreen = {}
     end,
   },
-  ["VonHeikemen/fine-cmdline.nvim"] = {
-    config = function()
-      local fineline = require("fine-cmdline")
-      local fno = fineline.fn
-
-      fineline.setup({
-        cmdline = {
-          enable_keymaps = true,
-          smart_history = true,
-          prompt = ": ",
-        },
-        popup = {
-          position = {
-            row = "10%",
-            col = "50%",
-          },
-          size = {
-            width = "60%",
-          },
-          border = {
-            style = "rounded",
-          },
-          win_options = {
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-          },
-        },
-      })
-    end,
-    requires = {
-      { "MunifTanjim/nui.nvim" },
-    },
-  },
   ["hkupty/nvimux"] = {
     keys = { "<C-a>" },
     config = require("config.plugins.configs.nvimux").init,
