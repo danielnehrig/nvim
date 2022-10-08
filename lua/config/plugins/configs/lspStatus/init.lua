@@ -9,11 +9,8 @@ function M.init()
     return
   end
 
-  LSP.capabilities = vim.tbl_extend(
-    "keep",
-    LSP.capabilities or {},
-    lsp_status.capabilities
-  )
+  LSP.capabilities =
+    vim.tbl_extend("keep", LSP.capabilities or {}, lsp_status.capabilities)
 
   lsp_status.config({
     select_symbol = function(cursor_pos, symbol)

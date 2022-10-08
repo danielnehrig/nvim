@@ -64,10 +64,8 @@ M.switch_theme = function(arg)
       return
     end
 
-    local highlights_raw = vim.split(
-      vim.api.nvim_exec("filter BufferLine hi", true),
-      "\n"
-    )
+    local highlights_raw =
+      vim.split(vim.api.nvim_exec("filter BufferLine hi", true), "\n")
     local highlight_groups = {}
 
     for _, raw_hi in ipairs(highlights_raw) do
@@ -78,10 +76,8 @@ M.switch_theme = function(arg)
       vim.cmd([[hi clear ]] .. highlight)
     end
 
-    local colorscheme_ok, _ = pcall(
-      vim.cmd,
-      string.format("colorscheme %s", colorscheme)
-    )
+    local colorscheme_ok, _ =
+      pcall(vim.cmd, string.format("colorscheme %s", colorscheme))
 
     if not colorscheme_ok then
       vim.notify(

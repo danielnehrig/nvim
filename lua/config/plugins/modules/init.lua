@@ -27,9 +27,8 @@ plugin_table = vim.tbl_deep_extend(
   language
 )
 
-plugin_table = require("config.core.config").remove_default_plugins(
-  plugin_table
-)
+plugin_table =
+  require("config.core.config").remove_default_plugins(plugin_table)
 local user_plugins = require("config.core.config").get_config().plugins.user
 plugin_table = vim.tbl_deep_extend("force", plugin_table, user_plugins)
 

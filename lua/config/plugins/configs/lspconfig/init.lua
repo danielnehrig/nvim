@@ -15,10 +15,8 @@ function LSP.on_attach(client, bufnr)
 
   if client.server_capabilities.document_highlight then
     local ft = "*." .. client.config.filetypes[1]
-    local au_lsp = vim.api.nvim_create_augroup(
-      "lsp_" .. client.name,
-      { clear = true }
-    )
+    local au_lsp =
+      vim.api.nvim_create_augroup("lsp_" .. client.name, { clear = true })
     vim.api.nvim_create_autocmd({ "CursorHold" }, {
       pattern = ft,
       callback = vim.lsp.buf.document_highlight,
@@ -71,12 +69,10 @@ function LSP.settings()
     })
 
   -- enable border for signature
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    {
+  vim.lsp.handlers["textDocument/signatureHelp"] =
+    vim.lsp.with(vim.lsp.handlers.signature_help, {
       border = global.border_style,
-    }
-  )
+    })
 end
 
 LSP.settings()

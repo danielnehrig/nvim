@@ -44,12 +44,8 @@ end
 local get_local_exec = function(name, context)
   local local_bin_path = FilepathByScope[context]
   local current_working_dir = vim.loop.cwd()
-  local binpath = string.format(
-    "%s/%s/%s",
-    current_working_dir,
-    local_bin_path,
-    name
-  )
+  local binpath =
+    string.format("%s/%s/%s", current_working_dir, local_bin_path, name)
 
   if vim.fn.filereadable(binpath) == 0 then
     binpath = ""

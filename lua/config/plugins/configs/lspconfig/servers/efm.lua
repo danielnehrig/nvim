@@ -6,9 +6,8 @@ local vale = require("config.plugins.configs.lspconfig.efm.vale")
 local eslint = require("config.plugins.configs.lspconfig.efm.eslint")
 local rslint = require("config.plugins.configs.lspconfig.efm.rslint")
 local jq = require("config.plugins.configs.lspconfig.efm.jq")
-local json_prettier = require(
-  "config.plugins.configs.lspconfig.efm.json-prettier"
-)
+local json_prettier =
+  require("config.plugins.configs.lspconfig.efm.json-prettier")
 local prettier = require("config.plugins.configs.lspconfig.efm.prettier")
 local stylua = require("config.plugins.configs.lspconfig.efm.stylua")
 local luacheck = require("config.plugins.configs.lspconfig.efm.luacheck")

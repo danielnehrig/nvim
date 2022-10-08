@@ -85,7 +85,7 @@ M.telescope = {
     },
     {
       "<Leader>fF",
-      "<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files hidden=true no_ignore=true prompt_prefix=🔍<CR>",
+      "<Cmd>Telescope find_files find_command=rg,--files hidden=true no_ignore=true prompt_prefix=🔍<CR>",
       { desc = "FindFiles" },
     },
     { "<Leader>fg", "<Cmd>Telescope live_grep<CR>", { desc = "Grep" } },

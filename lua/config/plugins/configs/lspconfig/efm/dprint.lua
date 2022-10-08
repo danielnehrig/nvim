@@ -1,15 +1,11 @@
 local fs = require("config.core.fs")
 
 local formatter = "dprint"
-local format_command = string.format(
-  "%s fmt --stdin ${FILEEXT}",
-  fs.executable(formatter)
-)
+local format_command =
+  string.format("%s fmt --stdin ${FILEEXT}", fs.executable(formatter))
 
-local lint_command = string.format(
-  "%s check ${INPUT}",
-  fs.executable(formatter)
-)
+local lint_command =
+  string.format("%s check ${INPUT}", fs.executable(formatter))
 
 return {
   prefix = formatter,

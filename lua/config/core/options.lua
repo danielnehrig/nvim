@@ -1,5 +1,5 @@
 local globals = require("config.core.global")
-local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
+local g, b, opt, go, wo = vim.g, vim.b, vim.opt, vim.go, vim.wo
 local M = {}
 
 function M.load_options()
@@ -101,12 +101,6 @@ function M.load_options()
   opt.spelllang = "en,de"
   opt.spell = false
 
-  -- fold settings
-  -- wo.foldmethod = "expr"
-  --  o.foldtext =
-  --  [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
-  -- wo.foldexpr = "nvim_treesitter#foldexpr()"
-  --  wo.fillchars = "fold:\\"
   opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
   wo.foldnestmax = 3
   wo.foldlevel = 4

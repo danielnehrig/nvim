@@ -46,9 +46,8 @@ plugins._index = plugins
 
 -- Bootstrap Packer and the Plugins + loads configs afterwards
 function plugins.bootstrap()
-  local install_path = build_path_string(
-    fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
-  )
+  local install_path =
+    build_path_string(fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim")
   -- check if packer exists or is installed
   if fn.empty(fn.glob(install_path)) > 0 then
     -- fetch packer
