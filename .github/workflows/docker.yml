@@ -3,14 +3,10 @@ name: ci
 on:
   workflow_dispatch:
     inputs:
-      body:
-        description: ""
-        default: ""
-        required: false
-      test:
-        description: ""
-        default: "false"
-        required: false
+      nvim-version:
+        description: "use neovim (stable) or neovim-git (nightly)"
+        default: "neovim"
+        required: true
 
 jobs:
   docker:
@@ -38,4 +34,6 @@ jobs:
         with:
           context: .
           push: true
+          build-args:
+            version: ${{ github.event.inputs.nvim-version }}
           tags: danielnehrig/nvim:nightly

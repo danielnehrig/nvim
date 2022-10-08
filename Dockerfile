@@ -1,4 +1,5 @@
 FROM archlinux/archlinux:latest
+ARG version=neovim
 COPY . /root/.config/nvim/
 
 RUN pacman -Sy \
@@ -19,7 +20,7 @@ RUN sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/yay-g
   && echo 'PATH+=":$HOME/root/.luarocks/bin"' >> /root/.bashrc \
   && echo 'export npm_config_prefix="$HOME/.local"' >> /root/.bashrc \
   && npm set prefix="$HOME/.local"
-RUN sudo -u builduser yay -S --noconfirm neovim-git
+RUN sudo -u builduser yay -S --noconfirm ${version}
 RUN /root/.config/nvim/packages.py --sudo builduser
 
 # flakey for some reason --headless packersync does not work like without headless
