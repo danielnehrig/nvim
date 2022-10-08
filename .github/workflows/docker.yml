@@ -3,14 +3,10 @@ name: ci
 on:
   workflow_dispatch:
     inputs:
-      body:
-        description: ""
-        default: ""
-        required: false
-      test:
-        description: ""
-        default: "false"
-        required: false
+      nvim-version:
+        description: "use neovim (stable) or neovim-git (nightly)"
+        default: "neovim"
+        required: true
 
 jobs:
   docker:
@@ -33,9 +29,22 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push stable
         uses: docker/build-push-action@v2
+        if: ${{ github.event.inputs.nvim-version  == 'neovim' }}
         with:
           context: .
           push: true
+          build-args:
+            version: ${{ github.event.inputs.nvim-version }}
+          tags: danielnehrig/nvim:latest
+      -
+        name: Build and push nightly
+        uses: docker/build-push-action@v2
+        if: ${{ github.event.inputs.nvim-version  == 'neovim-git' }}
+        with:
+          context: .
+          push: true
+          build-args:
+            version: ${{ github.event.inputs.nvim-version }}
           tags: danielnehrig/nvim:nightly
