@@ -35,8 +35,8 @@ jobs:
         with:
           context: .
           push: true
-          build-args:
-            - version=${{ github.event.inputs.nvim-version }}
+          build-args: |
+            version=${{ github.event.inputs.nvim-version }}
           tags: danielnehrig/nvim:latest
       -
         name: Build and push nightly
@@ -45,6 +45,6 @@ jobs:
         with:
           context: .
           push: true
-          build-args:
-            - version=${{ github.event.inputs.nvim-version }}
+          build-args: |
+            version=${{ github.event.inputs.nvim-version }}
           tags: danielnehrig/nvim:nightly
