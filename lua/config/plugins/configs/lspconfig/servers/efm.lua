@@ -6,9 +6,8 @@ local vale = require("config.plugins.configs.lspconfig.efm.vale")
 local eslint = require("config.plugins.configs.lspconfig.efm.eslint")
 local rslint = require("config.plugins.configs.lspconfig.efm.rslint")
 local jq = require("config.plugins.configs.lspconfig.efm.jq")
-local json_prettier = require(
-  "config.plugins.configs.lspconfig.efm.json-prettier"
-)
+local json_prettier =
+  require("config.plugins.configs.lspconfig.efm.json-prettier")
 local prettier = require("config.plugins.configs.lspconfig.efm.prettier")
 local stylua = require("config.plugins.configs.lspconfig.efm.stylua")
 local luacheck = require("config.plugins.configs.lspconfig.efm.luacheck")
@@ -24,13 +23,12 @@ local golines = require("config.plugins.configs.lspconfig.efm.golines")
 -- formatting and linting with efm
 lspconfig.efm.setup({
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = true
-    if client.resolved_capabilities.document_formatting then
+    if client.supports_method("textDocument/formatting") then
       local au_lsp = vim.api.nvim_create_augroup("efm_lsp", { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
         callback = function()
-          vim.lsp.buf.formatting_seq_sync({}, 2000)
+          vim.lsp.buf.format({ async = false, timeout_ms = 7000 })
         end,
         group = au_lsp,
       })

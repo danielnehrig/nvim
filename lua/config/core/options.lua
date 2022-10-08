@@ -1,12 +1,13 @@
 local globals = require("config.core.global")
-local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
+local g, b, opt, go, wo = vim.g, vim.b, vim.opt, vim.go, vim.wo
 local M = {}
 
 function M.load_options()
   g.did_load_filetypes = 0
   g.do_filetype_lua = 1
 
-  opt.shadafile = "NONE"
+  g.copilot_no_tab_map = true
+  g.copilot_enabled = true
   opt.number = true -- enable numbers
   opt.relativenumber = true -- enable numbers to be relative
   -- opt.backupcopy = "auto" -- fix for when files are not detected changed
@@ -58,7 +59,7 @@ function M.load_options()
   opt.mouse = "a" -- mouse on don't use mouse
 
   opt.signcolumn = "auto:2" -- 2 sign column
-  opt.cmdheight = 1 -- ex cmd height
+  opt.cmdheight = 0 -- ex cmd height
   if globals.is_darwin then
     vim.o.guifont = "FiraCode Nerd Font Mono:h16" -- set font
   else
@@ -100,19 +101,10 @@ function M.load_options()
   opt.spelllang = "en,de"
   opt.spell = false
 
-  -- fold settings
-  wo.foldmethod = "expr"
-  o.foldtext =
-    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
-  wo.foldexpr = "nvim_treesitter#foldexpr()"
-  wo.fillchars = "fold:\\"
-  opt.fillchars:append({ eob = " " }) -- disable eob marker for dashboard asthetics
-  opt.fillchars:append("fold:•")
-  opt.fillchars:append("foldopen:-")
-  opt.fillchars:append("foldclose:+")
+  opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
   wo.foldnestmax = 3
   wo.foldlevel = 4
-  opt.foldcolumn = "auto:3"
+  opt.foldcolumn = "1"
   g.cursorhold_updatetime = 100
 
   -- scroller
@@ -146,12 +138,6 @@ function M.load_options()
   for _, plugin in pairs(default_plugins) do
     g["loaded_" .. plugin] = 1
   end
-
-  vim.schedule(function()
-    vim.opt.shadafile = vim.fn.expand("$HOME")
-      .. "/.local/share/nvim/shada/main.shada"
-    vim.cmd([[ silent! rsh ]])
-  end)
 end
 
 M.fold_column_toggle = function()

@@ -1,5 +1,24 @@
 local M = {}
 M.utility = {
+  -- Packer
+  ["folke/noice.nvim"] = {
+    event = "VimEnter",
+    config = function()
+      require("noice").setup()
+    end,
+    requires = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+      "hrsh7th/nvim-cmp",
+    },
+  },
+  ["https://github.com/andythigpen/nvim-coverage"] = {
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("coverage").setup()
+    end,
+  },
   ["windwp/nvim-autopairs"] = {
     after = "nvim-cmp",
     config = function()
@@ -45,19 +64,9 @@ M.utility = {
         default_prefix = "https://",
         -- Command or method to open links with
         -- Options: "netrw", "system" (default OS browser); or "firefox", "chromium" etc.
-        navigate_method = "system",
+        default_action = "system",
         -- Logs user warnings
-        debug = true,
-        -- Custom search captures
-        -- NOTE: captures follow Lua pattern matching (https://riptutorial.com/lua/example/20315/lua-pattern-matching)
-        custom_searches = {
-          -- KEY: search source name
-          -- VALUE: custom search function or table (map with keys capture, format)
-          jira = {
-            capture = "AXIE%-%d+",
-            format = "https://jira.axieax.com/browse/%s",
-          },
-        },
+        log_level_min = vim.log.levels.INFO,
       })
     end,
   },

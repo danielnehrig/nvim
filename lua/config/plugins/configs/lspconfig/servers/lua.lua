@@ -35,7 +35,6 @@ local luadev = require("lua-dev").setup({
     flags = { debounce_text_changes = 500 },
     -- root_dir = require("lspconfig/util").root_pattern("."),
     on_attach = function(client, bufnr)
-      client.resolved_capabilities.document_formatting = false
       client.server_capabilities.documentFormattingProvider = false
       local n_present, navic = pcall(require, "nvim-navic")
       if n_present then
@@ -78,7 +77,6 @@ function M.reinit()
       flags = { debounce_text_changes = 500 },
       -- root_dir = require("lspconfig/util").root_pattern("."),
       on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
         client.server_capabilities.documentFormattingProvider = false
         local n_present, navic = pcall(require, "nvim-navic")
         if n_present then

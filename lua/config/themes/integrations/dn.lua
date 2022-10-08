@@ -18,7 +18,7 @@ local orange = colors.orange
 
 return {
 
-  Comment = { fg = grey_fg, italic = true },
+  Comment = { fg = grey_fg, italic = false },
 
   -- line numbers
   CursorLineNr = { fg = white },

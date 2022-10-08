@@ -57,7 +57,6 @@ M.others = {
     { "<Leader>gt", "<Cmd>Trouble<CR>", { desc = "Trouble LSP" } },
     { "<Leader>ms", "<Cmd>Neomake<CR>", { desc = "Make" } },
     { "<Leader>mt", "<Cmd>TestFile<CR>", { desc = "TestFile" } },
-    { "<Leader>mu", "<Cmd>Ultest<CR>", { desc = "Ultest" } },
     { "<Leader>nf", "<Cmd>DocGen<CR>", { desc = "DocGen" } },
     { "<Leader>w", "<Cmd>WindowPick<CR>", { desc = "WindowPick" } },
   },
@@ -86,7 +85,7 @@ M.telescope = {
     },
     {
       "<Leader>fF",
-      "<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files hidden=true no_ignore=true prompt_prefix=🔍<CR>",
+      "<Cmd>Telescope find_files find_command=rg,--files hidden=true no_ignore=true prompt_prefix=🔍<CR>",
       { desc = "FindFiles" },
     },
     { "<Leader>fg", "<Cmd>Telescope live_grep<CR>", { desc = "Grep" } },
@@ -140,7 +139,49 @@ M.dap = {
 
 -- utility binds
 M.util = {
+  i = {
+    {
+      "<C-d>a",
+      'copilot#Accept("\\<CR>")',
+      { desc = "Copilot Accept", expr = true, silent = false },
+    },
+    {
+      "<C-d>]",
+      "<Plug>(copilot-next)",
+      { desc = "Copilot Next", silent = false },
+    },
+    {
+      "<C-d>d",
+      "<Plug>(copilot-dismiss)",
+      { desc = "Copilot Dismiss", silent = false },
+    },
+    {
+      "<C-s>[",
+      "<Plug>(copilot-previous)",
+      { desc = "Copilot Prev", silent = false },
+    },
+  },
   n = {
+    --  {
+    --  "<C-r>a",
+    --  'copilot#Accept("\\<CR>")',
+    --  { desc = "Copilot Accept", expr = true, silent = false },
+    --  },
+    --  {
+    --  "<C-r>]",
+    --  "<Plug>(copilot-next)",
+    --  { desc = "Copilot Next", silent = false },
+    --  },
+    --  {
+    --  "<C-r>d",
+    --  "<Plug>(copilot-dismiss)",
+    --  { desc = "Copilot Dismiss", silent = false },
+    --  },
+    --  {
+    --  "<C-r>[",
+    --  "<Plug>(copilot-previous)",
+    --  { desc = "Copilot Prev", silent = false },
+    --  },
     {
       "<leader>r",
       function()
@@ -343,21 +384,23 @@ function M.set_lsp_mapping(bufnr)
       },
     },
     v = {
-      {
-        "<Leader>gf",
-        vim.lsp.buf.range_code_action,
-        { desc = "Code Action", buffer = bufnr },
-      },
+      --  {
+      --  "<Leader>gf",
+      --  vim.lsp.buf.range_code_action,
+      --  { desc = "Code Action", buffer = bufnr },
+      --  },
     },
   }
 
   for mode, map in pairs(M.lsp) do
     for _, conf in ipairs(map) do
-      if conf[3] then
-        vim.keymap.set(mode, conf[1], conf[2], conf[3])
-      else
+      --  if conf[3] then
+      --  vim.keymap.set(mode, conf[1], conf[2], conf[3])
+      --  else
+      if conf then
         vim.keymap.set(mode, conf[1], conf[2])
       end
+      --  end
     end
   end
 end
@@ -367,10 +410,12 @@ function M.mappings()
   for _, section in ipairs(M.map) do
     for mode, map in pairs(section) do
       for _, conf in ipairs(map) do
-        if conf[3] then
-          vim.keymap.set(mode, conf[1], conf[2], conf[3])
-        else
-          vim.keymap.set(mode, conf[1], conf[2])
+        if conf then
+          if conf[3] then
+            vim.keymap.set(mode, conf[1], conf[2], conf[3])
+          else
+            vim.keymap.set(mode, conf[1], conf[2])
+          end
         end
       end
     end

@@ -4,10 +4,8 @@ local command = string.format(
   "%s --no-color --format visualstudio --stdin",
   fs.executable(linter)
 )
-local command_fmt = string.format(
-  "%s --no-color --fix-to-stdout --stdin",
-  fs.executable(linter)
-)
+local command_fmt =
+  string.format("%s --no-color --fix-to-stdout --stdin", fs.executable(linter))
 
 return {
   prefix = linter,

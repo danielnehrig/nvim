@@ -6,36 +6,6 @@ M.packer = {
       vim.g.matchup_matchparen_offscreen = {}
     end,
   },
-  ["VonHeikemen/fine-cmdline.nvim"] = {
-    config = function()
-      local fineline = require("fine-cmdline")
-      local fno = fineline.fn
-
-      fineline.setup({
-        cmdline = {
-          prompt = ": ",
-          enable_keymaps = false,
-        },
-        popup = {
-          buf_options = {
-            filetype = "fineline",
-          },
-        },
-        hooks = {
-          set_keymaps = function(imap, _)
-            imap("<Esc>", fno.close)
-            imap("<C-c>", fno.close)
-
-            imap("<Up>", fno.up_search_history)
-            imap("<Down>", fno.down_search_history)
-          end,
-        },
-      })
-    end,
-    requires = {
-      { "MunifTanjim/nui.nvim" },
-    },
-  },
   ["hkupty/nvimux"] = {
     keys = { "<C-a>" },
     config = require("config.plugins.configs.nvimux").init,

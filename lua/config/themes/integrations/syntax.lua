@@ -47,7 +47,7 @@ return {
 
   Keyword = {
     fg = theme.base0E,
-    italic = true,
+    italic = false,
   },
 
   Label = {

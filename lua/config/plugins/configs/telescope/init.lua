@@ -91,7 +91,6 @@ function M.init()
     },
   })
   telescope.load_extension("fzf")
-  telescope.load_extension("urlview")
   telescope.load_extension("project")
   telescope.load_extension("file_browser")
   telescope.load_extension("refactoring")
