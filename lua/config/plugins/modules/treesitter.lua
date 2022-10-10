@@ -118,15 +118,6 @@ M.ts = {
   ["RRethy/nvim-treesitter-textsubjects"] = {
     requires = "nvim-treesitter/nvim-treesitter",
   },
-  ["lewis6991/spellsitter.nvim"] = {
-    requires = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("spellsitter").setup({
-        enable = true,
-        captures = { "comment" },
-      })
-    end,
-  },
   ["windwp/nvim-ts-autotag"] = {
     requires = "nvim-treesitter/nvim-treesitter",
   },
