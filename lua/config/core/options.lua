@@ -89,7 +89,7 @@ function M.load_options()
 
   -- fast
   opt.ttyfast = true
-  opt.lazyredraw = true
+  opt.lazyredraw = false
 
   -- for indentline
   -- indentation settings
