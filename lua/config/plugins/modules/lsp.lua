@@ -52,7 +52,7 @@ M.lsp = {
       })
     end,
   },
-  ["folke/lua-dev.nvim"] = { opt = true }, -- lua nvim setup
+  ["folke/neodev.nvim"] = { opt = true }, -- lua nvim setup
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
   },
