@@ -6,10 +6,8 @@ function M.autocmds()
   local au_utils = vim.api.nvim_create_augroup("utils", { clear = true })
   local au_ft = vim.api.nvim_create_augroup("ft", { clear = true })
   local au_cmp = vim.api.nvim_create_augroup("cmp", { clear = true })
-  local au_highlight = vim.api.nvim_create_augroup(
-    "highlight",
-    { clear = true }
-  )
+  local au_highlight =
+    vim.api.nvim_create_augroup("highlight", { clear = true })
 
   -- hi
   vim.api.nvim_create_autocmd("ColorScheme", {
@@ -132,7 +130,10 @@ function M.autocmds()
 
       local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
-      require("lsp-inlayhints").on_attach(client, bufnr)
+      local present, inlay = pcall(require, "lsp-inlayhints")
+      if present then
+        inlay.on_attach(client, bufnr)
+      end
     end,
   })
   -- cmp
