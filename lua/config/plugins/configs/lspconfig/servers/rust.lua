@@ -28,11 +28,18 @@ lspconfig.rust_analyzer.setup({
   settings = {
     ["rust-analyzer"] = {
       assist = {
-        importGranularity = "module",
-        importPrefix = "by_self",
+        importEnforceGranularity = true,
+        importPrefix = "crate",
+      },
+      inlayHints = {
+        lifetimeElisionHints = {
+          enable = true,
+          useParameterNames = true,
+        },
       },
       cargo = {
-        loadOutDirsFromCheck = true,
+        allFeatures = true,
+        -- loadOutDirsFromCheck = true,
       },
       checkOnSave = {
         enable = true,

@@ -6,8 +6,10 @@ function M.autocmds()
   local au_utils = vim.api.nvim_create_augroup("utils", { clear = true })
   local au_ft = vim.api.nvim_create_augroup("ft", { clear = true })
   local au_cmp = vim.api.nvim_create_augroup("cmp", { clear = true })
-  local au_highlight =
-    vim.api.nvim_create_augroup("highlight", { clear = true })
+  local au_highlight = vim.api.nvim_create_augroup(
+    "highlight",
+    { clear = true }
+  )
 
   -- hi
   vim.api.nvim_create_autocmd("ColorScheme", {
@@ -118,6 +120,20 @@ function M.autocmds()
       -- vim.opt.cursor_word = 0
     end,
     group = au_ft,
+  })
+  -- lsp
+  vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = "LspAttach_inlayhints",
+    callback = function(args)
+      if not (args.data and args.data.client_id) then
+        return
+      end
+
+      local bufnr = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      require("lsp-inlayhints").on_attach(client, bufnr)
+    end,
   })
   -- cmp
   vim.api.nvim_create_autocmd("FileType", {

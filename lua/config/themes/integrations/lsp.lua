@@ -16,4 +16,7 @@ return {
     bg = theme.base04,
     bold = true,
   },
+  LspInlayHint = {
+    link = "Comment",
+  },
 }
