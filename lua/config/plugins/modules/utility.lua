@@ -13,6 +13,12 @@ M.utility = {
       "hrsh7th/nvim-cmp",
     },
   },
+  ["narutoxy/silicon.lua"] = {
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("silicon").setup({})
+    end,
+  },
   ["https://github.com/andythigpen/nvim-coverage"] = {
     requires = "nvim-lua/plenary.nvim",
     config = function()
