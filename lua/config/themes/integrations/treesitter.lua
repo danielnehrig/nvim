@@ -1,158 +1,168 @@
 local theme = require("config.themes").get_colors("base_16")
 
 return {
-  TSAnnotation = {
+  -- `@annotation` is not one of the default capture group, should we keep it
+  ["@annotation"] = {
     fg = theme.base0F,
-    sp = "none",
   },
 
-  TSAttribute = {
+  ["@attribute"] = {
     fg = theme.base0A,
-    sp = "none",
   },
 
-  TSCharacter = {
+  ["@character"] = {
     fg = theme.base08,
-    sp = "none",
   },
 
-  TSConstBuiltin = {
+  ["@constructor"] = {
+    fg = theme.base0C,
+  },
+
+  ["@constant.builtin"] = {
     fg = theme.base09,
-    sp = "none",
   },
 
-  TSConstMacro = {
+  ["@constant.macro"] = {
     fg = theme.base08,
-    sp = "none",
   },
 
-  TSError = {
+  ["@error"] = {
     fg = theme.base08,
-    sp = "none",
   },
 
-  TSException = {
+  ["@exception"] = {
     fg = theme.base08,
-    sp = "none",
   },
 
-  TSFloat = {
+  ["@float"] = {
     fg = theme.base09,
-    sp = "none",
   },
 
-  TSFuncBuiltin = {
-    fg = theme.base0D,
-    sp = "none",
-  },
-
-  TSFuncMacro = {
-    fg = theme.base08,
-    sp = "none",
-  },
-
-  TSKeywordOperator = {
+  ["@keyword"] = {
     fg = theme.base0E,
-    sp = "none",
   },
 
-  TSMethod = {
+  ["@keyword.function"] = {
+    fg = theme.base0E,
+  },
+
+  ["@keyword.return"] = {
+    fg = theme.base0E,
+  },
+
+  ["@function"] = {
     fg = theme.base0D,
-    sp = "none",
   },
 
-  TSNamespace = {
+  ["@function.builtin"] = {
+    fg = theme.base0D,
+  },
+
+  ["@function.macro"] = {
     fg = theme.base08,
-    sp = "none",
   },
 
-  TSNone = {
-    fg = theme.base05,
-    sp = "none",
+  ["@keyword.operator"] = {
+    fg = theme.base0E,
   },
 
-  TSParameter = {
+  ["@method"] = {
+    fg = theme.base0D,
+  },
+
+  ["@namespace"] = {
     fg = theme.base08,
-    sp = "none",
   },
 
-  TSParameterReference = {
+  ["@none"] = {
     fg = theme.base05,
-    sp = "none",
   },
 
-  TSPunctDelimiter = {
+  ["@parameter"] = {
+    fg = theme.base08,
+  },
+
+  ["@reference"] = {
+    fg = theme.base05,
+  },
+
+  ["@punctuation.bracket"] = {
     fg = theme.base0F,
-    sp = "none",
   },
 
-  TSPunctSpecial = {
-    fg = theme.base05,
-    sp = "none",
+  ["@punctuation.delimiter"] = {
+    fg = theme.base0F,
   },
 
-  TSStringRegex = {
+  ["@punctuation.special"] = {
+    fg = theme.base08,
+  },
+
+  ["@string.regex"] = {
     fg = theme.base0C,
-    sp = "none",
   },
 
-  TSStringEscape = {
+  ["@string.escape"] = {
     fg = theme.base0C,
-    sp = "none",
   },
 
-  TSSymbol = {
+  ["@symbol"] = {
     fg = theme.base0B,
-    sp = "none",
   },
 
-  TSTagDelimiter = {
+  ["@tag"] = {
+    link = "Tag",
+  },
+
+  ["@tag.attribute"] = {
+    link = "@property",
+  },
+
+  ["@tag.delimiter"] = {
     fg = theme.base0F,
-    sp = "none",
   },
 
-  TSText = {
+  ["@text"] = {
     fg = theme.base05,
-    sp = "none",
   },
 
-  TSStrong = {
+  ["@text.strong"] = {
     bold = true,
   },
 
-  TSEmphasis = {
+  ["@text.emphasis"] = {
     fg = theme.base09,
-    sp = "none",
   },
 
-  TSStrike = {
+  ["@text.strike"] = {
     fg = theme.base00,
-    sp = "none",
     strikethrough = true,
   },
 
-  TSLiteral = {
+  ["@text.literal"] = {
     fg = theme.base09,
-    sp = "none",
   },
 
-  TSURI = {
+  ["@text.uri"] = {
     fg = theme.base09,
-    sp = "none",
     underline = true,
   },
 
-  TSTypeBuiltin = {
+  ["@type.builtin"] = {
     fg = theme.base0A,
-    sp = "none",
   },
 
-  TSVariableBuiltin = {
+  ["@variable"] = {
+    fg = theme.base05,
+  },
+
+  ["@variable.builtin"] = {
     fg = theme.base09,
-    sp = "none",
   },
 
-  TSDefinition = {
+  -- variable.global
+
+  ["@definition"] = {
     sp = theme.base04,
     underline = true,
   },
@@ -162,7 +172,27 @@ return {
     underline = true,
   },
 
-  TSCurrentScope = {
+  ["@scope"] = {
     bold = true,
+  },
+
+  ["@field"] = {
+    fg = theme.base08,
+  },
+
+  ["@field.key"] = {
+    fg = theme.base0D,
+  },
+
+  ["@property"] = {
+    fg = theme.base08,
+  },
+
+  ["@include"] = {
+    link = "Include",
+  },
+
+  ["@conditional"] = {
+    link = "Conditional",
   },
 }

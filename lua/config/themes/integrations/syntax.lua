@@ -32,6 +32,10 @@ return {
     fg = theme.base09,
   },
 
+  Variable = {
+    fg = theme.base05,
+  },
+
   Function = {
     fg = theme.base0D,
   },
@@ -47,7 +51,6 @@ return {
 
   Keyword = {
     fg = theme.base0E,
-    italic = false,
   },
 
   Label = {
