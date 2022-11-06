@@ -7,11 +7,11 @@ return {
   CmpItemAbbrMatch = { fg = colors.blue, bold = true },
   CmpBorder = { fg = colors.grey },
   CmpDocBorder = { fg = colors.grey },
+  CmPmenu = { bg = colors.darker_black },
 
   -- cmp item kinds
   CmpItemKindConstant = { fg = base16.base09 },
   CopilotSuggestion = { fg = "#555555" },
-  CmpItemKindCopilot = { fg = "#6CC644" },
   CmpItemKindFunction = { fg = base16.base0D },
   CmpItemKindIdentifier = { fg = base16.base08 },
   CmpItemKindField = { fg = base16.base08 },
@@ -39,4 +39,5 @@ return {
   -- CmpItemKindEvent = { fg = "" },
   CmpItemKindOperator = { fg = base16.base05 },
   CmpItemKindTypeParameter = { fg = base16.base08 },
+  CmpItemKindCopilot = { fg = colors.green },
 }

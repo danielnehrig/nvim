@@ -1,22 +1,18 @@
-local theme = require("config.themes").get_colors("base_16")
+local colors = require("config.themes").get_colors("base_30")
 
 return {
-  LspReferenceText = {
-    fg = theme.base0F,
-    bg = theme.base04,
-    bold = true,
-  },
-  LspReferenceRead = {
-    fg = theme.base0F,
-    bg = theme.base04,
-    bold = true,
-  },
-  LspReferenceWrite = {
-    fg = theme.base0F,
-    bg = theme.base04,
-    bold = true,
-  },
-  LspInlayHint = {
-    link = "Comment",
-  },
+  -- LSP References
+  LspReferenceText = { fg = colors.darker_black, bg = colors.white },
+  LspReferenceRead = { fg = colors.darker_black, bg = colors.white },
+  LspReferenceWrite = { fg = colors.darker_black, bg = colors.white },
+
+  -- Lsp Diagnostics
+  DiagnosticHint = { fg = colors.purple },
+  DiagnosticError = { fg = colors.red },
+  DiagnosticWarn = { fg = colors.yellow },
+  DiagnosticInformation = { fg = colors.green },
+  LspSignatureActiveParameter = { fg = colors.black, bg = colors.green },
+
+  RenamerTitle = { fg = colors.black, bg = colors.red },
+  RenamerBorder = { fg = colors.red },
 }
