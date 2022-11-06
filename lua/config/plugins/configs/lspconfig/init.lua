@@ -57,15 +57,22 @@ end
 
 -- LSP Settings
 function LSP.settings()
+  local present, lspconfig = pcall(require, "lspconfig.ui.windows")
+  if present then
+    lspconfig.default_options = {
+      border = global.border_style,
+    }
+  end
+
   vim.diagnostic.config({
     virtual_text = false,
+    float = { border = global.border_style },
   })
 
-  -- enable border for hover
   vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, {
       -- Use a sharp border with `FloatBorder` highlights
-      border = global.border_style,
+      border = "single",
     })
 
   -- enable border for signature
