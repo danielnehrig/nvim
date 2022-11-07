@@ -136,6 +136,41 @@ function M.autocmds()
       end
     end,
   })
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = "LspAttach_inlayhints",
+    callback = function(args)
+      if not (args.data and args.data.client_id) then
+        return
+      end
+
+      -- local bufnr = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if client.server_capabilities.document_highlight then
+        local ft = "*." .. client.config.filetypes[1]
+        local au_lsp =
+          vim.api.nvim_create_augroup("lsp_" .. client.name, { clear = true })
+        vim.api.nvim_create_autocmd({ "CursorHold" }, {
+          pattern = ft,
+          callback = vim.lsp.buf.document_highlight,
+          desc = "Highlight lsp references",
+          group = au_lsp,
+        })
+        vim.api.nvim_create_autocmd({ "CursorHoldI" }, {
+          pattern = ft,
+          callback = vim.lsp.buf.document_highlight,
+          desc = "Highlight lsp references",
+          group = au_lsp,
+        })
+        vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+          pattern = ft,
+          callback = vim.lsp.buf.clear_references,
+          desc = "Highlight lsp references",
+          group = au_lsp,
+        })
+      end
+    end,
+  })
+
   -- cmp
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "*.toml",

@@ -13,30 +13,6 @@ function LSP.on_attach(client, bufnr)
 
   require("config.core.mappings").set_lsp_mapping(bufnr)
 
-  if client.server_capabilities.document_highlight then
-    local ft = "*." .. client.config.filetypes[1]
-    local au_lsp =
-      vim.api.nvim_create_augroup("lsp_" .. client.name, { clear = true })
-    vim.api.nvim_create_autocmd({ "CursorHold" }, {
-      pattern = ft,
-      callback = vim.lsp.buf.document_highlight,
-      desc = "Highlight lsp references",
-      group = au_lsp,
-    })
-    vim.api.nvim_create_autocmd({ "CursorHoldI" }, {
-      pattern = ft,
-      callback = vim.lsp.buf.document_highlight,
-      desc = "Highlight lsp references",
-      group = au_lsp,
-    })
-    vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-      pattern = ft,
-      callback = vim.lsp.buf.clear_references,
-      desc = "Highlight lsp references",
-      group = au_lsp,
-    })
-  end
-
   fn.sign_define(
     "DiagnosticSignError",
     { texthl = "DiagnosticError", text = " " }
@@ -72,7 +48,7 @@ function LSP.settings()
   vim.lsp.handlers["textDocument/hover"] =
     vim.lsp.with(vim.lsp.handlers.hover, {
       -- Use a sharp border with `FloatBorder` highlights
-      border = "single",
+      border = global.border_style,
     })
 
   -- enable border for signature
