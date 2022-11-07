@@ -53,12 +53,6 @@ function M.autocmds()
     end,
     group = au_utils,
   })
-  vim.api.nvim_create_autocmd("DirChanged", {
-    callback = function()
-      require("config.plugins.configs.lspconfig.servers.lua").reinit()
-    end,
-    group = au_utils,
-  })
   -- pack
   vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.lua",
