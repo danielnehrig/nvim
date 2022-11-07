@@ -140,24 +140,24 @@ M.dap = {
 M.util = {
   i = {
     {
-      "<C-d>a",
+      "<Plug>(vimrc:copilot-dummy-map)",
       'copilot#Accept("\\<CR>")',
-      { desc = "Copilot Accept", expr = true, silent = false },
+      { desc = "Copilot Accept", expr = true, silent = true },
     },
     {
       "<C-d>]",
       "<Plug>(copilot-next)",
-      { desc = "Copilot Next", silent = false },
+      { desc = "Copilot Next", silent = true },
     },
     {
       "<C-d>d",
       "<Plug>(copilot-dismiss)",
-      { desc = "Copilot Dismiss", silent = false },
+      { desc = "Copilot Dismiss", silent = true },
     },
     {
-      "<C-s>[",
+      "<C-d>[",
       "<Plug>(copilot-previous)",
-      { desc = "Copilot Prev", silent = false },
+      { desc = "Copilot Prev", silent = true },
     },
   },
   n = {

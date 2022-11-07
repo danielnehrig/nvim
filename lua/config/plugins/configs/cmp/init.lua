@@ -89,6 +89,15 @@ function M.init()
         "i",
         "s",
       }),
+      ["<C-d>a"] = cmp.mapping(function(_)
+        vim.api.nvim_feedkeys(
+          vim.fn["copilot#Accept"](
+            vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
+          ),
+          "n",
+          true
+        )
+      end),
       ["<C-x><C-o>"] = cmp.mapping(function(_)
         cmp.complete({
           config = {
