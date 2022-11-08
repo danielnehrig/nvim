@@ -139,7 +139,7 @@ function M.autocmds()
 
       -- local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if client.supports_method("textDocument/documentSymbol") then
+      if client.supports_method("textDocument/documentHighlight") then
         local ft = "*." .. client.config.filetypes[1]
         local au_lsp =
           vim.api.nvim_create_augroup("lsp_" .. client.name, { clear = true })
