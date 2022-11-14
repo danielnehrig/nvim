@@ -1,6 +1,11 @@
 local M = {}
 
 M.lsp = {
+  ["lvimuser/lsp-inlayhints.nvim"] = {
+    config = function()
+      require("lsp-inlayhints").setup()
+    end,
+  },
   ["kevinhwang91/nvim-ufo"] = {
     requires = "kevinhwang91/promise-async",
     config = function()
@@ -52,7 +57,7 @@ M.lsp = {
       })
     end,
   },
-  ["folke/lua-dev.nvim"] = { opt = true }, -- lua nvim setup
+  ["folke/neodev.nvim"] = { opt = true }, -- lua nvim setup
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
   },

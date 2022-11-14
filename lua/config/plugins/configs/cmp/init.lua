@@ -57,7 +57,7 @@ function M.init()
     experimental = {
       ghost_text = true,
     },
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         local luasnip = require("luasnip")
         if cmp.visible() then
@@ -73,12 +73,12 @@ function M.init()
       }),
       ["<Tab>"] = cmp.mapping(function(fallback)
         local luasnip = require("luasnip")
+        local present_neogen, neogen = pcall(require, "neogen")
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip and luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
-        elseif packer_plugins["neogen"] and packer_plugins["neogen"].loaded then
-          local neogen = require("neogen")
+        elseif present_neogen then
           if neogen.jumpable() then
             neogen.jump_next()
           end
@@ -89,6 +89,15 @@ function M.init()
         "i",
         "s",
       }),
+      ["<C-d>a"] = cmp.mapping(function(_)
+        vim.api.nvim_feedkeys(
+          vim.fn["copilot#Accept"](
+            vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
+          ),
+          "n",
+          true
+        )
+      end),
       ["<C-x><C-o>"] = cmp.mapping(function(_)
         cmp.complete({
           config = {
@@ -126,13 +135,13 @@ function M.init()
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
       ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      ["<C-Space>"] = cmp.mapping.complete({}),
       ["<C-e>"] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    },
+      ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    }),
     -- preselect = cmp.PreselectMode.Item,
     sources = {
       { name = "nvim_lsp_signature_help" },

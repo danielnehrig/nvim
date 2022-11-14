@@ -4,7 +4,7 @@ local lsp = require("config.plugins.configs.lspconfig")
 -- efm setups
 local vale = require("config.plugins.configs.lspconfig.efm.vale")
 local eslint = require("config.plugins.configs.lspconfig.efm.eslint")
-local rslint = require("config.plugins.configs.lspconfig.efm.rslint")
+-- local rslint = require("config.plugins.configs.lspconfig.efm.rslint")
 local jq = require("config.plugins.configs.lspconfig.efm.jq")
 local json_prettier =
   require("config.plugins.configs.lspconfig.efm.json-prettier")
@@ -65,10 +65,10 @@ lspconfig.efm.setup({
       ".vale.ini",
     },
     languages = {
-      typescript = { rslint, prettier, eslint },
-      typescriptreact = { rslint, prettier, eslint },
-      javascript = { rslint, prettier },
-      javascriptreact = { rslint, prettier },
+      typescript = { prettier, eslint },
+      typescriptreact = { prettier, eslint },
+      javascript = { prettier },
+      javascriptreact = { prettier },
       lua = { stylua, luacheck },
       rust = { rustfmt },
       go = { gofmt, goimports, golines },

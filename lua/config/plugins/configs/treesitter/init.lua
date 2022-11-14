@@ -12,7 +12,7 @@ function M.init()
       enable = true,
     },
     indent = {
-      enable = true,
+      enable = false,
     },
     yati = { enable = true },
     matchup = {
