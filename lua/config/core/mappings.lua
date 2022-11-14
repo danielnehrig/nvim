@@ -362,7 +362,7 @@ function M.set_lsp_mapping(bufnr)
       {
         "<space>g=",
         function()
-          vim.lsp.buf.formatting_sync({}, 2500)
+          vim.lsp.buf.format({ async = false, timeout_ms = 2500 })
         end,
         { desc = "Formatting", buffer = bufnr },
       },
