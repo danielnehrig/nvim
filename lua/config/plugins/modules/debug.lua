@@ -1,9 +1,28 @@
 local M = {}
 
 M.debug = {
-  ["rcarriga/neotest"] = {
+  ["nvim-neotest/neotest"] = {
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-rust")({
+            args = { "--no-capture" },
+          }),
+          require("neotest-jest")({
+            jestCommand = "npm test --",
+            jestConfigFile = "custom.jest.config.ts",
+            env = { CI = true },
+            cwd = function(_)
+              return vim.fn.getcwd()
+            end,
+          }),
+        },
+      })
+    end,
     requires = {
       "nvim-lua/plenary.nvim",
+      "haydenmeade/neotest-jest",
+      "rouge8/neotest-rust",
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
     },
