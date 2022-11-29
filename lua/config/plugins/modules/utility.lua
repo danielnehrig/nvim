@@ -26,7 +26,9 @@ M.utility = {
   ["narutoxy/silicon.lua"] = {
     requires = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("silicon").setup({})
+      require("silicon").setup({
+        output = "/home/dashie/Pictures/SILICON_$year-$month-$date-$time.png",
+      })
     end,
   },
   ["https://github.com/andythigpen/nvim-coverage"] = {
