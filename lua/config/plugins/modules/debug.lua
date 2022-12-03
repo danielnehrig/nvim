@@ -48,6 +48,10 @@ M.debug = {
     opt = true,
     requires = { "mfussenegger/nvim-dap" },
   },
+  ["theHamsta/nvim-dap-virtual-text"] = {
+    opt = true,
+    requires = { "mfussenegger/nvim-dap" },
+  },
 }
 
 return M

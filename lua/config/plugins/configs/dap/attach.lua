@@ -4,10 +4,13 @@ local M = {}
 function M.init()
   local dap_present, _ = pcall(require, "dap")
   local dapui_present, _ = pcall(require, "dapui")
-  if not dap_present or not dapui_present then
+  local dapvt_present, _ = pcall(require, "nvim-dap-virtual-text")
+
+  if not dap_present or not dapui_present or not dapvt_present then
     local dap_add, _ = pcall(vim.cmd, "packadd nvim-dap")
     local dapui_add, _ = pcall(vim.cmd, "packadd nvim-dap-ui")
-    if dap_add and dapui_add then
+    local dapvt_add, _ = pcall(vim.cmd, "packadd nvim-dap-virtual-text")
+    if dap_add and dapui_add and dapvt_add then
       require("config.plugins.configs.dap")
       M.mappings()
     else
@@ -51,7 +54,7 @@ function M.mappings()
   set("n", "<Leader>dr", function()
     require("dap").repl.open()
   end, { desc = "Repl" })
-  set("n", "<Leader>de", function()
+  set("n", "<Leader>de", function(_, _)
     require("dapui").eval()
   end, { desc = "Eval" })
   set("n", "<Leader>df", function()
