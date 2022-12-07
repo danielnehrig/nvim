@@ -38,8 +38,9 @@ M.theme = {
     config = require("config.plugins.configs.indent-blankline").init,
     event = "BufRead",
   },
-  ["glepnir/dashboard-nvim"] = {
+  ["goolord/alpha-nvim"] = {
     setup = require("config.plugins.configs.dashboard").dashboard,
+    disable = false,
   },
   ["windwp/windline.nvim"] = {},
   ["romgrk/barbar.nvim"] = { requires = "kyazdani42/nvim-web-devicons" },
