@@ -58,8 +58,30 @@ M.others = {
     { "<Leader>mt", "<Cmd>TestFile<CR>", { desc = "TestFile" } },
     { "<Leader>nf", "<Cmd>DocGen<CR>", { desc = "DocGen" } },
     { "<Leader>w", "<Cmd>WindowPick<CR>", { desc = "WindowPick" } },
+    {
+      "<Leader>s",
+      function()
+        require("silicon").visualise_api({ to_clip = true, visible = true })
+      end,
+      { desc = "" },
+    },
   },
   v = {
+
+    {
+      "<Leader>ss",
+      function()
+        require("silicon").visualise_api({})
+      end,
+      { desc = "" },
+    },
+    {
+      "<Leader>sb",
+      function()
+        require("silicon").visualise_api({ to_clip = true, show_buf = true })
+      end,
+      { desc = "" },
+    },
     {
       "<Leader>gy",
       function()

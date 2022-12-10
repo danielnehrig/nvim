@@ -263,13 +263,19 @@ dap.configurations.rust = dap.configurations.cpp
 dap.configurations.rust[1].externalConsole = true
 dap.configurations.rust[1].program = function()
   return build_path_string(
-    vim.fn.getcwd() .. "/target/debug/" .. "${workspaceFolderBasename}"
+    vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
   )
 end
 
 local dapui_present, dapui = pcall(require, "dapui")
+local dapvt_present, dapvt = pcall(require, "nvim-dap-virtual-text")
 if not dapui_present then
   vim.notify("dapui not loaded")
-  return
+else
+  dapui.setup()
 end
-dapui.setup()
+if not dapvt_present then
+  vim.notify("dapvt not loaded")
+else
+  dapvt.setup({})
+end
