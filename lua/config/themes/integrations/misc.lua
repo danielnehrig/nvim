@@ -34,7 +34,7 @@ return {
 
   FoldColumn = {
     fg = theme.base0C,
-    bg = theme.base01,
+    bg = "none",
   },
 
   Folded = {

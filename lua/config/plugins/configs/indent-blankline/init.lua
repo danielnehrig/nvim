@@ -12,6 +12,7 @@ function M.init()
       "help",
       "terminal",
       "dashboard",
+      "alpha",
       "packer",
       "lspinfo",
       "TelescopePrompt",

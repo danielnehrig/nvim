@@ -433,7 +433,7 @@ M.theme = {
     }
 
     local dashboard = {
-      filetypes = { "dashboard" },
+      filetypes = { "alpha" },
       active = {
         { " ", { "transparent", "transparent" } },
       },
