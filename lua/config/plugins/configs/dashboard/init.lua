@@ -1,4 +1,3 @@
-local global = require("config.core.global")
 local config = {}
 
 function config.dashboard()
@@ -9,6 +8,7 @@ function config.dashboard()
 
   require("alpha.term")
   local dashboard = require("alpha.themes.dashboard")
+  local global = require("config.core.global")
 
   -- Terminal header
   if not global.is_windows then
