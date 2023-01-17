@@ -1,12 +1,7 @@
 local present, impatient = pcall(require, "impatient")
-local p_present, _ = pcall(require, "packer")
 
 if present then
   impatient.enable_profile()
-end
-
-if not p_present then
-  vim.cmd("packadd packer.nvim")
 end
 
 if vim.version().minor > 7 then

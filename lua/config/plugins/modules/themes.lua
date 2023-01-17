@@ -39,8 +39,7 @@ M.theme = {
     event = "BufRead",
   },
   ["goolord/alpha-nvim"] = {
-    setup = require("config.plugins.configs.dashboard").dashboard,
-    disable = false,
+    config = require("config.plugins.configs.dashboard").dashboard,
   },
   ["windwp/windline.nvim"] = {},
   ["romgrk/barbar.nvim"] = { requires = "kyazdani42/nvim-web-devicons" },
