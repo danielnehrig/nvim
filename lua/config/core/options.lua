@@ -23,7 +23,7 @@ _G.StatusColumn = {
       end
 
       vim.cmd.execute("'" .. lnum .. "fold" .. state .. "'")
-    end
+    end,
   },
 
   display = {
@@ -66,29 +66,29 @@ _G.StatusColumn = {
       end
 
       return icon
-    end
+    end,
   },
 
   sections = {
     line_number = {
-      [[%=%{v:lua.StatusColumn.display.line()}]]
+      [[%=%{v:lua.StatusColumn.display.line()}]],
     },
-    spacing     = {
-      [[ ]]
+    spacing = {
+      [[ ]],
     },
     sign_column = {
-      [[%s]]
+      [[%s]],
     },
-    folds       = {
+    folds = {
       [[%#FoldColumn#]], -- HL
       [[%@v:lua.StatusColumn.handler.fold@]],
-      [[%{v:lua.StatusColumn.display.fold()}]]
+      [[%{v:lua.StatusColumn.display.fold()}]],
     },
-    border      = {
+    border = {
       [[%#StatusColumnBorder#]], -- HL
       [[▐]],
     },
-    padding     = {
+    padding = {
       [[%#StatusColumnBuffer#]], -- HL
       [[ ]],
     },
@@ -110,11 +110,14 @@ _G.StatusColumn = {
 
   set_window = function(value)
     vim.defer_fn(function()
-      vim.api.nvim_win_set_option(vim.api.nvim_get_current_win(), "statuscolumn", value)
+      vim.api.nvim_win_set_option(
+        vim.api.nvim_get_current_win(),
+        "statuscolumn",
+        value
+      )
     end, 1)
-  end
+  end,
 }
-
 
 function M.load_options()
   g.did_load_filetypes = 0
@@ -238,31 +241,6 @@ function M.load_options()
     --  StatusColumn.sections.border,
     --  StatusColumn.sections.padding
   })
-
-  local default_plugins = {
-    "2html_plugin",
-    "getscript",
-    "getscriptPlugin",
-    "gzip",
-    "logipat",
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "matchit",
-    "tar",
-    "tarPlugin",
-    "rrhelper",
-    "spellfile_plugin",
-    "vimball",
-    "vimballPlugin",
-    "zip",
-    "zipPlugin",
-  }
-
-  for _, plugin in pairs(default_plugins) do
-    g["loaded_" .. plugin] = 1
-  end
 end
 
 M.fold_column_toggle = function()

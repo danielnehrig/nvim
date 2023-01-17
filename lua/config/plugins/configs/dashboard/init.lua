@@ -1,3 +1,4 @@
+local global = require("config.core.global")
 local config = {}
 
 function config.dashboard()
@@ -10,11 +11,13 @@ function config.dashboard()
   local dashboard = require("alpha.themes.dashboard")
 
   -- Terminal header
-  dashboard.section.terminal.command = "cat | lolcat --seed=24 "
-    .. os.getenv("HOME")
-    .. "/.config/nvim/neovim.cat"
-  dashboard.section.terminal.width = 74
-  dashboard.section.terminal.height = 11
+  if not global.is_windows then
+    dashboard.section.terminal.command = "cat | lolcat --seed=24 "
+      .. os.getenv("HOME")
+      .. "/.config/nvim/neovim.cat"
+    dashboard.section.terminal.width = 74
+    dashboard.section.terminal.height = 11
+  end
 
   local function button(sc, txt, keybind, keybind_opts)
     local b = dashboard.button(sc, txt, keybind, keybind_opts)
