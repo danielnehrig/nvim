@@ -6,7 +6,7 @@ if present then
 end
 
 if not p_present then
-  vim.cmd("packadd packer")
+  vim.cmd("packadd packer.nvim")
 end
 
 if vim.version().minor > 7 then
