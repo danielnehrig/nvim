@@ -30,6 +30,10 @@ _G.StatusColumn = {
     line = function()
       local lnum = tostring(vim.v.lnum)
 
+      if vim.bo.filetype == "alpha" then
+        return ""
+      end
+
       if vim.v.wrap then
         return " " .. string.rep(" ", #lnum)
       end
@@ -43,6 +47,10 @@ _G.StatusColumn = {
 
     fold = function()
       if vim.v.wrap then
+        return ""
+      end
+
+      if vim.bo.filetype == "alpha" then
         return ""
       end
 
