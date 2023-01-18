@@ -2,6 +2,7 @@ local M = {}
 
 M.debug = {
   ["nvim-neotest/neotest"] = {
+    opt = true,
     config = function()
       require("neotest").setup({
         adapters = {

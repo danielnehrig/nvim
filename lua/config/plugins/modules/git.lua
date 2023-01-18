@@ -21,6 +21,7 @@ M.git = {
   },
   ["kdheepak/lazygit.nvim"] = { cmd = { "LazyGit" } },
   ["TimUntersberger/neogit"] = {
+    cmd = { "Neogit" },
     config = function()
       local neogit = require("neogit")
       neogit.setup({
@@ -40,6 +41,7 @@ M.git = {
     requires = {
       "nvim-lua/plenary.nvim",
     },
+    cmd = { "VGit" },
     config = function()
       require("vgit").setup({
         settings = {

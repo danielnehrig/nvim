@@ -11,7 +11,7 @@ M.packer = {
     config = require("config.plugins.configs.nvimux").init,
   },
   ["nvim-telescope/telescope.nvim"] = {
-    -- cmd = { "Telescope" },
+    cmd = { "Telescope" },
     config = require("config.plugins.configs.telescope").init,
     requires = {
       {
