@@ -3,6 +3,7 @@ local M = {}
 M.ts = {
   ["ThePrimeagen/refactoring.nvim"] = {
     config = require("config.plugins.configs.refactoring").init,
+    event = "BufRead",
     requires = {
       { "nvim-treesitter/nvim-treesitter" },
       { "nvim-lua/plenary.nvim" },
