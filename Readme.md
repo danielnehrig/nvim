@@ -2,7 +2,7 @@
 
 <h1>NVIM Config</h1>
 
-[![docker build](https://img.shields.io/github/workflow/status/danielnehrig/nvim/ci?label=build&logo=docker&style=for-the-badge)](https://hub.docker.com/r/danielnehrig/nvim/tags)
+[![docker build](https://img.shields.io/github/actions/workflow/status/danielnehrig/nvim/docker.yml?label=build&logo=docker&style=for-the-badge)](https://hub.docker.com/r/danielnehrig/nvim/tags)
 [![Lua](https://img.shields.io/badge/Lua-blue.svg?style=for-the-badge&logo=lua)](http://www.lua.org)
 [![Neovim Stable](https://img.shields.io/badge/Neovim%20Stable-green.svg?style=for-the-badge&logo=neovim)](https://neovim.io)
 [![Neovim Nightly](https://img.shields.io/badge/Neovim%20Nightly-red.svg?style=for-the-badge&logo=neovim)](https://neovim.io)
