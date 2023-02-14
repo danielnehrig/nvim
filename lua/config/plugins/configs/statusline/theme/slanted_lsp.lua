@@ -350,14 +350,16 @@ M.theme = {
     }
 
     basic.path = {
-      name = "gps",
+      name = "path",
       hl_colors = {
         loc = { "white", "transparent" },
       },
       width = breakpoint_width,
-      text = function()
+      text = function(bufnr)
+        local bufname = vim.api.nvim_buf_get_name(bufnr)
+        local path = vim.fn.fnamemodify(bufname, ":~:.")
         return {
-          { vim.fn.expand("%"):gsub("/", " > "), "" },
+          { path, "" },
           { "", "loc" },
         }
       end,
@@ -516,6 +518,12 @@ M.theme = {
         basic.gps,
         basic.divider,
       },
+      enable = function(_, _)
+        if vim.bo.filetype == "alpha" then
+          return false
+        end
+        return true
+      end,
     }
     windline.add_status(winbar)
 
