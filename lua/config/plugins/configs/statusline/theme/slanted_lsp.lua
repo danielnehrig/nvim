@@ -518,12 +518,6 @@ M.theme = {
         basic.gps,
         basic.divider,
       },
-      enable = function(_, _)
-        if vim.bo.filetype == "alpha" then
-          return false
-        end
-        return true
-      end,
     }
     windline.add_status(winbar)
 
