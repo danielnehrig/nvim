@@ -321,6 +321,21 @@ M.map = {
   M.gram,
 }
 
+
+M.vscode_file = {
+  n = {
+    {
+      "<leader>fg",
+      "<cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>",
+      { desc = "Find in Files", silent = false },
+    },
+  }
+}
+
+M.vscode_map = {
+  M.vscode_file
+}
+
 function M.set_lsp_mapping(bufnr)
   M.lsp = {
     n = {
@@ -429,6 +444,22 @@ end
 function M.mappings()
   -- apply mappings
   for _, section in ipairs(M.map) do
+    for mode, map in pairs(section) do
+      for _, conf in ipairs(map) do
+        if conf then
+          if conf[3] then
+            vim.keymap.set(mode, conf[1], conf[2], conf[3])
+          else
+            vim.keymap.set(mode, conf[1], conf[2])
+          end
+        end
+      end
+    end
+  end
+end
+
+function M.vscode_mappings()
+  for _, section in ipairs(M.vscode_map) do
     for mode, map in pairs(section) do
       for _, conf in ipairs(map) do
         if conf then

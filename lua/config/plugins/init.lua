@@ -12,7 +12,9 @@ local function init()
     return
   end
 
+  local util = require('packer.util')
   local packer_options = {
+    compile_path = util.join_paths(vim.fn.stdpath('data'), 'plugin', 'packer_compiled.lua'),
     display = {
       open_fn = function()
         return require("packer.util").float({ border = "double" })
