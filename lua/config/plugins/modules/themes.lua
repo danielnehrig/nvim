@@ -28,6 +28,9 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
+  ["projekt0n/github-nvim-theme"] = {
+    tag = "v0.0.7",
+  },
   ["m-demare/hlargs.nvim"] = {
     requires = { "nvim-treesitter/nvim-treesitter" },
     config = function()

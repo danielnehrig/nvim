@@ -3,9 +3,10 @@ local g = vim.g
 local M = {}
 
 function M.init()
-  vim.g.bufferline = {
-    exclude_ft = { "quickfix", "terminal", "dap-repl", "repl", "qf", "" },
-  }
+  require("barbar").setup({})
+  --  vim.g.bufferline = {
+  --  exclude_ft = { "quickfix", "terminal", "dap-repl", "repl", "qf", "" },
+  --  }
 
   g.mapleader = " "
   -- tabnew and tabprev
