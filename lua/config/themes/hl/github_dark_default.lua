@@ -72,6 +72,10 @@ M.polish_hl = {
     fg = M.base_30.red,
   },
 
+  ["@type.qualifier"] = {
+    fg = M.base_30.red,
+  },
+
   ["@variable.builtin"] = {
     fg = M.base_30.red,
   },
