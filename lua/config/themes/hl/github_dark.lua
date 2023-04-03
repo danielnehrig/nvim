@@ -52,7 +52,7 @@ M.base_16 = {
   base0C = "#83caff", -- Support, regex, escape chars
   base0D = "#6AB1F0", -- Function, methods, headings
   base0E = "#ff7f8d", -- Keywords
-  base0F = "#85e89d", -- Deprecated, open/close embedded tags
+  base0F = "#ff7f8d", -- Deprecated, open/close embedded tags
 }
 
 M.type = "dark"

@@ -52,8 +52,9 @@ M.type = "dark"
 
 M.polish_hl = {
   ["@punctuation.bracket"] = {
-    fg = M.base_30.yellow,
+    fg = M.base_30.green,
   },
+  ["@parenthesis"] = { link = "@punctuation.bracket" },
 
   ["@string"] = {
     fg = M.base_30.blue,
@@ -61,6 +62,18 @@ M.polish_hl = {
 
   ["@field.key"] = {
     fg = M.base_30.white,
+  },
+
+  ["@number"] = {
+    fg = M.base_30.blue,
+  },
+
+  ["@operator"] = {
+    fg = M.base_30.red,
+  },
+
+  ["@variable.builtin"] = {
+    fg = M.base_30.red,
   },
 
   ["@constructor"] = {

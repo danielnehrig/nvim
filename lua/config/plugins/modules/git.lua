@@ -25,7 +25,7 @@ M.git = {
     config = function()
       local neogit = require("neogit")
       neogit.setup({
-        disable_signs = true,
+        disable_signs = false,
         disable_hint = false,
       })
     end,
@@ -46,7 +46,7 @@ M.git = {
       require("vgit").setup({
         settings = {
           live_gutter = {
-            enabled = false,
+            enabled = true,
           },
         },
       })
