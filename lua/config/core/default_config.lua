@@ -4,8 +4,8 @@ default_config.ui = {
   changed_themes = {},
   transparent = false,
   colorscheme = {
-    name = "radium",
-    toggle = { "radium", "onedark" },
+    name = "github_dark_default",
+    toggle = { "github_dark_default", "radium" },
   },
   statusline = {
     name = "slanted_lsp",
