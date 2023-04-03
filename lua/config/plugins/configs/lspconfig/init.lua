@@ -10,6 +10,7 @@ function LSP.on_attach(client, bufnr)
   if present then
     lsp_status.on_attach(client)
   end
+  client.server_capabilities.semanticTokensProvider = nil
 
   require("config.core.mappings").set_lsp_mapping(bufnr)
 
