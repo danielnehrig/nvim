@@ -109,7 +109,7 @@ _G.StatusColumn = {
       if type(value) == "string" then
         table.insert(statuscolumn, value)
       elseif type(value) == "table" then
-        table.insert(statuscolumn, StatusColumn.build(value))
+        table.insert(statuscolumn, _G.StatusColumn.build(value))
       end
     end
 
@@ -240,14 +240,11 @@ function M.load_options()
     tail = "▎",
   }
 
-  vim.opt.statuscolumn = StatusColumn.build({
-    StatusColumn.sections.line_number,
-    --  StatusColumn.sections.spacing,
-    StatusColumn.sections.sign_column,
-    StatusColumn.sections.folds,
-    StatusColumn.sections.spacing,
-    --  StatusColumn.sections.border,
-    --  StatusColumn.sections.padding
+  vim.opt.statuscolumn = _G.StatusColumn.build({
+    _G.StatusColumn.sections.line_number,
+    _G.StatusColumn.sections.sign_column,
+    _G.StatusColumn.sections.folds,
+    _G.StatusColumn.sections.spacing,
   })
 end
 

@@ -1,5 +1,4 @@
 local colors = require("config.themes").get_colors("base_30")
-local theme = require("config.themes").get_colors("base_16")
 
 local black = colors.black
 local blue = colors.blue

@@ -1,8 +1,8 @@
-local use_config = require("config.core.config").get_config
+local config = require("config.core.config").get_config()
 local M = {}
 
 M.get_theme_tb = function(type)
-  local default_path = "config.themes.hl." .. use_config().ui.colorscheme.name
+  local default_path = "config.themes.hl." .. config.ui.colorscheme.name
 
   local present1, default_theme = pcall(require, default_path)
 
@@ -42,7 +42,7 @@ M.extend_default_hl = function(highlights)
     end
   end
 
-  if use_config().ui.hl_override then
+  if config.ui.hl_override then
     local overriden_hl = M.turn_str_to_color(config.ui.hl_override)
 
     for key, value in pairs(overriden_hl) do
@@ -79,7 +79,7 @@ M.load_highlight = function(group)
 end
 
 M.override_theme = function(default_theme, theme_name)
-  local changed_themes = use_config().ui.changed_themes
+  local changed_themes = config.ui.changed_themes
 
   if changed_themes[theme_name] then
     return vim.tbl_deep_extend(
@@ -115,7 +115,7 @@ M.load_theme = function()
 end
 
 M.toggle_theme = function()
-  local themes = use_config().ui.colorscheme.toggle
+  local themes = config.ui.colorscheme.toggle
 
   local theme1 = themes[1]
   local theme2 = themes[2]
@@ -126,13 +126,13 @@ M.toggle_theme = function()
     vim.g.toggle_theme_icon = "   "
   end
 
-  if use_config().ui.colorscheme.name == theme1 then
-    require("config.core.config").config.ui.colorscheme.name = theme2
+  if config.ui.colorscheme.name == theme1 then
+    config.ui.colorscheme.name = theme2
 
     M.load_theme()
     -- change_theme(theme1, theme2)
-  elseif use_config().ui.colorscheme.name == theme2 then
-    require("config.core.config").config.ui.colorscheme.name = theme1
+  elseif config.ui.colorscheme.name == theme2 then
+    config.ui.colorscheme.name = theme1
 
     M.load_theme()
     -- change_theme(theme2, theme1)
@@ -144,8 +144,7 @@ M.toggle_theme = function()
 end
 
 M.toggle_transparent = function()
-  require("config.core.config").config.ui.transparent =
-    not use_config().ui.transparent
+  config.ui.transparent = not config.ui.transparent
 
   M.load_theme()
 end
