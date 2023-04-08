@@ -127,8 +127,8 @@ it's inspired by Lvim though not cloned
 
 _[Logs](./nvim.log) created on_
 
-- i9 9900k 5Ghz
-- 32 GB Ram
+- i9 13900k 5.5Ghz
+- 64 GB Ram
 - Arch Linux
 
 # Setup

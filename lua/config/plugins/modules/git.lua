@@ -21,10 +21,11 @@ M.git = {
   },
   ["kdheepak/lazygit.nvim"] = { cmd = { "LazyGit" } },
   ["TimUntersberger/neogit"] = {
+    cmd = { "Neogit" },
     config = function()
       local neogit = require("neogit")
       neogit.setup({
-        disable_signs = true,
+        disable_signs = false,
         disable_hint = false,
       })
     end,
@@ -40,11 +41,12 @@ M.git = {
     requires = {
       "nvim-lua/plenary.nvim",
     },
+    cmd = { "VGit" },
     config = function()
       require("vgit").setup({
         settings = {
           live_gutter = {
-            enabled = false,
+            enabled = true,
           },
         },
       })

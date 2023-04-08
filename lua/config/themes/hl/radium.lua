@@ -1,3 +1,6 @@
+-- credits to original radium theme from https://github.com/dharmx
+-- this is a modified version of it
+
 local M = {}
 
 M.base_30 = {
@@ -57,7 +60,7 @@ M.polish_hl = {
   ["@parenthesis"] = { link = "@punctuation.bracket" },
 }
 
-vim.opt.bg = "dark"
+M.type = "dark"
 
 M = require("config.themes").override_theme(M, "radium")
 

@@ -1,6 +1,131 @@
 local globals = require("config.core.global")
 local g, b, opt, go, wo = vim.g, vim.b, vim.opt, vim.go, vim.wo
 local M = {}
+if _G.StatusColumn then
+  return
+end
+
+_G.StatusColumn = {
+  handler = {
+    fold = function()
+      local lnum = vim.fn.getmousepos().line
+
+      -- Only lines with a mark should be clickable
+      if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
+        return
+      end
+
+      local state
+      if vim.fn.foldclosed(lnum) == -1 then
+        state = "close"
+      else
+        state = "open"
+      end
+
+      vim.cmd.execute("'" .. lnum .. "fold" .. state .. "'")
+    end,
+  },
+
+  display = {
+    line = function()
+      local lnum = tostring(vim.v.lnum)
+
+      if vim.bo.filetype == "alpha" then
+        return ""
+      end
+
+      if vim.v.wrap then
+        return " " .. string.rep(" ", #lnum)
+      end
+
+      if #lnum == 1 then
+        return " " .. lnum
+      else
+        return lnum
+      end
+    end,
+
+    fold = function()
+      if vim.v.wrap then
+        return ""
+      end
+
+      if vim.bo.filetype == "alpha" then
+        return ""
+      end
+
+      local lnum = vim.v.lnum
+      local icon = " "
+
+      -- Line isn't in folding range
+      if vim.fn.foldlevel(lnum) <= 0 then
+        return icon
+      end
+
+      -- Not the first line of folding range
+      if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
+        return icon
+      end
+
+      if vim.fn.foldclosed(lnum) == -1 then
+        icon = ""
+      else
+        icon = ""
+      end
+
+      return icon
+    end,
+  },
+
+  sections = {
+    line_number = {
+      [[%=%{v:lua.StatusColumn.display.line()}]],
+    },
+    spacing = {
+      [[ ]],
+    },
+    sign_column = {
+      [[%s]],
+    },
+    folds = {
+      [[%#FoldColumn#]], -- HL
+      [[%@v:lua.StatusColumn.handler.fold@]],
+      [[%{v:lua.StatusColumn.display.fold()}]],
+    },
+    border = {
+      [[%#StatusColumnBorder#]], -- HL
+      [[▐]],
+    },
+    padding = {
+      [[%#StatusColumnBuffer#]], -- HL
+      [[ ]],
+    },
+  },
+
+  build = function(tbl)
+    local statuscolumn = {}
+
+    for _, value in ipairs(tbl) do
+      if type(value) == "string" then
+        table.insert(statuscolumn, value)
+      elseif type(value) == "table" then
+        table.insert(statuscolumn, StatusColumn.build(value))
+      end
+    end
+
+    return table.concat(statuscolumn)
+  end,
+
+  set_window = function(value)
+    vim.defer_fn(function()
+      vim.api.nvim_win_set_option(
+        vim.api.nvim_get_current_win(),
+        "statuscolumn",
+        value
+      )
+    end, 1)
+  end,
+}
 
 function M.load_options()
   g.did_load_filetypes = 0
@@ -21,6 +146,7 @@ function M.load_options()
   opt.cursorline = true
   opt.confirm = true
   opt.title = true
+  opt.virtualedit = "all"
   opt.shortmess:append("sI")
 
   -- Set so that folders are index for find command
@@ -58,7 +184,7 @@ function M.load_options()
 
   opt.mouse = "a" -- mouse on don't use mouse
 
-  opt.signcolumn = "auto:2" -- 2 sign column
+  opt.signcolumn = "auto" -- 2 sign column
   opt.cmdheight = 0 -- ex cmd height
   if globals.is_darwin then
     vim.o.guifont = "FiraCode Nerd Font Mono:h16" -- set font
@@ -104,7 +230,7 @@ function M.load_options()
   opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
   wo.foldnestmax = 3
   wo.foldlevel = 4
-  opt.foldcolumn = "1"
+  opt.foldcolumn = "0"
   g.cursorhold_updatetime = 100
 
   -- scroller
@@ -114,30 +240,15 @@ function M.load_options()
     tail = "▎",
   }
 
-  local default_plugins = {
-    "2html_plugin",
-    "getscript",
-    "getscriptPlugin",
-    "gzip",
-    "logipat",
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "matchit",
-    "tar",
-    "tarPlugin",
-    "rrhelper",
-    "spellfile_plugin",
-    "vimball",
-    "vimballPlugin",
-    "zip",
-    "zipPlugin",
-  }
-
-  for _, plugin in pairs(default_plugins) do
-    g["loaded_" .. plugin] = 1
-  end
+  vim.opt.statuscolumn = StatusColumn.build({
+    StatusColumn.sections.line_number,
+    --  StatusColumn.sections.spacing,
+    StatusColumn.sections.sign_column,
+    StatusColumn.sections.folds,
+    StatusColumn.sections.spacing,
+    --  StatusColumn.sections.border,
+    --  StatusColumn.sections.padding
+  })
 end
 
 M.fold_column_toggle = function()

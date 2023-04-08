@@ -333,11 +333,11 @@ M.theme = {
         loc = { "white", "transparent" },
       },
       width = breakpoint_width,
-      text = function()
+      text = function(bufnr)
         local gps_present, gps = pcall(require, "nvim-navic")
 
         if gps_present then
-          if gps.is_available() then
+          if gps.is_available(bufnr) then
             local location = gps.get_location()
             return {
               { " ", "" },
@@ -350,14 +350,16 @@ M.theme = {
     }
 
     basic.path = {
-      name = "gps",
+      name = "path",
       hl_colors = {
         loc = { "white", "transparent" },
       },
       width = breakpoint_width,
-      text = function()
+      text = function(bufnr)
+        local bufname = vim.api.nvim_buf_get_name(bufnr)
+        local path = vim.fn.fnamemodify(bufname, ":~:.")
         return {
-          { vim.fn.expand("%"):gsub("/", " > "), "" },
+          { path, "" },
           { "", "loc" },
         }
       end,
@@ -433,7 +435,7 @@ M.theme = {
     }
 
     local dashboard = {
-      filetypes = { "dashboard" },
+      filetypes = { "alpha" },
       active = {
         { " ", { "transparent", "transparent" } },
       },
@@ -514,6 +516,10 @@ M.theme = {
       active = {
         basic.path,
         basic.gps,
+        basic.divider,
+      },
+      inactive = {
+        basic.path,
         basic.divider,
       },
     }

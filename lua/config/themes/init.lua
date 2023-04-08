@@ -1,19 +1,81 @@
 local use_config = require("config.core.config").get_config
 local M = {}
 
-M.get_colors = function(type)
-  local name = use_config().ui.colorscheme.name
+M.get_theme_tb = function(type)
+  local default_path = "config.themes.hl." .. use_config().ui.colorscheme.name
 
-  -- theme paths
-  local user_path = "config.themes.hl." .. name
+  local present1, default_theme = pcall(require, default_path)
 
-  local present2, user_theme = pcall(require, user_path)
-
-  if present2 then
-    return user_theme[type]
+  if present1 then
+    return default_theme[type]
   else
-    error("No such theme")
+    error("No such theme! " .. default_path)
   end
+end
+
+M.get_colors = M.get_theme_tb
+
+M.merge_tb = function(table1, table2)
+  return vim.tbl_deep_extend("force", table1, table2)
+end
+
+M.extend_default_hl = function(highlights)
+  local polish_hl = M.get_theme_tb("polish_hl")
+
+  -- polish themes
+  if polish_hl then
+    for key, value in pairs(polish_hl) do
+      if highlights[key] then
+        highlights[key] = M.merge_tb(highlights[key], value)
+      end
+    end
+  end
+
+  -- transparency
+  if vim.g.transparency then
+    local glassy = require("config.themes.glassy")
+
+    for key, value in pairs(glassy) do
+      if highlights[key] then
+        highlights[key] = M.merge_tb(highlights[key], value)
+      end
+    end
+  end
+
+  if use_config().ui.hl_override then
+    local overriden_hl = M.turn_str_to_color(config.ui.hl_override)
+
+    for key, value in pairs(overriden_hl) do
+      if highlights[key] then
+        highlights[key] = M.merge_tb(highlights[key], value)
+      end
+    end
+  end
+end
+
+-- turns color var names in hl_override/hl_add to actual colors
+-- hl_add = { abc = { bg = "one_bg" }} -> bg = colors.one_bg
+M.turn_str_to_color = function(tb)
+  local colors = M.get_theme_tb("base_30")
+
+  for _, hlgroups in pairs(tb) do
+    for opt, val in pairs(hlgroups) do
+      if
+        (opt == "fg" or opt == "bg")
+        and not (val:sub(1, 1) == "#" or val == "none" or val == "NONE")
+      then
+        hlgroups[opt] = colors[val]
+      end
+    end
+  end
+
+  return tb
+end
+
+M.load_highlight = function(group)
+  group = require("config.themes.integrations." .. group)
+  M.extend_default_hl(group)
+  return group
 end
 
 M.override_theme = function(default_theme, theme_name)

@@ -11,7 +11,7 @@ end
 
 require("neodev").setup({})
 
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
   cmd = { "lua-language-server" },
   flags = { debounce_text_changes = 500 },
   capabilities = capabilities,

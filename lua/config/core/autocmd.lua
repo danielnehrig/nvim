@@ -84,12 +84,12 @@ function M.autocmds()
     group = au_ft,
   })
   vim.api.nvim_create_autocmd({ "WinEnter", "BufRead", "BufEnter" }, {
-    pattern = "dashboard",
-    command = "Dashboard",
+    pattern = "alpha",
+    command = "Alpha",
     group = au_ft,
   })
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = "dashboard",
+    pattern = "alpha",
     command = "set showtabline=0",
     group = au_ft,
   })
@@ -107,7 +107,7 @@ function M.autocmds()
     group = au_ft,
   })
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = "NvimTree,lspsagafinder,dashboard",
+    pattern = "NvimTree,lspsagafinder,alpha",
     callback = function()
       -- vim.opt.cursor_word = 0
     end,
@@ -174,9 +174,10 @@ function M.autocmds()
     group = au_cmp,
   })
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = "dashboard",
+    pattern = "alpha",
     callback = function()
       vim.wo.number = false
+      vim.opt.statuscolumn = ""
     end,
     group = au_ft,
   })

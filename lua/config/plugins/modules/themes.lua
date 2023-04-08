@@ -28,6 +28,9 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
+  ["projekt0n/github-nvim-theme"] = {
+    tag = "v0.0.7",
+  },
   ["m-demare/hlargs.nvim"] = {
     requires = { "nvim-treesitter/nvim-treesitter" },
     config = function()
@@ -38,8 +41,8 @@ M.theme = {
     config = require("config.plugins.configs.indent-blankline").init,
     event = "BufRead",
   },
-  ["glepnir/dashboard-nvim"] = {
-    setup = require("config.plugins.configs.dashboard").dashboard,
+  ["goolord/alpha-nvim"] = {
+    config = require("config.plugins.configs.dashboard").dashboard,
   },
   ["windwp/windline.nvim"] = {},
   ["romgrk/barbar.nvim"] = { requires = "kyazdani42/nvim-web-devicons" },

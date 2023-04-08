@@ -93,14 +93,13 @@ M.utility = {
   ["rcarriga/nvim-notify"] = {
     config = function()
       local notify = require("notify")
-      vim.cmd("highlight! NotifyBG guibg=#3d3d3d guifg=#3e4451")
       notify.setup({
         -- Animation style (see below for details)
         -- stages = "fade",
         -- Default timeout for notifications
         timeout = 3000,
         -- For stages that change opacity this is treated as the highlight behind the window
-        background_colour = "NotifyBG",
+        background_colour = "#000000",
         -- Icons for the different levels
         icons = {
           ERROR = "",
