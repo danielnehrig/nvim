@@ -6,9 +6,8 @@ local lsp = require("config.plugins.configs.lspconfig")
 local map = vim.keymap.set
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace = build_path_string(
-  global.home .. "/code/workspace/" .. workspace_dir
-)
+local workspace =
+  build_path_string(global.home .. "/code/workspace/" .. workspace_dir)
 
 local bundles = {
   vim.fn.glob(

@@ -321,7 +321,6 @@ M.map = {
   M.gram,
 }
 
-
 M.vscode_file = {
   n = {
     {
@@ -329,11 +328,11 @@ M.vscode_file = {
       "<cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>",
       { desc = "Find in Files", silent = false },
     },
-  }
+  },
 }
 
 M.vscode_map = {
-  M.vscode_file
+  M.vscode_file,
 }
 
 function M.set_lsp_mapping(bufnr)
