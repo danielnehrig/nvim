@@ -10,12 +10,17 @@ local g, opt = vim.g, vim.opt
 -- if not do not apply plugins
 -- slows down VSCode and makes it non usable
 if not g.vscode then
-  package.path = package.path .. ";" .. vim.fn.expand("~/.local/share/nvim/plugin/?.lua")
+  package.path = package.path
+    .. ";"
+    .. vim.fn.expand("~/.local/share/nvim/plugin/?.lua")
   -- setup conf and lua modules
-  require("config.core.global")
   require("config.core.options").load_options()
-  if vim.fn.filereadable(vim.fn.expand("~/.local/share/nvim/plugin/packer_compiled.lua")) == 1 then
-    require('packer_compiled')
+  if
+    vim.fn.filereadable(
+      vim.fn.expand("~/.local/share/nvim/plugin/packer_compiled.lua")
+    ) == 1
+  then
+    require("packer_compiled")
   end
   require("config.core.mappings").mappings()
   require("config.core.autocmd").autocmds()
@@ -27,7 +32,6 @@ if not g.vscode then
 
   opt.shadafile = ""
 else
-
   vim.g.did_load_filetypes = 0
   vim.g.do_filetype_lua = 1
   vim.opt.wildignore:append({
