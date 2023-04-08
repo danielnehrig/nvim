@@ -8,6 +8,11 @@ help:
 	@echo "help"
 	./packages.py --help
 
+check:
+	@echo "lint / format"
+	luacheck **/*.lua
+	stylua **/*.lua
+
 link:
 	@echo "link /usr/local/bin/nvim-dep-updater"
 	sudo ln -sf $(ROOT_DIR)/packages.py /usr/local/bin/nvim-dep-updater
