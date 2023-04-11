@@ -78,24 +78,9 @@ The journey begins
 
 Started 09.04.21
 
-## The Main Goals
-
-The Config should fully support:
-
-- Typescript / Javascript
-- CSS/SASS/SCSS
-- Rust
-- Java
-- Go
-- Dockerfile
-- Yaml
-- Json
-- Python
-
 CONFIG SETUP:
 
 - IDE capabilities (lsp, debug, project management, build, lint, test) ✅
-- Debloating the Config (staying under 100ms boot uptime) ✅
 - remove unused plugins ✅
 - move to the build in LSP ✅
 - add formatting and linting ✅
@@ -122,14 +107,6 @@ it does not offer an out-of-the-box solution like VSCode\
 for that case boilerplate configurations like Lunarvim or Lvim are out there\
 even this config would be a great place to start to have IDE like capabilities\
 it's inspired by Lvim though not cloned
-
-### Nvim Log
-
-_[Logs](./nvim.log) created on_
-
-- i9 13900k 5.5Ghz
-- 64 GB Ram
-- Arch Linux
 
 # Setup
 
@@ -160,7 +137,8 @@ _Nerd Font any Monospaced One (if not monospaced the dashboard logo will not wor
 
 _Package managers:_
 
-- _python3.9_
+- _python3.9_ >
+- pip
 - _node_
 - _go_
 - _rust/cargo_
@@ -193,6 +171,29 @@ _DAP:_
 We have a config layer copy and paste the default config layout from `config.core.default_config`
 and create folder and file `rootFolder/lua/config/custom/init.lua`
 paste in the default_configs values and adjust accordingly
+
+# Supported Languages / Syntax
+
+The Config should fully support:
+
+<details>
+<summary>Languages</summary>
+
+- Typescript / Javascript
+- CSS/SASS/SCSS
+- Rust
+- Java
+- C, C++
+- C# (omnisharp)
+- Go
+- Dockerfile
+- Yaml
+- Json
+- Python
+- Lua
+- Toml
+
+</details>
 
 ## Mappings
 
