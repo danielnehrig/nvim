@@ -5,7 +5,7 @@ local vim_path = global.vim_path
 local build_path_string = require("config.utils").build_path_string
 local packer_compiled = vim_path .. "plugin/" .. "packer_compiled.lua"
 
-local function init()
+local function init_packer()
   local present, packer = pcall(require, "packer")
   if not present then
     vim.notify("packer is not installed")
@@ -51,7 +51,7 @@ local plugins = {}
 plugins._index = plugins
 
 -- Bootstrap Packer and the Plugins + loads configs afterwards
-function plugins.bootstrap()
+function plugins.packer_bootstrap()
   local install_path =
     build_path_string(fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim")
   -- check if packer exists or is installed
@@ -69,16 +69,31 @@ function plugins.bootstrap()
     local packer = require("packer")
 
     -- load packer plugins
-    init()
+    init_packer()
 
     -- install packer plugins
     packer.sync()
   else
     -- add packer and load plugins and config
     execute("packadd packer.nvim")
-    init()
+    init_packer()
     require("config.load_config").init()
   end
+end
+
+function plugins.lazy_bootstrap()
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "https://github.com/folke/lazy.nvim.git",
+      "--branch=stable", -- latest stable release
+      lazypath,
+    })
+  end
+  vim.opt.rtp:prepend(lazypath)
 end
 
 -- loads the compiled packer file and sets the commands for packer

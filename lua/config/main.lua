@@ -27,7 +27,7 @@ if not g.vscode then
   require("config.core.commands").init()
 
   local pack = require("config.plugins")
-  pack.bootstrap()
+  pack.packer_bootstrap()
   pack.load_compile()
 
   opt.shadafile = ""
