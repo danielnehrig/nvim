@@ -27,6 +27,7 @@ function M.init()
     },
     highlight = {
       enable = true,
+      additional_vim_regex_highlighting = { "org" },
     },
     indent = {
       enable = false,
@@ -45,6 +46,15 @@ function M.init()
         "typescriptreact",
         "javascriptreact",
       },
+    },
+    ensure_installed = {
+      "org",
+      "lua",
+      "rust",
+      "bash",
+      "markdown",
+      "markdown_inline",
+      "python",
     },
     textsubjects = {
       enable = true,

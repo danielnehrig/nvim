@@ -81,6 +81,9 @@ function plugins.packer_bootstrap()
   end
 end
 
+local function init_lazy()
+end
+
 function plugins.lazy_bootstrap()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not vim.loop.fs_stat(lazypath) then
@@ -94,6 +97,8 @@ function plugins.lazy_bootstrap()
     })
   end
   vim.opt.rtp:prepend(lazypath)
+  init_lazy()
+  require("config.load_config").init()
 end
 
 -- loads the compiled packer file and sets the commands for packer
