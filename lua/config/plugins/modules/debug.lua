@@ -27,7 +27,16 @@ M.debug = {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
     },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "haydenmeade/neotest-jest",
+      "rouge8/neotest-rust",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+    },
   },
+  ["haydenmeade/neotest-jest"] = {},
+  ["rouge8/neotest-rust"] = {},
   ["vim-test/vim-test"] = {
     cmd = { "TestFile" },
     requires = {

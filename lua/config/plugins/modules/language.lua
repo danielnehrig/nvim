@@ -25,12 +25,14 @@ M.language = {
   ["rust-lang/rust.vim"] = { ft = { "rust", "rs" } },
   ["iamcco/markdown-preview.nvim"] = {
     run = "cd app && yarn install",
+    build = "cd app && yarn install",
     ft = { "markdown", "md" },
     cmd = "MarkdownPreview",
   },
   ["michaelb/sniprun"] = {
     cmd = { "SnipRun" },
     run = "bash ./install.sh",
+    build = "bash ./install.sh",
   },
   ["metakirby5/codi.vim"] = {
     cmd = { "Codi" },
@@ -38,6 +40,7 @@ M.language = {
   },
   ["shuntaka9576/preview-swagger.nvim"] = {
     run = "yarn install",
+    build = "yarn install",
     ft = { "yaml", "yml" },
     cmd = "SwaggerPreview",
   },

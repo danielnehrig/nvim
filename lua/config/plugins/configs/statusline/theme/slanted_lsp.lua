@@ -477,29 +477,29 @@ M.theme = {
 
     windline.setup({
       colors_name = function(colors)
-        colors.FilenameFg = colors.white_light
-        colors.FilenameBg = colors.black_light
-        colors.transparent = "none"
-        colors.grey = tmp_base16.base03
-        colors.black = tmp_base16.base00
-        colors.dark_red = tmp_base16.base0F
-        colors.magenta = tmp_base16.base08
-        colors.dark_green = tmp_base16.base08
-        colors.orange = tmp_base16.base09
-        colors.debug_bg = tmp_base16.base08
-        colors.debug_fg = tmp_base16.base0B
+        --  colors.FilenameFg = colors.white_light
+        --  colors.FilenameBg = colors.black_light
+        --  colors.transparent = "none"
+        --  colors.grey = tmp_base16.base03
+        --  colors.black = tmp_base16.base00
+        --  colors.dark_red = tmp_base16.base0F
+        --  colors.magenta = tmp_base16.base08
+        --  colors.dark_green = tmp_base16.base08
+        --  colors.orange = tmp_base16.base09
+        --  colors.debug_bg = tmp_base16.base08
+        --  colors.debug_fg = tmp_base16.base0B
 
-        colors.wavedefault = colors.black
+        --  colors.wavedefault = colors.black
 
-        colors.waveright1 = colors.wavedefault
-        colors.waveright2 = colors.wavedefault
-        colors.waveright3 = colors.wavedefault
-        colors.waveright4 = colors.wavedefault
-        colors.waveright5 = colors.wavedefault
-        colors.waveright6 = colors.wavedefault
-        colors.waveright7 = colors.wavedefault
-        colors.waveright8 = colors.wavedefault
-        colors.waveright9 = colors.wavedefault
+        --  colors.waveright1 = colors.wavedefault
+        --  colors.waveright2 = colors.wavedefault
+        --  colors.waveright3 = colors.wavedefault
+        --  colors.waveright4 = colors.wavedefault
+        --  colors.waveright5 = colors.wavedefault
+        --  colors.waveright6 = colors.wavedefault
+        --  colors.waveright7 = colors.wavedefault
+        --  colors.waveright8 = colors.wavedefault
+        --  colors.waveright9 = colors.wavedefault
 
         return colors
       end,
@@ -511,6 +511,7 @@ M.theme = {
         dashboard,
       },
     })
+
     local winbar = {
       filetypes = { "winbar" },
       active = {

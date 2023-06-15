@@ -15,20 +15,21 @@ if not g.vscode then
     .. vim.fn.expand("~/.local/share/nvim/plugin/?.lua")
   -- setup conf and lua modules
   require("config.core.options").load_options()
-  if
-    vim.fn.filereadable(
-      vim.fn.expand("~/.local/share/nvim/plugin/packer_compiled.lua")
-    ) == 1
-  then
-    require("packer_compiled")
-  end
+  --  if
+    --  vim.fn.filereadable(
+      --  vim.fn.expand("~/.local/share/nvim/plugin/packer_compiled.lua")
+    --  ) == 1
+  --  then
+    --  require("packer_compiled")
+  --  end
   require("config.core.mappings").mappings()
   require("config.core.autocmd").autocmds()
   require("config.core.commands").init()
 
   local pack = require("config.plugins")
-  pack.packer_bootstrap()
-  pack.load_compile()
+  -- pack.packer_bootstrap()
+  pack.lazy_bootstrap()
+  -- pack.load_compile()
 
   opt.shadafile = ""
 else

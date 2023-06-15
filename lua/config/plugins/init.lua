@@ -82,6 +82,7 @@ function plugins.packer_bootstrap()
 end
 
 local function init_lazy()
+  require("lazy").setup(require("config.plugins.modules").plugins, {})
 end
 
 function plugins.lazy_bootstrap()

@@ -48,7 +48,7 @@ function config.dashboard()
 
   -- Footer
   local function footer()
-    local total_plugins = #vim.tbl_keys(packer_plugins)
+    local total_plugins = vim.tbl_keys(packer_plugins)
     local version = vim.version()
     local nvim_version_info = "  Neovim v"
       .. version.major
@@ -59,7 +59,7 @@ function config.dashboard()
 
     return " " .. total_plugins .. " plugins" .. nvim_version_info
   end
-  dashboard.section.footer.val = footer()
+  -- dashboard.section.footer.val = footer()
   dashboard.section.footer.opts.hl = "AlphaFooter"
 
   -- Layout

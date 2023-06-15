@@ -24,15 +24,15 @@ M.utility = {
       "rcarriga/nvim-notify",
       "hrsh7th/nvim-cmp",
     },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+      "hrsh7th/nvim-cmp",
+    },
   },
-  ["narutoxy/silicon.lua"] = {
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("silicon").setup({
-        output = "/home/dashie/Pictures/SILICON_$year-$month-$date-$time.png",
-      })
-    end,
-  },
+  ["MunifTanjim/nui.nvim"] = { lazy = true, opt = true},
+  ["nvim-lua/plenary.nvim"] = {lazy = true, opt = true},
   ["https://github.com/andythigpen/nvim-coverage"] = {
     requires = "nvim-lua/plenary.nvim",
     config = function()

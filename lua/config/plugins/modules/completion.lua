@@ -12,6 +12,7 @@ M.completion = {
   ["github/copilot.vim"] = {},
   ["rafamadriz/friendly-snippets"] = {
     module = "cmp_nvim_lsp",
+    lazy = true,
     event = "InsertEnter",
   },
   ["hrsh7th/nvim-cmp"] = {
@@ -31,9 +32,11 @@ M.completion = {
     --  keys = { "<space>oc", "<space>oa" },
     --  ft = { "org" },
     wants = "nvim-cmp",
+    dependencies = "nvim-cmp",
   },
   ["L3MON4D3/LuaSnip"] = {
     wants = "friendly-snippets",
+    dependencies = "friendly-snippets",
     config = function()
       require("config.plugins.configs.cmp.luasnip").init()
     end,
@@ -60,6 +63,8 @@ M.completion = {
   },
   ["onsails/lspkind-nvim"] = {
     wants = "nvim-cmp",
+    requires = "nvim-cmp",
+    dependencies = "nvim-cmp",
     config = function()
       require("lspkind").init({
         mode = "symbol_text",

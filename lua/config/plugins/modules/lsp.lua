@@ -8,6 +8,7 @@ M.lsp = {
   },
   ["kevinhwang91/nvim-ufo"] = {
     requires = "kevinhwang91/promise-async",
+    dependencies = "kevinhwang91/promise-async",
     event = "BufRead",
     config = function()
       local handler = function(virtText, lnum, endLnum, width, truncate)
@@ -61,6 +62,7 @@ M.lsp = {
   ["folke/neodev.nvim"] = { opt = true }, -- lua nvim setup
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
+    event = "VeryLazy",
   },
   ["folke/trouble.nvim"] = {
     config = function()
