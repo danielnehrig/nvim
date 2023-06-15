@@ -30,7 +30,7 @@ vim.g.tokyodark_color_gamma = "1"
 M.theme = {
   ["HampusHauffman/block.nvim"] = {
     config = function()
-        require("block").setup({})
+      require("block").setup({})
     end,
     lazy = true,
     enabled = false,
@@ -58,7 +58,10 @@ M.theme = {
   ["windwp/windline.nvim"] = {
     event = "VeryLazy",
   },
-  ["romgrk/barbar.nvim"] = { requires = "kyazdani42/nvim-web-devicons", dependencies = {"kyazdani42/nvim-web-devicons"}},
+  ["romgrk/barbar.nvim"] = {
+    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = { "kyazdani42/nvim-web-devicons" },
+  },
 }
 
 M.ts_themes = {

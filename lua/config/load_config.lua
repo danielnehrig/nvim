@@ -7,9 +7,9 @@ M.__index = M
 -- load configs for packer plugins
 M.init = function()
   require("config.themes").load_theme()
-  -- require("config.plugins.configs.statusline.windline").switch_theme(
-  --   use_config().ui.statusline.name
-  -- )
+  require("config.plugins.configs.statusline.windline").switch_theme(
+    use_config().ui.statusline.name
+  )
   require("config.plugins.configs.web-devicons").init()
   require("config.plugins.configs.treesitter").init()
   require("config.plugins.configs.build").init()

@@ -37,17 +37,6 @@ M.debug = {
   },
   ["haydenmeade/neotest-jest"] = {},
   ["rouge8/neotest-rust"] = {},
-  ["vim-test/vim-test"] = {
-    cmd = { "TestFile" },
-    requires = {
-      {
-        "neomake/neomake",
-        cmd = { "Neomake" },
-      },
-      { "tpope/vim-dispatch", cmd = { "Dispatch" } },
-    },
-    wants = { "vim-dispatch", "neomake" },
-  },
   ["jbyuki/one-small-step-for-vimkind"] = {},
   ["mfussenegger/nvim-dap-python"] = { opt = true },
   ["Pocco81/dap-buddy.nvim"] = {},

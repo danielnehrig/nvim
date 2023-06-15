@@ -54,8 +54,6 @@ M.others = {
       { desc = "GitLinker" },
     },
     { "<Leader>gt", "<Cmd>Trouble<CR>", { desc = "Trouble LSP" } },
-    { "<Leader>ms", "<Cmd>Neomake<CR>", { desc = "Make" } },
-    { "<Leader>mt", "<Cmd>TestFile<CR>", { desc = "TestFile" } },
     { "<Leader>nf", "<Cmd>DocGen<CR>", { desc = "DocGen" } },
     { "<Leader>w", "<Cmd>WindowPick<CR>", { desc = "WindowPick" } },
     {
