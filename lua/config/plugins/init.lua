@@ -37,8 +37,6 @@ local function init_packer()
 
   local use = packer.use
 
-  use({ "lewis6991/impatient.nvim" })
-
   for _, plugin in pairs(require("config.plugins.modules").plugins) do
     use(plugin)
   end

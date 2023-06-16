@@ -31,6 +31,7 @@ M.utility = {
       "hrsh7th/nvim-cmp",
     },
   },
+  ["lewis6991/impatient.nvim"] = {},
   ["MunifTanjim/nui.nvim"] = { lazy = true, opt = true},
   ["nvim-lua/plenary.nvim"] = {lazy = true, opt = true},
   ["https://github.com/andythigpen/nvim-coverage"] = {
