@@ -74,22 +74,18 @@ M.ts_themes = {
   },
   ["ray-x/aurora"] = {
     colorscheme = "aurora",
-    event = "VeryLazy",
     packadd = "aurora",
     opt = true,
     lazy = true,
   },
   ["Mofiqul/vscode.nvim"] = {
     colorscheme = "vscode",
-    packadd = "vscode.nvim",
-    event = "VeryLazy",
     opt = true,
     lazy = true,
     config = function() end,
   },
   ["marko-cerovac/material.nvim"] = {
     colorscheme = "material",
-    event = "VeryLazy",
     lazy = true,
     packadd = "material.nvim",
     config = function()
@@ -99,7 +95,6 @@ M.ts_themes = {
   ["Murtaza-Udaipurwala/gruvqueen"] = {
     colorscheme = "gruvqueen",
     packadd = "gruvqueen",
-    event = "VeryLazy",
     opt = true,
     lazy = true,
     config = function()
