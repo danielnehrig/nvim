@@ -16,19 +16,18 @@ if not g.vscode then
   -- setup conf and lua modules
   require("config.core.options").load_options()
   local config = require("config.core.config").get_config()
-  local pack = require("config.plugins")
+  local plug = require("config.plugins")
+
+  if config == nil then
+    vim.notify("Error loading config")
+    return
+  end
+
   if config.ui.plugin_manager == "packer" then
-    if
-      vim.fn.filereadable(
-      vim.fn.expand("~/.local/share/nvim/plugin/packer_compiled.lua")
-    ) == 1
-    then
-      require("packer_compiled")
-      pack.packer_bootstrap()
-      pack.load_compile()
-    end
+    plug.packer_bootstrap()
+    plug.load_compile()
   else
-    pack.lazy_bootstrap()
+    plug.lazy_bootstrap()
   end
   require("config.core.mappings").mappings()
   require("config.core.autocmd").autocmds()

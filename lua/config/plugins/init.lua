@@ -41,7 +41,6 @@ local function init_packer()
     use(plugin)
   end
 
-  use({ "nvim-lua/plenary.nvim" })
   use({ "wbthomason/packer.nvim", opt = true }) -- packer
 end
 
@@ -107,6 +106,7 @@ function plugins.load_compile()
       "Missing packer compile file Run PackerCompile Or PackerInstall to fix"
     )
   end
+  require("packer_compiled")
   local packer = require("packer")
   packer.make_commands()
 end

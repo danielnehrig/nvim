@@ -32,8 +32,8 @@ M.utility = {
     },
   },
   ["lewis6991/impatient.nvim"] = {},
-  ["MunifTanjim/nui.nvim"] = { lazy = true, opt = true},
-  ["nvim-lua/plenary.nvim"] = {lazy = true, opt = true},
+  ["MunifTanjim/nui.nvim"] = { lazy = true },
+  ["nvim-lua/plenary.nvim"] = {lazy = true},
   ["https://github.com/andythigpen/nvim-coverage"] = {
     requires = "nvim-lua/plenary.nvim",
     config = function()
