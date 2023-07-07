@@ -9,6 +9,15 @@ M.ts = {
       { "nvim-treesitter/nvim-treesitter" },
     },
   },
+  ["Wansmer/treesj"] = {
+    keys = { "<space>m", "<space>j", "<space>s" },
+    opts = { use_default_keymaps = false, max_join_length = 150 },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("treesj").setup({--[[ your config ]]
+      })
+    end,
+  },
   ["ThePrimeagen/refactoring.nvim"] = {
     config = require("config.plugins.configs.refactoring").init,
     event = "BufRead",
@@ -71,7 +80,10 @@ M.ts = {
     end,
   },
   ["nvim-treesitter/nvim-treesitter"] = {},
-  ["yioneko/nvim-yati"] = { requires = "nvim-treesitter/nvim-treesitter", dependencies = "nvim-treesitter/nvim-treesitter"},
+  ["yioneko/nvim-yati"] = {
+    requires = "nvim-treesitter/nvim-treesitter",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
   ["danymat/neogen"] = {
     cmd = { "DocGen" },
     config = require("config.plugins.configs.neogen").init,

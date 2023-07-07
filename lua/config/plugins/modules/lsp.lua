@@ -59,7 +59,7 @@ M.lsp = {
       })
     end,
   },
-  ["folke/neodev.nvim"] = { opt = true }, -- lua nvim setup
+  ["folke/neodev.nvim"] = { opt = true, ft = "lua" }, -- lua nvim setup
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
     event = "VeryLazy",
@@ -70,6 +70,7 @@ M.lsp = {
     end,
     cmd = { "Trouble" },
     requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
   },
   ["tomtomjhj/lsp-status.nvim"] = {
     branch = "deprecated",

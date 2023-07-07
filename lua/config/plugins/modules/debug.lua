@@ -35,8 +35,6 @@ M.debug = {
       "antoinemadec/FixCursorHold.nvim",
     },
   },
-  ["haydenmeade/neotest-jest"] = {},
-  ["rouge8/neotest-rust"] = {},
   ["jbyuki/one-small-step-for-vimkind"] = {},
   ["mfussenegger/nvim-dap-python"] = { opt = true },
   ["Pocco81/dap-buddy.nvim"] = {},
@@ -46,10 +44,12 @@ M.debug = {
   ["rcarriga/nvim-dap-ui"] = {
     opt = true,
     requires = { "mfussenegger/nvim-dap" },
+    dependencies = { "mfussenegger/nvim-dap" },
   },
   ["theHamsta/nvim-dap-virtual-text"] = {
     opt = true,
     requires = { "mfussenegger/nvim-dap" },
+    dependencies = { "mfussenegger/nvim-dap" },
   },
 }
 

@@ -1,14 +1,5 @@
 local M = {}
 M.completion = {
-  ["zbirenbaum/copilot.lua"] = {
-    event = { "VimEnter" },
-    disable = true,
-    config = function()
-      vim.defer_fn(function()
-        require("copilot").setup()
-      end, 100)
-    end,
-  },
   ["github/copilot.vim"] = {},
   ["rafamadriz/friendly-snippets"] = {
     module = "cmp_nvim_lsp",
@@ -17,9 +8,6 @@ M.completion = {
   },
   ["hrsh7th/nvim-cmp"] = {
     config = require("config.plugins.configs.cmp").init,
-  },
-  ["zbirenbaum/copilot-cmp"] = {
-    module = "copilot_cmp",
   },
   ["kristijanhusak/orgmode.nvim"] = {
     config = function()

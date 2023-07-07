@@ -33,15 +33,18 @@ M.utility = {
   },
   ["lewis6991/impatient.nvim"] = {},
   ["MunifTanjim/nui.nvim"] = { lazy = true },
-  ["nvim-lua/plenary.nvim"] = {lazy = true},
+  ["nvim-lua/plenary.nvim"] = { lazy = true },
   ["https://github.com/andythigpen/nvim-coverage"] = {
     requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    lazy = true,
     config = function()
       require("coverage").setup()
     end,
   },
   ["windwp/nvim-autopairs"] = {
     after = "nvim-cmp",
+    dependencies = "nvim-cmp",
     config = function()
       require("config.plugins.configs.autopairs").init()
     end,
@@ -74,6 +77,7 @@ M.utility = {
     end,
   },
   ["axieax/urlview.nvim"] = {
+    cmd = "UrlView",
     config = function()
       require("urlview").setup({
         -- Prompt title (`<context> <default_title>`, e.g. `Buffer Links:`)
@@ -94,6 +98,7 @@ M.utility = {
   ["lambdalisue/suda.vim"] = { cmd = { "SudaWrite" } }, -- save as root
   ["junegunn/vim-slash"] = { keys = { "/" } }, -- better search
   ["rcarriga/nvim-notify"] = {
+    lazy = true,
     config = function()
       local notify = require("notify")
       notify.setup({
@@ -186,6 +191,7 @@ M.utility = {
   ["folke/todo-comments.nvim"] = {
     config = require("config.plugins.configs.todo").init,
     wants = "telescope.nvim",
+    dependencies = "telescope.nvim",
     cmd = { "TodoQuickFix", "TodoTrouble", "TodoTelescope" },
   }, -- show todos in qf
   ["ur4ltz/surround.nvim"] = {
