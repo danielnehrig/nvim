@@ -23,7 +23,7 @@
   "github-ci.nvim": { "branch": "master", "commit": "db161046cbc7ccb025a64b599beea6908feeab8c" },
   "github-nvim-theme": { "branch": "main", "commit": "24c8706c9ad26b944f5a76dea999dca8708f252e" },
   "gitlinker.nvim": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
-  "gitsigns.nvim": { "branch": "main", "commit": "0daf763ed783030bf35951b262afa31d8b798c50" },
+  "gitsigns.nvim": { "branch": "main", "commit": "48c3ae8ec74cb83f9570ceb0c5ab8217db7a2220" },
   "gruvqueen": { "branch": "master", "commit": "b79ed8b2bcc26e04fb7586f95a1e5d7a600e9cf8" },
   "hlargs.nvim": { "branch": "main", "commit": "cfc9beab4e176a13311efe03e38e6b6fed5df4f6" },
   "impatient.nvim": { "branch": "main", "commit": "47302af74be7b79f002773011f0d8e85679a7618" },
