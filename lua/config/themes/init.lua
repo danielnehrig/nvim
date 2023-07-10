@@ -1,4 +1,4 @@
-local config = require("config.core.config").get_config()
+local config = require("config.core.config").config
 local M = {}
 
 M.get_theme_tb = function(type)

@@ -1,5 +1,5 @@
 local global = require("config.core.global")
-local use_config = require("config.core.config").get_config
+local config = require("config.core.config").config
 local themes = require("config.plugins.modules.themes").ts_themes
 
 local M = {}
@@ -93,10 +93,10 @@ M.switch_theme = function(arg)
 
     global.reload({ "config.plugins.configs.statusline.windline" })
     require("config.plugins.configs.statusline.windline").switch_theme(
-      use_config().ui.statusline.name
+      config.ui.statusline.name
     )
 
-    if use_config().ui.transparent then
+    if config.ui.transparent then
       highlights = vim.tbl_deep_extend(
         "force",
         highlights,
@@ -128,11 +128,10 @@ M.switch_theme = function(arg)
     require("config.themes").load_theme()
 
     require("plenary.reload").reload_module(
-      "config.plugins.configs.statusline.theme."
-        .. use_config().ui.statusline.name
+      "config.plugins.configs.statusline.theme." .. config.ui.statusline.name
     )
     require("config.plugins.configs.statusline.windline").switch_theme(
-      use_config().ui.statusline.name
+      config.ui.statusline.name
     )
     return
   end

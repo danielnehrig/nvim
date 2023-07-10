@@ -15,7 +15,7 @@ if not g.vscode then
     .. vim.fn.expand("~/.local/share/nvim/plugin/?.lua")
   -- setup conf and lua modules
   require("config.core.options").load_options()
-  local config = require("config.core.config").get_config()
+  local config = require("config.core.config").config
   local plug = require("config.plugins")
 
   if config == nil then
@@ -32,7 +32,6 @@ if not g.vscode then
   require("config.core.mappings").mappings()
   require("config.core.autocmd").autocmds()
   require("config.core.commands").init()
-
 
   opt.shadafile = ""
 else
