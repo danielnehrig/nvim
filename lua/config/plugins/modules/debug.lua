@@ -40,13 +40,20 @@ M.debug = {
     },
   },
   ["jbyuki/one-small-step-for-vimkind"] = {},
+  ["ravenxrz/DAPInstall.nvim"] = {
+    cmd = { "DIInstall", "DIUninstall", "DIList" },
+  },
   ["mfussenegger/nvim-dap-python"] = {
     opt = true,
     lazy = true,
+    requires = { "mfussenegger/nvim-dap" },
+    dependencies = { "mfussenegger/nvim-dap" },
   },
   ["mfussenegger/nvim-dap"] = {
     opt = true,
     lazy = true,
+    requires = { "mfussenegger/nvim-dap" },
+    dependencies = { "mfussenegger/nvim-dap" },
   },
   ["rcarriga/nvim-dap-ui"] = {
     opt = true,
