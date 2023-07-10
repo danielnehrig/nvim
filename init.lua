@@ -1,5 +1,6 @@
-vim.loader.enable()
 if vim.version().minor > 7 then
+  vim.loader.enable()
+
   local default_plugins = {
     "2html_plugin",
     "getscript",

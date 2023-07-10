@@ -1,4 +1,5 @@
 ---@meta
+--- https://github.com/folke/lazy.nvim/blob/main/lua/lazy/types.lua
 
 ---@class PluginInterfacePacker
 ---@field [1]? string
@@ -19,24 +20,6 @@
 ---@field cond? string | string[]
 ---@field module? string | string[]
 
----@class PluginInterfaceLazy
----@field [1] string
----@field dependencies? string | string[] | PluginInterfaceLazy[]
----@field config fun()
----@field cmd? string | string[]
----@field event? string | string[]
----@field ft? string | string[]
----@field lazy? boolean?
----@field keys? string | string[]
----@field init? fun(LazyPlugin)
----@field enabled? boolean | fun():boolean
----@field build? string | string[]
----@field cond? string | string[]
----@field priority? integer
----@field dir? string
----@field url? string
----@field name? string
----@field dev? boolean
----@field optional? boolean
+---@module 'lazy.types'
 
----@class PluginInterfaceMerged : PluginInterfacePacker, PluginInterfaceLazy
+---@class PluginInterfaceMerged : PluginInterfacePacker, LazyPluginSpec

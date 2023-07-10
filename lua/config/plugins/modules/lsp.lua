@@ -63,7 +63,7 @@ M.lsp = {
       })
     end,
   },
-  ["folke/neodev.nvim"] = { opt = true, ft = "lua" }, -- lua nvim setup
+  ["folke/neodev.nvim"] = { opt = true, ft = "lua", dependencies = "neovim/nvim-lspconfig", requires = "neovim/nvim-lspconfig"}, -- lua nvim setup
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
     event = "VeryLazy",

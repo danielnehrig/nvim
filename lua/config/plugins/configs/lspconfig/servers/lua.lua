@@ -11,7 +11,7 @@ if not present then
   vim.cmd([[packadd neodev.nvim]])
 end
 
-neodev.setup({})
+neodev.setup()
 
 lspconfig.lua_ls.setup({
   cmd = { "lua-language-server" },
