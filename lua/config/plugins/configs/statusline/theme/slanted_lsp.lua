@@ -392,10 +392,10 @@ M.theme = {
 
     windline.setup({
       colors_name = function(colors)
-        --  for k, v in pairs(colors) do
+        for k, v in pairs(colors) do
           -- replace double ## with one #
-          --  colors[k] = string.gsub(v, "##", "#")
-        --  end
+          colors[k] = string.gsub(v, "##", "#")
+        end
         colors.FilenameFg = colors.white_light
         colors.FilenameBg = colors.black_light
         colors.transparent = "none"
