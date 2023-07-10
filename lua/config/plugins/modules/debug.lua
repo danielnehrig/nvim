@@ -43,9 +43,7 @@ M.debug = {
   ["mfussenegger/nvim-dap-python"] = {
     opt = true,
     lazy = true,
-    optional = true,
   },
-  ["Pocco81/dap-buddy.nvim"] = {},
   ["mfussenegger/nvim-dap"] = {
     opt = true,
     lazy = true,

@@ -5,10 +5,8 @@ local M = {}
 function M.init()
   local config = require("config.core.config").config
   local dap_present, _ = pcall(require, "dap")
-  local dapui_present, _ = pcall(require, "dapui")
-  local dapvt_present, _ = pcall(require, "nvim-dap-virtual-text")
 
-  if not dap_present or not dapui_present or not dapvt_present then
+  if not dap_present then
     if config.ui.plugin_manager == "packer" then
       local dap_add, _ = pcall(vim.cmd, "packadd nvim-dap")
       local dapui_add, _ = pcall(vim.cmd, "packadd nvim-dap-ui")
@@ -20,9 +18,9 @@ function M.init()
         vim.notify("Error adding DAP")
       end
     elseif config.ui.plugin_manager == "lazy" then
-      require("lazy").load({ plugins = "nvim-dap" })
-      require("lazy").load({ plugins = "nvim-dap-ui" })
-      require("lazy").load({ plugins = "nvim-dap-virtual-text" })
+      require("lazy").load({ plugins = { "nvim-dap" } })
+      require("lazy").load({ plugins = { "nvim-dap-ui" } })
+      require("lazy").load({ plugins = { "nvim-dap-virtual-text" } })
       require("config.plugins.configs.dap")
       M.mappings()
     else
