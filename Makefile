@@ -33,7 +33,7 @@ nvim-packer:
 nvim-lazy:
 	@echo "Nvim First Time Setup"
 	nvim --headless +'autocmd User LazyInstall sleep 100ms | qa'
-	nvim --headless +'autocmd User LazySync sleep 100ms | qa' +'Lazy sync'
+	nvim --headless "+Lazy! sync" +qa
 
 all: link install nvim
 

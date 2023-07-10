@@ -48,8 +48,15 @@ function config.dashboard()
 
   -- Footer
   local function footer()
-    local total_plugins = vim.tbl_keys(packer_plugins)
+    local config = require("config.core.config").config
+    local total_plugins = 0
+    if config.ui.plugin_manager == "packer" then
+      total_plugins = #packer_plugins
+    else
+      total_plugins = require("lazy").stats().count
+    end
     local version = vim.version()
+
     local nvim_version_info = "  Neovim v"
       .. version.major
       .. "."
@@ -59,7 +66,7 @@ function config.dashboard()
 
     return " " .. total_plugins .. " plugins" .. nvim_version_info
   end
-  -- dashboard.section.footer.val = footer()
+  dashboard.section.footer.val = footer()
   dashboard.section.footer.opts.hl = "AlphaFooter"
 
   -- Layout
@@ -75,8 +82,6 @@ function config.dashboard()
   dashboard.config.opts.noautocmd = true
 
   alpha.setup(dashboard.opts)
-
-  -- alpha.setup(dashboard.opts)
 end
 
 return config
