@@ -1,3 +1,32 @@
+---@class MapModes
+---@field n? Map[]
+---@field v? Map[]
+---@field i? Map[]
+---@field x? Map[]
+
+---@class Map
+---@field [1] string key binding
+---@field [2] string|fun() command
+---@field [3] MapOptions options for the mapping
+
+---@class MapOptions
+---@field noremap boolean
+---@field silent boolean
+---@field expr boolean
+---@field desc string for which key
+
+---@class mappings
+---@field general MapModes
+---@field quickfix MapModes
+---@field loclist MapModes
+---@field others MapModes
+---@field telescope MapModes
+---@field tree MapModes
+---@field dap MapModes
+---@field util MapModes
+---@field lsp MapModes
+---@field diag MapModes
+---@field gram MapModes
 local M = {}
 
 M.general = {
