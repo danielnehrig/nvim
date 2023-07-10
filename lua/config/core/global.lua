@@ -4,6 +4,7 @@ local path_sep = package.config:sub(1, 1)
 --- @type string
 local os_name = vim.loop.os_uname().sysname
 
+---@class Global
 local M = {
   is_darwin = os_name == "Darwin",
   is_linux = os_name == "Linux",

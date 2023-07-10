@@ -127,6 +127,7 @@ _G.StatusColumn = {
   end,
 }
 
+--- load the options to configure the editors build in settings
 function M.load_options()
   g.did_load_filetypes = 0
   g.do_filetype_lua = 1
@@ -248,20 +249,24 @@ function M.load_options()
   })
 end
 
+--- toggle the fold column
 M.fold_column_toggle = function()
   wo.foldcolumn = wo.foldcolumn == "0" and "auto:3" or "0"
 end
 
+--- toggle the relative number from relative to absolute
 M.relative_position_toggle = function()
   wo.relativenumber = not wo.relativenumber
   wo.number = not wo.relativenumber
 end
 
+--- toggle the number from relative to absolute
 M.number_toggle = function()
   wo.number = not wo.number
   wo.relativenumber = wo.number
 end
 
+--- toggle the spell check
 M.spell_toggle = function()
   wo.spell = not wo.spell
 end
