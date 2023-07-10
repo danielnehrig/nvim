@@ -101,7 +101,7 @@
   "vim-grammarous": { "branch": "master", "commit": "db46357465ce587d5325e816235b5e92415f8c05" },
   "vim-matchup": { "branch": "master", "commit": "61cef7921ecbb412f341a6d1a7f9ad1ca55243de" },
   "vim-slash": { "branch": "master", "commit": "31aee09b7ea8893a18fa34f65e63e364fc998444" },
-  "vimwiki": { "branch": "dev", "commit": "65b9f0e68b1c4b6c2023a02b22d11a178e13445e" },
+  "vimwiki": { "branch": "dev", "commit": "acc92fb648de87bd5cee3d1d70fe2e7f176e3f68" },
   "vscode.nvim": { "branch": "main", "commit": "05973862f95f85dd0564338a03baf61b56e1823f" },
   "which-key.nvim": { "branch": "main", "commit": "d871f2b664afd5aed3dc1d1573bef2fb24ce0484" },
   "windline.nvim": { "branch": "master", "commit": "66badcb002c91f6d4bfc11726c988441a3aada6c" },

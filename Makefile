@@ -22,14 +22,18 @@ update:
 	./packages.py --update
 
 install:
-	@echo "Install"
+	@echo "Install packages"
 	./packages.py
 
-nvim:
+nvim-packer:
 	@echo "Nvim First Time Setup"
 	nvim --headless +'autocmd User PackerComplete sleep 100ms | qa'
 	nvim --headless +'autocmd User PackerComplete sleep 100ms | qa' +'PackerSync'
-	nvim --headless +'TSInstall bash python cpp rust go lua dockerfile yaml typescript javascript java tsx tsdoc c org scss css toml make json html php' +'sleep 15' +'qa'
+
+nvim-lazy:
+	@echo "Nvim First Time Setup"
+	nvim --headless +'autocmd User LazyInstall sleep 100ms | qa'
+	nvim --headless +'autocmd User LazySync sleep 100ms | qa' +'Lazy sync'
 
 all: link install nvim
 
