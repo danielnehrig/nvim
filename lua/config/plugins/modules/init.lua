@@ -9,6 +9,26 @@ local language = require("config.plugins.modules.language").language
 local debug = require("config.plugins.modules.debug").debug
 local packer = require("config.plugins.modules.navigation").packer
 ---@module 'config.plugins.modules.types'
+--
+--- @param plugins PluginInterfaceMerged[]
+--- @return PluginInterfaceLazy[]
+--- Aims to remove table keys not used by packer
+local function lazy_key_filter(plugins)
+  local delete_list = {
+    "dependencies",
+    "lazy",
+  }
+  for _, plugin in pairs(plugins) do
+    for key, _ in pairs(plugin) do
+      for _, delete_key in pairs(delete_list) do
+        if delete_key == key then
+          plugin[key] = nil
+        end
+      end
+    end
+  end
+  return plugins
+end
 
 --- @param plugins PluginInterfaceMerged[]
 --- @return PluginInterfaceLazy[]
@@ -65,6 +85,8 @@ local function create_plugins()
 
   if config.ui.plugin_manager == "lazy" then
     plugins = packer_key_filter(plugins)
+  else
+    plugins = lazy_key_filter(plugins)
   end
 
   return plugins

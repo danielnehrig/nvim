@@ -1,3 +1,7 @@
+---@module 'config.plugins.modules.types'
+
+---@class debug
+---@field debug table<string, PluginInterfaceMerged>
 local M = {}
 
 M.debug = {
@@ -36,18 +40,25 @@ M.debug = {
     },
   },
   ["jbyuki/one-small-step-for-vimkind"] = {},
-  ["mfussenegger/nvim-dap-python"] = { opt = true },
+  ["mfussenegger/nvim-dap-python"] = {
+    opt = true,
+    lazy = true,
+    optional = true,
+  },
   ["Pocco81/dap-buddy.nvim"] = {},
   ["mfussenegger/nvim-dap"] = {
     opt = true,
+    lazy = true,
   },
   ["rcarriga/nvim-dap-ui"] = {
     opt = true,
+    lazy = true,
     requires = { "mfussenegger/nvim-dap" },
     dependencies = { "mfussenegger/nvim-dap" },
   },
   ["theHamsta/nvim-dap-virtual-text"] = {
     opt = true,
+    lazy = true,
     requires = { "mfussenegger/nvim-dap" },
     dependencies = { "mfussenegger/nvim-dap" },
   },

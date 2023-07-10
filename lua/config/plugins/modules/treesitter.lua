@@ -1,13 +1,13 @@
+---@module 'config.plugins.modules.types'
+
+---@class treesitter
+---@field ts table<string, PluginInterfaceMerged>
 local M = {}
 
 M.ts = {
   ["mrjones2014/nvim-ts-rainbow"] = {
-    requires = {
-      { "nvim-treesitter/nvim-treesitter" },
-    },
-    dependencies = {
-      { "nvim-treesitter/nvim-treesitter" },
-    },
+    requires = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   ["Wansmer/treesj"] = {
     keys = { "<space>m", "<space>j", "<space>s" },
@@ -22,12 +22,12 @@ M.ts = {
     config = require("config.plugins.configs.refactoring").init,
     event = "BufRead",
     requires = {
-      { "nvim-treesitter/nvim-treesitter" },
-      { "nvim-lua/plenary.nvim" },
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-lua/plenary.nvim",
     },
     dependencies = {
-      { "nvim-treesitter/nvim-treesitter" },
-      { "nvim-lua/plenary.nvim" },
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-lua/plenary.nvim",
     },
   },
   ["SmiteshP/nvim-gps"] = {

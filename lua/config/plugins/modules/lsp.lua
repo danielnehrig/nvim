@@ -1,3 +1,7 @@
+---@module 'config.plugins.modules.types'
+
+---@class lsp
+---@field lsp table<string, PluginInterfaceMerged>
 local M = {}
 
 M.lsp = {

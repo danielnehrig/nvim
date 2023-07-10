@@ -49,7 +49,6 @@ local config = {
   }),
   on_attach = function(client, bufnr)
     require("jdtls").setup_dap({ hotcodereplace = "auto" })
-    require("jdtls.setup").add_commands()
 
     lsp.on_attach(client, bufnr)
 

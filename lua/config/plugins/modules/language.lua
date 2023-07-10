@@ -1,3 +1,7 @@
+---@module 'config.plugins.modules.types'
+
+---@class language
+---@field language table<string, PluginInterfaceMerged>
 local M = {}
 
 vim.g.languagetool_server_jar =

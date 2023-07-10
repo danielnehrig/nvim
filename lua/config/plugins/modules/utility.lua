@@ -1,6 +1,9 @@
+---@module 'config.plugins.modules.types'
+
+---@class utility
+---@field utility table<string, PluginInterfaceMerged>
 local M = {}
 M.utility = {
-  -- Packer
   ["folke/noice.nvim"] = {
     event = "VimEnter",
     config = function()

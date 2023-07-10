@@ -1,15 +1,15 @@
+---@module 'config.plugins.modules.types'
+
+---@class git
+---@field git table<string, PluginInterfaceMerged>
 local M = {}
 
 M.git = {
   ["lewis6991/gitsigns.nvim"] = {
     event = { "BufRead", "BufNewFile" },
     config = require("config.plugins.configs.gitsigns").init,
-    requires = {
-      { "nvim-lua/plenary.nvim", after = "gitsigns.nvim" },
-    },
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-    },
+    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   ["tpope/vim-fugitive"] = {
     cmd = { "Git", "Git mergetool" },
@@ -27,9 +27,7 @@ M.git = {
     requires = "nvim-lua/plenary.nvim",
   },
   ["ruifm/gitlinker.nvim"] = {
-    requires = {
-      { "nvim-lua/plenary.nvim" },
-    },
+    requires = { "nvim-lua/plenary.nvim" },
     opt = true,
   },
   ["tanvirtin/vgit.nvim"] = {

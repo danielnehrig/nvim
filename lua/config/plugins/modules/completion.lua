@@ -1,3 +1,7 @@
+---@module 'config.plugins.modules.types'
+
+---@class completion
+---@field completion table<string, PluginInterfaceMerged>
 local M = {}
 M.completion = {
   ["github/copilot.vim"] = {},
