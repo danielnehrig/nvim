@@ -1,9 +1,4 @@
-local present, impatient = pcall(require, "impatient")
-
-if present then
-  impatient.enable_profile()
-end
-
+vim.loader.enable()
 if vim.version().minor > 7 then
   local default_plugins = {
     "2html_plugin",
