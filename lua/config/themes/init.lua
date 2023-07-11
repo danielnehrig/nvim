@@ -1,6 +1,9 @@
 local config = require("config.core.config").config
 local M = {}
+---@module 'config.themes.hl.types'
 
+---@param type "base_30" | "base_16" | "polish_hl"
+---@return BASE_30 | BASE_16
 M.get_theme_tb = function(type)
   local default_path = "config.themes.hl." .. config.ui.colorscheme.name
 

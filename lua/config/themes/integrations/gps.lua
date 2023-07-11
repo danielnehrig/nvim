@@ -10,7 +10,7 @@ return {
 
   NavicText = {
     default = true,
-    fg = theme_30.green,
+    fg = theme_30.white,
     sp = "none",
   },
 

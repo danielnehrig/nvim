@@ -190,7 +190,7 @@ M.dap = {
 M.util = {
   c = {
     {
-      "<S-Enter>",
+      "<S-CR>",
       function()
         require("noice").redirect(vim.fn.getcmdline())
       end,
