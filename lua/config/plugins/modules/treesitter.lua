@@ -5,10 +5,6 @@
 local M = {}
 
 M.ts = {
-  ["mrjones2014/nvim-ts-rainbow"] = {
-    requires = { "nvim-treesitter/nvim-treesitter" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
   ["Wansmer/treesj"] = {
     keys = { "<space>m", "<space>j", "<space>s" },
     opts = { use_default_keymaps = false, max_join_length = 150 },
