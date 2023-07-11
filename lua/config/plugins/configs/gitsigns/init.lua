@@ -107,6 +107,7 @@ function M.init()
     watch_gitdir = {
       interval = 100,
     },
+    current_line_blame = true,
     sign_priority = 5,
     update_debounce = 100,
     status_formatter = nil, -- Use default

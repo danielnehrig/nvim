@@ -42,7 +42,7 @@ M.git = {
       require("vgit").setup({
         settings = {
           live_gutter = {
-            enabled = true,
+            enabled = false,
           },
         },
       })
