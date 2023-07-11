@@ -13,13 +13,11 @@ M.packer = {
   },
   ["nvim-telescope/telescope.nvim"] = {
     cmd = { "Telescope" },
-    event = "VeryLazy",
     config = require("config.plugins.configs.telescope").init,
     requires = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "make",
-        build = "make",
       },
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-lua/plenary.nvim" },

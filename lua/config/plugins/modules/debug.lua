@@ -6,7 +6,7 @@ local M = {}
 
 M.debug = {
   ["nvim-neotest/neotest"] = {
-    opt = true,
+    cmd = { "Neotest" },
     config = function()
       require("neotest").setup({
         adapters = {

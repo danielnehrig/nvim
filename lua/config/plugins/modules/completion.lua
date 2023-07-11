@@ -21,14 +21,16 @@ M.completion = {
       })
       require("orgmode").setup_ts_grammar()
     end,
-    --  keys = { "<space>oc", "<space>oa" },
-    --  ft = { "org" },
+    keys = { "<space>oc", "<space>oa" },
+    ft = { "org" },
     wants = "nvim-cmp",
     dependencies = "nvim-cmp",
   },
   ["L3MON4D3/LuaSnip"] = {
     wants = "friendly-snippets",
-    dependencies = "friendly-snippets",
+    dependencies = "rafamadriz/friendly-snippets",
+    lazy = true,
+    event = "InsertEnter",
     config = function()
       require("config.plugins.configs.cmp.luasnip").init()
     end,

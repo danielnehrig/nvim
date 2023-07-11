@@ -3,6 +3,7 @@
 ---@field v? Map[]
 ---@field i? Map[]
 ---@field x? Map[]
+---@field c? Map[]
 
 ---@class Map
 ---@field [1] string key binding
@@ -187,6 +188,15 @@ M.dap = {
 
 -- utility binds
 M.util = {
+  c = {
+    {
+      "<S-Enter>",
+      function()
+        require("noice").redirect(vim.fn.getcmdline())
+      end,
+      { desc = "Redirect Cmdline" },
+    },
+  },
   i = {
     {
       "<Plug>(vimrc:copilot-dummy-map)",
