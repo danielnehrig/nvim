@@ -48,22 +48,15 @@ end
 -- with internal colorschemes
 M.switch_theme = function(arg)
   local colorscheme = nil
-  local packadd = nil
 
   -- packer themes
   for theme_name, theme in pairs(themes) do
     if arg == theme_name then
       colorscheme = theme.colorscheme
-      packadd = theme.packadd
     end
   end
 
   if colorscheme then
-    local packadd_ok, _ = pcall(vim.cmd, string.format("packadd %s", packadd))
-    if not packadd_ok then
-      return
-    end
-
     local highlights_raw =
       vim.split(vim.api.nvim_exec("filter BufferLine hi", true), "\n")
     local highlight_groups = {}

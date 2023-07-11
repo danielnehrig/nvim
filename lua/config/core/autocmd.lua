@@ -16,7 +16,7 @@ function M.autocmds()
     group = au_highlight,
   })
   vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
+    pattern = "*", -- dope
     command = "highlight FloatBorder guibg=none ctermbg=none",
     group = au_highlight,
   })
@@ -28,21 +28,6 @@ function M.autocmds()
   vim.api.nvim_create_autocmd("ColorScheme", {
     pattern = "*",
     command = "highlight FoldColumn guifg=#a485dd guibg=none ctermbg=none",
-    group = au_highlight,
-  })
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    command = "highlight GitSignsChange ctermbg=none guibg=none",
-    group = au_highlight,
-  })
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    command = "highlight GitSignsDelete ctermbg=none guibg=none",
-    group = au_highlight,
-  })
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    command = "highlight GitSignsAdd ctermbg=none guibg=none",
     group = au_highlight,
   })
 

@@ -9,19 +9,19 @@ function M.init()
   local signs = {
     add = {
       hl = "GitSignsAdd",
-      text = "▌",
+      text = "│",
       numhl = "GitSignsAdd",
       linehl = "GitSignsAddLn",
     },
     change = {
       hl = "GitSignsChange",
-      text = "▌",
+      text = "│",
       numhl = "GitSignsChange",
       linehl = "GitSignsChangeLn",
     },
     delete = {
       hl = "GitSignsDelete",
-      text = "▌",
+      text = "│",
       numhl = "GitSignsDelete",
       linehl = "GitSignsDeleteLn",
     },
@@ -36,6 +36,12 @@ function M.init()
       text = "~",
       numhl = "GitSignsChangeNr",
       linehl = "GitSignsChangeLn",
+    },
+    untracked = {
+      hl = "GitSignsAdd",
+      text = "│",
+      numhl = "GitSignsAdd",
+      linehl = "GitSignsAddLn",
     },
   }
 
