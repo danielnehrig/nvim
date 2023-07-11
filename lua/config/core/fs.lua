@@ -1,3 +1,4 @@
+---@class FS
 local M = {}
 
 -- TODO:

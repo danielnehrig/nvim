@@ -1,4 +1,5 @@
 local theme = require("config.themes").get_colors("base_30")
+local theme_16 = require("config.themes").get_colors("base_16")
 local util = require("config.themes.util")
 
 return {
@@ -9,16 +10,16 @@ return {
   BufferCurrentWARN = { bg = theme.darker_black, fg = theme.yellow },
   BufferCurrentIndex = { bg = theme.statusline_bg, fg = theme.nord_blue },
   BufferCurrentMod = { bg = theme.darker_black, fg = theme.orange },
-  BufferCurrentSign = { bg = theme.darker_black, fg = theme.statusline_bg },
+  BufferCurrentSign = { bg = theme.darker_black, fg = theme_16.base0F },
   BufferCurrentTarget = { bg = theme.darker_black, fg = theme.red },
-  --  BufferAlternate = { bg = c.fg_gutter, fg = c.fg },
-  --  BufferAlternateERROR = { bg = c.fg_gutter, fg = c.error },
-  --  BufferAlternateHINT = { bg = c.fg_gutter, fg = c.hint },
+  BufferAlternate = { bg = theme.grey_fg, fg = theme.white },
+  BufferAlternateERROR = { bg = theme.grey_fg, fg = theme.red },
+  BufferAlternateHINT = { bg = theme.grey_fg, fg = theme.cyan },
   BufferAlternateIndex = { bg = theme.grey_fg, fg = theme.blue },
-  --  BufferDefaultInactiveIndex = { bg = theme.grey_fg, fg = theme.blue },
+  BufferDefaultInactiveIndex = { bg = theme.grey_fg, fg = theme.blue },
   --  BufferAlternateINFO = { bg = c.fg_gutter, fg = c.info },
   --  BufferAlternateMod = { bg = c.fg_gutter, fg = c.warning },
-  --  BufferAlternateSign = { bg = c.fg_gutter, fg = c.info },
+  BufferAlternateSign = { bg = theme.statusline_bg, fg = theme.yellow },
   --  BufferAlternateTarget = { bg = c.fg_gutter, fg = c.red },
   --  BufferAlternateWARN = { bg = c.fg_gutter, fg = c.warning },
   BufferVisible = { bg = theme.black2, fg = theme.white },
@@ -27,7 +28,7 @@ return {
   --  BufferVisibleINFO = { bg = c.bg_statusline, fg = c.info },
   --  BufferVisibleWARN = { bg = c.bg_statusline, fg = c.warning },
   BufferVisibleIndex = { bg = theme.statusline_bg, fg = theme.statusline_bg },
-  BufferVisibleMod = { bg = theme.statusline_bg, fg = theme.yellow },
+  BufferVisibleMod = { bg = theme.statusline_bg, fg = theme.orange },
   BufferVisibleSign = { bg = theme.statusline_bg, fg = theme.statusline_bg },
   BufferVisibleTarget = { bg = theme.statusline_bg, fg = theme.red },
   BufferInactive = {
@@ -57,17 +58,17 @@ return {
   },
   BufferInactiveMod = {
     bg = util.darken(theme.one_bg, 0.4),
-    fg = util.darken(theme.yellow, 0.8),
+    fg = util.darken(theme.orange, 0.8),
   },
   BufferInactiveSign = {
-    bg = util.darken(theme.statusline_bg, 0.8),
+    bg = theme.statusline_bg,
     fg = theme.statusline_bg,
   },
   BufferInactiveTarget = { bg = util.darken(theme.one_bg, 0.4), fg = theme.red },
-  BufferOffset = { bg = theme.one_bg, fg = theme.one_bg3 },
-  BufferTabpageFill = {
-    bg = util.darken(theme.one_bg, 0.8),
-    fg = theme.one_bg3,
-  },
-  BufferTabpages = { bg = theme.statusline_bg, fg = theme.white },
+  -- BufferOffset = { bg = theme.one_bg, fg = theme.one_bg3 },
+  --  BufferTabpageFill = {
+  --  bg = util.darken(theme.one_bg, 0.8),
+  --  fg = theme.one_bg3,
+  --  },
+  --  BufferTabpages = { bg = theme.statusline_bg, fg = theme.white },
 }
