@@ -34,7 +34,7 @@ return {
 
   NavicModule = {
     default = true,
-    fg = theme.base09,
+    fg = theme_30.blue,
     sp = "none",
   },
   NavicNamespace = {
@@ -44,7 +44,7 @@ return {
   },
   NavicPackage = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.blue,
     sp = "none",
   },
   NavicClass = {
@@ -69,12 +69,12 @@ return {
   },
   NavicProperty = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.blue,
     sp = "none",
   },
   NavicIconsProperty = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.blue,
     sp = "none",
   },
   NavicField = {
@@ -134,7 +134,7 @@ return {
   },
   NavicConstant = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.red,
     sp = "none",
   },
   NavicString = {
@@ -154,27 +154,27 @@ return {
   },
   NavicArray = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.red,
     sp = "none",
   },
   NavicObject = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.cyan,
     sp = "none",
   },
   NavicIconsObject = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.yellow,
     sp = "none",
   },
   NavicIconsFile = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.blue,
     sp = "none",
   },
   NavicKey = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.cyan,
     sp = "none",
   },
   NavicNull = {
@@ -184,7 +184,7 @@ return {
   },
   NavicEnumMember = {
     default = true,
-    fg = theme.base0F,
+    fg = theme_30.red,
     sp = "none",
   },
   NavicStruct = {
