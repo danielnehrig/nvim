@@ -176,6 +176,18 @@ function M.init()
       { name = "buffer" },
     },
   })
+
+  cmp.setup.filetype({ "tex", "plaintex" }, {
+    sources = {
+      { name = "lua-latex-symbols" },
+    },
+  })
+
+  cmp.setup.filetype({ "toml", "rs" }, {
+    sources = {
+      { name = "crates" },
+    },
+  })
 end
 
 return M

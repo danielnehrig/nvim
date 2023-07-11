@@ -8,7 +8,6 @@ M.packer = {
   },
   ["hkupty/nvimux"] = {
     keys = { "<C-a>" },
-    event = "VeryLazy",
     config = require("config.plugins.configs.nvimux").init,
   },
   ["nvim-telescope/telescope.nvim"] = {

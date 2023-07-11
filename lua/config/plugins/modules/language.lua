@@ -17,6 +17,7 @@ M.language = {
   ["Saecki/crates.nvim"] = {
     ft = { "toml", "rs" },
     requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = require("config.plugins.configs.crates").init,
   },
   ["vuki656/package-info.nvim"] = {

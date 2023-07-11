@@ -12,6 +12,10 @@ M.completion = {
   },
   ["hrsh7th/nvim-cmp"] = {
     config = require("config.plugins.configs.cmp").init,
+    event = "InsertEnter",
+  },
+  ["amarakon/nvim-cmp-lua-latex-symbols"] = {
+    dependencies = "hrsh7th/nvim-cmp",
   },
   ["kristijanhusak/orgmode.nvim"] = {
     config = function()
@@ -38,27 +42,35 @@ M.completion = {
   },
   ["saadparwaiz1/cmp_luasnip"] = {
     after = "LuaSnip",
+    dependencies = "hrsh7th/nvim-cmp",
   },
   ["f3fora/cmp-spell"] = {
     after = "cmp_luasnip",
+    dependencies = "hrsh7th/nvim-cmp",
   },
   ["hrsh7th/cmp-path"] = {
     after = "cmp-spell",
+    dependencies = "hrsh7th/nvim-cmp",
   },
-  ["hrsh7th/cmp-nvim-lsp"] = {},
+  ["hrsh7th/cmp-nvim-lsp"] = {
+    dependencies = "hrsh7th/nvim-cmp",
+  },
   ["hrsh7th/cmp-buffer"] = {
     after = "cmp-nvim-lsp",
+    dependencies = "hrsh7th/nvim-cmp",
   },
   ["hrsh7th/cmp-cmdline"] = {
     after = "nvim-cmp",
+    dependencies = "hrsh7th/nvim-cmp",
   },
   ["hrsh7th/cmp-nvim-lsp-signature-help"] = {
     after = "cmp-cmdline",
+    dependencies = "hrsh7th/nvim-cmp",
   },
   ["onsails/lspkind-nvim"] = {
     wants = "nvim-cmp",
     requires = "nvim-cmp",
-    dependencies = "nvim-cmp",
+    dependencies = "hrsh7th/nvim-cmp",
     config = function()
       require("lspkind").init({
         mode = "symbol_text",
