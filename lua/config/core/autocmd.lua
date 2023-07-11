@@ -76,6 +76,13 @@ function M.autocmds()
     group = au_pack,
   })
   -- ft
+  vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+    pattern = "*.tex",
+    callback = function()
+      vim.opt.filetype = "tex"
+    end,
+    group = au_ft,
+  })
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown,org,txt,tex",
     callback = function()

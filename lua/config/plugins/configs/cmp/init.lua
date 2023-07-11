@@ -145,12 +145,9 @@ function M.init()
     -- preselect = cmp.PreselectMode.Item,
     sources = {
       { name = "nvim_lsp_signature_help" },
-      --{ name = "copilot", group_index = 2 },
-      { name = "nvim_lsp" },
-      -- { name = "cmp_tabnine" },
       { name = "luasnip" },
+      { name = "nvim_lsp" },
       { name = "path" },
-      { name = "orgmode" },
     },
   })
 
@@ -177,14 +174,23 @@ function M.init()
     },
   })
 
-  cmp.setup.filetype({ "tex", "plaintex" }, {
+  cmp.setup.filetype({ "latex", "tex", "plaintex" }, {
     sources = {
       { name = "lua-latex-symbols" },
     },
   })
 
+  cmp.setup.filetype({ "org" }, {
+    sources = {
+      { name = "orgmode" },
+      { name = "luasnip" },
+      { name = "path" },
+    },
+  })
+
   cmp.setup.filetype({ "toml", "rs" }, {
     sources = {
+      { name = "luasnip" },
       { name = "crates" },
     },
   })
