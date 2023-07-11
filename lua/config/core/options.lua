@@ -149,6 +149,7 @@ function M.load_options()
   opt.title = true
   opt.virtualedit = "NONE"
   opt.shortmess:append("sI")
+  g.tex_flavor = "tex"
 
   -- Set so that folders are index for find command
   opt.path = "**/*"
