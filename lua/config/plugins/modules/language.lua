@@ -39,10 +39,6 @@ M.language = {
     run = "bash ./install.sh",
     build = "bash ./install.sh",
   },
-  ["metakirby5/codi.vim"] = {
-    cmd = { "Codi" },
-    ft = { "javascript", "typescript", "lua" },
-  },
   ["shuntaka9576/preview-swagger.nvim"] = {
     run = "yarn install",
     build = "yarn install",
