@@ -191,7 +191,7 @@ M.dap = {
 M.util = {
   c = {
     {
-      "<S-CR>",
+      "<C-e>",
       function()
         require("noice").redirect(vim.fn.getcmdline())
       end,

@@ -19,9 +19,6 @@ local function lazy_key_filter(plugins)
     "dependencies",
     "lazy",
   }
-  local mutation_list = {
-    {"setup", "build"}
-  }
   for _, plugin in pairs(plugins) do
     for key, _ in pairs(plugin) do
       for _, delete_key in pairs(delete_list) do

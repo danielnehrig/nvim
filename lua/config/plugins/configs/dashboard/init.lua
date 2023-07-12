@@ -1,6 +1,7 @@
-local config = {}
+---@class Dashboard
+local M = {}
 
-function config.dashboard()
+function M.dashboard()
   local ok, alpha = pcall(require, "alpha")
   if not ok then
     return
@@ -49,7 +50,7 @@ function config.dashboard()
   -- Footer
   local function footer()
     local config = require("config.core.config").config
-    local total_plugins = 0
+    local total_plugins
     if config.ui.plugin_manager == "packer" then
       total_plugins = #packer_plugins
     else
@@ -84,4 +85,4 @@ function config.dashboard()
   alpha.setup(dashboard.opts)
 end
 
-return config
+return M

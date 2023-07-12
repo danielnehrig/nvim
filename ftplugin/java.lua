@@ -28,7 +28,7 @@ vim.list_extend(
 )
 
 local config = require("config.core.config").config
-local ok, jdtls = pcall(require, "jdtls")
+local ok, _ = pcall(require, "jdtls")
 if not ok then
   if config.ui.plugin_manager == "packer" then
     vim.cmd([[ packadd nvim-jdtls ]])
@@ -36,7 +36,7 @@ if not ok then
     require("lazy").load({ plugins = { "nvim-jdtls" } })
   end
 end
-local config = {
+local jd_config = {
   -- The command that starts the language server
   init_options = {
     bundles = bundles,
@@ -73,4 +73,4 @@ local config = {
   end,
 }
 
-require("jdtls").start_or_attach(config)
+require("jdtls").start_or_attach(jd_config)

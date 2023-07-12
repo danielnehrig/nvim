@@ -30,7 +30,7 @@ M.theme = {
       "#1565C0",
       "#0D47A1",
     }
-    local loading_text = ""
+    -- local loading_text = ""
 
     local hl_list = {
       Normal = { "NormalFg", "NormalBg" },
@@ -470,8 +470,8 @@ M.theme = {
       delay = 200,
       interval = 150,
       effect = effects.list_text(loading),
-      on_tick = function(value)
-        loading_text = value
+      on_tick = function(_)
+        -- loading_text = value
       end,
     })
   end,

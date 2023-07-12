@@ -10,8 +10,8 @@ help:
 
 check:
 	@echo "lint / format"
-	luacheck **/*.lua
-	stylua **/*.lua
+	luacheck ./
+	stylua --glob '**/*.lua' ./
 
 link:
 	@echo "link /usr/local/bin/nvim-dep-updater"
