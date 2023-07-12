@@ -28,6 +28,7 @@
 ---@field lsp MapModes
 ---@field diag MapModes
 ---@field gram MapModes
+---@field run MapModes
 local M = {}
 
 M.general = {
@@ -345,9 +346,27 @@ M.gram = {
   },
 }
 
+M.run = {
+  v = {
+    {
+      "<leader>br",
+      "<cmd>'<,'>SnipRun<CR>",
+      { desc = "Run", silent = false },
+    },
+  },
+  n = {
+    {
+      "<leader>br",
+      "<cmd>%SnipRun<CR>",
+      { desc = "Run", silent = false },
+    },
+  },
+}
+
 M.map = {
   M.general,
   M.telescope,
+  M.run,
   M.dap,
   M.others,
   M.loclist,
@@ -413,12 +432,12 @@ function M.set_lsp_mapping(bufnr)
         { desc = "Type Def", buffer = bufnr },
       },
       {
-        "<space>gw",
+        "<leader>gw",
         vim.lsp.buf.document_symbol,
         { desc = "Doc Symb", buffer = bufnr },
       },
       {
-        "<space>gW",
+        "<leader>gW",
         vim.lsp.buf.workspace_symbol,
         { desc = "Workspace Symbok", buffer = bufnr },
       },
@@ -428,29 +447,29 @@ function M.set_lsp_mapping(bufnr)
         { desc = "Code Action", buffer = bufnr },
       },
       {
-        "<space>gr",
+        "<leader>gr",
         "<cmd>lua require('config.plugins.configs.lspconfig.utils').rename()<CR>",
         { desc = "Rename", buffer = bufnr },
       },
       {
-        "<space>g=",
+        "<leader>g=",
         function()
           vim.lsp.buf.format({ async = false, timeout_ms = 2500 })
         end,
         { desc = "Formatting", buffer = bufnr },
       },
       {
-        "<space>gi",
+        "<leader>gi",
         vim.lsp.buf.incoming_calls,
         { desc = "Inc Calls", buffer = bufnr },
       },
       {
-        "<space>go",
+        "<leader>go",
         vim.lsp.buf.outgoing_calls,
         { desc = "Out Calls", buffer = bufnr },
       },
       {
-        "<space>gd",
+        "<leader>gd",
         "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single', source = 'if_many' })<CR>",
         { desc = "Diagnostic Float", buffer = bufnr },
       },
