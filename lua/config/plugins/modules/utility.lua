@@ -34,6 +34,12 @@ M.utility = {
       "hrsh7th/nvim-cmp",
     },
   },
+  ["williamboman/mason.nvim"] = {
+    config = function()
+      require("mason").setup()
+    end,
+    build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+  },
   ["MunifTanjim/nui.nvim"] = { lazy = true },
   ["nvim-lua/plenary.nvim"] = { lazy = true },
   ["https://github.com/andythigpen/nvim-coverage"] = {
