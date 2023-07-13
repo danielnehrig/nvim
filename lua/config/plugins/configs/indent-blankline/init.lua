@@ -1,3 +1,4 @@
+---@class Blankline
 local M = {}
 
 function M.init()
@@ -13,14 +14,16 @@ function M.init()
       "terminal",
       "dashboard",
       "alpha",
+      "lazy",
       "packer",
+      "notify",
       "lspinfo",
       "TelescopePrompt",
       "TelescopeResults",
       "lsp-installer",
       "",
     },
-    buftype_exclude = { "terminal", "dashboard" },
+    buftype_exclude = { "terminal", "dashboard", "notify" },
     show_first_indent_level = false,
     show_current_context = true,
     use_treesitter = true,
