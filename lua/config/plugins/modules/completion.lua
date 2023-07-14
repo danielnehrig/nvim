@@ -14,7 +14,7 @@ M.completion = {
     config = require("config.plugins.configs.cmp").init,
     event = "InsertEnter",
   },
-  ["amarakon/nvim-cmp-lua-latex-symbols"] = {
+  ["danielnehrig/nvim-cmp-lua-latex-symbols"] = {
     dependencies = "hrsh7th/nvim-cmp",
   },
   ["kristijanhusak/orgmode.nvim"] = {
