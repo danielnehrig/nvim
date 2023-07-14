@@ -3,29 +3,14 @@ local M = {}
 
 -- this is ass how to properly lazy load this
 function M.init()
-  local config = require("config.core.config").config
   local dap_present, _ = pcall(require, "dap")
 
   if not dap_present then
-    if config.ui.plugin_manager == "packer" then
-      local dap_add, _ = pcall(vim.cmd, "packadd nvim-dap")
-      local dapui_add, _ = pcall(vim.cmd, "packadd nvim-dap-ui")
-      local dapvt_add, _ = pcall(vim.cmd, "packadd nvim-dap-virtual-text")
-      if dap_add and dapui_add and dapvt_add then
-        require("config.plugins.configs.dap")
-        M.mappings()
-      else
-        vim.notify("Error adding DAP")
-      end
-    elseif config.ui.plugin_manager == "lazy" then
-      require("lazy").load({ plugins = { "nvim-dap" } })
-      require("lazy").load({ plugins = { "nvim-dap-ui" } })
-      require("lazy").load({ plugins = { "nvim-dap-virtual-text" } })
-      require("config.plugins.configs.dap")
-      M.mappings()
-    else
-      vim.notify("Error unsupported plugin manager")
-    end
+    require("lazy").load({ plugins = { "nvim-dap" } })
+    require("lazy").load({ plugins = { "nvim-dap-ui" } })
+    require("lazy").load({ plugins = { "nvim-dap-virtual-text" } })
+    require("config.plugins.configs.dap")
+    M.mappings()
 
     return
   end

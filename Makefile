@@ -25,12 +25,7 @@ install:
 	@echo "Install packages"
 	./packages.py
 
-nvim-packer:
-	@echo "Nvim First Time Setup"
-	nvim --headless +'autocmd User PackerComplete sleep 100ms | qa'
-	nvim --headless +'autocmd User PackerComplete sleep 100ms | qa' +'PackerSync'
-
-nvim-lazy:
+nvim:
 	@echo "Nvim First Time Setup"
 	nvim --headless +'autocmd User LazyInstall sleep 100ms | qa'
 	nvim --headless "+Lazy! sync" +qa

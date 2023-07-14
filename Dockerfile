@@ -1,7 +1,5 @@
 FROM archlinux/archlinux:latest
 ARG version=neovim
-# packer or lazy @see default_config file
-ARG manager=lazy
 COPY . /root/.config/nvim/
 
 RUN pacman -Sy \
@@ -25,7 +23,6 @@ RUN sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/yay-g
 RUN sudo -u builduser yay -S --noconfirm ${version}
 RUN /root/.config/nvim/packages.py --sudo builduser
 
-# flakey for some reason --headless packersync does not work like without headless
 RUN nvim --headless\
   +'autocmd User LazyInstall sleep 100m | qall'
 RUN nvim --headless\

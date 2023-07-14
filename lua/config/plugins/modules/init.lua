@@ -7,29 +7,9 @@ local lsp = require("config.plugins.modules.lsp").lsp
 local completion = require("config.plugins.modules.completion").completion
 local language = require("config.plugins.modules.language").language
 local debug = require("config.plugins.modules.debug").debug
-local packer = require("config.plugins.modules.navigation").packer
+local navigation = require("config.plugins.modules.navigation").navigation
 ---@module 'config.plugins.modules.types'
 ---@module 'lazy.types'
-
---- @param plugins PluginInterfaceMerged[]
---- @return PluginInterfacePacker[]
---- Aims to remove table keys not used by packer
-local function lazy_key_filter(plugins)
-  local delete_list = {
-    "dependencies",
-    "lazy",
-  }
-  for _, plugin in pairs(plugins) do
-    for key, _ in pairs(plugin) do
-      for _, delete_key in pairs(delete_list) do
-        if delete_key == key then
-          plugin[key] = nil
-        end
-      end
-    end
-  end
-  return plugins
-end
 
 --- @param plugins PluginInterfaceMerged[]
 --- @return LazyPluginSpec[]
@@ -68,7 +48,7 @@ local function create_plugins()
     ts,
     completion,
     debug,
-    packer,
+    navigation,
     language
   )
 
@@ -84,11 +64,7 @@ local function create_plugins()
     plugins[#plugins + 1] = plugin_table[key]
   end
 
-  if config.ui.plugin_manager == "lazy" then
-    plugins = packer_key_filter(plugins)
-  else
-    plugins = lazy_key_filter(plugins)
-  end
+  plugins = packer_key_filter(plugins)
 
   return plugins
 end

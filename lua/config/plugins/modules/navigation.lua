@@ -1,6 +1,6 @@
 local M = {}
 
-M.packer = {
+M.navigation = {
   ["andymass/vim-matchup"] = {
     setup = function()
       vim.g.matchup_matchparen_offscreen = {}

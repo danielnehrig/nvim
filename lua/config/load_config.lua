@@ -2,9 +2,9 @@ local config = require("config.core.config").config
 local M = {}
 M.__index = M
 
--- this is loaded after bootstrapping packer
--- and or if packer plugins are installed
--- load configs for packer plugins
+-- this is loaded after bootstrapping the plugin manager
+-- and or if package manager plugins are installed
+-- load configs for package manager plugins
 M.init = function()
   require("config.themes").load_theme()
   require("config.plugins.configs.statusline.windline").switch_theme(

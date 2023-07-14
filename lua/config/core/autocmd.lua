@@ -2,7 +2,6 @@ local Func = require("config.utils")
 local M = {}
 
 function M.autocmds()
-  local au_pack = vim.api.nvim_create_augroup("packer", { clear = true })
   local au_utils = vim.api.nvim_create_augroup("utils", { clear = true })
   local au_ft = vim.api.nvim_create_augroup("ft", { clear = true })
   local au_cmp = vim.api.nvim_create_augroup("cmp", { clear = true })
@@ -37,28 +36,6 @@ function M.autocmds()
       Func.open_diag_float()
     end,
     group = au_utils,
-  })
-  -- pack
-  vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "*.lua",
-    callback = function()
-      -- require("config.core.global").reload_all()
-    end,
-    group = au_pack,
-  })
-  vim.api.nvim_create_autocmd("User", {
-    pattern = "PackerComplete",
-    callback = function()
-      require("packer").compile()
-    end,
-    group = au_pack,
-  })
-  vim.api.nvim_create_autocmd("User", {
-    pattern = "PackerCompileComplete",
-    callback = function()
-      vim.notify("Packer Compiled!")
-    end,
-    group = au_pack,
   })
   -- ft
   vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {

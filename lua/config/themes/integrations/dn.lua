@@ -90,9 +90,6 @@ return {
   WhichKeyGroup = { fg = green },
   WhichKeyValue = { fg = green },
 
-  -- packer
-  packerPackageName = { fg = red },
-
   -- vim-matchup
   MatchWord = {
     fg = black,

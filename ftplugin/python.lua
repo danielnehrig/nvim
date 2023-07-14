@@ -1,5 +1,4 @@
 local global = require("config.core.global")
-local config = require("config.core.config").config
 local set = vim.keymap.set
 local build_path_string = require("config.utils").build_path_string
 
@@ -8,12 +7,7 @@ _G.load_py_dap = function()
 
   if not ok then
     require("config.plugins.configs.dap.attach").init()
-    if config.ui.plugin_manager == "packer" then
-      vim.cmd([[ packadd nvim-dap-python ]])
-    else
-      print("yes")
-      require("lazy").load({ plugins = { "nvim-dap-python" } })
-    end
+    require("lazy").load({ plugins = { "nvim-dap-python" } })
 
     local dap_python2 = pcall(require, "dap-python")
     if ok then

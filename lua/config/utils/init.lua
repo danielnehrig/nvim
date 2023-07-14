@@ -44,12 +44,12 @@ function M.build_path_string(str)
   return result
 end
 
--- combines packer colorschemes
+-- combines plugin manager colorschemes
 -- with internal colorschemes
 M.switch_theme = function(arg)
   local colorscheme = nil
 
-  -- packer themes
+  -- plugin manager themes
   for theme_name, theme in pairs(themes) do
     if arg == theme_name then
       colorscheme = theme.colorscheme

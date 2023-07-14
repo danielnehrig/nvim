@@ -2,7 +2,7 @@
 -- Execution Flow of each loaded configuration
 -- for various plugins
 -- also a lot of configuration for plugins can be found
--- in the packer config setup
+-- in the plugin manager config setup
 -- because of lazyloading
 local g, opt = vim.g, vim.opt
 
@@ -23,12 +23,7 @@ if not g.vscode then
     return
   end
 
-  if config.ui.plugin_manager == "packer" then
-    plug.packer_bootstrap()
-    plug.load_compile()
-  else
-    plug.lazy_bootstrap()
-  end
+  plug.lazy_bootstrap()
   require("config.core.mappings").mappings()
   require("config.core.autocmd").autocmds()
   require("config.core.commands").init()

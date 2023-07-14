@@ -39,8 +39,8 @@ function M.dashboard()
       "   Find file",
       "<cmd>Telescope find_files hidden=true path_display=smart<CR>"
     ),
-    --  button("p", "   Projects", "<cmd>Telescope projects<CR>"),
-    button("u", "   Update plugins", "<cmd>PackerSync<CR>"), -- Packer sync
+    button("p", "   Projects", "<cmd>Telescope project<CR>"),
+    button("u", "   Update plugins", "<cmd>Lazy Sync<CR>"),
     button("q", "   Quit Neovim", "<cmd>qa!<CR>"),
   }
   dashboard.section.buttons.opts = {
@@ -49,13 +49,7 @@ function M.dashboard()
 
   -- Footer
   local function footer()
-    local config = require("config.core.config").config
-    local total_plugins
-    if config.ui.plugin_manager == "packer" then
-      total_plugins = #packer_plugins
-    else
-      total_plugins = require("lazy").stats().count
-    end
+    local total_plugins = require("lazy").stats().count
     local version = vim.version()
 
     local nvim_version_info = "  Neovim v"
