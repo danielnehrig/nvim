@@ -1,21 +1,16 @@
 local set = vim.keymap.set
 local M = {}
 
+-- this is ass how to properly lazy load this
 function M.init()
   local dap_present, _ = pcall(require, "dap")
-  local dapui_present, _ = pcall(require, "dapui")
-  local dapvt_present, _ = pcall(require, "nvim-dap-virtual-text")
 
-  if not dap_present or not dapui_present or not dapvt_present then
-    local dap_add, _ = pcall(vim.cmd, "packadd nvim-dap")
-    local dapui_add, _ = pcall(vim.cmd, "packadd nvim-dap-ui")
-    local dapvt_add, _ = pcall(vim.cmd, "packadd nvim-dap-virtual-text")
-    if dap_add and dapui_add and dapvt_add then
-      require("config.plugins.configs.dap")
-      M.mappings()
-    else
-      vim.notify("Error adding DAP")
-    end
+  if not dap_present then
+    require("lazy").load({ plugins = { "nvim-dap" } })
+    require("lazy").load({ plugins = { "nvim-dap-ui" } })
+    require("lazy").load({ plugins = { "nvim-dap-virtual-text" } })
+    require("config.plugins.configs.dap")
+    M.mappings()
 
     return
   end

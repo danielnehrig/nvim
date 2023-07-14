@@ -59,30 +59,6 @@ dap.adapters.go = {
   },
 }
 
-dap.adapters.nlua = function(callback, config)
-  callback({ type = "server", host = config.host, port = config.port })
-end
-
-dap.configurations.lua = {
-  {
-    type = "nlua",
-    request = "attach",
-    name = "Neovim attach",
-    host = function()
-      local value = vim.fn.input("Host [127.0.0.1]: ")
-      if value ~= "" then
-        return value
-      end
-      return "127.0.0.1"
-    end,
-    port = function()
-      local val = tonumber(vim.fn.input("Port: "))
-      assert(val, "Please provide a port number")
-      return val
-    end,
-  },
-}
-
 dap.configurations.go = {
   {
     type = "go",
@@ -91,20 +67,6 @@ dap.configurations.go = {
     showLog = false,
     program = "${file}",
     dlvToolPath = vim.fn.exepath("dlv"), -- Adjust to where delve is installed
-  },
-}
-
-dap.configurations.dart = {
-  {
-    type = "dart",
-    request = "launch",
-    name = "Launch flutter",
-    dartSdkPath = build_path_string(
-      os.getenv("HOME") .. "/flutter/bin/cache/dart-sdk/"
-    ),
-    flutterSdkPath = build_path_string(os.getenv("HOME") .. "/flutter"),
-    program = build_path_string("${workspaceFolder}/lib/main.dart"),
-    cwd = "${workspaceFolder}",
   },
 }
 

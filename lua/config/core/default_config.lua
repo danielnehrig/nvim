@@ -2,6 +2,8 @@ local default_config = {}
 
 default_config.ui = {
   changed_themes = {},
+  ---@type "lazy" | "packer"
+  plugin_manager = "lazy",
   transparent = false,
   colorscheme = {
     name = "github_dark_default",

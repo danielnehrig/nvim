@@ -2,7 +2,7 @@
 -- Execution Flow of each loaded configuration
 -- for various plugins
 -- also a lot of configuration for plugins can be found
--- in the packer config setup
+-- in the plugin manager config setup
 -- because of lazyloading
 local g, opt = vim.g, vim.opt
 
@@ -15,20 +15,18 @@ if not g.vscode then
     .. vim.fn.expand("~/.local/share/nvim/plugin/?.lua")
   -- setup conf and lua modules
   require("config.core.options").load_options()
-  if
-    vim.fn.filereadable(
-      vim.fn.expand("~/.local/share/nvim/plugin/packer_compiled.lua")
-    ) == 1
-  then
-    require("packer_compiled")
+  local config = require("config.core.config").config
+  local plug = require("config.plugins")
+
+  if config == nil then
+    vim.notify("Error loading config")
+    return
   end
+
+  plug.lazy_bootstrap()
   require("config.core.mappings").mappings()
   require("config.core.autocmd").autocmds()
   require("config.core.commands").init()
-
-  local pack = require("config.plugins")
-  pack.packer_bootstrap()
-  pack.load_compile()
 
   opt.shadafile = ""
 else

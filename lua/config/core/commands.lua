@@ -1,10 +1,6 @@
 local M = {}
 
 M.init = function()
-  vim.api.nvim_create_user_command("PackerSync2", function(_)
-    require("config.plugins.funcs").packer_sync()
-  end, {})
-
   vim.api.nvim_create_user_command("Transparency", function(_)
     require("config.themes").toggle_transparent()
   end, {})

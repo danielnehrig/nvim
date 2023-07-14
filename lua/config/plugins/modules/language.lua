@@ -1,3 +1,7 @@
+---@module 'config.plugins.modules.types'
+
+---@class language
+---@field language table<string, PluginInterfaceMerged>
 local M = {}
 
 vim.g.languagetool_server_jar =
@@ -13,6 +17,7 @@ M.language = {
   ["Saecki/crates.nvim"] = {
     ft = { "toml", "rs" },
     requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = require("config.plugins.configs.crates").init,
   },
   ["vuki656/package-info.nvim"] = {
@@ -25,19 +30,18 @@ M.language = {
   ["rust-lang/rust.vim"] = { ft = { "rust", "rs" } },
   ["iamcco/markdown-preview.nvim"] = {
     run = "cd app && yarn install",
+    build = "cd app && yarn install",
     ft = { "markdown", "md" },
     cmd = "MarkdownPreview",
   },
   ["michaelb/sniprun"] = {
     cmd = { "SnipRun" },
     run = "bash ./install.sh",
-  },
-  ["metakirby5/codi.vim"] = {
-    cmd = { "Codi" },
-    ft = { "javascript", "typescript", "lua" },
+    build = "bash ./install.sh",
   },
   ["shuntaka9576/preview-swagger.nvim"] = {
     run = "yarn install",
+    build = "yarn install",
     ft = { "yaml", "yml" },
     cmd = "SwaggerPreview",
   },

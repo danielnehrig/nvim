@@ -1,3 +1,7 @@
+---@module 'config.plugins.modules.types'
+
+---@class lsp
+---@field lsp table<string, PluginInterfaceMerged>
 local M = {}
 
 M.lsp = {
@@ -8,6 +12,7 @@ M.lsp = {
   },
   ["kevinhwang91/nvim-ufo"] = {
     requires = "kevinhwang91/promise-async",
+    dependencies = "kevinhwang91/promise-async",
     event = "BufRead",
     config = function()
       local handler = function(virtText, lnum, endLnum, width, truncate)
@@ -58,9 +63,15 @@ M.lsp = {
       })
     end,
   },
-  ["folke/neodev.nvim"] = { opt = true }, -- lua nvim setup
+  ["folke/neodev.nvim"] = {
+    opt = true,
+    ft = "lua",
+    dependencies = "neovim/nvim-lspconfig",
+    requires = "neovim/nvim-lspconfig",
+  }, -- lua nvim setup
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
+    event = "VeryLazy",
   },
   ["folke/trouble.nvim"] = {
     config = function()
@@ -68,6 +79,7 @@ M.lsp = {
     end,
     cmd = { "Trouble" },
     requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
   },
   ["tomtomjhj/lsp-status.nvim"] = {
     branch = "deprecated",

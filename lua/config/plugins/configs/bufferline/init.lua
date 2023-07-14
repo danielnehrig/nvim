@@ -3,7 +3,11 @@ local g = vim.g
 local M = {}
 
 function M.init()
-  require("barbar").setup({})
+  require("barbar").setup({
+    icons = {
+      separator_at_end = false,
+    },
+  })
   --  vim.g.bufferline = {
   --  exclude_ft = { "quickfix", "terminal", "dap-repl", "repl", "qf", "" },
   --  }

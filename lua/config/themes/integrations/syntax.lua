@@ -117,23 +117,23 @@ local syntax = {
 
 local merge_tb = require("config.themes").merge_tb
 
-if vim.version().minor == 9 then
+if vim.version().minor >= 9 then
   local semantic_hls = {
-    ["@lsp.type.class"] = { fg = theme.base0E },
-    ["@lsp.type.decorator"] = { fg = theme.base08 },
-    ["@lsp.type.enum"] = { fg = theme.base0A },
-    ["@lsp.type.enumMember"] = { fg = theme.base08 },
-    ["@lsp.type.function"] = { fg = theme.base0D },
-    ["@lsp.type.interface"] = { fg = theme.base08 },
-    ["@lsp.type.macro"] = { fg = theme.base08 },
-    ["@lsp.type.method"] = { fg = theme.base0D },
-    ["@lsp.type.namespace"] = { fg = theme.base08 },
-    ["@lsp.type.parameter"] = { fg = theme.base08 },
-    ["@lsp.type.property"] = { fg = theme.base08 },
-    ["@lsp.type.struct"] = { fg = theme.base0E },
-    ["@lsp.type.type"] = { fg = theme.base0A },
-    ["@lsp.type.typeParamater"] = { fg = theme.base0A },
-    ["@lsp.type.variable"] = { fg = theme.base05 },
+    ["@lsp.type.class"] = { link = "Structure" },
+    ["@lsp.type.decorator"] = { link = "Function" },
+    ["@lsp.type.enum"] = { link = "Type" },
+    ["@lsp.type.enumMember"] = { link = "Constant" },
+    ["@lsp.type.function"] = { link = "@function" },
+    ["@lsp.type.interface"] = { link = "Structure" },
+    ["@lsp.type.macro"] = { link = "@macro" },
+    ["@lsp.type.method"] = { link = "@method" },
+    ["@lsp.type.namespace"] = { link = "@namespace" },
+    ["@lsp.type.parameter"] = { link = "@parameter" },
+    ["@lsp.type.property"] = { link = "@property" },
+    ["@lsp.type.struct"] = { link = "Structure" },
+    ["@lsp.type.type"] = { link = "@type" },
+    ["@lsp.type.typeParamater"] = { link = "TypeDef" },
+    ["@lsp.type.variable"] = { link = "@variable" },
 
     -- ["@event"] = { fg = theme.base08 },
     -- ["@modifier"] = { fg = theme.base08 },

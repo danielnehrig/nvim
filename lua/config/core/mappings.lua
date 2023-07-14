@@ -1,3 +1,34 @@
+---@class MapModes
+---@field n? Map[]
+---@field v? Map[]
+---@field i? Map[]
+---@field x? Map[]
+---@field c? Map[]
+
+---@class Map
+---@field [1] string key binding
+---@field [2] string|fun() command
+---@field [3] MapOptions options for the mapping
+
+---@class MapOptions
+---@field noremap boolean
+---@field silent boolean
+---@field expr boolean
+---@field desc string for which key
+
+---@class mappings
+---@field general MapModes
+---@field quickfix MapModes
+---@field loclist MapModes
+---@field others MapModes
+---@field telescope MapModes
+---@field tree MapModes
+---@field dap MapModes
+---@field util MapModes
+---@field lsp MapModes
+---@field diag MapModes
+---@field gram MapModes
+---@field run MapModes
 local M = {}
 
 M.general = {
@@ -54,8 +85,6 @@ M.others = {
       { desc = "GitLinker" },
     },
     { "<Leader>gt", "<Cmd>Trouble<CR>", { desc = "Trouble LSP" } },
-    { "<Leader>ms", "<Cmd>Neomake<CR>", { desc = "Make" } },
-    { "<Leader>mt", "<Cmd>TestFile<CR>", { desc = "TestFile" } },
     { "<Leader>nf", "<Cmd>DocGen<CR>", { desc = "DocGen" } },
     { "<Leader>w", "<Cmd>WindowPick<CR>", { desc = "WindowPick" } },
     {
@@ -160,6 +189,15 @@ M.dap = {
 
 -- utility binds
 M.util = {
+  c = {
+    {
+      "<C-e>",
+      function()
+        require("noice").redirect(vim.fn.getcmdline())
+      end,
+      { desc = "Redirect Cmdline" },
+    },
+  },
   i = {
     {
       "<Plug>(vimrc:copilot-dummy-map)",
@@ -308,9 +346,27 @@ M.gram = {
   },
 }
 
+M.run = {
+  v = {
+    {
+      "<leader>br",
+      "<cmd>'<,'>SnipRun<CR>",
+      { desc = "Run", silent = false },
+    },
+  },
+  n = {
+    {
+      "<leader>br",
+      "<cmd>%SnipRun<CR>",
+      { desc = "Run", silent = false },
+    },
+  },
+}
+
 M.map = {
   M.general,
   M.telescope,
+  M.run,
   M.dap,
   M.others,
   M.loclist,
@@ -376,12 +432,12 @@ function M.set_lsp_mapping(bufnr)
         { desc = "Type Def", buffer = bufnr },
       },
       {
-        "<space>gw",
+        "<leader>gw",
         vim.lsp.buf.document_symbol,
         { desc = "Doc Symb", buffer = bufnr },
       },
       {
-        "<space>gW",
+        "<leader>gW",
         vim.lsp.buf.workspace_symbol,
         { desc = "Workspace Symbok", buffer = bufnr },
       },
@@ -391,29 +447,29 @@ function M.set_lsp_mapping(bufnr)
         { desc = "Code Action", buffer = bufnr },
       },
       {
-        "<space>gr",
+        "<leader>gr",
         "<cmd>lua require('config.plugins.configs.lspconfig.utils').rename()<CR>",
         { desc = "Rename", buffer = bufnr },
       },
       {
-        "<space>g=",
+        "<leader>g=",
         function()
           vim.lsp.buf.format({ async = false, timeout_ms = 2500 })
         end,
         { desc = "Formatting", buffer = bufnr },
       },
       {
-        "<space>gi",
+        "<leader>gi",
         vim.lsp.buf.incoming_calls,
         { desc = "Inc Calls", buffer = bufnr },
       },
       {
-        "<space>go",
+        "<leader>go",
         vim.lsp.buf.outgoing_calls,
         { desc = "Out Calls", buffer = bufnr },
       },
       {
-        "<space>gd",
+        "<leader>gd",
         "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single', source = 'if_many' })<CR>",
         { desc = "Diagnostic Float", buffer = bufnr },
       },

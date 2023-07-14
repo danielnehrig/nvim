@@ -1,6 +1,10 @@
 -- credits to original radium theme from https://github.com/dharmx
 -- this is a modified version of it
+---@module 'config.themes.hl.types'
 
+---@class Radium
+---@field base_30 BASE_30
+---@field base_16 BASE_16
 local M = {}
 
 M.base_30 = {

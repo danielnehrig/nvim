@@ -1,6 +1,9 @@
+---@module 'config.plugins.modules.types'
+
+---@class utility
+---@field utility table<string, PluginInterfaceMerged>
 local M = {}
 M.utility = {
-  -- Packer
   ["folke/noice.nvim"] = {
     event = "VimEnter",
     config = function()
@@ -24,23 +27,32 @@ M.utility = {
       "rcarriga/nvim-notify",
       "hrsh7th/nvim-cmp",
     },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+      "hrsh7th/nvim-cmp",
+    },
   },
-  ["narutoxy/silicon.lua"] = {
-    requires = { "nvim-lua/plenary.nvim" },
+  ["williamboman/mason.nvim"] = {
     config = function()
-      require("silicon").setup({
-        output = "/home/dashie/Pictures/SILICON_$year-$month-$date-$time.png",
-      })
+      require("mason").setup()
     end,
+    build = ":MasonUpdate", -- :MasonUpdate updates registry contents
   },
+  ["MunifTanjim/nui.nvim"] = { lazy = true },
+  ["nvim-lua/plenary.nvim"] = { lazy = true },
   ["https://github.com/andythigpen/nvim-coverage"] = {
     requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    lazy = true,
     config = function()
       require("coverage").setup()
     end,
   },
   ["windwp/nvim-autopairs"] = {
     after = "nvim-cmp",
+    dependencies = "nvim-cmp",
     config = function()
       require("config.plugins.configs.autopairs").init()
     end,
@@ -73,6 +85,7 @@ M.utility = {
     end,
   },
   ["axieax/urlview.nvim"] = {
+    cmd = "UrlView",
     config = function()
       require("urlview").setup({
         -- Prompt title (`<context> <default_title>`, e.g. `Buffer Links:`)
@@ -93,6 +106,7 @@ M.utility = {
   ["lambdalisue/suda.vim"] = { cmd = { "SudaWrite" } }, -- save as root
   ["junegunn/vim-slash"] = { keys = { "/" } }, -- better search
   ["rcarriga/nvim-notify"] = {
+    lazy = true,
     config = function()
       local notify = require("notify")
       notify.setup({
@@ -185,6 +199,7 @@ M.utility = {
   ["folke/todo-comments.nvim"] = {
     config = require("config.plugins.configs.todo").init,
     wants = "telescope.nvim",
+    dependencies = "telescope.nvim",
     cmd = { "TodoQuickFix", "TodoTrouble", "TodoTelescope" },
   }, -- show todos in qf
   ["ur4ltz/surround.nvim"] = {

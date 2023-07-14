@@ -1,6 +1,7 @@
-local config = {}
+---@class Dashboard
+local M = {}
 
-function config.dashboard()
+function M.dashboard()
   local ok, alpha = pcall(require, "alpha")
   if not ok then
     return
@@ -38,8 +39,8 @@ function config.dashboard()
       "   Find file",
       "<cmd>Telescope find_files hidden=true path_display=smart<CR>"
     ),
-    --  button("p", "   Projects", "<cmd>Telescope projects<CR>"),
-    button("u", "   Update plugins", "<cmd>PackerSync<CR>"), -- Packer sync
+    button("p", "   Projects", "<cmd>Telescope project<CR>"),
+    button("u", "   Update plugins", "<cmd>Lazy Sync<CR>"),
     button("q", "   Quit Neovim", "<cmd>qa!<CR>"),
   }
   dashboard.section.buttons.opts = {
@@ -48,8 +49,9 @@ function config.dashboard()
 
   -- Footer
   local function footer()
-    local total_plugins = #vim.tbl_keys(packer_plugins)
+    local total_plugins = require("lazy").stats().count
     local version = vim.version()
+
     local nvim_version_info = "  Neovim v"
       .. version.major
       .. "."
@@ -75,8 +77,6 @@ function config.dashboard()
   dashboard.config.opts.noautocmd = true
 
   alpha.setup(dashboard.opts)
-
-  -- alpha.setup(dashboard.opts)
 end
 
-return config
+return M

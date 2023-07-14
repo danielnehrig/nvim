@@ -28,45 +28,65 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
+  ["HampusHauffman/block.nvim"] = {
+    config = function()
+      require("block").setup({})
+    end,
+    lazy = true,
+    enabled = false,
+  },
   ["projekt0n/github-nvim-theme"] = {
     tag = "v0.0.7",
+    lazy = true,
   },
   ["m-demare/hlargs.nvim"] = {
     requires = { "nvim-treesitter/nvim-treesitter" },
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("hlargs").setup()
     end,
   },
   ["lukas-reineke/indent-blankline.nvim"] = {
     config = require("config.plugins.configs.indent-blankline").init,
+    lazy = true,
     event = "BufRead",
   },
   ["goolord/alpha-nvim"] = {
     config = require("config.plugins.configs.dashboard").dashboard,
   },
-  ["windwp/windline.nvim"] = {},
-  ["romgrk/barbar.nvim"] = { requires = "kyazdani42/nvim-web-devicons" },
+  ["windwp/windline.nvim"] = {
+    event = "VeryLazy",
+  },
+  ["romgrk/barbar.nvim"] = {
+    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = { "kyazdani42/nvim-web-devicons" },
+  },
 }
 
 M.ts_themes = {
   ["sainnhe/sonokai"] = {
     colorscheme = "sonokai",
+    event = "VeryLazy",
     packadd = "sonokai",
     opt = true,
+    lazy = true,
   },
   ["ray-x/aurora"] = {
     colorscheme = "aurora",
     packadd = "aurora",
     opt = true,
+    lazy = true,
   },
   ["Mofiqul/vscode.nvim"] = {
     colorscheme = "vscode",
-    packadd = "vscode.nvim",
     opt = true,
+    lazy = true,
     config = function() end,
   },
   ["marko-cerovac/material.nvim"] = {
     colorscheme = "material",
+    lazy = true,
     packadd = "material.nvim",
     config = function()
       require("material").setup()
@@ -76,6 +96,7 @@ M.ts_themes = {
     colorscheme = "gruvqueen",
     packadd = "gruvqueen",
     opt = true,
+    lazy = true,
     config = function()
       vim.o.background = "dark"
       require("gruvqueen").setup({
@@ -96,7 +117,9 @@ M.ts_themes = {
   ["folke/tokyonight.nvim"] = {
     colorscheme = "tokyonight",
     packadd = "tokyonight.nvim",
+    event = "VeryLazy",
     opt = true,
+    lazy = true,
   },
 }
 

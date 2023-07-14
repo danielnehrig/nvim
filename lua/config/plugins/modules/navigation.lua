@@ -1,6 +1,6 @@
 local M = {}
 
-M.packer = {
+M.navigation = {
   ["andymass/vim-matchup"] = {
     setup = function()
       vim.g.matchup_matchparen_offscreen = {}
@@ -23,9 +23,20 @@ M.packer = {
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-project.nvim" },
     },
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+      { "nvim-telescope/telescope-ui-select.nvim" },
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope-file-browser.nvim" },
+      { "nvim-telescope/telescope-project.nvim" },
+    },
   },
   ["kyazdani42/nvim-tree.lua"] = {
     requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = require("config.plugins.configs.nvimTree").init,
     cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
   },
@@ -50,6 +61,7 @@ M.packer = {
         exclude = {},
       })
     end,
+    event = "VeryLazy",
     wants = { "nvim-treesitter" },
     after = { "nvim-cmp" },
   },

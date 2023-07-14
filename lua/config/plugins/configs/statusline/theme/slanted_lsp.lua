@@ -15,7 +15,6 @@ M.theme = {
     local b_components = require("windline.components.basic")
     local animation = require("wlanimation")
     local effects = require("wlanimation.effects")
-    local make = require("config.plugins.configs.build")
     local state = _G.WindLine.state
 
     local lsp_comps = require("windline.components.lsp")
@@ -31,7 +30,7 @@ M.theme = {
       "#1565C0",
       "#0D47A1",
     }
-    local loading_text = ""
+    -- local loading_text = ""
 
     local hl_list = {
       Normal = { "NormalFg", "NormalBg" },
@@ -184,114 +183,31 @@ M.theme = {
       },
       width = breakpoint_width,
       text = function()
-        if git_comps.is_git(0) then
-          if not packer_plugins["neomake"].loaded then
-            return {
-              { helper.separators.slant_left, "septwo" },
-              { " ", "spacer" },
-              {
-                git_comps.diff_added({
-                  format = " %s",
-                  show_zero = true,
-                }),
-                "green",
-              },
-              {
-                git_comps.diff_removed({
-                  format = "  %s",
-                  show_zero = true,
-                }),
-                "red",
-              },
-              {
-                git_comps.diff_changed({
-                  format = " 柳%s",
-                  show_zero = true,
-                }),
-                "blue",
-              },
-            }
-          end
-        end
-        if git_comps.is_git(0) then
-          if packer_plugins["neomake"].loaded then
-            return {
-              { helper.separators.slant_left, "sep" },
-              { " ", "spacer" },
-              {
-                git_comps.diff_added({
-                  format = " %s",
-                  show_zero = true,
-                }),
-                "green",
-              },
-              {
-                git_comps.diff_removed({
-                  format = "  %s",
-                  show_zero = true,
-                }),
-                "red",
-              },
-              {
-                git_comps.diff_changed({
-                  format = " 柳%s",
-                  show_zero = true,
-                }),
-                "blue",
-              },
-            }
-          end
-        end
-        return ""
-      end,
-    }
-
-    basic.make = {
-      name = "make",
-      hl_colors = {
-        green = { "green", "grey" },
-        red = { "red", "grey" },
-        sep = { "grey", "black" },
-        spacer = { "black", "grey" },
-        wave_anim1 = { "waveright2", "grey" },
-        wave_anim2 = { "waveright3", "grey" },
-        wave_anim3 = { "waveright4", "grey" },
-        wave_anim4 = { "waveright5", "grey" },
-        wave_anim5 = { "waveright6", "grey" },
-        wave_anim6 = { "waveright7", "grey" },
-      },
-      width = breakpoint_width,
-      text = function()
-        if packer_plugins["neomake"].loaded then
-          if make:GetRunning() then
-            return {
-              { helper.separators.slant_left, "sep" },
-              { " ", "spacer" },
-              { "", "wave_anim1" },
-              { " ", "spacer" },
-              { "M", "wave_anim2" },
-              { "a", "wave_anim3" },
-              { "k", "wave_anim4" },
-              { "e", "wave_anim5" },
-              { " ", "spacer" },
-              { loading_text, "wave_anim6" },
-              { " ", "spacer" },
-            }
-          end
-          if make.failed then
-            return {
-              { helper.separators.slant_left, "sep" },
-              { " ", "spacer" },
-              { make:Status(), "red" },
-            }
-          end
-          return {
-            { helper.separators.slant_left, "sep" },
-            { " ", "spacer" },
-            { make:Status(), "green" },
-          }
-        end
-        return ""
+        return {
+          { helper.separators.slant_left, "septwo" },
+          { " ", "spacer" },
+          {
+            git_comps.diff_added({
+              format = " %s",
+              show_zero = true,
+            }),
+            "green",
+          },
+          {
+            git_comps.diff_removed({
+              format = "  %s",
+              show_zero = true,
+            }),
+            "red",
+          },
+          {
+            git_comps.diff_changed({
+              format = " 柳%s",
+              show_zero = true,
+            }),
+            "blue",
+          },
+        }
       end,
     }
 
@@ -447,7 +363,6 @@ M.theme = {
     local right = {
       basic.dap,
       basic.lsp_names,
-      basic.make,
       basic.git,
       {
         git_comps.git_branch(),
@@ -477,6 +392,10 @@ M.theme = {
 
     windline.setup({
       colors_name = function(colors)
+        for k, v in pairs(colors) do
+          -- replace double ## with one #
+          colors[k] = string.gsub(v, "##", "#")
+        end
         colors.FilenameFg = colors.white_light
         colors.FilenameBg = colors.black_light
         colors.transparent = "none"
@@ -511,6 +430,7 @@ M.theme = {
         dashboard,
       },
     })
+
     local winbar = {
       filetypes = { "winbar" },
       active = {
@@ -550,8 +470,8 @@ M.theme = {
       delay = 200,
       interval = 150,
       effect = effects.list_text(loading),
-      on_tick = function(value)
-        loading_text = value
+      on_tick = function(_)
+        -- loading_text = value
       end,
     })
   end,

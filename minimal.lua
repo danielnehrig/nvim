@@ -115,7 +115,7 @@ local function load_plugins()
   })
 end
 _G.load_config = function()
-  require("telescope").setup()
+  require("telescope").setup({})
   vim.wo.foldmethod = "expr"
   vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
   vim.wo.foldnestmax = 3

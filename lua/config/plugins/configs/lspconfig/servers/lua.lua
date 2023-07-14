@@ -5,11 +5,13 @@ local capabilities =
 local M = {}
 
 -- Lua Settings for nvim config and plugin development
-if not packer_plugins["neodev.nvim"].loaded then
+
+local present, neodev = pcall(require, "neodev")
+if not present then
   vim.cmd([[packadd neodev.nvim]])
 end
 
-require("neodev").setup({})
+neodev.setup()
 
 lspconfig.lua_ls.setup({
   cmd = { "lua-language-server" },
@@ -29,6 +31,10 @@ lspconfig.lua_ls.setup({
     Lua = {
       completion = {
         callSnippet = "Replace",
+      },
+      workspace = { checkThirdParty = false },
+      telemetry = {
+        enable = false,
       },
     },
   },

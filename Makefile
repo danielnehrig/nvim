@@ -10,8 +10,8 @@ help:
 
 check:
 	@echo "lint / format"
-	luacheck **/*.lua
-	stylua **/*.lua
+	luacheck ./
+	stylua --glob '**/*.lua' ./
 
 link:
 	@echo "link /usr/local/bin/nvim-dep-updater"
@@ -22,14 +22,13 @@ update:
 	./packages.py --update
 
 install:
-	@echo "Install"
+	@echo "Install packages"
 	./packages.py
 
 nvim:
 	@echo "Nvim First Time Setup"
-	nvim --headless +'autocmd User PackerComplete sleep 100ms | qa'
-	nvim --headless +'autocmd User PackerComplete sleep 100ms | qa' +'PackerSync'
-	nvim --headless +'TSInstall bash python cpp rust go lua dockerfile yaml typescript javascript java tsx tsdoc c org scss css toml make json html php' +'sleep 15' +'qa'
+	nvim --headless +'autocmd User LazyInstall sleep 100ms | qa'
+	nvim --headless "+Lazy! sync" +qa
 
 all: link install nvim
 

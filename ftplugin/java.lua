@@ -27,8 +27,11 @@ vim.list_extend(
   )
 )
 
-vim.cmd([[ packadd nvim-jdtls ]])
-local config = {
+local ok, _ = pcall(require, "jdtls")
+if not ok then
+  require("lazy").load({ plugins = { "nvim-jdtls" } })
+end
+local jd_config = {
   -- The command that starts the language server
   init_options = {
     bundles = bundles,
@@ -49,7 +52,6 @@ local config = {
   }),
   on_attach = function(client, bufnr)
     require("jdtls").setup_dap({ hotcodereplace = "auto" })
-    require("jdtls.setup").add_commands()
 
     lsp.on_attach(client, bufnr)
 
@@ -66,4 +68,4 @@ local config = {
   end,
 }
 
-require("jdtls").start_or_attach(config)
+require("jdtls").start_or_attach(jd_config)

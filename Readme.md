@@ -114,8 +114,8 @@ it's inspired by Lvim though not cloned
 
 0. `git clone https://github.com/danielnehrig/nvim ~/.config/nvim && cd ~/.config/nvim`
 1. `./package.py`
-2. `nvim +'autocmd User PackerComplete sleep 100ms | qa'`
-3. `nvim +'autocmd User PackerComplete TSInstall all' +'PackerSync'`
+2. `nvim +'autocmd User LazyInstall sleep 100ms | qa'`
+3. `nvim +'autocmd User LazyDone TSInstall all' +'Lazy sync'`
 
 ## Auto Setup
 
