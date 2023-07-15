@@ -11,9 +11,9 @@
 ---@field [3] MapOptions options for the mapping
 
 ---@class MapOptions
----@field noremap boolean
----@field silent boolean
----@field expr boolean
+---@field noremap? boolean
+---@field silent? boolean
+---@field expr? boolean
 ---@field desc string for which key
 
 ---@class mappings
