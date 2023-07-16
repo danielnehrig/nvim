@@ -28,7 +28,7 @@ install:
 nvim:
 	@echo "Nvim First Time Setup"
 	nvim --headless +'autocmd User LazyInstall sleep 100ms | qa'
-	nvim --headless "+Lazy! sync" +qa
+	nvim --headless +"Lazy! sync" +qa
 
 all: link install nvim
 

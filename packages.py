@@ -29,6 +29,8 @@ def cmd(call: str) -> bool:
                 cmdArr, stderr=subprocess.DEVNULL, stdout=stdout
             )
 
+        log.Debug("Cmd {0} with Exit code {1}".format(call, exit_code))
+
         if exit_code == 0:
             return True
 
@@ -104,8 +106,11 @@ class PackageManager:
         try:
             if self.package_manager["package_listing"] is not None:
                 command = " ".join(self.package_manager["package_listing"])
-                if cli_options["debug"]:
-                    log.Debug("Executing {0} in is_package_installed for {1}".format(command, package))
+                log.Debug(
+                    "Executing {0} in is_package_installed for {1}".format(
+                        command, package
+                    )
+                )
 
                 result = subprocess.check_output(command.split()).decode("utf-8")
 
@@ -272,7 +277,10 @@ rust: PackageManager = PackageManager(
 rust_up: PackageManager = PackageManager(
     {
         "cli_tool": "rustup",
-        "modes": {"install": "+nightly component add", "update": "+nightly component add"},
+        "modes": {
+            "install": "+nightly component add",
+            "update": "+nightly component add",
+        },
         "package_listing": ["rustup", "component", "list", "--installed"],
         "packages": [("rust-analyzer", None)],
     }
@@ -390,6 +398,7 @@ class SysManager:
         for list in self.package_list:
             for _ in list.package_manager["packages"]:
                 steps = steps + 1
+        log.Debug(str(steps))
         return steps
 
     def __init__(self, os: str, package_list: list[PackageManager]):
@@ -451,8 +460,12 @@ class Log:
         print(st.format(self.now(), user, arrow, string))
 
     def Debug(self, string: str | CliOptions) -> None:
-        st: str = self.buildLogString("DEBUG", Colors.WARNING)
-        print(st.format(self.now(), user, arrow + arrow, string))
+        if cli_options["debug"]:
+            st: str = self.buildLogString("DEBUG", Colors.WARNING)
+            print(st.format(self.now(), user, arrow + arrow, string))
+            stack = traceback.format_stack()[:-2]
+            for line in stack:
+                print(line.strip())
 
     def Error(self, string: str) -> None:
         st: str = self.buildLogString("ERROR", Colors.FAIL)
@@ -496,8 +509,7 @@ def help() -> None:
 def main():
     help()
     log.Info("Detected system is {0}".format(sys.platform))
-    if cli_options["debug"]:
-        log.Debug(cli_options)
+    log.Debug(cli_options)
 
     try:
         for sysmanager in supported_os:
