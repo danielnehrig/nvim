@@ -155,8 +155,10 @@ class PackageManager:
                 if package[1] is not None:
                     if not is_installed(package[1]) or isForce:
                         log.Info(
-                            "Installing CLI Package {0}{1}".format(
-                                Colors.OKGREEN, package[0]
+                            "Installing {2} Package {0}{1}".format(
+                                Colors.OKGREEN,
+                                package[0],
+                                self.package_manager["cli_tool"],
                             )
                         )
                         install = "{0}{1} {2} {3}".format(
@@ -178,8 +180,11 @@ class PackageManager:
                             )
                     else:
                         log.Skip(
-                            "CLI Package {0}{1}{2} is installed Skip".format(
-                                Colors.OKBLUE, package[0], Colors.ENDC
+                            "{3} Package {0}{1}{2} is installed Skip".format(
+                                Colors.OKBLUE,
+                                package[0],
+                                Colors.ENDC,
+                                self.package_manager["cli_tool"],
                             )
                         )
                 else:
@@ -209,14 +214,21 @@ class PackageManager:
                             )
                     else:
                         log.Skip(
-                            "Dependency Package {0}{1}{2} is installed Skip".format(
-                                Colors.OKBLUE, package[0], Colors.ENDC
+                            "{3} Dependency Package {0}{1}{2} is installed Skip".format(
+                                Colors.OKBLUE,
+                                package[0],
+                                Colors.ENDC,
+                                self.package_manager["cli_tool"],
                             )
                         )
             except subprocess.CalledProcessError as e:
                 log.Error(
-                    "Failed to install {0}{1}{2} with code {3}".format(
-                        Colors.FAIL, package, Colors.ENDC, e.returncode
+                    "Failed to install {0}{3}{1}{2} with code {3}".format(
+                        Colors.FAIL,
+                        package,
+                        Colors.ENDC,
+                        e.returncode,
+                        self.package_manager["cli_tool"],
                     )
                 )
 
