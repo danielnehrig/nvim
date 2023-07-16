@@ -1,6 +1,7 @@
 local globals = require("config.core.global")
 local g, b, opt, go, wo = vim.g, vim.b, vim.opt, vim.go, vim.wo
 local M = {}
+
 if _G.StatusColumn then
   return
 end

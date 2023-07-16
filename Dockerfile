@@ -21,13 +21,13 @@ RUN sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/yay-g
   && echo 'export npm_config_prefix="$HOME/.local"' >> /root/.bashrc \
   && npm set prefix="$HOME/.local"
 RUN sudo -u builduser yay -S --noconfirm ${version}
-RUN /root/.config/nvim/packages.py --sudo builduser
+RUN /root/.config/nvim/packages.py --sudo builduser --debug
 
 RUN nvim --headless\
   +'autocmd User LazyInstall sleep 100m | qall'
 RUN nvim --headless\
-  +'autocmd User LazyDone sleep 100m | qall'\
-  "+Lazy sync"
+  +'autocmd User LazySync sleep 100m | qall'\
+  +"Lazy sync"
 RUN nvim --headless +'TSInstall bash python cpp rust go lua dockerfile yaml typescript javascript java tsx tsdoc c org scss css toml make json html php' +'sleep 30' +qa
 # Avoid container exit.
 WORKDIR /mnt/workspace
