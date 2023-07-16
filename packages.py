@@ -303,7 +303,7 @@ lua: PackageManager = PackageManager(
 python: PackageManager = PackageManager(
     {
         "cli_tool": "pip",
-        "modes": {"install": "install", "update": "install"},
+        "modes": {"install": "install --break-system-packages", "update": "install"},
         "package_listing": ["pip", "list"],
         "packages": [
             ("black", "black"),
@@ -346,7 +346,6 @@ yay: PackageManager = PackageManager(
             ("languagetool", "languagetool"),
             ("jq", "jq"),
             ("jdtls", "jdtls"),
-            ("groovy-language-server", "groovy-language-server"),
             ("lua-language-server", "lua-language-server"),
             ("dotnet-sdk", "dotnet"),
         ],
