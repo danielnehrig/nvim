@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# might replace with mason.nvim at some point
 
 import subprocess
 import traceback
@@ -393,6 +394,8 @@ class SysManager:
                         )
                     )
 
+    # counts all packages that need to be installed
+    # so we can display the progress of the installer
     def count_packages(self) -> int:
         steps: int = 0
         for list in self.package_list:
@@ -508,6 +511,10 @@ def help() -> None:
 
 def main():
     help()
+    if sys.version_info.major < 3:
+        log.Error("This script requires Python 3")
+        sys.exit(1)
+
     log.Info("Detected system is {0}".format(sys.platform))
     log.Debug(cli_options)
 
