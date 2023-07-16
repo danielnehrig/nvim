@@ -24,10 +24,10 @@ def cmd(call: str) -> bool:
         exit_code = 1
 
         if cli_options["debug"]:
-            exit_code = subprocess.call(cmdArr)
+            exit_code = subprocess.call(cmdArr, timeout=45)
         else:
             exit_code = subprocess.call(
-                cmdArr, stderr=subprocess.DEVNULL, stdout=stdout
+                cmdArr, stderr=subprocess.DEVNULL, stdout=stdout, timeout=45
             )
 
         log.Debug("Cmd {0} with Exit code {1}".format(call, exit_code))
@@ -113,7 +113,9 @@ class PackageManager:
                     )
                 )
 
-                result = subprocess.check_output(command.split()).decode("utf-8")
+                result = subprocess.check_output(command.split(), timeout=5).decode(
+                    "utf-8"
+                )
 
                 find = str.find(result, package)
                 if find == -1:
@@ -184,7 +186,7 @@ class PackageManager:
                     # Installing package manager dependencies if no bin name is specified it indicates its a dependency
                     if not self.is_package_installed(package[0]) or isForce:
                         log.Info(
-                            "Installing CLI Package {0}{1}".format(
+                            "Installing Dependency Package {0}{1}".format(
                                 Colors.OKGREEN, package[0]
                             )
                         )
@@ -207,7 +209,7 @@ class PackageManager:
                             )
                     else:
                         log.Skip(
-                            "CLI Package {0}{1}{2} is installed Skip".format(
+                            "Dependency Package {0}{1}{2} is installed Skip".format(
                                 Colors.OKBLUE, package[0], Colors.ENDC
                             )
                         )
