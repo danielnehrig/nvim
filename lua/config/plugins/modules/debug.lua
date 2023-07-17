@@ -24,13 +24,6 @@ M.debug = {
         },
       })
     end,
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "haydenmeade/neotest-jest",
-      "rouge8/neotest-rust",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "haydenmeade/neotest-jest",
@@ -44,27 +37,19 @@ M.debug = {
     cmd = { "DIInstall", "DIUninstall", "DIList" },
   },
   ["mfussenegger/nvim-dap-python"] = {
-    opt = true,
     lazy = true,
-    requires = { "mfussenegger/nvim-dap" },
     dependencies = { "mfussenegger/nvim-dap" },
   },
   ["mfussenegger/nvim-dap"] = {
-    opt = true,
     lazy = true,
-    requires = { "mfussenegger/nvim-dap" },
     dependencies = { "mfussenegger/nvim-dap" },
   },
   ["rcarriga/nvim-dap-ui"] = {
-    opt = true,
     lazy = true,
-    requires = { "mfussenegger/nvim-dap" },
     dependencies = { "mfussenegger/nvim-dap" },
   },
   ["theHamsta/nvim-dap-virtual-text"] = {
-    opt = true,
     lazy = true,
-    requires = { "mfussenegger/nvim-dap" },
     dependencies = { "mfussenegger/nvim-dap" },
   },
 }

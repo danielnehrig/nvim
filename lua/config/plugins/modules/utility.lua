@@ -21,12 +21,6 @@ M.utility = {
         })
       end
     end,
-    requires = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-      "hrsh7th/nvim-cmp",
-    },
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
@@ -43,7 +37,6 @@ M.utility = {
   ["MunifTanjim/nui.nvim"] = { lazy = true },
   ["nvim-lua/plenary.nvim"] = { lazy = true },
   ["https://github.com/andythigpen/nvim-coverage"] = {
-    requires = "nvim-lua/plenary.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     lazy = true,
     config = function()

@@ -40,7 +40,6 @@ M.theme = {
     lazy = true,
   },
   ["m-demare/hlargs.nvim"] = {
-    requires = { "nvim-treesitter/nvim-treesitter" },
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
@@ -59,7 +58,6 @@ M.theme = {
     event = "VeryLazy",
   },
   ["romgrk/barbar.nvim"] = {
-    requires = "kyazdani42/nvim-web-devicons",
     dependencies = { "kyazdani42/nvim-web-devicons" },
   },
 }

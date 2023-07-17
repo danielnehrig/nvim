@@ -11,7 +11,6 @@ M.lsp = {
     end,
   },
   ["kevinhwang91/nvim-ufo"] = {
-    requires = "kevinhwang91/promise-async",
     dependencies = "kevinhwang91/promise-async",
     event = "BufRead",
     config = function()
@@ -64,10 +63,8 @@ M.lsp = {
     end,
   },
   ["folke/neodev.nvim"] = {
-    opt = true,
     ft = "lua",
     dependencies = "neovim/nvim-lspconfig",
-    requires = "neovim/nvim-lspconfig",
   }, -- lua nvim setup
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
@@ -78,7 +75,6 @@ M.lsp = {
       require("trouble").setup()
     end,
     cmd = { "Trouble" },
-    requires = "kyazdani42/nvim-web-devicons",
     dependencies = "kyazdani42/nvim-web-devicons",
   },
   ["tomtomjhj/lsp-status.nvim"] = {

@@ -69,7 +69,6 @@ M.completion = {
   },
   ["onsails/lspkind-nvim"] = {
     wants = "nvim-cmp",
-    requires = "nvim-cmp",
     dependencies = "hrsh7th/nvim-cmp",
     config = function()
       require("lspkind").init({

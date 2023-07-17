@@ -10,31 +10,24 @@ M.ts = {
     opts = { use_default_keymaps = false, max_join_length = 150 },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require("treesj").setup({--[[ your config ]]
-      })
+      require("treesj").setup({})
     end,
   },
   ["ThePrimeagen/refactoring.nvim"] = {
     config = require("config.plugins.configs.refactoring").init,
     event = "BufRead",
-    requires = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-lua/plenary.nvim",
-    },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-lua/plenary.nvim",
     },
   },
   ["SmiteshP/nvim-gps"] = {
-    requires = "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-gps").setup()
     end,
   },
   ["SmiteshP/nvim-navic"] = {
-    requires = "neovim/nvim-lspconfig",
     dependencies = "neovim/nvim-lspconfig",
     lazy = true,
     config = function()
@@ -49,17 +42,14 @@ M.ts = {
   },
   ["nvim-treesitter/nvim-treesitter"] = {},
   ["yioneko/nvim-yati"] = {
-    requires = "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   ["danymat/neogen"] = {
     cmd = { "DocGen" },
     config = require("config.plugins.configs.neogen").init,
-    requires = "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   ["JoosepAlviste/nvim-ts-context-commentstring"] = {
-    requires = "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   ["winston0410/commented.nvim"] = {
@@ -73,20 +63,16 @@ M.ts = {
     end,
   },
   ["nvim-treesitter/nvim-treesitter-textobjects"] = {
-    requires = "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   ["nvim-treesitter/playground"] = {
     cmd = "TSPlaygroundToggle",
-    requires = "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   ["RRethy/nvim-treesitter-textsubjects"] = {
-    requires = "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   ["windwp/nvim-ts-autotag"] = {
-    requires = "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
 }

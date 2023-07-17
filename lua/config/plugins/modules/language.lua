@@ -16,12 +16,11 @@ M.language = {
   ["mfussenegger/nvim-jdtls"] = { opt = true },
   ["Saecki/crates.nvim"] = {
     ft = { "toml", "rs" },
-    requires = { "nvim-lua/plenary.nvim" },
     dependencies = { "nvim-lua/plenary.nvim" },
     config = require("config.plugins.configs.crates").init,
   },
   ["vuki656/package-info.nvim"] = {
-    requires = "MunifTanjim/nui.nvim",
+    dependencies = "MunifTanjim/nui.nvim",
     ft = { "json" },
     config = function()
       require("package-info").setup()
