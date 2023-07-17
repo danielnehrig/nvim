@@ -33,22 +33,20 @@ local M = {}
 
 M.general = {
   v = {
-    { "J", "<Cmd>m '>+1<CR>gv=gv" },
-    { "K", "<Cmd>m '<-2<CR>gv=gv" },
-    { "<leader>p", '"_dP' },
-    { "<leader>D", '"_d' },
+    { "<leader>p", '"_dP', { desc = "Delete into Void and Paste" } },
+    { "<leader>D", '"_d', { desc = "Delete into Void" } },
   },
   n = {
     { "<leader>Y", 'gg"+yG', { desc = "Copy whole File" } },
     { "<leader>D", '"_d', { desc = "Delete into Void" } },
-    { "<C-d>", "<C-d>zz" },
-    { "<C-u>", "<C-u>zz" },
-    { "<A-h>", "<Cmd>vert resize +5<CR>" },
-    { "<A-j>", "<Cmd>resize  +5<CR>" },
-    { "<A-k>", "<Cmd>resize  -5<CR>" },
-    { "<A-l>", "<Cmd>vert resize -5<CR>" },
+    { "<C-d>", "<C-d>zz", { desc = "Jump Down and Center" } },
+    { "<C-u>", "<C-u>zz", { desc = "Jump Up and Center" } },
+    { "<A-h>", "<Cmd>vert resize +5<CR>", { desc = "Resize Split left" } },
+    { "<A-j>", "<Cmd>resize  +5<CR>", { desc = "Resize Split Up" } },
+    { "<A-k>", "<Cmd>resize  -5<CR>", { desc = "Resize Split Down" } },
+    { "<A-l>", "<Cmd>vert resize -5<CR>", { desc = "Resize Split Right" } },
   },
-  i = { { "jj", "<ESC>" } },
+  i = { { "jj", "<ESC>", { desc = "Normal Mode" } } },
 }
 
 M.quickfix = {
@@ -76,7 +74,11 @@ M.loclist = {
 
 M.others = {
   n = {
-    { "<Leader>vh", "<cmd>VGit buffer_history_preview<CR>" },
+    {
+      "<Leader>vh",
+      "<cmd>VGit buffer_history_preview<CR>",
+      { desc = "Git Buffer History Preview" },
+    },
     {
       "<Leader>gy",
       function()
@@ -87,30 +89,8 @@ M.others = {
     { "<Leader>gt", "<Cmd>Trouble<CR>", { desc = "Trouble LSP" } },
     { "<Leader>nf", "<Cmd>DocGen<CR>", { desc = "DocGen" } },
     { "<Leader>w", "<Cmd>WindowPick<CR>", { desc = "WindowPick" } },
-    {
-      "<Leader>s",
-      function()
-        require("silicon").visualise_api({ to_clip = true, visible = true })
-      end,
-      { desc = "" },
-    },
   },
   v = {
-
-    {
-      "<Leader>ss",
-      function()
-        require("silicon").visualise_api({})
-      end,
-      { desc = "" },
-    },
-    {
-      "<Leader>sb",
-      function()
-        require("silicon").visualise_api({ to_clip = true, show_buf = true })
-      end,
-      { desc = "" },
-    },
     {
       "<Leader>gy",
       function()
@@ -221,26 +201,6 @@ M.util = {
     },
   },
   n = {
-    --  {
-    --  "<C-r>a",
-    --  'copilot#Accept("\\<CR>")',
-    --  { desc = "Copilot Accept", expr = true, silent = false },
-    --  },
-    --  {
-    --  "<C-r>]",
-    --  "<Plug>(copilot-next)",
-    --  { desc = "Copilot Next", silent = false },
-    --  },
-    --  {
-    --  "<C-r>d",
-    --  "<Plug>(copilot-dismiss)",
-    --  { desc = "Copilot Dismiss", silent = false },
-    --  },
-    --  {
-    --  "<C-r>[",
-    --  "<Plug>(copilot-previous)",
-    --  { desc = "Copilot Prev", silent = false },
-    --  },
     {
       "<leader>r",
       function()
@@ -474,24 +434,13 @@ function M.set_lsp_mapping(bufnr)
         { desc = "Diagnostic Float", buffer = bufnr },
       },
     },
-    v = {
-      --  {
-      --  "<Leader>gf",
-      --  vim.lsp.buf.range_code_action,
-      --  { desc = "Code Action", buffer = bufnr },
-      --  },
-    },
   }
 
   for mode, map in pairs(M.lsp) do
     for _, conf in ipairs(map) do
-      --  if conf[3] then
-      --  vim.keymap.set(mode, conf[1], conf[2], conf[3])
-      --  else
       if conf then
         vim.keymap.set(mode, conf[1], conf[2])
       end
-      --  end
     end
   end
 end
