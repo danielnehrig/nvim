@@ -24,10 +24,10 @@ def cmd(call: str) -> bool:
         exit_code = 1
 
         if cli_options["debug"]:
-            exit_code = subprocess.call(cmdArr, timeout=45)
+            exit_code = subprocess.call(cmdArr, timeout=65)
         else:
             exit_code = subprocess.call(
-                cmdArr, stderr=subprocess.DEVNULL, stdout=stdout, timeout=45
+                cmdArr, stderr=subprocess.DEVNULL, stdout=stdout, timeout=65
             )
 
         log.Debug("Cmd {0} with Exit code {1}".format(call, exit_code))
