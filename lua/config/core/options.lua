@@ -130,9 +130,6 @@ _G.StatusColumn = {
 
 --- load the options to configure the editors build in settings
 function M.load_options()
-  g.did_load_filetypes = 0
-  g.do_filetype_lua = 1
-
   g.copilot_no_tab_map = true
   g.copilot_enabled = true
   opt.number = true -- enable numbers
