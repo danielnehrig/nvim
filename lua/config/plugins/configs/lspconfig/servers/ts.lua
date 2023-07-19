@@ -12,6 +12,7 @@ lspconfig.tsserver.setup({
   },
   capabilities = capabilities,
   flags = { debounce_text_changes = 500 },
+  single_file_support = true,
   settings = {
     typescript = {
       inlayHints = {

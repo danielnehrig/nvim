@@ -4,7 +4,7 @@
 ---@class PluginInterfacePacker
 ---@field [1]? string
 ---@field requires? string[] | string | PluginInterfacePacker[]
----@field config fun()
+---@field config fun() | boolean
 ---@field cmd? string | string[]
 ---@field event? string | string[]
 ---@field ft? string | string[]

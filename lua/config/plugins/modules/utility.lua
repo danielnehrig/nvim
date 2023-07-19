@@ -157,7 +157,6 @@ M.utility = {
       })
     end,
   },
-  ["nathom/filetype.nvim"] = {},
   ["andweeb/presence.nvim"] = {
     config = function()
       require("presence"):setup({
@@ -191,7 +190,6 @@ M.utility = {
   }, -- create folders if not existing
   ["folke/todo-comments.nvim"] = {
     config = require("config.plugins.configs.todo").init,
-    wants = "telescope.nvim",
     dependencies = "telescope.nvim",
     cmd = { "TodoQuickFix", "TodoTrouble", "TodoTelescope" },
   }, -- show todos in qf

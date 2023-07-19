@@ -10,9 +10,6 @@ local g, opt = vim.g, vim.opt
 -- if not do not apply plugins
 -- slows down VSCode and makes it non usable
 if not g.vscode then
-  package.path = package.path
-    .. ";"
-    .. vim.fn.expand("~/.local/share/nvim/plugin/?.lua")
   -- setup conf and lua modules
   require("config.core.options").load_options()
   local config = require("config.core.config").config
@@ -29,20 +26,21 @@ if not g.vscode then
   require("config.core.commands").init()
 
   opt.shadafile = ""
-else
-  vim.g.did_load_filetypes = 0
-  vim.g.do_filetype_lua = 1
-  vim.opt.wildignore:append({
-    "node_modules",
-    ".git/",
-    "dist",
-    ".next",
-    "target",
-    "android",
-    "ios",
-    "coverage",
-    "build",
-  })
-  vim.g.mapleader = " " -- space leader
-  require("config.core.mappings").vscode_mappings()
+  return
 end
+
+vim.g.did_load_filetypes = 0
+vim.g.do_filetype_lua = 1
+vim.opt.wildignore:append({
+  "node_modules",
+  ".git/",
+  "dist",
+  ".next",
+  "target",
+  "android",
+  "ios",
+  "coverage",
+  "build",
+})
+vim.g.mapleader = " " -- space leader
+require("config.core.mappings").vscode_mappings()

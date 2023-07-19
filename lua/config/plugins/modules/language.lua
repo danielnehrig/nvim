@@ -8,6 +8,10 @@ vim.g.languagetool_server_jar =
   "/usr/local/opt/languagetool/libexec/languagetool-server.jar"
 
 M.language = {
+  ["barrett-ruth/live-server.nvim"] = {
+    build = "yarn global add live-server",
+    config = true,
+  },
   ["rhysd/vim-grammarous"] = {
     cmd = {
       "GrammarousCheck",

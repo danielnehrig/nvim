@@ -1,4 +1,4 @@
-if vim.version().minor > 7 then
+if vim.version().minor > 8 then
   vim.loader.enable()
 
   local default_plugins = {
