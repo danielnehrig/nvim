@@ -68,7 +68,7 @@ M.lsp = {
   }, -- lua nvim setup
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufNewFile" },
   },
   ["folke/trouble.nvim"] = {
     config = function()
