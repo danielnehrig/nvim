@@ -49,7 +49,9 @@ docker run -it \
 ## Pitch
 
 This Config represents a full IDE experience\
-Focus on idiomatic mappings with simplicity
+Focus on idiomatic opinionated mappings with simplicity\
+I've been using vim for over 10 years by now and think u know a few things about it\
+to make a proper config
 
 <details>
 <summary>Synopsis</summary>
@@ -88,7 +90,6 @@ CONFIG SETUP:
 - intuitive mappings ✅
 - fast tab/buffer navigation ✅
 - project management ✅
-- session management ✅
 - file management ✅
 - lazy load plugins ✅
 - Treesitter Setup ✅
@@ -97,7 +98,7 @@ CONFIG SETUP:
 ## Philosophy and side infos
 
 Vim is a modal text editing solution so is neovim\
-it does not strive to be an ID, but it offers IDE like capabilities\
+it does not strive to be an IDE, but it offers IDE like capabilities\
 with it's exposed lua API and the Community revolving around it\
 creating a big up-and-coming plugin ecosystem\
 since vim/neovim are writtin in c it's a blazing fast editor\
@@ -105,8 +106,7 @@ vs its competitors
 while it has its plugin ecosystem and IDE like capabilities\
 it does not offer an out-of-the-box solution like VSCode\
 for that case boilerplate configurations like Lunarvim or Lvim are out there\
-even this config would be a great place to start to have IDE like capabilities\
-it's inspired by Lvim though not cloned
+even this config would be a great place to start to have IDE like capabilities
 
 # Setup
 
@@ -117,15 +117,11 @@ it's inspired by Lvim though not cloned
 2. `nvim +'autocmd User LazyInstall sleep 100ms | qa'`
 3. `nvim +'autocmd User LazyDone TSInstall all' +'Lazy sync'`
 
-## Auto Setup
-
-**DESTRUCTIVE**\
-_NOTE: THIS WILL DELETE YOUR CURRENT ~/.config/nvim folder_\
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/danielnehrig/nvim/master/autoinstall.sh)"`
-
 ## Requirements
 
-Most of the requirements can be installed over the `./package.py` script
+Most of the requirements can be installed over the `./package.py` script\
+It mostly installed LspServers,Linters,Formatters\
+you don't need to install them if you don't want them or already have everything you need
 
 <details>
 <summary>Requirements</summary>
@@ -138,15 +134,15 @@ _Nerd Font any Monospaced One (if not monospaced the dashboard logo will not wor
 _Package managers:_
 
 - _python3.9_ >
-- pip
+- _pip_
 - _node_
 - _go_
 - _rust/cargo_
 - _luarocks_
 - _brew_ (mac support)
-- _yay_ (archlinux support)
+- _yay_ (arch aur support)
 
-_NVIM V ^0.7.\*_
+_NVIM V ^0.9.\*_
 
 _LSPs in path:_
 
@@ -157,12 +153,7 @@ _LSPs in path:_
 - gopls
 - sumneko-lua
 - jdtls
-- etc... check lsp config for more info
-
-_DAP:_
-
-- Some Adapters can be installed with Dap install
-- Java Adapter has to be installed manually
+- etc... check lsp config for more info or the package install python script
 
 </details>
 
@@ -200,7 +191,7 @@ The Config should fully support:
 <details>
 <summary>Maps</summary>
 
-- Space is the leader key
+- Space is the leader key (which key will help you navigate once you press space)
 
 - d - is for Debug
 - g - is for misc LSP actions
@@ -210,12 +201,17 @@ The Config should fully support:
 - f - file related (telescope)
 - w - window
 
+There are some remaps to default mappings for example if an LSP Server attaches\
+see `mappings.lua` for more info
+
 </details>
 
-# Inspirations and sources
+# Inspirations, sources and thanks
+
+_you are probably better of using these since they are community driven I'm the sole maintainer of this config_
 
 - Lvim
 - nvchad and module suite
-  - Theme based solution (which I incorporated packer themes in)
+  - Theme based solution
   - If the theme modules wouldn't be strictly written for nvchad I would have used their module
 - base16
