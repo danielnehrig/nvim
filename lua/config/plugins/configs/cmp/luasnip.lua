@@ -1,7 +1,7 @@
 local M = {}
 
 function M.init()
-  local present, ls = pcall(require, "luasnip")
+  local present, _ = pcall(require, "luasnip")
   if not present then
     return
   end
