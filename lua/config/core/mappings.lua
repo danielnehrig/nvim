@@ -35,10 +35,12 @@ M.general = {
   v = {
     { "<leader>p", '"_dP', { desc = "Delete into Void and Paste" } },
     { "<leader>D", '"_d', { desc = "Delete into Void" } },
+    { "x", '"_x', { desc = "Delete into Void" } },
   },
   n = {
     { "<leader>Y", 'gg"+yG', { desc = "Copy whole File" } },
     { "<leader>D", '"_d', { desc = "Delete into Void" } },
+    { "x", '"_x', { desc = "Delete into Void" } },
     { "<C-d>", "<C-d>zz", { desc = "Jump Down and Center" } },
     { "<C-u>", "<C-u>zz", { desc = "Jump Up and Center" } },
     { "<A-h>", "<Cmd>vert resize +5<CR>", { desc = "Resize Split left" } },
