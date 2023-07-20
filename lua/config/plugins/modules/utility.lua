@@ -44,7 +44,6 @@ M.utility = {
     end,
   },
   ["windwp/nvim-autopairs"] = {
-    after = "nvim-cmp",
     dependencies = "nvim-cmp",
     config = function()
       require("config.plugins.configs.autopairs").init()

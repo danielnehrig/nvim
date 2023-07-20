@@ -51,8 +51,6 @@ M.navigation = {
       })
     end,
     event = "VeryLazy",
-    wants = { "nvim-treesitter" },
-    after = { "nvim-cmp" },
   },
 }
 
