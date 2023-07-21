@@ -1,5 +1,5 @@
 local globals = require("config.core.global")
-local g, b, opt, go, wo = vim.g, vim.b, vim.opt, vim.go, vim.wo
+local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
 local M = {}
 
 if _G.StatusColumn then
@@ -29,7 +29,11 @@ _G.StatusColumn = {
 
   display = {
     line = function()
-      local lnum = tostring(vim.v.lnum)
+      local lnum = tostring(vim.v.relnum)
+
+      if not vim.wo.relativenumber then
+        lnum = tostring(vim.v.lnum)
+      end
 
       if vim.bo.filetype == "alpha" then
         return ""
@@ -227,7 +231,7 @@ function M.load_options()
   opt.spelllang = "en,de"
   opt.spell = false
 
-  opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+  o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
   wo.foldnestmax = 3
   wo.foldlevel = 4
   opt.foldcolumn = "0"
