@@ -3,6 +3,7 @@ local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
 local M = {}
 
 M.StatusColumn = {
+  blacklist = { "alpha", "NvimTree", "Outline" },
   handler = {
     fold = function()
       local lnum = vim.fn.getmousepos().line
@@ -35,8 +36,10 @@ M.StatusColumn = {
         return tostring(vim.v.lnum)
       end
 
-      if vim.bo.filetype == "alpha" then
-        return ""
+      for _, filetype in ipairs(M.StatusColumn.blacklist) do
+        if vim.bo.filetype == filetype then
+          return ""
+        end
       end
 
       if vim.v.wrap then
@@ -55,8 +58,10 @@ M.StatusColumn = {
         return ""
       end
 
-      if vim.bo.filetype == "alpha" then
-        return ""
+      for _, filetype in ipairs(M.StatusColumn.blacklist) do
+        if vim.bo.filetype == filetype then
+          return ""
+        end
       end
 
       local lnum = vim.v.lnum

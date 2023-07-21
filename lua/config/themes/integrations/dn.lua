@@ -54,7 +54,7 @@ return {
   },
 
   DiffChange = {
-    fg = light_grey,
+    fg = blue,
   },
 
   DiffChangeDelete = {
