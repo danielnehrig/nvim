@@ -7,10 +7,8 @@ function M.init()
     icons = {
       separator_at_end = false,
     },
+    exclude_ft = { "quickfix", "terminal", "dap-repl", "repl", "qf", "" },
   })
-  --  vim.g.bufferline = {
-  --  exclude_ft = { "quickfix", "terminal", "dap-repl", "repl", "qf", "" },
-  --  }
 
   g.mapleader = " "
   -- tabnew and tabprev
