@@ -2,11 +2,7 @@ local globals = require("config.core.global")
 local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
 local M = {}
 
-if _G.StatusColumn then
-  return
-end
-
-_G.StatusColumn = {
+M.StatusColumn = {
   handler = {
     fold = function()
       local lnum = vim.fn.getmousepos().line
@@ -88,7 +84,7 @@ _G.StatusColumn = {
 
   sections = {
     line_number = {
-      [[%=%{v:lua.StatusColumn.display.line()}]],
+      [[%=%{v:lua.require('config.core.options').StatusColumn.display.line()}]],
     },
     spacing = {
       [[ ]],
@@ -98,12 +94,8 @@ _G.StatusColumn = {
     },
     folds = {
       [[%#FoldColumn#]], -- HL
-      [[%@v:lua.StatusColumn.handler.fold@]],
-      [[%{v:lua.StatusColumn.display.fold()}]],
-    },
-    border = {
-      [[%#StatusColumnBorder#]], -- HL
-      [[▐]],
+      [[%@v:lua.require('config.core.options').StatusColumn.handler.fold@]],
+      [[%{v:lua.require('config.core.options').StatusColumn.display.fold()}]],
     },
     padding = {
       [[%#StatusColumnBuffer#]], -- HL
@@ -118,21 +110,11 @@ _G.StatusColumn = {
       if type(value) == "string" then
         table.insert(statuscolumn, value)
       elseif type(value) == "table" then
-        table.insert(statuscolumn, _G.StatusColumn.build(value))
+        table.insert(statuscolumn, M.StatusColumn.build(value))
       end
     end
 
     return table.concat(statuscolumn)
-  end,
-
-  set_window = function(value)
-    vim.defer_fn(function()
-      vim.api.nvim_win_set_option(
-        vim.api.nvim_get_current_win(),
-        "statuscolumn",
-        value
-      )
-    end, 1)
   end,
 }
 
@@ -248,11 +230,11 @@ function M.load_options()
     tail = "▎",
   }
 
-  vim.opt.statuscolumn = _G.StatusColumn.build({
-    _G.StatusColumn.sections.line_number,
-    _G.StatusColumn.sections.sign_column,
-    _G.StatusColumn.sections.folds,
-    _G.StatusColumn.sections.spacing,
+  vim.opt.statuscolumn = M.StatusColumn.build({
+    M.StatusColumn.sections.line_number,
+    M.StatusColumn.sections.sign_column,
+    M.StatusColumn.sections.folds,
+    M.StatusColumn.sections.spacing,
   })
 end
 
