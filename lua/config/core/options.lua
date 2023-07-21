@@ -35,6 +35,10 @@ _G.StatusColumn = {
         lnum = tostring(vim.v.lnum)
       end
 
+      if lnum == "0" then
+        return tostring(vim.v.lnum)
+      end
+
       if vim.bo.filetype == "alpha" then
         return ""
       end
