@@ -16,6 +16,7 @@ function M.init()
       "alpha",
       "lazy",
       "packer",
+      "noice",
       "notify",
       "lspinfo",
       "TelescopePrompt",
