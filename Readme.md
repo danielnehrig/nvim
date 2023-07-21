@@ -49,9 +49,7 @@ docker run -it \
 ## Pitch
 
 This Config represents a full IDE experience\
-Focus on idiomatic opinionated mappings with simplicity\
-I've been using vim for over 10 years by now and think u know a few things about it\
-to make a proper config
+Focus on idiomatic opinionated mappings with simplicity
 
 <details>
 <summary>Synopsis</summary>
