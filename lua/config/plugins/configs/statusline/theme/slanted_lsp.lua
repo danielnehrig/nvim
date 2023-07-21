@@ -254,7 +254,7 @@ M.theme = {
 
         if gps_present then
           if gps.is_available(bufnr) then
-            local location = gps.get_location()
+            local location = gps.get_location({}, bufnr)
             return {
               { " ", "" },
               { location, "loc" },
@@ -440,6 +440,7 @@ M.theme = {
       },
       inactive = {
         basic.path,
+        basic.gps,
         basic.divider,
       },
     }
