@@ -1,1 +1,2 @@
-globals = {'vim', 'packer_plugins', 'IS_NVIM'}
+globals = { "vim", "packer_plugins", "IS_NVIM" }
+

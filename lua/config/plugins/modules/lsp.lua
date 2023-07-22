@@ -5,6 +5,10 @@
 local M = {}
 
 M.lsp = {
+  ["folke/neoconf.nvim"] = {
+    config = true,
+    priority = 52,
+  },
   ["lvimuser/lsp-inlayhints.nvim"] = {
     config = function()
       require("lsp-inlayhints").setup()
@@ -68,6 +72,7 @@ M.lsp = {
   }, -- lua nvim setup
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
+    priority = 51,
     event = { "BufReadPost", "BufNewFile" },
   },
   ["folke/trouble.nvim"] = {
