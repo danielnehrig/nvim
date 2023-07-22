@@ -12,7 +12,6 @@ help:
 
 check:
 	@echo "lint / format"
-	sleep 5
 	luacheck ./
 	stylua --glob '**/*.lua' ./
 
