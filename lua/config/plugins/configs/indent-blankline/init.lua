@@ -21,6 +21,7 @@ function M.init()
       "notify",
       "lspinfo",
       "TelescopePrompt",
+      "OverseerForm",
       "TelescopeResults",
       "lsp-installer",
       "",

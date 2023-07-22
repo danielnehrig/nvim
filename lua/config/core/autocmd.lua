@@ -123,15 +123,15 @@ function M.autocmds()
     end,
   })
 
-  vim.api.nvim_create_autocmd("ModeChanged", {
-    pattern = { "*:i*", "i*:*" },
-    group = au_utils,
-    callback = function()
-      if vim.bo.filetype ~= "TelescopePrompt" then
-        vim.o.relativenumber = vim.v.event.new_mode:match("^i") == nil
-      end
-    end,
-  })
+  --  vim.api.nvim_create_autocmd("ModeChanged", {
+  --  pattern = { "*:i*", "i*:*" },
+  --  group = au_utils,
+  --  callback = function()
+  --  if vim.bo.filetype ~= "TelescopePrompt" then
+  --  vim.o.relativenumber = vim.v.event.new_mode:match("^i") == nil
+  --  end
+  --  end,
+  --  })
 end
 
 return M

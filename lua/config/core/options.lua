@@ -33,24 +33,11 @@ function _G.click_num()
 end
 
 M.StatusColumn = {
-  blacklist_ft = { "alpha", "NvimTree", "Outline" },
-  blacklist_bt = { "terminal" },
+  blacklist_ft = { "alpha", "NvimTree", "OverseerForm" },
+  blacklist_bt = { "terminal", "acwrite" },
 
   display = {
     line = function()
-      if not vim.wo.number then
-        return ""
-      end
-      local lnum = tostring(vim.v.relnum)
-
-      if not vim.wo.relativenumber then
-        lnum = tostring(vim.v.lnum)
-      end
-
-      if lnum == "0" then
-        return tostring(vim.v.lnum)
-      end
-
       for _, filetype in ipairs(M.StatusColumn.blacklist_ft) do
         if vim.bo.filetype == filetype then
           return ""
@@ -61,6 +48,20 @@ M.StatusColumn = {
         if vim.bo.buftype == buftype then
           return ""
         end
+      end
+
+      if not vim.wo.number then
+        return ""
+      end
+
+      local lnum = tostring(vim.v.relnum)
+
+      if not vim.wo.relativenumber then
+        lnum = tostring(vim.v.lnum)
+      end
+
+      if lnum == "0" then
+        return tostring(vim.v.lnum)
       end
 
       if vim.v.wrap then
@@ -187,13 +188,6 @@ function M.load_options()
   })
 
   g.mapleader = " " -- space leader
-
-  -- Tag Jump
-  b.match_words = table.concat({
-    "(:),\\[:\\],{:},<:>,",
-    "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>",
-  })
-  opt.matchpairs:append("<:>")
 
   opt.hidden = true -- buffer hidden
   opt.ignorecase = true -- case sens ignore search
