@@ -220,6 +220,9 @@ M.theme = {
         sepdebug = { "black", "debug_bg" },
         spacer = { "black", "black" },
       },
+      click = function()
+        vim.cmd([[LspInfo]])
+      end,
       width = breakpoint_width,
       text = function()
         if lsp_comps.check_lsp() then
