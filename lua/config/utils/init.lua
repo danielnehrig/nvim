@@ -44,65 +44,11 @@ function M.build_path_string(str)
   return result
 end
 
--- combines plugin manager colorschemes
--- with internal colorschemes
+--- combines plugin manager colorschemes
+--- with internal colorschemes
+--- @todo add support for custom colorschemes
 M.switch_theme = function(arg)
   local colorscheme = nil
-
-  -- plugin manager themes
-  for theme_name, theme in pairs(themes) do
-    if arg == theme_name then
-      colorscheme = theme.colorscheme
-    end
-  end
-
-  if colorscheme then
-    local highlights_raw =
-      vim.split(vim.api.nvim_exec("filter BufferLine hi", true), "\n")
-    local highlight_groups = {}
-
-    for _, raw_hi in ipairs(highlights_raw) do
-      table.insert(highlight_groups, string.match(raw_hi, "BufferLine%a+"))
-    end
-
-    for _, highlight in ipairs(highlight_groups) do
-      vim.cmd([[hi clear ]] .. highlight)
-    end
-
-    local colorscheme_ok, _ =
-      pcall(vim.cmd, string.format("colorscheme %s", colorscheme))
-
-    if not colorscheme_ok then
-      vim.notify(
-        string.format(
-          "colorscheme %s not found or error on setting",
-          colorscheme
-        )
-      )
-      return
-    end
-
-    local highlights = {}
-
-    global.reload({ "config.plugins.configs.statusline.windline" })
-    require("config.plugins.configs.statusline.windline").switch_theme(
-      config.ui.statusline.name
-    )
-
-    if config.ui.transparent then
-      highlights = vim.tbl_deep_extend(
-        "force",
-        highlights,
-        require("config.themes.glassy")
-      )
-    end
-
-    for hl, col in pairs(highlights) do
-      vim.api.nvim_set_hl(0, hl, col)
-    end
-
-    return
-  end
 
   -- local project themes
   local hl_dir = vim.fn.stdpath("config") .. "/lua/config/themes/hl"

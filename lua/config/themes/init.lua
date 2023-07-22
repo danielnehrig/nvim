@@ -18,6 +18,11 @@ end
 
 M.get_colors = M.get_theme_tb
 
+---@generic A:table
+---@generic B:table
+---@param table1 table<A>
+---@param table2 table<B>
+---@return table<A> | table<B>
 M.merge_tb = function(table1, table2)
   return vim.tbl_deep_extend("force", table1, table2)
 end
@@ -115,35 +120,6 @@ M.load_theme = function()
   require("plenary.reload").reload_module("config.themes.theme_setup")
 
   require("config.themes.theme_setup")
-end
-
-M.toggle_theme = function()
-  local themes = config.ui.colorscheme.toggle
-
-  local theme1 = themes[1]
-  local theme2 = themes[2]
-
-  if vim.g.toggle_theme_icon == "   " then
-    vim.g.toggle_theme_icon = "   "
-  else
-    vim.g.toggle_theme_icon = "   "
-  end
-
-  if config.ui.colorscheme.name == theme1 then
-    config.ui.colorscheme.name = theme2
-
-    M.load_theme()
-    -- change_theme(theme1, theme2)
-  elseif config.ui.colorscheme.name == theme2 then
-    config.ui.colorscheme.name = theme1
-
-    M.load_theme()
-    -- change_theme(theme2, theme1)
-  else
-    vim.notify(
-      "Set your current theme to one of those mentioned in the theme_toggle table (chadrc)"
-    )
-  end
 end
 
 M.toggle_transparent = function()
