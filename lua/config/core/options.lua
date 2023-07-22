@@ -2,28 +2,39 @@ local globals = require("config.core.global")
 local g, b, opt, go, wo, o = vim.g, vim.b, vim.opt, vim.go, vim.wo, vim.o
 local M = {}
 
+--- Toggle fold on click
+function _G.click_fold()
+  local lnum = vim.fn.getmousepos().line
+
+  -- Only lines with a mark should be clickable
+  if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
+    return
+  end
+
+  local state
+  if vim.fn.foldclosed(lnum) == -1 then
+    state = "close"
+  else
+    state = "open"
+  end
+
+  vim.cmd.execute("'" .. lnum .. "fold" .. state .. "'")
+end
+
+--- Toggle breakpoint on click
+function _G.click_num()
+  local lnum_cursor = vim.fn.getmousepos().line
+  local lnum_pos = vim.fn.getpos(".")[2]
+
+  vim.fn.setpos(".", { 0, lnum_cursor, 0, 0 })
+  require("config.plugins.configs.dap.attach").init()
+  require("dap").toggle_breakpoint()
+  vim.fn.setpos(".", { 0, lnum_pos, 0, 0 })
+end
+
 M.StatusColumn = {
   blacklist_ft = { "alpha", "NvimTree", "Outline" },
   blacklist_bt = { "terminal" },
-  handler = {
-    fold = function()
-      local lnum = vim.fn.getmousepos().line
-
-      -- Only lines with a mark should be clickable
-      if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
-        return
-      end
-
-      local state
-      if vim.fn.foldclosed(lnum) == -1 then
-        state = "close"
-      else
-        state = "open"
-      end
-
-      vim.cmd.execute("'" .. lnum .. "fold" .. state .. "'")
-    end,
-  },
 
   display = {
     line = function()
@@ -105,6 +116,7 @@ M.StatusColumn = {
 
   sections = {
     line_number = {
+      [[%@v:lua.click_num@]],
       [[%=%{v:lua.require('config.core.options').StatusColumn.display.line()}]],
     },
     spacing = {
@@ -115,7 +127,7 @@ M.StatusColumn = {
     },
     folds = {
       [[%#FoldColumn#]], -- HL
-      [[%@v:lua.require('config.core.options').StatusColumn.handler.fold@]],
+      [[%@v:lua.click_fold@]],
       [[%{v:lua.require('config.core.options').StatusColumn.display.fold()}]],
     },
     padding = {
