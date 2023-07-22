@@ -27,6 +27,9 @@ M.StatusColumn = {
 
   display = {
     line = function()
+      if not vim.wo.number then
+        return ""
+      end
       local lnum = tostring(vim.v.relnum)
 
       if not vim.wo.relativenumber then
@@ -257,7 +260,6 @@ end
 --- toggle the relative number from relative to absolute
 M.relative_position_toggle = function()
   wo.relativenumber = not wo.relativenumber
-  wo.number = not wo.relativenumber
 end
 
 --- toggle the number from relative to absolute
