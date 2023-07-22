@@ -322,6 +322,18 @@ M.run = {
       "<cmd>%SnipRun<CR>",
       { desc = "Run", silent = false },
     },
+    {
+      "<leader>bb",
+      "<cmd>OverseerRun<CR>",
+      { desc = "Build", silent = false },
+    },
+    {
+      "<leader>bt",
+      function()
+        require("neotest").overseer.run()
+      end,
+      { desc = "Test", silent = false },
+    },
   },
 }
 
