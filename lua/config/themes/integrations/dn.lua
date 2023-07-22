@@ -17,7 +17,6 @@ local yellow = colors.yellow
 local orange = colors.orange
 
 return {
-
   Comment = { fg = grey_fg, italic = false },
 
   -- line numbers
@@ -43,6 +42,17 @@ return {
   -- Dashboard i.e alpha.nvim
   AlphaHeader = { fg = grey_fg },
   AlphaButtons = { fg = light_grey },
+
+  -- GitConflict markers
+  GitCurrentChange = {
+    fg = white,
+    bg = blue,
+  },
+
+  GitIncomingChange = {
+    fg = white,
+    bg = red,
+  },
 
   -- Gitsigns.nvim
   DiffAdd = {

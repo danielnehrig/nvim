@@ -51,8 +51,9 @@ M.git = {
     end,
   },
   ["akinsho/git-conflict.nvim"] = {
-    event = { "BufRead", "BufNewFile" },
-    config = true,
+    config = function()
+      require("git-conflict").setup()
+    end,
   },
   ["danielnehrig/github-ci.nvim"] = {
     dependencies = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },

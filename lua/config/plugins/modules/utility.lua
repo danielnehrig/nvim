@@ -140,6 +140,7 @@ M.utility = {
     end,
   },
   ["kevinhwang91/nvim-bqf"] = { ft = "qf" }, -- better quickfix
+  ["yorickpeterse/nvim-pqf"] = { ft = "qf", config = true },
   ["luukvbaal/stabilize.nvim"] = {
     config = function()
       require("stabilize").setup({
