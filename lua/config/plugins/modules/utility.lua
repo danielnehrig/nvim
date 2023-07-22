@@ -4,6 +4,13 @@
 ---@field utility table<string, PluginInterfaceMerged>
 local M = {}
 M.utility = {
+  ["Zeioth/compiler.nvim"] = {
+    cmd = { "CompilerOpen", "CompilerToggleResults" },
+    dependencies = { "stevearc/overseer.nvim" },
+    config = function(_, opts)
+      require("compiler").setup(opts)
+    end,
+  },
   ["folke/noice.nvim"] = {
     event = "VimEnter",
     enabled = function()

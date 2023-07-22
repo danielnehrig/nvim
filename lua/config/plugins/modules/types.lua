@@ -22,4 +22,4 @@
 
 ---@module 'lazy.types'
 
----@class PluginInterfaceMerged : PluginInterfacePacker, LazyPluginSpec
+---@class PluginInterfaceMerged : LazyPluginSpec
