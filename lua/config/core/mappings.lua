@@ -445,6 +445,15 @@ function M.set_lsp_mapping(bufnr)
       end
     end
   end
+
+  vim.cmd([[:amenu 10.100 PopUp.Definition <cmd>:Telescope lsp_defintions<CR>]])
+  vim.cmd(
+    [[:amenu 10.120 PopUp.Type\ Definition <cmd>:Telescope lsp_type_definitions<CR>]]
+  )
+  vim.cmd(
+    [[:amenu 10.130 PopUp.Implementations <cmd>:Telescope lsp_implementations<CR>]]
+  )
+  vim.cmd([[:amenu 10.140 PopUp.References <cmd>:Telescope lsp_references<CR>]])
 end
 
 function M.mappings()
