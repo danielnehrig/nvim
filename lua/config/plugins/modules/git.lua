@@ -55,13 +55,5 @@ M.git = {
       require("git-conflict").setup()
     end,
   },
-  ["danielnehrig/github-ci.nvim"] = {
-    dir = "~/code/github-ci.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
-    cmd = { "GithubCI" },
-    config = function()
-      require("githubci").setup()
-    end,
-  },
 }
 return M
