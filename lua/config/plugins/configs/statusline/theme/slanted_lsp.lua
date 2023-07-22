@@ -297,6 +297,55 @@ M.theme = {
       end,
     }
 
+    local loading_text = ""
+    basic.compiler = {
+      name = "compiler",
+      hl_colors = {
+        green = { "green", "black" },
+        red = { "red", "black" },
+        spacer = { "black", "black" },
+        wave_anim1 = { "waveright2", "black" },
+        wave_anim2 = { "waveright3", "black" },
+        wave_anim3 = { "waveright4", "black" },
+        wave_anim4 = { "waveright5", "black" },
+        wave_anim5 = { "waveright6", "black" },
+        wave_anim6 = { "waveright7", "black" },
+      },
+      width = breakpoint_width,
+      text = function()
+        local tasks =
+          require("overseer.task_list").list_tasks({ unique = true })
+        local tasks_by_status =
+          require("overseer.util").tbl_group_by(tasks, "status")
+        local running = tasks_by_status["RUNNING"]
+        local success = tasks_by_status["SUCCESS"]
+
+        if running then
+          return {
+            { " ", "spacer" },
+            { "", "wave_anim1" },
+            { " ", "spacer" },
+            { "M", "wave_anim2" },
+            { "a", "wave_anim3" },
+            { "k", "wave_anim4" },
+            { "e", "wave_anim5" },
+            { " ", "spacer" },
+            { loading_text, "wave_anim6" },
+            { " ", "spacer" },
+          }
+        end
+
+        if success then
+          return {
+            { " ", "spacer" },
+            { "", "green" },
+            { " ", "spacer" },
+          }
+        end
+        return ""
+      end,
+    }
+
     basic.dap = {
       name = "dap",
       hl_colors = {
@@ -377,6 +426,7 @@ M.theme = {
 
     local left = { basic.vi_mode, basic.file, basic.divider }
     local right = {
+      basic.compiler,
       basic.dap,
       basic.lsp_names,
       basic.git,
@@ -487,8 +537,8 @@ M.theme = {
       delay = 200,
       interval = 150,
       effect = effects.list_text(loading),
-      on_tick = function(_)
-        -- loading_text = value
+      on_tick = function(value)
+        loading_text = value
       end,
     })
   end,

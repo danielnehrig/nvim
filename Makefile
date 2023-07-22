@@ -4,12 +4,15 @@
 
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
+all: check
+
 help:
 	@echo "help"
 	./packages.py --help
 
 check:
 	@echo "lint / format"
+	sleep 5
 	luacheck ./
 	stylua --glob '**/*.lua' ./
 
@@ -29,8 +32,6 @@ nvim:
 	@echo "Nvim First Time Setup"
 	nvim --headless +'autocmd User LazyInstall sleep 100ms | qa'
 	nvim --headless +"Lazy! sync" +qa
-
-all: link install nvim
 
 docker-build:
 	docker build . -t nvim:test
