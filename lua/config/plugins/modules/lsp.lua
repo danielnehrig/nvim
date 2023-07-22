@@ -7,7 +7,7 @@ local M = {}
 M.lsp = {
   ["folke/neoconf.nvim"] = {
     config = true,
-    priority = 52,
+    priority = 52, -- needs to load before lspconfig
   },
   ["lvimuser/lsp-inlayhints.nvim"] = {
     config = function()
@@ -49,11 +49,6 @@ M.lsp = {
       require("ufo").setup({
         fold_virt_text_handler = handler,
       })
-
-      -- buffer scope handler
-      -- will override global handler if it is existed
-      --  local bufnr = vim.api.nvim_get_current_buf()
-      --  require("ufo").setVirtTextHandler(bufnr, handler)
     end,
   },
   ["folke/lsp-colors.nvim"] = {
@@ -82,9 +77,7 @@ M.lsp = {
     cmd = { "Trouble" },
     dependencies = "kyazdani42/nvim-web-devicons",
   },
-  ["tomtomjhj/lsp-status.nvim"] = {
-    branch = "deprecated",
-  },
+  ["nvim-lua/lsp-status.nvim"] = {},
 }
 
 return M

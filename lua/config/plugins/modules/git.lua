@@ -33,7 +33,7 @@ M.git = {
   },
   ["ruifm/gitlinker.nvim"] = {
     dependencies = { "nvim-lua/plenary.nvim" },
-    opt = true,
+    event = "VeryLazy",
   },
   ["tanvirtin/vgit.nvim"] = {
     dependencies = {
@@ -52,7 +52,7 @@ M.git = {
   },
   ["akinsho/git-conflict.nvim"] = {
     config = function()
-      require("git-conflict").setup()
+      require("git-conflict").setup({})
     end,
   },
 }
