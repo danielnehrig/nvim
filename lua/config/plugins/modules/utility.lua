@@ -6,6 +6,9 @@ local M = {}
 M.utility = {
   ["folke/noice.nvim"] = {
     event = "VimEnter",
+    enabled = function()
+      return vim.g.neovide == nil
+    end,
     config = function()
       if not vim.g.neovide then
         require("noice").setup({
