@@ -21,12 +21,6 @@ M.ts = {
       "nvim-lua/plenary.nvim",
     },
   },
-  ["SmiteshP/nvim-gps"] = {
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("nvim-gps").setup()
-    end,
-  },
   ["SmiteshP/nvim-navic"] = {
     dependencies = "neovim/nvim-lspconfig",
     lazy = true,
@@ -53,7 +47,10 @@ M.ts = {
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   ["winston0410/commented.nvim"] = {
-    keys = { "<space>cc" },
+    keys = {
+      { "<space>cc", mode = { "n", "v" }, desc = "Comment out line" },
+    },
+    dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("commented").setup({
         hooks = {
@@ -64,6 +61,7 @@ M.ts = {
   },
   ["nvim-treesitter/nvim-treesitter-textobjects"] = {
     dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = true,
   },
   ["nvim-treesitter/playground"] = {
     cmd = "TSPlaygroundToggle",
@@ -71,9 +69,11 @@ M.ts = {
   },
   ["RRethy/nvim-treesitter-textsubjects"] = {
     dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = true,
   },
   ["windwp/nvim-ts-autotag"] = {
     dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = true,
   },
 }
 

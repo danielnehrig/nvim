@@ -15,6 +15,7 @@ function M.init()
       "dashboard",
       "alpha",
       "lazy",
+      "NvimTree",
       "packer",
       "noice",
       "notify",

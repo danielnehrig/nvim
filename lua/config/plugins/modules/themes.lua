@@ -56,6 +56,12 @@ M.theme = {
   },
   ["windwp/windline.nvim"] = {
     event = "VeryLazy",
+    config = function()
+      local config = require("config.core.config").config
+      require("config.plugins.configs.statusline.windline").switch_theme(
+        config.ui.statusline.name
+      )
+    end,
   },
   ["romgrk/barbar.nvim"] = {
     dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -64,36 +70,21 @@ M.theme = {
 
 M.ts_themes = {
   ["sainnhe/sonokai"] = {
-    colorscheme = "sonokai",
-    event = "VeryLazy",
-    packadd = "sonokai",
-    opt = true,
     lazy = true,
   },
   ["ray-x/aurora"] = {
-    colorscheme = "aurora",
-    packadd = "aurora",
-    opt = true,
     lazy = true,
   },
   ["Mofiqul/vscode.nvim"] = {
-    colorscheme = "vscode",
-    opt = true,
     lazy = true,
-    config = function() end,
   },
   ["marko-cerovac/material.nvim"] = {
-    colorscheme = "material",
     lazy = true,
-    packadd = "material.nvim",
     config = function()
       require("material").setup()
     end,
   },
   ["Murtaza-Udaipurwala/gruvqueen"] = {
-    colorscheme = "gruvqueen",
-    packadd = "gruvqueen",
-    opt = true,
     lazy = true,
     config = function()
       vim.o.background = "dark"
@@ -113,10 +104,6 @@ M.ts_themes = {
     end,
   },
   ["folke/tokyonight.nvim"] = {
-    colorscheme = "tokyonight",
-    packadd = "tokyonight.nvim",
-    event = "VeryLazy",
-    opt = true,
     lazy = true,
   },
 }

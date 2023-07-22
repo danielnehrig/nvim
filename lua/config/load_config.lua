@@ -1,4 +1,3 @@
-local config = require("config.core.config").config
 local M = {}
 M.__index = M
 
@@ -7,9 +6,6 @@ M.__index = M
 -- load configs for package manager plugins
 M.init = function()
   require("config.themes").load_theme()
-  require("config.plugins.configs.statusline.windline").switch_theme(
-    config.ui.statusline.name
-  )
   require("config.plugins.configs.web-devicons").init()
   require("config.plugins.configs.treesitter").init()
   require("config.plugins.configs.build").init()

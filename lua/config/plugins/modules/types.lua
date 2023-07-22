@@ -9,7 +9,7 @@
 ---@field event? string | string[]
 ---@field ft? string | string[]
 ---@field opt? boolean
----@field keys? string | string[]
+---@field keys? string | string[] | LazyKeys[]
 ---@field setup? fun()
 ---@field wants? string | string[]
 ---@field after? string | string[]

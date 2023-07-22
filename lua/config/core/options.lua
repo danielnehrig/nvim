@@ -241,13 +241,6 @@ function M.load_options()
   opt.foldcolumn = "0"
   g.cursorhold_updatetime = 100
 
-  -- scroller
-  vim.g.scrollbar_shape = {
-    head = "▎",
-    body = "▎",
-    tail = "▎",
-  }
-
   vim.opt.statuscolumn = M.StatusColumn.build({
     M.StatusColumn.sections.line_number,
     M.StatusColumn.sections.sign_column,

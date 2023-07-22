@@ -5,30 +5,6 @@ function M.autocmds()
   local au_utils = vim.api.nvim_create_augroup("utils", { clear = true })
   local au_ft = vim.api.nvim_create_augroup("ft", { clear = true })
   local au_cmp = vim.api.nvim_create_augroup("cmp", { clear = true })
-  local au_highlight =
-    vim.api.nvim_create_augroup("highlight", { clear = true })
-
-  -- hi
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    command = "highlight Pmenu guibg=none",
-    group = au_highlight,
-  })
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*", -- dope
-    command = "highlight FloatBorder guibg=none ctermbg=none",
-    group = au_highlight,
-  })
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    command = "highlight NormalFloat guifg=#fff guibg=none ctermbg=none",
-    group = au_highlight,
-  })
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    command = "highlight FoldColumn guifg=#a485dd guibg=none ctermbg=none",
-    group = au_highlight,
-  })
 
   -- util
   vim.api.nvim_create_autocmd("CursorHold", {
@@ -38,13 +14,6 @@ function M.autocmds()
     group = au_utils,
   })
   -- ft
-  vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-    pattern = "*.tex",
-    callback = function()
-      vim.opt.filetype = "tex"
-    end,
-    group = au_ft,
-  })
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown,org,txt,tex",
     callback = function()
@@ -60,26 +29,6 @@ function M.autocmds()
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "alpha",
     command = "set showtabline=0",
-    group = au_ft,
-  })
-  vim.api.nvim_create_autocmd({
-    "BufNewFile",
-    "BufRead",
-    "WinEnter",
-  }, {
-    pattern = "*.*",
-    callback = function()
-      vim.wo.number = true
-      vim.wo.relativenumber = true
-      vim.o.showtabline = 2
-    end,
-    group = au_ft,
-  })
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "NvimTree,lspsagafinder,alpha",
-    callback = function()
-      -- vim.opt.cursor_word = 0
-    end,
     group = au_ft,
   })
   -- lsp

@@ -10,6 +10,12 @@ M.git = {
     config = require("config.plugins.configs.gitsigns").init,
     dependencies = { "nvim-lua/plenary.nvim" },
   },
+  ["lewis6991/satellite.nvim"] = {
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+      require("satellite").setup()
+    end,
+  },
   ["tpope/vim-fugitive"] = {
     cmd = { "Git", "Git mergetool" },
   },
@@ -45,9 +51,8 @@ M.git = {
     end,
   },
   ["akinsho/git-conflict.nvim"] = {
-    config = function()
-      require("git-conflict").setup({})
-    end,
+    event = { "BufRead", "BufNewFile" },
+    config = true,
   },
   ["danielnehrig/github-ci.nvim"] = {
     dependencies = { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
