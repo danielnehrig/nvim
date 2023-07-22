@@ -275,10 +275,11 @@ M.theme = {
       },
       width = breakpoint_width,
       text = function(bufnr)
+        local bufname = vim.api.nvim_buf_get_name(bufnr)
         local blacklist_bt = { "terminal", "NvimTree" }
         local blacklist_ft = { "alpha" }
         for _, name in ipairs(blacklist_bt) do
-          if vim.bo.filetype == name then
+          if vim.bo.buftype == name then
             return ""
           end
         end
@@ -288,7 +289,6 @@ M.theme = {
           end
         end
 
-        local bufname = vim.api.nvim_buf_get_name(bufnr)
         local path = vim.fn.fnamemodify(bufname, ":~:.")
         return {
           { path, "" },
