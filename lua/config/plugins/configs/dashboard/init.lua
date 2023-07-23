@@ -40,7 +40,7 @@ function M.dashboard()
       "<cmd>Telescope find_files hidden=true path_display=smart<CR>"
     ),
     button("p", "   Projects", "<cmd>Telescope project<CR>"),
-    button("u", "   Update plugins", "<cmd>Lazy Sync<CR>"),
+    button("u", "   Update plugins", "<cmd>Lazy sync<CR>"),
     button("q", "   Quit Neovim", "<cmd>qa!<CR>"),
   }
   dashboard.section.buttons.opts = {
