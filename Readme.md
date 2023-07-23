@@ -26,7 +26,14 @@
 
 # Preview
 
+![dashboard](https://github.com/danielnehrig/nvim/assets/4050749/acce926f-677e-4d56-bfd7-62e89911ff9d)
+
+![buffer](https://github.com/danielnehrig/nvim/assets/4050749/024d29fc-51f9-4b5b-a440-8103366101c2)
+
+<details>
+<summary>Old Video Showcase</summary>
 https://user-images.githubusercontent.com/4050749/169545588-198c7dab-11fa-4306-bcd0-9f1eea4b0556.mp4
+</details>
 
 ## Try it out with Docker!
 
