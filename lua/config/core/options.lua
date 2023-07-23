@@ -249,6 +249,8 @@ function M.load_options()
   wo.foldlevel = 4
   opt.foldcolumn = "0"
   g.cursorhold_updatetime = 100
+  g.loaded_ruby_provider = 0
+  g.loaded_perl_provider = 0
 
   vim.opt.statuscolumn = M.StatusColumn.build({
     M.StatusColumn.sections.line_number,
