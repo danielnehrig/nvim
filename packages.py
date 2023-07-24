@@ -24,10 +24,10 @@ def cmd(call: str) -> bool:
         exit_code = 1
 
         if cli_options["debug"]:
-            exit_code = subprocess.call(cmdArr, timeout=120)
+            exit_code = subprocess.call(cmdArr)
         else:
             exit_code = subprocess.call(
-                cmdArr, stderr=subprocess.DEVNULL, stdout=stdout, timeout=120
+                cmdArr, stderr=subprocess.DEVNULL, stdout=stdout
             )
 
         log.Debug("Cmd {0} with Exit code {1}".format(call, exit_code))
@@ -354,7 +354,7 @@ yay: PackageManager = PackageManager(
             ("nuspell", "nuspell"),
             ("hunspell-en_us", None),
             ("hunspell-de", None),
-            ("vale-git", "vale"),
+            # ("vale-git", "vale"),
             ("languagetool", "languagetool"),
             ("jq", "jq"),
             ("jdtls", "jdtls"),
