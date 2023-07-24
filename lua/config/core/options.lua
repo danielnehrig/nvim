@@ -201,7 +201,7 @@ function M.load_options()
 
   opt.mouse = "a" -- mouse on don't use mouse
 
-  opt.signcolumn = "auto" -- 2 sign column
+  opt.signcolumn = "yes:1" -- 2 sign column
   opt.cmdheight = 0 -- ex cmd height
   if globals.is_darwin then
     vim.o.guifont = "FiraCode Nerd Font Mono:h16" -- set font
