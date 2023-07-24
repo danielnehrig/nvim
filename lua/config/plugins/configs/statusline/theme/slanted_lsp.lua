@@ -98,11 +98,11 @@ M.theme = {
       show_last_status = true,
     }
 
-    local left = { basic.vi_mode, components.file, basic.divider }
+    local left = { components.vi_mode, components.file, basic.divider }
     local right = {
       components.compiler,
-      basic.dap,
-      basic.lsp_names,
+      components.dap,
+      components.lsp_names,
       components.git,
       {
         git_comps.git_branch(),
@@ -120,10 +120,10 @@ M.theme = {
       always_active = true,
       show_last_status = true,
       inactive = {
-        basic.vi_mode,
+        components.vi_mode,
         components.file,
         basic.divider,
-        basic.file_right,
+        components.file_right,
         components.git,
         { git_comps.git_branch(), { "magenta", "black" }, breakpoint_width },
         { " ", hl_list.Black },

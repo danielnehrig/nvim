@@ -3,6 +3,7 @@ local b_components = require("windline.components.basic")
 local git_comps = require("windline.components.git")
 local lsp_comps = require("windline.components.lsp")
 local breakpoint_width = 90
+local state = _G.WindLine.state
 
 local M = {}
 
