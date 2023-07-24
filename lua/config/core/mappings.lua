@@ -204,6 +204,16 @@ M.util = {
   },
   n = {
     {
+      "<leader>uv",
+      "<cmd>Bionic<CR>",
+      { desc = "Toggle Bionic", silent = true },
+    },
+    {
+      "<leader>ub",
+      "<cmd>Block<CR>",
+      { desc = "Toggle Block", silent = true },
+    },
+    {
       "<leader>r",
       function()
         require("config.core.global").reload()
