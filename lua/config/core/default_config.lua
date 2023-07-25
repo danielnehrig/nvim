@@ -14,6 +14,7 @@ default_config.ui = {
     name = "slanted_lsp",
     seperator = "default",
   },
+  hl_override = {},
 }
 
 default_config.plugins = {

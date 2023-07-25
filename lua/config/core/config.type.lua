@@ -4,6 +4,7 @@
 ---@field transparent boolean A toggle to make everything transparent
 ---@field colorscheme Colorscheme the colorscheme config
 ---@field statusline Statusline the statusline config
+---@field hl_override table<string, Highlight> a table of highlights to override
 
 ---@class Colorscheme
 ---@field name string the name of the colorscheme
