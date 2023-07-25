@@ -1,7 +1,8 @@
 local base16 = require("config.themes").get_colors("base_16")
 local colors = require("config.themes").get_colors("base_30")
 
-return {
+---@type table<string, Highlight>
+local cmp = {
   -- nvim cmp
   CmpItemAbbr = { fg = colors.white },
   CmpItemAbbrMatch = { fg = colors.blue, bold = true },
@@ -41,3 +42,5 @@ return {
   CmpItemKindTypeParameter = { fg = base16.base08 },
   CmpItemKindCopilot = { fg = colors.green },
 }
+
+return cmp

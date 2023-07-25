@@ -1,6 +1,7 @@
 local theme = require("config.themes").get_colors("base_16")
 
-return {
+---@type table<string, Highlight>
+local git = {
 
   -- git commits
   gitcommitOverflow = {
@@ -67,3 +68,5 @@ return {
     bold = true,
   },
 }
+
+return git

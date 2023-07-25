@@ -16,7 +16,8 @@ local white = colors.white
 local yellow = colors.yellow
 local orange = colors.orange
 
-return {
+---@type table<string, Highlight>
+local dn = {
   Comment = { fg = grey_fg, italic = false },
 
   -- line numbers
@@ -110,3 +111,5 @@ return {
   MatchWordCur = {},
   MatchParenCur = { link = "MatchWordCur" },
 }
+
+return dn

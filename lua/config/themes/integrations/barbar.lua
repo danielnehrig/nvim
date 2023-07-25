@@ -2,7 +2,8 @@ local theme = require("config.themes").get_colors("base_30")
 local theme_16 = require("config.themes").get_colors("base_16")
 local util = require("config.themes.util")
 
-return {
+---@type table<string, Highlight>
+local barbar = {
   BufferCurrent = { bg = theme.darker_black, fg = theme.white },
   BufferCurrentERROR = { bg = theme.darker_black, fg = theme.red },
   BufferCurrentHINT = { bg = theme.darker_black, fg = theme.blue },
@@ -71,3 +72,5 @@ return {
   --  },
   --  BufferTabpages = { bg = theme.statusline_bg, fg = theme.white },
 }
+
+return barbar

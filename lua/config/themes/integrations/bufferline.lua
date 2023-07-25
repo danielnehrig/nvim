@@ -1,6 +1,7 @@
 local colors = require("config.themes").get_colors("base_30")
 
-return {
+---@type table<string, Highlight>
+local bufferline = {
 
   BufferLineBackground = {
     fg = colors.grey_fg,
@@ -122,3 +123,5 @@ return {
     fg = colors.red,
   },
 }
+
+return bufferline
