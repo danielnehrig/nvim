@@ -479,6 +479,10 @@ function M.set_lsp_mapping(bufnr)
 end
 
 function M.mappings()
+  -- merge mappings from user config
+  local config = require("config.core.config").config
+  table.insert(M.map, config.mappings)
+
   -- apply mappings
   for _, section in ipairs(M.map) do
     for mode, map in pairs(section) do

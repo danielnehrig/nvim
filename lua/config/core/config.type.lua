@@ -21,3 +21,4 @@
 ---@class Config
 ---@field ui Ui the ui config
 ---@field plugins Plugins the plugin config
+---@field mappings MapModes the mapping config

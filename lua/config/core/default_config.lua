@@ -14,12 +14,24 @@ default_config.ui = {
     name = "slanted_lsp",
     seperator = "default",
   },
-  hl_override = {},
+  hl_override = {
+    --  ["DiffAdded"] = {
+    --  fg = "#ffffff",
+    --  bg = "#ffffff",
+    --  },
+  },
+}
+
+default_config.mappings = {
+  --  n = {
+  --  { "<leader>xx", "<cmd>lua vim.notify('hehe')<cr>", { desc = "Test" } },
+  --  },
 }
 
 default_config.plugins = {
   user = {},
   remove = {},
+  -- remove = { "hkupty/nvimux" },
 }
 
 return default_config
