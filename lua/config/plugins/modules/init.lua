@@ -28,6 +28,7 @@ local function create_plugins()
   local config = require("config.core.config").config
   local user_plugins = config.plugins.user
   plugin_table = vim.tbl_deep_extend("force", plugin_table, user_plugins)
+  local plugins_to_remove = config.plugins.remove
 
   --- @type LazyPluginSpec[]
   local plugins = {}
@@ -35,6 +36,14 @@ local function create_plugins()
     plugin_table[key][1] = key
 
     plugins[#plugins + 1] = plugin_table[key]
+  end
+
+  for _, plugin in ipairs(plugins_to_remove) do
+    for i, plugin_spec in ipairs(plugins) do
+      if plugin_spec[1] == plugin then
+        table.remove(plugins, i)
+      end
+    end
   end
 
   return plugins
