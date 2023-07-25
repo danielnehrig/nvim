@@ -1,7 +1,7 @@
----@module 'config.plugins.modules.types'
+---@module 'lazy.types'
 
 ---@class lsp
----@field lsp table<string, PluginInterfaceMerged>
+---@field lsp table<string, LazyPluginSpec>
 local M = {}
 
 M.lsp = {

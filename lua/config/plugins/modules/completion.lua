@@ -1,7 +1,7 @@
----@module 'config.plugins.modules.types'
+---@module 'lazy.types'
 
 ---@class completion
----@field completion table<string, PluginInterfaceMerged>
+---@field completion table<string, LazyPluginSpec>
 local M = {}
 M.completion = {
   ["github/copilot.vim"] = {},

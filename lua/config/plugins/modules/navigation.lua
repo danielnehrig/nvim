@@ -1,3 +1,7 @@
+---@module 'lazy.types'
+
+---@class navigation
+---@field navigation table<string, LazyPluginSpec>
 local M = {}
 
 M.navigation = {

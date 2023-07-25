@@ -1,3 +1,6 @@
+---@module 'lazy.types'
+
+--- Create the default config table
 local create_config = function()
   local config = require("config.core.default_config")
   local custom_config = vim.fn.filereadable(
@@ -16,6 +19,9 @@ local M = {
   config = create_config(),
 }
 
+--- Removes plugins from the default plugin list
+--- found within the plugins/modules section
+--- @param plugins LazyPluginSpec[]
 M.remove_default_plugins = function(plugins)
   local removals = M.config.plugins.remove or {}
 

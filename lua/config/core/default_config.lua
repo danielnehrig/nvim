@@ -1,3 +1,6 @@
+---@module 'config.core.config.type'
+
+---@class Config
 local default_config = {}
 
 default_config.ui = {
@@ -15,6 +18,7 @@ default_config.ui = {
 
 default_config.plugins = {
   user = {},
+  remove = {},
 }
 
 return default_config

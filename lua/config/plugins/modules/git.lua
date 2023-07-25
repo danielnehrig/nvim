@@ -1,7 +1,7 @@
----@module 'config.plugins.modules.types'
+---@module 'lazy.types'
 
 ---@class git
----@field git table<string, PluginInterfaceMerged>
+---@field git table<string, LazyPluginSpec>
 local M = {}
 
 M.git = {

@@ -1,3 +1,7 @@
+---@module 'lazy.types'
+
+---@class themes
+---@field theme table<string, LazyPluginSpec>
 local M = {}
 
 -- globals

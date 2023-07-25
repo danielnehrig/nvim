@@ -1,7 +1,7 @@
----@module 'config.plugins.modules.types'
+---@module 'lazy.types'
 
 ---@class utility
----@field utility table<string, PluginInterfaceMerged>
+---@field utility table<string, LazyPluginSpec>
 local M = {}
 M.utility = {
   ["Zeioth/compiler.nvim"] = {
