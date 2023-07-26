@@ -42,6 +42,9 @@ M.lsp_diagnos = {
     sep = { "black", "transparent" },
     spacer = { "black", "black" },
   },
+  click = function()
+    vim.lsp.diagnostic.set_loclist({ open_loclist = true })
+  end,
   width = breakpoint_width,
   text = function()
     if lsp_comps.check_lsp() then
@@ -88,6 +91,9 @@ M.file = {
     spacer = { "black", "black" },
     white = { "white", "black" },
   },
+  click = function()
+    require("nvim-tree.api").tree.toggle({ find_file = true, focus = true })
+  end,
   text = function(bufnr, _, width)
     -- local filetype = vim.bo.filetype
     -- local len = string.len(filetype)
@@ -226,6 +232,9 @@ M.git = {
     septwo = { "black_light", "black" },
   },
   width = breakpoint_width,
+  click = function()
+    require("telescope.builtin").git_status({ layout_strategy = "horizontal" })
+  end,
   text = function()
     return {
       { separator_right_side, "septwo" },
