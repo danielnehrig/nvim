@@ -173,11 +173,11 @@ M.dap = {
 M.util = {
   c = {
     {
-      "<C-e>",
+      "<C-a>",
       function()
         require("noice").redirect(vim.fn.getcmdline())
       end,
-      { desc = "Redirect Cmdline" },
+      { desc = "Redirect Cmdline output to noice buffer" },
     },
   },
   i = {
@@ -251,6 +251,14 @@ M.util = {
       require("config.core.options").spell_toggle,
       {
         desc = "Toggle Spell",
+        silent = true,
+      },
+    },
+    {
+      "<leader>ux",
+      require("config.core.options").toggle_signcolumn,
+      {
+        desc = "Toggle Signcolumn",
         silent = true,
       },
     },

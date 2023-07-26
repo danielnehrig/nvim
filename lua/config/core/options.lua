@@ -286,4 +286,9 @@ M.spell_toggle = function()
   wo.spell = not wo.spell
 end
 
+--- toggle the sign column
+M.toggle_signcolumn = function()
+  o.signcolumn = o.signcolumn == "yes:1" and "no" or "yes:1"
+end
+
 return M
