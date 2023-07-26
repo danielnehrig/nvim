@@ -1,5 +1,6 @@
 local colors = require("config.themes").get_colors("base_30")
 
+---@type table<string, Highlight>
 local M = {
   NvimTreeWinSeparator = {
     fg = colors.one_bg2,
@@ -12,7 +13,8 @@ local M = {
   },
 }
 
--- for hl groups which need bg = "NONE" only!
+---for hl groups which need bg = "NONE" only!
+---@type string[]
 local hl_groups = {
   "NormalFloat",
   "Normal",
@@ -49,15 +51,5 @@ for _, groups in ipairs(hl_groups) do
     bg = "NONE",
   }
 end
-
-M.TelescopeBorder = {
-  fg = colors.grey,
-  bg = "NONE",
-}
-
-M.TelescopePromptBorder = {
-  fg = colors.grey,
-  bg = "NONE",
-}
 
 return M

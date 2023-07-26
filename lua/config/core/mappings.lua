@@ -214,13 +214,6 @@ M.util = {
       { desc = "Toggle Block", silent = true },
     },
     {
-      "<leader>r",
-      function()
-        require("config.core.global").reload()
-      end,
-      { desc = "Reload", silent = false },
-    },
-    {
       "<leader>uf",
       require("config.core.options").fold_column_toggle,
       { desc = "Toggle Fold", silent = true },

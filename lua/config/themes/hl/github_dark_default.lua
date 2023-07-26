@@ -3,9 +3,7 @@
 
 ---@module 'config.themes.hl.types'
 
----@class GithubDarkDefault
----@field base_30 BASE_30
----@field base_16 BASE_16
+---@type ColorScheme
 local M = {}
 
 M.base_30 = {

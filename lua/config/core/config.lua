@@ -22,6 +22,7 @@ local M = {
 --- Removes plugins from the default plugin list
 --- found within the plugins/modules section
 --- @param plugins LazyPluginSpec[]
+--- @return LazyPluginSpec[]
 M.remove_default_plugins = function(plugins)
   local removals = M.config.plugins.remove or {}
 

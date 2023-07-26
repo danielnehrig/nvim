@@ -89,6 +89,8 @@ M.load_highlight = function(group)
   return group
 end
 
+---@param default_theme ColorScheme
+---@param theme_name string
 M.override_theme = function(default_theme, theme_name)
   local changed_themes = config.ui.changed_themes
 

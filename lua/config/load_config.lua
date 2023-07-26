@@ -1,3 +1,4 @@
+---@class load_config
 local M = {}
 M.__index = M
 

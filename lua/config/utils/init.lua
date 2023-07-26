@@ -47,6 +47,7 @@ end
 --- combines plugin manager colorschemes
 --- with internal colorschemes
 --- @todo add support for custom colorschemes
+--- @param arg string
 M.switch_theme = function(arg)
   local colorscheme = nil
 
@@ -78,7 +79,10 @@ M.switch_theme = function(arg)
   vim.notify(string.format("colorscheme %s not found", arg))
 end
 
+--- Returns a list of themes integrated and plugin colorschemes
+--- @return string[]
 M.get_themes = function()
+  ---@type string[]
   local res = {}
 
   local hl_dir = vim.fn.stdpath("config") .. "/lua/config/themes/hl"
