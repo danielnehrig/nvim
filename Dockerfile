@@ -35,6 +35,8 @@ FROM alpine:latest as main
 # Copy files from build container to run container.
 
 RUN apk add bash --no-cache
+RUN apk add libc6-compat --no-cache
+RUN apk add gcompat --no-cache
 COPY --from=build /root/.bashrc /root/.bashrc
 COPY --from=build /root/.config/nvim /root/.config/nvim
 COPY --from=build /root/.local /root/.local
@@ -54,5 +56,5 @@ COPY --from=build /usr/sbin/lua-language-server /bin/lua-language-server
 # Avoid container exit.
 WORKDIR /mnt/workspace
 EXPOSE 5555
-ENTRYPOINT ["/bin/bash", "-c", "source /root/.bashrc && nvim"]
+ENTRYPOINT ["/bin/bash", "-c", "source /root/.bashrc && /bin/nvim"]
 CMD ["tail", "-f", "/dev/null"]
