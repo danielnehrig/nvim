@@ -4,6 +4,10 @@ local git_comps = require("windline.components.git")
 local lsp_comps = require("windline.components.lsp")
 local breakpoint_width = 90
 local state = _G.WindLine.state
+local config = require("config.core.config").config
+local separator_left_side = helper.separators[config.ui.statusline.separator[1]]
+local separator_right_side =
+  helper.separators[config.ui.statusline.separator[2]]
 
 local M = {}
 
@@ -65,7 +69,7 @@ M.lsp_diagnos = {
           "blue",
         },
         { " ", "spacer" },
-        { helper.separators.slant_right, "sep" },
+        { separator_left_side, "sep" },
       }
     end
     return ""
@@ -98,7 +102,7 @@ M.file = {
         { " ", "" },
         { b_components.file_modified(" "), "magenta" },
         { " ", "spacer" },
-        { helper.separators.slant_right, "sep" },
+        { separator_left_side, "sep" },
       }
     else
       return {
@@ -106,7 +110,7 @@ M.file = {
         { " ", "" },
         { b_components.file_modified(" "), "magenta" },
         { " ", "spacer" },
-        { helper.separators.slant_right, "sep" },
+        { separator_left_side, "sep" },
       }
     end
   end,
@@ -224,7 +228,7 @@ M.git = {
   width = breakpoint_width,
   text = function()
     return {
-      { helper.separators.slant_left, "septwo" },
+      { separator_right_side, "septwo" },
       { " ", "spacer" },
       {
         git_comps.diff_added({
@@ -271,13 +275,13 @@ M.lsp_names = {
       if lsp_present then
         return {
           {
-            helper.separators.slant_left,
+            separator_right_side,
             dap_present and "sepdebug" or "sep",
           },
           { " ", "spacer" },
           { lsp_comps.lsp_name(), "magenta" },
           { " ", "spacer" },
-          { helper.separators.slant_left_thin, "magenta" },
+          { separator_right_side_thin, "magenta" },
           { lsp_status.status(), "magenta" },
         }
       end
@@ -329,7 +333,7 @@ M.dap = {
     local status = debug.getStatus()
     if status then
       return {
-        { helper.separators.slant_left, "sep" },
+        { separator_right_side, "sep" },
         { " ", "spacer" },
         { status .. " ", "dap_status" },
       }

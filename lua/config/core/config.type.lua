@@ -14,7 +14,7 @@
 
 ---@class Statusline
 ---@field name StatuslineThemes the name of the statusline theme
----@field seperator SeperatorStyle the name of the seperator style
+---@field separator SeperatorStyle[] the name of the seperator style
 
 ---@class Plugins
 ---@field user table<string, LazyPluginSpec> plugins you want to add
@@ -29,10 +29,28 @@
 ---| '"slanted_lsp"'
 
 ---@alias SeperatorStyle
----| '"slant_right"'
+---| '"vertical_bar"'
+---| '"vertical_bar_thin"'
+---| '"left"'
+---| '"right"'
+---| '"block"'
+---| '"block_thin"'
+---| '"left_filled"'
+---| '"right_filled"'
 ---| '"slant_left"'
----| '"arrow_right"'
----| '"arrow_left"'
+---| '"slant_left_thin"'
+---| '"slant_right"'
+---| '"slant_right_thin"'
+---| '"slant_left_2"'
+---| '"slant_left_2_thin"'
+---| '"slant_right_2"'
+---| '"slant_right_2_thin"'
+---| '"left_rounded"'
+---| '"left_rounded_thin"'
+---| '"right_rounded"'
+---| '"right_rounded_thin"'
+---| '"circle"'
+---| '"none"'
 
 ---@alias ColorschemeNames
 ---| '"github_dark_default"'

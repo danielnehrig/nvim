@@ -18,6 +18,11 @@ M.theme = {
     local effects = require("wlanimation.effects")
     local git_comps = require("windline.components.git")
     local components = require("config.plugins.configs.statusline.components")
+    local config = require("config.core.config").config
+    local separator_left_side =
+      helper.separators[config.ui.statusline.separator[1]]
+    local separator_right_side =
+      helper.separators[config.ui.statusline.separator[2]]
 
     local anim_colors = {
       "#90CAF9",
@@ -46,7 +51,7 @@ M.theme = {
       filetypes = { "qf", "Trouble" },
       active = {
         { "🚦 Quickfix ", { "white", "black" } },
-        { helper.separators.slant_right, { "black", "black_light" } },
+        { separator_left_side, { "black", "black_light" } },
         {
           function()
             return vim.fn.getqflist({ title = 0 }).title
@@ -54,10 +59,10 @@ M.theme = {
           { "cyan", "black_light" },
         },
         { " Total : %L ", { "cyan", "black_light" } },
-        { helper.separators.slant_right, { "black_light", "transparent" } },
+        { separator_left_side, { "black_light", "transparent" } },
         { " ", { "InactiveFg", "transparent" } },
         basic.divider,
-        { helper.separators.slant_left_2, { "black", "transparent" } },
+        { separator_right_side, { "black", "transparent" } },
         { "🧛 ", { "white", "black" } },
       },
       always_active = true,
@@ -67,9 +72,9 @@ M.theme = {
       filetypes = { "fern", "NvimTree", "lir" },
       active = {
         { "  ", { "white", "black" } },
-        { helper.separators.slant_right, { "black", "transparent" } },
+        { separator_left_side, { "black", "transparent" } },
         { b_components.divider, "" },
-        { helper.separators.slant_left, { "black_light", "transparent" } },
+        { separator_right_side, { "black_light", "transparent" } },
         { b_components.file_name(""), { "white", "black_light" } },
       },
       always_active = true,
@@ -80,9 +85,9 @@ M.theme = {
       filetypes = { "dap-repl" },
       active = {
         { "  ", { "white", "black" } },
-        { helper.separators.slant_right, { "black", "transparent" } },
+        { separator_left_side, { "black", "transparent" } },
         { b_components.divider, "" },
-        { helper.separators.slant_left, { "black_light", "transparent" } },
+        { separator_right_side, { "black_light", "transparent" } },
         { b_components.file_name(""), { "white", "black_light" } },
       },
       always_active = true,

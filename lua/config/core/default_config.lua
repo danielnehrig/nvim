@@ -13,7 +13,7 @@ default_config.ui = {
   },
   statusline = {
     name = "slanted_lsp",
-    seperator = "slant_right",
+    separator = { "slant_right", "slant_left" },
   },
   hl_override = {
     --  ["DiffAdded"] = {
