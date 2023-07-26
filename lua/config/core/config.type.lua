@@ -14,7 +14,8 @@
 
 ---@class Statusline
 ---@field name StatuslineThemes the name of the statusline theme
----@field separator SeperatorStyle[] the name of the seperator style
+---the name of the seperator styles left and right side length = 2
+---@field separator SeperatorStyle[]
 
 ---@class Plugins
 ---@field user table<string, LazyPluginSpec> plugins you want to add

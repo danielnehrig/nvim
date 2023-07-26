@@ -80,6 +80,10 @@ M.StatusColumn = {
         return ""
       end
 
+      if not g.status_col_fold then
+        return ""
+      end
+
       for _, filetype in ipairs(M.StatusColumn.blacklist_ft) do
         if vim.bo.filetype == filetype then
           return ""
@@ -251,6 +255,7 @@ function M.load_options()
   g.cursorhold_updatetime = 100
   g.loaded_ruby_provider = 0
   g.loaded_perl_provider = 0
+  g.status_col_fold = true
 
   vim.opt.statuscolumn = M.StatusColumn.build({
     M.StatusColumn.sections.line_number,
@@ -262,7 +267,7 @@ end
 
 --- toggle the fold column
 M.fold_column_toggle = function()
-  wo.foldcolumn = wo.foldcolumn == "0" and "auto:3" or "0"
+  g.status_col_fold = not g.status_col_fold
 end
 
 --- toggle the relative number from relative to absolute
