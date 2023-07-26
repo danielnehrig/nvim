@@ -52,4 +52,19 @@ for _, groups in ipairs(hl_groups) do
   }
 end
 
+M.TelescopeBorder = {
+  fg = colors.grey,
+  bg = "NONE",
+}
+
+M.TelescopePromptBorder = {
+  fg = colors.grey,
+  bg = "NONE",
+}
+
+M.CmpDocBorder = {
+  bg = "none",
+  fg = colors.grey,
+}
+
 return M
