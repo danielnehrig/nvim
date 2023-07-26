@@ -37,14 +37,6 @@ https://user-images.githubusercontent.com/4050749/169545588-198c7dab-11fa-4306-b
 
 ## Try it out with Docker!
 
-_(stable version)_
-
-```bash
-docker run -it \
-  -v $(pwd):/mnt/workspace \
-  danielnehrig/nvim:latest
-```
-
 _(nightly version)_
 
 ```bash
@@ -60,7 +52,7 @@ Focus on idiomatic opinionated mappings with simplicity
 
 <details>
 <summary>Synopsis</summary>
-I've been using vim for about 7-8 years now
+I've been using vim for about 10 years now
 
 While I was aware that neovim was a thing
 I didn't really understand or tried to understand
@@ -167,6 +159,8 @@ _LSPs in path:_
 We have a config layer copy and paste the default config layout from `config.core.default_config`
 and create folder and file `rootFolder/lua/config/custom/init.lua`
 paste in the default_configs values and adjust accordingly
+if you have the lua language server properly setup you should be getting some heat auto completions for
+all kinds of possible completions for the config or take a look at the config class
 
 # Supported Languages / Syntax
 
@@ -200,6 +194,7 @@ The Config should fully support:
 
 - d - is for Debug
 - g - is for misc LSP actions
+- b - build (test, build, in buffer interpreter snip run)
 - q - quickfix
 - l - loclist
 - u - utility (disable diagnostic etc)
