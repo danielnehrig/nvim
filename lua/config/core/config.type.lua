@@ -7,18 +7,32 @@
 ---@field hl_override table<string, Highlight> a table of highlights to override
 
 ---@class Colorscheme
----@field name string the name of the colorscheme
----@field toggle table the names of the colorschemes to toggle between (nice for light/dark themes)
+---@field name ColorschemeNames the name of the colorscheme
+---@field toggle string[] the names of the colorschemes to toggle between (nice for light/dark themes)
 
 ---@class Statusline
----@field name string the name of the statusline theme
----@field seperator string the name of the seperator style
+---@field name StatuslineThemes the name of the statusline theme
+---@field seperator SeperatorStyle the name of the seperator style
 
 ---@class Plugins
 ---@field user table<string, LazyPluginSpec> plugins you want to add
----@field remove string[] plugins you want to remove from the default list
+---@field remove string[] plugins you want to remove from the default list see modules folder
 
 ---@class Config
 ---@field ui Ui the ui config
 ---@field plugins Plugins the plugin config
 ---@field mappings MapModes the mapping config
+
+---@alias StatuslineThemes
+---| '"slanted_lsp"'
+
+---@alias SeperatorStyle
+---| '"slant_right"'
+---| '"slant_left"'
+---| '"arrow_right"'
+---| '"arrow_left"'
+
+---@alias ColorschemeNames
+---| '"github_dark_default"'
+---| '"radium"'
+---| '"onedark"'
