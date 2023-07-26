@@ -1,6 +1,6 @@
 ---@meta
 ---@class Ui
----@field changed_themes type<ColorschemeNames, ColorScheme> a list of themes that have been changed
+---@field changed_themes table<ColorschemeNames, ColorScheme> a list of themes that have been changed
 ---@field logo string the dashboard logo (info the path your logo string will append to is the neovim config path)
 ---@field transparent boolean A toggle to make everything transparent
 ---@field colorscheme Colorscheme the colorscheme config
