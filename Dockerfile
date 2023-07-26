@@ -1,5 +1,5 @@
 # This is the build container image
-FROM archlinux/archlinux:latest as build
+FROM archlinux/archlinux:latest
 ARG version=neovim
 COPY . /root/.config/nvim/
 
@@ -29,29 +29,6 @@ RUN nvim --headless\
 RUN nvim --headless\
   +'autocmd User LazySync sleep 100m | qall'\
   +"Lazy sync"
-
-# Create a run image / container with minimal size. use alpine
-FROM alpine:latest as main
-# Copy files from build container to run container.
-
-RUN apk add bash --no-cache
-RUN apk add libc6-compat --no-cache
-RUN apk add gcompat --no-cache
-COPY --from=build /root/.bashrc /root/.bashrc
-COPY --from=build /root/.config/nvim /root/.config/nvim
-COPY --from=build /root/.local /root/.local
-COPY --from=build /root/go /root/go
-COPY --from=build /root/.cargo /root/.cargo
-COPY --from=build /usr/sbin/node /bin/node
-COPY --from=build /usr/sbin/python /bin/python
-COPY --from=build /usr/sbin/nvim /bin/nvim
-COPY --from=build /usr/sbin/go /bin/go
-COPY --from=build /usr/sbin/rustup /bin/rustup
-COPY --from=build /usr/sbin/rustc /bin/rustc
-COPY --from=build /usr/sbin/cargo /bin/cargo
-COPY --from=build /usr/sbin/lua /bin/lua
-COPY --from=build /usr/lib/lua-language-server /usr/lib/lua-language-server
-COPY --from=build /usr/sbin/lua-language-server /bin/lua-language-server
 
 # Avoid container exit.
 WORKDIR /mnt/workspace
