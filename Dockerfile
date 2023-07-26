@@ -34,6 +34,7 @@ RUN nvim --headless\
 FROM alpine:latest as main
 # Copy files from build container to run container.
 
+RUN apk add bash --no-cache
 COPY --from=build /root/.config/nvim /root/.config/nvim
 COPY --from=build /root/.local /root/.local
 COPY --from=build /root/go /root/go
@@ -46,7 +47,6 @@ COPY --from=build /usr/sbin/rustup /bin/rustup
 COPY --from=build /usr/sbin/rustc /bin/rustc
 COPY --from=build /usr/sbin/cargo /bin/cargo
 COPY --from=build /usr/sbin/lua /bin/lua
-COPY --from=build /usr/sbin/bash /bin/bash
 COPY --from=build /usr/lib/lua-language-server /usr/lib/lua-language-server
 COPY --from=build /usr/sbin/lua-language-server /bin/lua-language-server
 
