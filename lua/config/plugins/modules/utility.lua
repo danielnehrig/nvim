@@ -63,6 +63,13 @@ M.utility = {
       require("mason").setup()
     end,
     build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+    priority = 53,
+  },
+  ["williamboman/mason-lspconfig.nvim"] = {
+    config = function()
+      require("mason-lspconfig").setup()
+    end,
+    priority = 52,
   },
   ["MunifTanjim/nui.nvim"] = { lazy = true },
   ["nvim-lua/plenary.nvim"] = { lazy = true },
