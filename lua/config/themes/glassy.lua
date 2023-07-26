@@ -30,6 +30,7 @@ local hl_groups = {
   --  "SatelliteDiagnosticInfo",
   --  "SatelliteDiagnosticHint",
   --  "SatelliteDiagnosticError",
+  "BufferTabpageFill",
   "NvimTreeNormal",
   "NvimTreeNormalNC",
   "NvimTreeCursorLine",
