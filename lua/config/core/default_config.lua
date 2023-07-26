@@ -1,6 +1,6 @@
 ---@module 'config.core.config.type'
 
----@class Config
+---@type Config
 local default_config = {}
 
 default_config.ui = {
@@ -30,9 +30,16 @@ default_config.mappings = {
 }
 
 default_config.plugins = {
-  user = {},
-  remove = {},
-  -- remove = { "hkupty/nvimux" },
+  user = {
+    --  ["user/plugin.nvim"] = {
+    --  config = function ()
+    --  -- code
+    --  end,
+    --  },
+  },
+  remove = {
+    --  "hkupty/nvimux",
+  },
 }
 
 return default_config
