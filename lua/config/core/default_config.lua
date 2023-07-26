@@ -4,7 +4,14 @@
 local default_config = {}
 
 default_config.ui = {
-  changed_themes = {},
+  changed_themes = {
+    --  ["radium"] = {
+    --  base_16 = {
+    --  base08 = "#ffffff",
+    --  base0C = "#ffffff",
+    --  },
+    --  },
+  },
   logo = "neovim.cat",
   transparent = false,
   colorscheme = {
