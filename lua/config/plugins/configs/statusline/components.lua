@@ -281,7 +281,7 @@ M.lsp_names = {
           { " ", "spacer" },
           { lsp_comps.lsp_name(), "magenta" },
           { " ", "spacer" },
-          { separator_right_side_thin, "magenta" },
+          { helper.separators.slant_right_thin, "magenta" },
           { lsp_status.status(), "magenta" },
         }
       end
