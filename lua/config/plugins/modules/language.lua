@@ -17,7 +17,7 @@ M.language = {
       "GrammarousCheck",
     },
   },
-  ["mfussenegger/nvim-jdtls"] = { opt = true },
+  ["mfussenegger/nvim-jdtls"] = { lazy = true },
   ["Saecki/crates.nvim"] = {
     ft = { "toml", "rs" },
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -32,18 +32,15 @@ M.language = {
   },
   ["rust-lang/rust.vim"] = { ft = { "rust", "rs" } },
   ["iamcco/markdown-preview.nvim"] = {
-    run = "cd app && yarn install",
     build = "cd app && yarn install",
     ft = { "markdown", "md" },
     cmd = "MarkdownPreview",
   },
   ["michaelb/sniprun"] = {
     cmd = { "SnipRun" },
-    run = "bash ./install.sh",
     build = "bash ./install.sh",
   },
   ["shuntaka9576/preview-swagger.nvim"] = {
-    run = "yarn install",
     build = "yarn install",
     ft = { "yaml", "yml" },
     cmd = "SwaggerPreview",

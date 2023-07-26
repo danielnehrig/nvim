@@ -6,7 +6,7 @@ local M = {}
 
 M.navigation = {
   ["andymass/vim-matchup"] = {
-    setup = function()
+    config = function()
       vim.g.matchup_matchparen_offscreen = {}
     end,
   },
