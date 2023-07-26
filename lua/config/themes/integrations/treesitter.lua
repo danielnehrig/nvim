@@ -1,6 +1,7 @@
 local theme = require("config.themes").get_colors("base_16")
 
-return {
+---@type table<string, Highlight>
+local treesitter = {
   -- `@annotation` is not one of the default capture group, should we keep it
   ["@annotation"] = {
     fg = theme.base0F,
@@ -220,3 +221,5 @@ return {
     link = "Conditional",
   },
 }
+
+return treesitter

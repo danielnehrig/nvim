@@ -1,6 +1,7 @@
 local colors = require("config.themes").get_colors("base_30")
 
-return {
+---@type table<string, Highlight>
+local telescope = {
 
   TelescopeBorder = {
     fg = colors.darker_black,
@@ -41,3 +42,5 @@ return {
 
   TelescopeSelection = { bg = colors.black2, fg = colors.white },
 }
+
+return telescope

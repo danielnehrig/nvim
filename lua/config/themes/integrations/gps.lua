@@ -1,7 +1,8 @@
 local theme = require("config.themes").get_colors("base_16")
 local theme_30 = require("config.themes").get_colors("base_30")
 
-return {
+---@type table<string, Highlight>
+local navic = {
   NavicSeparator = {
     default = true,
     fg = theme.base0F,
@@ -193,3 +194,5 @@ return {
     sp = "none",
   },
 }
+
+return navic
