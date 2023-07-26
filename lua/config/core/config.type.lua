@@ -9,7 +9,8 @@
 
 ---@class Colorscheme
 ---@field name ColorschemeNames the name of the colorscheme
----@field toggle string[] the names of the colorschemes to toggle between (nice for light/dark themes)
+--- the names of the colorschemes to toggle between (nice for light/dark themes)
+---@field toggle ColorschemeNames[]
 
 ---@class Statusline
 ---@field name StatuslineThemes the name of the statusline theme

@@ -6,6 +6,14 @@ function M.init()
   require("barbar").setup({
     icons = {
       separator_at_end = false,
+      filetype = {
+        -- Sets the icon's highlight group.
+        -- If false, will use nvim-web-devicons colors
+        custom_colors = true,
+
+        -- Requires `nvim-web-devicons` if `true`
+        enabled = true,
+      },
     },
     exclude_ft = { "quickfix", "terminal", "dap-repl", "repl", "qf", "" },
   })
