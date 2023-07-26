@@ -5,6 +5,7 @@ local default_config = {}
 
 default_config.ui = {
   changed_themes = {},
+  logo = "neovim.cat",
   transparent = false,
   colorscheme = {
     name = "github_dark_default",

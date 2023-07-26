@@ -1,6 +1,7 @@
 ---@meta
 ---@class Ui
 ---@field changed_themes string[] a list of themes that have been changed
+---@field logo string the dashboard logo (info the path your logo string will append to is the neovim config path)
 ---@field transparent boolean A toggle to make everything transparent
 ---@field colorscheme Colorscheme the colorscheme config
 ---@field statusline Statusline the statusline config
