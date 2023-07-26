@@ -9,7 +9,7 @@ function M.init()
       filetype = {
         -- Sets the icon's highlight group.
         -- If false, will use nvim-web-devicons colors
-        custom_colors = true,
+        custom_colors = false,
 
         -- Requires `nvim-web-devicons` if `true`
         enabled = true,

@@ -65,7 +65,7 @@ local barbar = {
     fg = theme.yellow,
   },
   BufferInactiveTarget = { bg = util.darken(theme.one_bg, 0.4), fg = theme.red },
-  BufferTabpageFill = { bg = theme.darker_black, fg = theme.white },
+  --BufferTabpageFill = { bg = theme.darker_black, fg = theme.white },
 }
 
 return barbar
