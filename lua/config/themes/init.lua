@@ -27,6 +27,7 @@ M.merge_tb = function(table1, table2)
   return vim.tbl_deep_extend("force", table1, table2)
 end
 
+---@param highlights table<string, Highlight>
 M.extend_default_hl = function(highlights)
   local polish_hl = M.get_theme_tb("polish_hl")
 
@@ -61,8 +62,9 @@ M.extend_default_hl = function(highlights)
   end
 end
 
--- turns color var names in hl_override/hl_add to actual colors
--- hl_add = { abc = { bg = "one_bg" }} -> bg = colors.one_bg
+--- turns color var names in hl_override/hl_add to actual colors
+--- hl_add = { abc = { bg = "one_bg" }} -> bg = colors.one_bg
+--- @param tb table<string, table<string, string>>
 M.turn_str_to_color = function(tb)
   local colors = M.get_theme_tb("base_30")
 
@@ -80,12 +82,15 @@ M.turn_str_to_color = function(tb)
   return tb
 end
 
+---@param group string
 M.load_highlight = function(group)
   group = require("config.themes.integrations." .. group)
   M.extend_default_hl(group)
   return group
 end
 
+---@param default_theme ColorScheme the colorscheme like radium includes all colors
+---@param theme_name string then name of the colorscheme
 M.override_theme = function(default_theme, theme_name)
   local changed_themes = config.ui.changed_themes
 

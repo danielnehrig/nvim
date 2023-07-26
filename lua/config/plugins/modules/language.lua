@@ -1,7 +1,7 @@
----@module 'config.plugins.modules.types'
+---@module 'lazy.types'
 
 ---@class language
----@field language table<string, PluginInterfaceMerged>
+---@field language table<string, LazyPluginSpec>
 local M = {}
 
 vim.g.languagetool_server_jar =

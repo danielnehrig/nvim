@@ -1,6 +1,7 @@
 local colors = require("config.themes").get_colors("base_30")
 
-return {
+---@type table<string, Highlight>
+local devicons = {
   DevIconc = { bg = "NONE", fg = colors.blue },
   DevIconcss = { bg = "NONE", fg = colors.blue },
   DevIcondeb = { bg = "NONE", fg = colors.cyan },
@@ -28,3 +29,5 @@ return {
   DevIconxz = { bg = "NONE", fg = colors.sun },
   DevIconzip = { bg = "NONE", fg = colors.sun },
 }
+
+return devicons

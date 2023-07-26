@@ -1,16 +1,9 @@
----@module 'config.plugins.modules.types'
+---@module 'lazy.types'
 
 ---@class utility
----@field utility table<string, PluginInterfaceMerged>
+---@field utility table<string, LazyPluginSpec>
 local M = {}
 M.utility = {
-  ["Zeioth/compiler.nvim"] = {
-    cmd = { "CompilerOpen", "CompilerToggleResults" },
-    dependencies = { "stevearc/overseer.nvim" },
-    config = function(_, opts)
-      require("compiler").setup(opts)
-    end,
-  },
   ["stevearc/overseer.nvim"] = {
     commit = "3047ede61cc1308069ad1184c0d447ebee92d749", -- Recommended to to avoid breaking changes
     cmd = { "CompilerOpen", "CompilerToggleResults" },
@@ -63,6 +56,13 @@ M.utility = {
       require("mason").setup()
     end,
     build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+    priority = 53,
+  },
+  ["williamboman/mason-lspconfig.nvim"] = {
+    config = function()
+      require("mason-lspconfig").setup()
+    end,
+    priority = 52,
   },
   ["MunifTanjim/nui.nvim"] = { lazy = true },
   ["nvim-lua/plenary.nvim"] = { lazy = true },

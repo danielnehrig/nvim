@@ -7,7 +7,7 @@ function M.init()
     return
   end
   blank.setup({
-    indentLine_enabled = 0,
+    indentLine_enabled = 1,
     char = "▏",
     filetype_exclude = {
       "help",
@@ -27,12 +27,12 @@ function M.init()
       "",
     },
     buftype_exclude = { "terminal", "dashboard", "notify" },
-    show_first_indent_level = false,
+    show_first_indent_level = true,
     show_current_context = true,
     use_treesitter = true,
     space_char_blankline = " ",
     show_end_of_line = true,
-    show_trailing_blankline_indent = false,
+    show_trailing_blankline_indent = true,
   })
 end
 

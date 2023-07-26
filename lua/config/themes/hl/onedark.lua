@@ -1,8 +1,6 @@
 ---@module 'config.themes.hl.types'
 
----@class Onedark
----@field base_30 BASE_30
----@field base_16 BASE_16
+---@type ColorScheme
 local M = {}
 
 M.base_30 = {
@@ -57,6 +55,8 @@ M.base_16 = {
   base0E = "#c678dd",
   base0F = "#be5046",
 }
+
+M.type = "dark"
 
 M = require("config.themes").override_theme(M, "onedark")
 

@@ -1,3 +1,7 @@
+---@module 'lazy.types'
+
+---@class themes
+---@field theme table<string, LazyPluginSpec>
 local M = {}
 
 -- globals
@@ -28,12 +32,23 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
+  ["HampusHauffman/bionic.nvim"] = {},
   ["HampusHauffman/block.nvim"] = {
     config = function()
-      require("block").setup({})
+      require("block").setup({
+        percent = 0.8,
+        depth = 4,
+        colors = nil,
+        automatic = false,
+        --      bg = nil,
+        --      colors = {
+        --          "#ff0000"
+        --          "#00ff00"
+        --          "#0000ff"
+        --      },
+      })
     end,
-    lazy = true,
-    enabled = false,
+    enabled = true,
   },
   ["projekt0n/github-nvim-theme"] = {
     tag = "v0.0.7",

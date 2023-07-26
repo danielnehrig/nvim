@@ -1,7 +1,7 @@
----@module 'config.plugins.modules.types'
+---@module 'lazy.types'
 
 ---@class treesitter
----@field ts table<string, PluginInterfaceMerged>
+---@field ts table<string, LazyPluginSpec>
 local M = {}
 
 M.ts = {

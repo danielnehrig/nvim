@@ -1,6 +1,7 @@
 local theme = require("config.themes").get_colors("base_16")
 
-return {
+---@type table<string, Highlight>
+local misc = {
   Normal = {
     fg = theme.base05,
     bg = theme.base00,
@@ -182,3 +183,5 @@ return {
     sp = theme.base0E,
   },
 }
+
+return misc

@@ -1,5 +1,15 @@
 ---@meta
 
+---@alias Flavor
+---| '"dark"'
+---| '"light"'
+
+---@class ColorScheme
+---@field base_30 BASE_30
+---@field base_16 BASE_16
+---@field polish_hl? table<string, Highlight>
+---@field type? Flavor
+
 ---@class BASE_30
 ---@field white string
 ---@field darker_black string

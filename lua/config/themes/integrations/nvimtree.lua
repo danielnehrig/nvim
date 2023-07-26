@@ -1,6 +1,7 @@
 local colors = require("config.themes").get_colors("base_30")
 
-return {
+---@type table<string, Highlight>
+local nvimtree = {
   NvimTreeEmptyFolderName = { fg = colors.folder_bg },
   NvimTreeEndOfBuffer = { fg = colors.darker_black },
   NvimTreeFolderIcon = { fg = colors.folder_bg },
@@ -26,3 +27,5 @@ return {
     bg = colors.black2,
   },
 }
+
+return nvimtree

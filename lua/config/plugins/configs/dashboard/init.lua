@@ -10,12 +10,15 @@ function M.dashboard()
   require("alpha.term")
   local dashboard = require("alpha.themes.dashboard")
   local global = require("config.core.global")
+  local config = require("config.core.config").config
+  local config_path = vim.fn.stdpath("config")
 
   -- Terminal header
   if not global.is_windows then
     dashboard.section.terminal.command = "cat | lolcat --seed=24 "
-      .. os.getenv("HOME")
-      .. "/.config/nvim/neovim.cat"
+      .. config_path
+      .. "/"
+      .. config.ui.logo
     dashboard.section.terminal.width = 74
     dashboard.section.terminal.height = 11
   end

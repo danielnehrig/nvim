@@ -1,5 +1,6 @@
 --- @type string HOME always exists
-local home = os.getenv("HOME")
+local home = os.getenv("HOME") --[[@as string]]
+
 local path_sep = package.config:sub(1, 1)
 --- @type string
 local os_name = vim.loop.os_uname().sysname
@@ -22,44 +23,5 @@ local M = {
     vim.fn.stdpath("data")
   ),
 }
-
---- Reload the Config
-function M.reload_all()
-  for k, _ in pairs(package.loaded) do
-    if string.match(k, "^config") then
-      package.loaded[k] = nil
-    end
-  end
-  vim.notify("Config Reload")
-  vim.cmd("luafile " .. vim.env.MYVIMRC)
-  vim.cmd("doautocmd VimEnter")
-end
-
-function M.reload(plugins)
-  local status = true
-  local function _reload_plugin(plugin)
-    local loaded = package.loaded[plugin]
-    if loaded then
-      package.loaded[plugin] = nil
-    end
-    local ok, err = pcall(require, plugin)
-    if not ok then
-      print("Error: Cannot load " .. plugin .. " plugin!\n" .. err .. "\n")
-      status = false
-    end
-  end
-
-  if type(plugins) == "string" then
-    _reload_plugin(plugins)
-    vim.notify(string.format("Plugin %s reloaded", plugins))
-  elseif type(plugins) == "table" then
-    for _, plugin in ipairs(plugins) do
-      _reload_plugin(plugin)
-      vim.notify(string.format("Plugins %s reloaded", unpack(plugins)))
-    end
-  end
-
-  return status
-end
 
 return M

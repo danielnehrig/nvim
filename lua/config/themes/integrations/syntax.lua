@@ -1,5 +1,6 @@
 local theme = require("config.themes").get_colors("base_16")
 
+---@type table<string, Highlight>
 local syntax = {
   Boolean = {
     fg = theme.base09,
@@ -118,6 +119,7 @@ local syntax = {
 local merge_tb = require("config.themes").merge_tb
 
 if vim.version().minor >= 9 then
+  ---@type table<string, Highlight>
   local semantic_hls = {
     ["@lsp.type.class"] = { link = "Structure" },
     ["@lsp.type.decorator"] = { link = "Function" },

@@ -173,11 +173,11 @@ M.dap = {
 M.util = {
   c = {
     {
-      "<C-e>",
+      "<C-a>",
       function()
         require("noice").redirect(vim.fn.getcmdline())
       end,
-      { desc = "Redirect Cmdline" },
+      { desc = "Redirect Cmdline output to noice buffer" },
     },
   },
   i = {
@@ -204,11 +204,14 @@ M.util = {
   },
   n = {
     {
-      "<leader>r",
-      function()
-        require("config.core.global").reload()
-      end,
-      { desc = "Reload", silent = false },
+      "<leader>uv",
+      "<cmd>Bionic<CR>",
+      { desc = "Toggle Bionic", silent = true },
+    },
+    {
+      "<leader>ub",
+      "<cmd>Block<CR>",
+      { desc = "Toggle Block", silent = true },
     },
     {
       "<leader>uf",
@@ -248,6 +251,14 @@ M.util = {
       require("config.core.options").spell_toggle,
       {
         desc = "Toggle Spell",
+        silent = true,
+      },
+    },
+    {
+      "<leader>ux",
+      require("config.core.options").toggle_signcolumn,
+      {
+        desc = "Toggle Signcolumn",
         silent = true,
       },
     },
@@ -469,6 +480,10 @@ function M.set_lsp_mapping(bufnr)
 end
 
 function M.mappings()
+  -- merge mappings from user config
+  local config = require("config.core.config").config
+  table.insert(M.map, config.mappings)
+
   -- apply mappings
   for _, section in ipairs(M.map) do
     for mode, map in pairs(section) do

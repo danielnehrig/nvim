@@ -1,3 +1,4 @@
+# This is the build container image
 FROM archlinux/archlinux:latest
 ARG version=neovim
 COPY . /root/.config/nvim/
@@ -28,9 +29,9 @@ RUN nvim --headless\
 RUN nvim --headless\
   +'autocmd User LazySync sleep 100m | qall'\
   +"Lazy sync"
-RUN nvim --headless +'TSInstall bash python cpp rust go lua dockerfile yaml typescript javascript java tsx tsdoc c org scss css toml make json html php' +'sleep 30' +qa
+
 # Avoid container exit.
 WORKDIR /mnt/workspace
 EXPOSE 5555
-ENTRYPOINT ["/bin/bash", "-c", "source /root/.bashrc && nvim"]
+ENTRYPOINT ["/bin/bash", "-c", "source /root/.bashrc && /bin/nvim"]
 CMD ["tail", "-f", "/dev/null"]

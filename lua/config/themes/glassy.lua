@@ -1,5 +1,6 @@
 local colors = require("config.themes").get_colors("base_30")
 
+---@type table<string, Highlight>
 local M = {
   NvimTreeWinSeparator = {
     fg = colors.one_bg2,
@@ -12,12 +13,26 @@ local M = {
   },
 }
 
--- for hl groups which need bg = "NONE" only!
+---for hl groups which need bg = "NONE" only!
+---@type string[]
 local hl_groups = {
   "NormalFloat",
   "Normal",
   "Folded",
   "FoldColumn",
+  --  "SatelliteBar",
+  --  "SatelliteSearch",
+  --  "SatelliteCursor",
+  --  "SatelliteQuickfix",
+  --  "SatelliteMark",
+  --  "SatelliteGitSignsAdd",
+  --  "SatelliteGitSignsChange",
+  --  "SatelliteGitSignsDelete",
+  --  "SatelliteDiagnosticWarn",
+  --  "SatelliteDiagnosticInfo",
+  --  "SatelliteDiagnosticHint",
+  --  "SatelliteDiagnosticError",
+  "BufferTabpageFill",
   "NvimTreeNormal",
   "NvimTreeNormalNC",
   "NvimTreeCursorLine",
@@ -45,6 +60,11 @@ M.TelescopeBorder = {
 M.TelescopePromptBorder = {
   fg = colors.grey,
   bg = "NONE",
+}
+
+M.CmpDocBorder = {
+  bg = "none",
+  fg = colors.grey,
 }
 
 return M

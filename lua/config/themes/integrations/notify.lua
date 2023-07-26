@@ -1,6 +1,7 @@
 local colors = require("config.themes").get_colors("base_30")
 
-return {
+---@type table<string, Highlight>
+local notify = {
   NotifyERRORBorder = { fg = colors.red },
   NotifyERRORIcon = { fg = colors.red },
   NotifyERRORTitle = { fg = colors.red },
@@ -17,3 +18,5 @@ return {
   NotifyTRACEIcon = { fg = colors.purple },
   NotifyTRACETitle = { fg = colors.purple },
 }
+
+return notify

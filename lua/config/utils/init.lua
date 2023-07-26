@@ -47,6 +47,7 @@ end
 --- combines plugin manager colorschemes
 --- with internal colorschemes
 --- @todo add support for custom colorschemes
+--- @param arg string
 M.switch_theme = function(arg)
   local colorscheme = nil
 
@@ -78,16 +79,22 @@ M.switch_theme = function(arg)
   vim.notify(string.format("colorscheme %s not found", arg))
 end
 
+--- Returns a list of themes integrated and plugin colorschemes
+--- @return string[]
 M.get_themes = function()
+  ---@type string[]
   local res = {}
 
   local hl_dir = vim.fn.stdpath("config") .. "/lua/config/themes/hl"
+  ---@type string[]
   local hl_files = require("plenary.scandir").scan_dir(hl_dir, {})
 
   for _, file in ipairs(hl_files) do
     local a = vim.fn.fnamemodify(file, ":t")
     a = vim.fn.fnamemodify(a, ":r")
-    table.insert(res, a)
+    if a ~= "types" then
+      table.insert(res, a)
+    end
   end
 
   for theme_name, _ in pairs(themes) do

@@ -80,6 +80,10 @@ M.StatusColumn = {
         return ""
       end
 
+      if not g.status_col_fold then
+        return ""
+      end
+
       for _, filetype in ipairs(M.StatusColumn.blacklist_ft) do
         if vim.bo.filetype == filetype then
           return ""
@@ -201,7 +205,7 @@ function M.load_options()
 
   opt.mouse = "a" -- mouse on don't use mouse
 
-  opt.signcolumn = "auto" -- 2 sign column
+  opt.signcolumn = "yes:1" -- 2 sign column
   opt.cmdheight = 0 -- ex cmd height
   if globals.is_darwin then
     vim.o.guifont = "FiraCode Nerd Font Mono:h16" -- set font
@@ -251,6 +255,7 @@ function M.load_options()
   g.cursorhold_updatetime = 100
   g.loaded_ruby_provider = 0
   g.loaded_perl_provider = 0
+  g.status_col_fold = true
 
   vim.opt.statuscolumn = M.StatusColumn.build({
     M.StatusColumn.sections.line_number,
@@ -262,7 +267,7 @@ end
 
 --- toggle the fold column
 M.fold_column_toggle = function()
-  wo.foldcolumn = wo.foldcolumn == "0" and "auto:3" or "0"
+  g.status_col_fold = not g.status_col_fold
 end
 
 --- toggle the relative number from relative to absolute
@@ -279,6 +284,11 @@ end
 --- toggle the spell check
 M.spell_toggle = function()
   wo.spell = not wo.spell
+end
+
+--- toggle the sign column
+M.toggle_signcolumn = function()
+  o.signcolumn = o.signcolumn == "yes:1" and "no" or "yes:1"
 end
 
 return M

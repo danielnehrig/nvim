@@ -1,5 +1,6 @@
 local tmp_base16 = require("config.themes").get_colors("base_16")
 -- local tmp_colors = require("config.themes").get_colors("base_30")
+local breakpoint_width = 90
 
 local M = {}
 
@@ -15,10 +16,13 @@ M.theme = {
     local b_components = require("windline.components.basic")
     local animation = require("wlanimation")
     local effects = require("wlanimation.effects")
-    local state = _G.WindLine.state
-
-    local lsp_comps = require("windline.components.lsp")
     local git_comps = require("windline.components.git")
+    local components = require("config.plugins.configs.statusline.components")
+    local config = require("config.core.config").config
+    local separator_left_side =
+      helper.separators[config.ui.statusline.separator[1]]
+    local separator_right_side =
+      helper.separators[config.ui.statusline.separator[2]]
 
     local anim_colors = {
       "#90CAF9",
@@ -30,7 +34,6 @@ M.theme = {
       "#1565C0",
       "#0D47A1",
     }
-    -- local loading_text = ""
 
     local hl_list = {
       Normal = { "NormalFg", "NormalBg" },
@@ -41,338 +44,14 @@ M.theme = {
     }
     local basic = {}
 
-    local breakpoint_width = 90
     basic.divider = { b_components.divider, "" }
     basic.bg = { " ", "StatusLine" }
-
-    local colors_mode = {
-      Normal = { "red", "black" },
-      Insert = { "green", "black" },
-      Visual = { "yellow", "black" },
-      Replace = { "blue_light", "black" },
-      Command = { "magenta", "black" },
-    }
-
-    basic.vi_mode = {
-      name = "vi_mode",
-      hl_colors = colors_mode,
-      text = function()
-        return { { "   ", state.mode[2] } }
-      end,
-    }
-    basic.square_mode = {
-      hl_colors = colors_mode,
-      text = function()
-        return { { "▊", state.mode[2] } }
-      end,
-    }
-
-    basic.lsp_diagnos = {
-      name = "diagnostic",
-      hl_colors = {
-        red = { "red", "black" },
-        yellow = { "yellow", "black" },
-        blue = { "blue", "black" },
-        trans = { "transparent", "transparent" },
-        sep = { "black", "transparent" },
-        spacer = { "black", "black" },
-      },
-      width = breakpoint_width,
-      text = function()
-        if lsp_comps.check_lsp() then
-          return {
-            { " ", "red" },
-            {
-              lsp_comps.lsp_error({
-                format = " %s",
-                show_zero = true,
-              }),
-              "red",
-            },
-            {
-              lsp_comps.lsp_warning({
-                format = "  %s",
-                show_zero = true,
-              }),
-              "yellow",
-            },
-            {
-              lsp_comps.lsp_hint({
-                format = "  %s",
-                show_zero = true,
-              }),
-              "blue",
-            },
-            { " ", "spacer" },
-            { helper.separators.slant_right, "sep" },
-          }
-        end
-        return ""
-      end,
-    }
-
-    local icon_comp = b_components.cache_file_icon({
-      default = "",
-      hl_colors = { "white", "black" },
-    })
-
-    basic.file = {
-      name = "file",
-      hl_colors = {
-        red = { "red", "black" },
-        yellow = { "yellow", "black" },
-        magenta = { "magenta", "black" },
-        blue = { "blue", "black" },
-        trans = { "transparent", "transparent" },
-        sep = { "black", "transparent" },
-        spacer = { "black", "black" },
-        white = { "white", "black" },
-      },
-      text = function(bufnr, _, width)
-        -- local filetype = vim.bo.filetype
-        -- local len = string.len(filetype)
-
-        if width > breakpoint_width then
-          return {
-            icon_comp(bufnr),
-            { " ", "" },
-            { b_components.cache_file_name("[No Name]", ""), "magenta" },
-            { b_components.line_col, "white" },
-            { b_components.progress, "white" },
-            { " ", "" },
-            { b_components.file_modified(" "), "magenta" },
-            { " ", "spacer" },
-            { helper.separators.slant_right, "sep" },
-          }
-        else
-          return {
-            { b_components.cache_file_name("[No Name]", ""), "magenta" },
-            { " ", "" },
-            { b_components.file_modified(" "), "magenta" },
-            { " ", "spacer" },
-            { helper.separators.slant_right, "sep" },
-          }
-        end
-      end,
-    }
-    basic.file_right = {
-      hl_colors = {
-        default = hl_list.Black,
-        white = { "white", "black" },
-        magenta = { "magenta", "black" },
-      },
-      text = function(_, _, width)
-        if width < breakpoint_width then
-          return {
-            { b_components.line_col, "white" },
-            { b_components.progress, "" },
-          }
-        end
-      end,
-    }
-    basic.git = {
-      name = "git",
-      hl_colors = {
-        green = { "green", "black_light" },
-        red = { "red", "black_light" },
-        blue = { "blue", "black_light" },
-        trans = { "transparent", "transparent" },
-        spacer = { "black_light", "black_light" },
-        sep = { "black_light", "grey" },
-        septwo = { "black_light", "black" },
-      },
-      width = breakpoint_width,
-      text = function()
-        return {
-          { helper.separators.slant_left, "septwo" },
-          { " ", "spacer" },
-          {
-            git_comps.diff_added({
-              format = " %s",
-              show_zero = true,
-            }),
-            "green",
-          },
-          {
-            git_comps.diff_removed({
-              format = "  %s",
-              show_zero = true,
-            }),
-            "red",
-          },
-          {
-            git_comps.diff_changed({
-              format = " 柳%s",
-              show_zero = true,
-            }),
-            "blue",
-          },
-        }
-      end,
-    }
-
-    basic.lsp_names = {
-      name = "lsp_names",
-      hl_colors = {
-        green = { "green", "black" },
-        magenta = { "magenta", "black" },
-        sep = { "black", "transparent" },
-        sepdebug = { "black", "debug_bg" },
-        spacer = { "black", "black" },
-      },
-      click = function()
-        vim.cmd([[LspInfo]])
-      end,
-      width = breakpoint_width,
-      text = function()
-        if lsp_comps.check_lsp() then
-          local dap_present, _ = pcall(require, "dap")
-          local lsp_present, lsp_status = pcall(require, "lsp-status")
-          if lsp_present then
-            return {
-              {
-                helper.separators.slant_left,
-                dap_present and "sepdebug" or "sep",
-              },
-              { " ", "spacer" },
-              { lsp_comps.lsp_name(), "magenta" },
-              { " ", "spacer" },
-              { helper.separators.slant_left_thin, "magenta" },
-              { lsp_status.status(), "magenta" },
-            }
-          end
-        end
-        return ""
-      end,
-    }
-
-    basic.gps = {
-      name = "gps",
-      hl_colors = {
-        loc = { "white", "transparent" },
-      },
-      width = breakpoint_width,
-      text = function(bufnr)
-        local gps_present, gps = pcall(require, "nvim-navic")
-
-        if gps_present then
-          if gps.is_available(bufnr) then
-            local location = gps.get_location({}, bufnr)
-            return {
-              { " ", "" },
-              { location, "loc" },
-            }
-          end
-        end
-        return ""
-      end,
-    }
-
-    basic.path = {
-      name = "path",
-      hl_colors = {
-        loc = { "white", "transparent" },
-      },
-      width = breakpoint_width,
-      text = function(bufnr)
-        local bufname = vim.api.nvim_buf_get_name(bufnr)
-        local blacklist_bt = { "terminal", "NvimTree" }
-        local blacklist_ft = { "alpha" }
-        for _, name in ipairs(blacklist_bt) do
-          if vim.bo.buftype == name then
-            return ""
-          end
-        end
-        for _, name in ipairs(blacklist_ft) do
-          if vim.bo.filetype == name then
-            return ""
-          end
-        end
-
-        local path = vim.fn.fnamemodify(bufname, ":~:.")
-        return {
-          { path, "" },
-          { "", "loc" },
-        }
-      end,
-    }
-
-    local loading_text = ""
-    basic.compiler = {
-      name = "compiler",
-      hl_colors = {
-        green = { "green", "black" },
-        red = { "red", "black" },
-        spacer = { "black", "black" },
-        wave_anim1 = { "waveright2", "black" },
-        wave_anim2 = { "waveright3", "black" },
-        wave_anim3 = { "waveright4", "black" },
-        wave_anim4 = { "waveright5", "black" },
-        wave_anim5 = { "waveright6", "black" },
-        wave_anim6 = { "waveright7", "black" },
-      },
-      width = breakpoint_width,
-      text = function()
-        local tasks =
-          require("overseer.task_list").list_tasks({ unique = true })
-        local tasks_by_status =
-          require("overseer.util").tbl_group_by(tasks, "status")
-        local running = tasks_by_status["RUNNING"]
-        local success = tasks_by_status["SUCCESS"]
-
-        if running then
-          return {
-            { " ", "spacer" },
-            { "", "wave_anim1" },
-            { " ", "spacer" },
-            { "M", "wave_anim2" },
-            { "a", "wave_anim3" },
-            { "k", "wave_anim4" },
-            { "e", "wave_anim5" },
-            { " ", "spacer" },
-            { loading_text, "wave_anim6" },
-            { " ", "spacer" },
-          }
-        end
-
-        if success then
-          return {
-            { " ", "spacer" },
-            { "", "green" },
-            { " ", "spacer" },
-          }
-        end
-        return ""
-      end,
-    }
-
-    basic.dap = {
-      name = "dap",
-      hl_colors = {
-        dap_status = { "debug_fg", "debug_bg", "bold" },
-        spacer = { "debug_bg", "debug_bg" },
-        sep = { "debug_bg", "transparent" },
-      },
-      width = breakpoint_width,
-      text = function()
-        local debug = require("config.plugins.configs.dap.attach")
-        local status = debug.getStatus()
-        if status then
-          return {
-            { helper.separators.slant_left, "sep" },
-            { " ", "spacer" },
-            { status .. " ", "dap_status" },
-          }
-        end
-        return ""
-      end,
-    }
 
     local quickfix = {
       filetypes = { "qf", "Trouble" },
       active = {
         { "🚦 Quickfix ", { "white", "black" } },
-        { helper.separators.slant_right, { "black", "black_light" } },
+        { separator_left_side, { "black", "black_light" } },
         {
           function()
             return vim.fn.getqflist({ title = 0 }).title
@@ -380,10 +59,10 @@ M.theme = {
           { "cyan", "black_light" },
         },
         { " Total : %L ", { "cyan", "black_light" } },
-        { helper.separators.slant_right, { "black_light", "transparent" } },
+        { separator_left_side, { "black_light", "transparent" } },
         { " ", { "InactiveFg", "transparent" } },
         basic.divider,
-        { helper.separators.slant_left_2, { "black", "transparent" } },
+        { separator_right_side, { "black", "transparent" } },
         { "🧛 ", { "white", "black" } },
       },
       always_active = true,
@@ -393,9 +72,9 @@ M.theme = {
       filetypes = { "fern", "NvimTree", "lir" },
       active = {
         { "  ", { "white", "black" } },
-        { helper.separators.slant_right, { "black", "transparent" } },
+        { separator_left_side, { "black", "transparent" } },
         { b_components.divider, "" },
-        { helper.separators.slant_left, { "black_light", "transparent" } },
+        { separator_right_side, { "black_light", "transparent" } },
         { b_components.file_name(""), { "white", "black_light" } },
       },
       always_active = true,
@@ -406,9 +85,9 @@ M.theme = {
       filetypes = { "dap-repl" },
       active = {
         { "  ", { "white", "black" } },
-        { helper.separators.slant_right, { "black", "transparent" } },
+        { separator_left_side, { "black", "transparent" } },
         { b_components.divider, "" },
-        { helper.separators.slant_left, { "black_light", "transparent" } },
+        { separator_right_side, { "black_light", "transparent" } },
         { b_components.file_name(""), { "white", "black_light" } },
       },
       always_active = true,
@@ -424,12 +103,12 @@ M.theme = {
       show_last_status = true,
     }
 
-    local left = { basic.vi_mode, basic.file, basic.divider }
+    local left = { components.vi_mode, components.file, basic.divider }
     local right = {
-      basic.compiler,
-      basic.dap,
-      basic.lsp_names,
-      basic.git,
+      components.compiler,
+      components.dap,
+      components.lsp_names,
+      components.git,
       {
         git_comps.git_branch(),
         { "magenta", "black_light" },
@@ -446,11 +125,11 @@ M.theme = {
       always_active = true,
       show_last_status = true,
       inactive = {
-        basic.vi_mode,
-        basic.file,
+        components.vi_mode,
+        components.file,
         basic.divider,
-        basic.file_right,
-        basic.git,
+        components.file_right,
+        components.git,
         { git_comps.git_branch(), { "magenta", "black" }, breakpoint_width },
         { " ", hl_list.Black },
       },
@@ -500,13 +179,13 @@ M.theme = {
     local winbar = {
       filetypes = { "winbar" },
       active = {
-        basic.path,
-        basic.gps,
+        components.path,
+        components.gps,
         basic.divider,
       },
       inactive = {
-        basic.path,
-        basic.gps,
+        components.path,
+        components.gps,
         basic.divider,
       },
     }
@@ -538,7 +217,8 @@ M.theme = {
       interval = 150,
       effect = effects.list_text(loading),
       on_tick = function(value)
-        loading_text = value
+        require("config.plugins.configs.statusline.components").loading_text =
+          value
       end,
     })
   end,

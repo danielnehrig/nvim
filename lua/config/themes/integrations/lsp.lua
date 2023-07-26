@@ -1,6 +1,7 @@
 local colors = require("config.themes").get_colors("base_30")
 
-return {
+---@type table<string, Highlight>
+local lsp = {
   -- LSP References
   LspReferenceText = { fg = colors.darker_black, bg = colors.white },
   LspReferenceRead = { fg = colors.darker_black, bg = colors.white },
@@ -17,3 +18,5 @@ return {
   RenamerTitle = { fg = colors.black, bg = colors.red },
   RenamerBorder = { fg = colors.red },
 }
+
+return lsp

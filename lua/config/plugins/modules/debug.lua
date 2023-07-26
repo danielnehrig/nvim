@@ -1,7 +1,7 @@
----@module 'config.plugins.modules.types'
+---@module 'lazy.types'
 
 ---@class debug
----@field debug table<string, PluginInterfaceMerged>
+---@field debug table<string, LazyPluginSpec>
 local M = {}
 
 M.debug = {

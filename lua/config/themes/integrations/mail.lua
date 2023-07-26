@@ -1,6 +1,7 @@
 local theme = require("config.themes").get_colors("base_16")
 
-return {
+---@type table<string, Highlight>
+local mail = {
   mailQuoted1 = {
     fg = theme.base0A,
   },
@@ -33,3 +34,5 @@ return {
     fg = theme.base0D,
   },
 }
+
+return mail
