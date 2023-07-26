@@ -35,6 +35,7 @@ FROM alpine:latest as main
 # Copy files from build container to run container.
 
 RUN apk add bash --no-cache
+COPY --from=build /root/.bashrc /root/.bashrc
 COPY --from=build /root/.config/nvim /root/.config/nvim
 COPY --from=build /root/.local /root/.local
 COPY --from=build /root/go /root/go
