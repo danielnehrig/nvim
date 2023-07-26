@@ -39,12 +39,14 @@ COPY --from=build /root/.local /root/.local
 COPY --from=build /root/go /root/go
 COPY --from=build /root/.cargo /root/.cargo
 COPY --from=build /usr/sbin/node /bin/node
+COPY --from=build /usr/sbin/python /bin/python
 COPY --from=build /usr/sbin/nvim /bin/nvim
 COPY --from=build /usr/sbin/go /bin/go
 COPY --from=build /usr/sbin/rustup /bin/rustup
 COPY --from=build /usr/sbin/rustc /bin/rustc
 COPY --from=build /usr/sbin/cargo /bin/cargo
 COPY --from=build /usr/sbin/lua /bin/lua
+COPY --from=build /bin/sbin/bash /bin/bash
 COPY --from=build /usr/lib/lua-language-server /usr/lib/lua-language-server
 COPY --from=build /usr/sbin/lua-language-server /bin/lua-language-server
 
