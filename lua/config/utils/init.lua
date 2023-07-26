@@ -86,12 +86,15 @@ M.get_themes = function()
   local res = {}
 
   local hl_dir = vim.fn.stdpath("config") .. "/lua/config/themes/hl"
+  ---@type string[]
   local hl_files = require("plenary.scandir").scan_dir(hl_dir, {})
 
   for _, file in ipairs(hl_files) do
     local a = vim.fn.fnamemodify(file, ":t")
     a = vim.fn.fnamemodify(a, ":r")
-    table.insert(res, a)
+    if a ~= "types" then
+      table.insert(res, a)
+    end
   end
 
   for theme_name, _ in pairs(themes) do
