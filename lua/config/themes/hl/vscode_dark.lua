@@ -1,4 +1,5 @@
--- Thanks to original theme for existing https://github.com/microsoft/vscode/blob/main/extensions/theme-defaults/themes/dark_plus.json
+-- Thanks to original theme for existing
+-- https://github.com/microsoft/vscode/blob/main/extensions/theme-defaults/themes/dark_plus.json
 -- this is a modified version of it
 
 ---@module 'config.themes.hl.types'
