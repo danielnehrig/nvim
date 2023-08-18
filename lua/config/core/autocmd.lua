@@ -32,7 +32,7 @@ function M.autocmds()
     group = au_ft,
   })
   -- lsp
-  vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+  vim.api.nvim_create_augroup("LspAttach_inlayhints", { clear = true })
   vim.api.nvim_create_autocmd("LspAttach", {
     group = "LspAttach_inlayhints",
     callback = function(args)
@@ -80,6 +80,14 @@ function M.autocmds()
           group = au_lsp,
         })
       end
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("LspDetach", {
+    group = "LspAttach_inlayhints",
+    callback = function(args)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      vim.api.nvim_del_augroup_by_name("lsp_" .. client.name)
     end,
   })
 

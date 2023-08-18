@@ -19,6 +19,7 @@ local shfmt = require("config.plugins.configs.lspconfig.efm.shfmt")
 local gofmt = require("config.plugins.configs.lspconfig.efm.gofmt")
 local goimports = require("config.plugins.configs.lspconfig.efm.goimports")
 local golines = require("config.plugins.configs.lspconfig.efm.golines")
+local sql = require("config.plugins.configs.lspconfig.efm.sql")
 
 -- formatting and linting with efm
 lspconfig.efm.setup({
@@ -75,6 +76,7 @@ lspconfig.efm.setup({
       markdown = { dprint, vale },
       txt = { vale },
       org = { vale },
+      sql = { sql },
       json = { json_prettier, jq },
       toml = { dprint },
       python = { python },
@@ -89,6 +91,7 @@ lspconfig.efm.setup({
     "sh",
     "json",
     "toml",
+    "sql",
     "go",
     "txt",
     "org",
