@@ -229,9 +229,8 @@ dap.configurations.rust = dap.configurations.cpp
 -- overwrite program
 dap.configurations.rust[1].name = "Build and Launch Project"
 dap.configurations.rust[1].externalConsole = true
+dap.configurations.rust[1].preLaunchTask = "cargo build"
 dap.configurations.rust[1].program = function()
-  local overseer = require("overseer")
-  overseer.run_template({ name = "cargo build" })
   local TOML = require("config.utils.toml")
   local cargotoml = vim.fn.readblob(vim.fn.getcwd() .. "/Cargo.toml")
   local parsed = TOML.parse(cargotoml)
@@ -262,9 +261,8 @@ dap.configurations.rust[3] = {
   name = "Build and Launch this file",
   type = "lldb",
   request = "launch",
+  preLaunchTask = "build file",
   program = function()
-    local overseer = require("overseer")
-    overseer.run_template({ name = "build file" })
     local filename = vim.api.nvim_buf_get_name(0)
     filename = string.gsub(filename, ".rs", "")
     return build_path_string(filename)
