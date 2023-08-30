@@ -8,6 +8,11 @@ if not present then
   return
 end
 
+local present2, _ = pcall(require, "overseer")
+if not present2 then
+  require("dap.ext.vscode").json_decode = require("overseer.json").decode
+end
+
 vim.fn.sign_define(
   "DapBreakpoint",
   { text = "🛑", texthl = "", linehl = "", numhl = "" }
@@ -201,7 +206,7 @@ dap.configurations.javascriptreact = {
 
 dap.configurations.cpp = {
   {
-    name = "Launch",
+    name = "Launch file",
     type = "lldb",
     request = "launch",
     program = function()
@@ -222,12 +227,53 @@ dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
 -- overwrite program
+dap.configurations.rust[1].name = "Build and Launch Project"
 dap.configurations.rust[1].externalConsole = true
 dap.configurations.rust[1].program = function()
+  local overseer = require("overseer")
+  overseer.run_template({ name = "cargo build" })
+  local TOML = require("config.utils.toml")
+  local cargotoml = vim.fn.readblob(vim.fn.getcwd() .. "/Cargo.toml")
+  local parsed = TOML.parse(cargotoml)
   return build_path_string(
-    vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    vim.fn.getcwd() .. "/target/debug/" .. parsed.package.name
   )
 end
+
+dap.configurations.rust[2] = {
+  name = "Launch Project",
+  type = "lldb",
+  request = "launch",
+  program = function()
+    local TOML = require("config.utils.toml")
+    local cargotoml = vim.fn.readblob(vim.fn.getcwd() .. "/Cargo.toml")
+    local parsed = TOML.parse(cargotoml)
+    return build_path_string(
+      vim.fn.getcwd() .. "/target/debug/" .. parsed.package.name
+    )
+  end,
+  cwd = "${workspaceFolder}",
+  stopOnEntry = false,
+  args = {},
+  runInTerminal = false,
+}
+
+dap.configurations.rust[3] = {
+  name = "Build and Launch this file",
+  type = "lldb",
+  request = "launch",
+  program = function()
+    local overseer = require("overseer")
+    overseer.run_template({ name = "build file" })
+    local filename = vim.api.nvim_buf_get_name(0)
+    filename = string.gsub(filename, ".rs", "")
+    return build_path_string(filename)
+  end,
+  cwd = "${workspaceFolder}",
+  stopOnEntry = false,
+  args = {},
+  runInTerminal = false,
+}
 
 local dapui_present, dapui = pcall(require, "dapui")
 local dapvt_present, dapvt = pcall(require, "nvim-dap-virtual-text")
