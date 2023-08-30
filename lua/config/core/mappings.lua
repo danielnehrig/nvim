@@ -175,7 +175,7 @@ M.util = {
     {
       "<C-a>",
       function()
-        require("noice").redirect(vim.fn.getcmdline())
+        require("noice").redirect(vim.fn.getcmdline() --[[@as string]])
       end,
       { desc = "Redirect Cmdline output to noice buffer" },
     },
@@ -324,26 +324,26 @@ M.run = {
     {
       "<leader>br",
       "<cmd>'<,'>SnipRun<CR>",
-      { desc = "Run", silent = false },
+      { desc = "Run Code", silent = false },
     },
   },
   n = {
     {
       "<leader>br",
       "<cmd>%SnipRun<CR>",
-      { desc = "Run", silent = false },
+      { desc = "Run Code", silent = false },
     },
     {
       "<leader>bb",
       "<cmd>OverseerRun<CR>",
-      { desc = "Build", silent = false },
+      { desc = "Overseer Build", silent = false },
     },
     {
       "<leader>bt",
       function()
         require("neotest").overseer.run()
       end,
-      { desc = "Test", silent = false },
+      { desc = "NeoTest + Overseer", silent = false },
     },
   },
 }
@@ -433,7 +433,7 @@ function M.set_lsp_mapping(bufnr)
       },
       {
         "<leader>gr",
-        "<cmd>lua require('config.plugins.configs.lspconfig.utils').rename()<CR>",
+        vim.lsp.buf.rename,
         { desc = "Rename", buffer = bufnr },
       },
       {
