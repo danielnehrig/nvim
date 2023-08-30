@@ -32,22 +32,12 @@ vim.fn.sign_define(
 
 dap.adapters.node2 = {
   type = "executable",
-  command = "node",
-  args = {
-    build_path_string(
-      global.dap_path .. "/jsnode/vscode-node-debug2/out/src/nodeDebug.js"
-    ),
-  },
+  command = build_path_string(global.dap_path .. "/node-debug2-adapter"),
 }
 
 dap.adapters.chrome = {
   type = "executable",
-  command = "node",
-  args = {
-    build_path_string(
-      global.dap_path .. "/chrome/vscode-chrome-debug/out/src/chromeDebug.js"
-    ),
-  },
+  command = build_path_string(global.dap_path .. "/chrome-debug-adapter"),
 }
 
 dap.adapters.lldb = {
@@ -58,10 +48,7 @@ dap.adapters.lldb = {
 
 dap.adapters.go = {
   type = "executable",
-  command = "node",
-  args = {
-    build_path_string(global.dap_path .. "/go/vscode-go/dist/debugAdapter.js"),
-  },
+  command = build_path_string(global.dap_path .. "/go-debug-adapter"),
 }
 
 dap.configurations.go = {

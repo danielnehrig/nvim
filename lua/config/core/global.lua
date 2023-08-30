@@ -16,7 +16,7 @@ local M = {
   vim_path = vim.fn.stdpath("config"),
   path_sep = path_sep,
   home = home,
-  dap_path = vim.fn.stdpath("data") .. path_sep .. "dapinstall",
+  dap_path = vim.fn.stdpath("data") .. path_sep .. "mason" .. path_sep .. "bin",
   lsp_path = vim.fn.stdpath("data") .. path_sep .. "lsp",
   data_path = string.format(
     "%s" .. path_sep .. "site" .. path_sep,
