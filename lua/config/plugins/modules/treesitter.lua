@@ -8,7 +8,17 @@ M.ts = {
   ["shellRaining/hlchunk.nvim"] = {
     event = "UIEnter",
     config = function()
-      require("hlchunk").setup({})
+      require("hlchunk").setup({
+        blank = {
+          enable = false,
+        },
+        line_num = {
+          enable = false,
+        },
+        indent = {
+          enable = false,
+        },
+      })
     end,
   },
   ["Wansmer/treesj"] = {
