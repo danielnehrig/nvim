@@ -46,6 +46,16 @@ dap.adapters.lldb = {
   name = "lldb",
 }
 
+dap.adapters.codelldb = {
+  type = "server",
+  port = "${port}",
+  executable = {
+    -- CHANGE THIS to your path!
+    command = vim.fn.exepath("codelldb"),
+    args = { "--port", "${port}" },
+  },
+}
+
 dap.adapters.go = {
   type = "executable",
   command = build_path_string(global.dap_path .. "/go-debug-adapter"),
@@ -194,7 +204,7 @@ dap.configurations.javascriptreact = {
 dap.configurations.cpp = {
   {
     name = "Launch file",
-    type = "lldb",
+    type = "codelldb",
     request = "launch",
     program = function()
       return vim.fn.input(
@@ -228,7 +238,7 @@ end
 
 dap.configurations.rust[2] = {
   name = "Launch Project",
-  type = "lldb",
+  type = "codelldb",
   request = "launch",
   program = function()
     local TOML = require("config.utils.toml")
@@ -246,7 +256,7 @@ dap.configurations.rust[2] = {
 
 dap.configurations.rust[3] = {
   name = "Build and Launch this file",
-  type = "lldb",
+  type = "codelldb",
   request = "launch",
   preLaunchTask = "build file",
   program = function()
