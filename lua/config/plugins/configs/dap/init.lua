@@ -51,7 +51,7 @@ dap.adapters.codelldb = {
   port = "${port}",
   executable = {
     -- CHANGE THIS to your path!
-    command = vim.fn.exepath("codelldb"),
+    command = build_path_string(global.dap_path .. "/codelldb"),
     args = { "--port", "${port}" },
   },
 }
