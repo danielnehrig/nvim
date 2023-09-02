@@ -36,7 +36,7 @@ function M.dashboard()
     --  '<cmd>lua require("persisted").load()<CR>'
     --  ),
     button("n", "   New file", "<cmd>ene <BAR> startinsert <CR>"),
-    button("r", "   Recent files", "<cmd>Telescope frecency<CR>"),
+    button("r", "󱔗   Recent files", "<cmd>Telescope frecency<CR>"),
     button(
       "f",
       "   Find file",
@@ -44,7 +44,7 @@ function M.dashboard()
     ),
     button("p", "   Projects", "<cmd>Telescope project<CR>"),
     button("u", "   Update plugins", "<cmd>Lazy sync<CR>"),
-    button("q", "   Quit Neovim", "<cmd>qa!<CR>"),
+    button("q", "󰩈   Quit Neovim", "<cmd>qa!<CR>"),
   }
   dashboard.section.buttons.opts = {
     spacing = 0,
@@ -62,7 +62,7 @@ function M.dashboard()
       .. "."
       .. version.patch
 
-    return " " .. total_plugins .. " plugins" .. nvim_version_info
+    return "󰣪 " .. total_plugins .. " plugins" .. nvim_version_info
   end
   dashboard.section.footer.val = footer()
   dashboard.section.footer.opts.hl = "AlphaFooter"

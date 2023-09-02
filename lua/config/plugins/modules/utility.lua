@@ -76,6 +76,7 @@ M.utility = {
   },
   ["windwp/nvim-autopairs"] = {
     dependencies = "nvim-cmp",
+    event = "InsertEnter",
     config = function()
       require("config.plugins.configs.autopairs").init()
     end,

@@ -255,7 +255,7 @@ M.git = {
       },
       {
         git_comps.diff_changed({
-          format = " 柳%s",
+          format = "  %s",
           show_zero = true,
         }),
         "blue",
