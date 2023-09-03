@@ -66,7 +66,7 @@ M.lsp_diagnos = {
         },
         {
           lsp_comps.lsp_hint({
-            format = "  %s",
+            format = "  %s",
             show_zero = true,
           }),
           "blue",

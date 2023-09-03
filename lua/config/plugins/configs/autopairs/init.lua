@@ -9,7 +9,7 @@ function M.init()
   end
 
   autopairs.setup({
-    check_ts = true,
+    --check_ts = true,
     fast_wrap = {},
     disable_filetype = { "TelescopePrompt", "vim" },
   })

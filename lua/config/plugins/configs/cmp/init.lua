@@ -143,12 +143,19 @@ function M.init()
       ["<CR>"] = cmp.mapping.confirm({ select = false }),
     }),
     -- preselect = cmp.PreselectMode.Item,
-    sources = {
+    sources = cmp.config.sources({
       { name = "nvim_lsp_signature_help" },
-      { name = "luasnip" },
+      {
+        name = "luasnip",
+        entry_filter = function()
+          local context = require("cmp.config.context")
+          return not context.in_treesitter_capture("string")
+            and not context.in_syntax_group("String")
+        end,
+      },
       { name = "nvim_lsp" },
       { name = "path" },
-    },
+    }),
   })
 
   cmp.setup.cmdline("/", {

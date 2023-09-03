@@ -74,9 +74,18 @@ M.utility = {
       require("coverage").setup()
     end,
   },
+  ["altermo/ultimate-autopair.nvim"] = {
+    event = { "InsertEnter", "CmdlineEnter" },
+    enabled = false,
+    config = function()
+      require("ultimate-autopair").setup({
+        --Config goes here
+      })
+    end,
+  },
   ["windwp/nvim-autopairs"] = {
     dependencies = "nvim-cmp",
-    event = "InsertEnter",
+    enabled = true,
     config = function()
       require("config.plugins.configs.autopairs").init()
     end,
