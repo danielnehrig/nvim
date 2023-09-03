@@ -16,7 +16,7 @@ function LSP.on_attach(client, bufnr)
 
   fn.sign_define(
     "DiagnosticSignError",
-    { texthl = "DiagnosticError", text = " " }
+    { texthl = "DiagnosticError", text = " " }
   )
   fn.sign_define(
     "DiagnosticSignWarn",
@@ -28,7 +28,7 @@ function LSP.on_attach(client, bufnr)
   )
   fn.sign_define(
     "DiagnosticSignHint",
-    { texthl = "DiagnosticHint", text = " " }
+    { texthl = "DiagnosticHint", text = " " }
   )
 end
 
