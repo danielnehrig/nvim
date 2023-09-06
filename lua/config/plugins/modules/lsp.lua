@@ -10,6 +10,7 @@ M.lsp = {
     priority = 52, -- needs to load before lspconfig
   },
   ["lvimuser/lsp-inlayhints.nvim"] = {
+    enabled = false,
     config = function()
       require("lsp-inlayhints").setup()
     end,

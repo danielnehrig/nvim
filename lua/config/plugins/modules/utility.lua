@@ -75,7 +75,15 @@ M.utility = {
   ["andythigpen/nvim-coverage"] = {
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
-      require("coverage").setup()
+      require("coverage").setup({
+        lang = {
+          rust = {
+            coverage_command = "grcov ${cwd} -s ${cwd} --binary-path ./target/llvm-cov-target/ -t coveralls --branch --ignore-not-existing --token NO_TOKEN",
+            project_files_only = true,
+            project_files = { "src/*", "tests/*" },
+          },
+        },
+      })
     end,
   },
   ["altermo/ultimate-autopair.nvim"] = {
