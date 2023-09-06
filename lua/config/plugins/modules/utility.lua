@@ -11,7 +11,12 @@ M.utility = {
       -- Tasks are disposed 5 minutes after running to free resources.
       -- If you need to close a task inmediatelly:
       -- press ENTER in the menu you see after compiling on the task you want to close.
-      templates = { "builtin", "user.run_file", "user.build_file" },
+      templates = {
+        "builtin",
+        "user.run_file",
+        "user.build_file",
+        "user.rust_cov",
+      },
       task_list = {
         direction = "bottom",
         min_height = 25,
@@ -67,9 +72,8 @@ M.utility = {
   },
   ["MunifTanjim/nui.nvim"] = { lazy = true },
   ["nvim-lua/plenary.nvim"] = { lazy = true },
-  ["https://github.com/andythigpen/nvim-coverage"] = {
+  ["andythigpen/nvim-coverage"] = {
     dependencies = "nvim-lua/plenary.nvim",
-    lazy = true,
     config = function()
       require("coverage").setup()
     end,
