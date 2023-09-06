@@ -336,7 +336,12 @@ M.run = {
     {
       "<leader>bb",
       "<cmd>OverseerRun<CR>",
-      { desc = "Overseer Build", silent = false },
+      { desc = "Overseer Run", silent = false },
+    },
+    {
+      "<leader>bo",
+      "<cmd>OverseerToggle<CR>",
+      { desc = "Overseer Open", silent = false },
     },
     {
       "<leader>bt",
