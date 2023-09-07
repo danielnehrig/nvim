@@ -355,13 +355,6 @@ M.run = {
       end,
       { desc = "NeoTest + Overseer", silent = false },
     },
-    {
-      "<leader>bt",
-      function()
-        require("neotest").overseer.watch()
-      end,
-      { desc = "NeoTest Watch + Overseer", silent = false },
-    },
   },
 }
 
