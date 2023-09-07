@@ -344,11 +344,23 @@ M.run = {
       { desc = "Overseer Open", silent = false },
     },
     {
+      "<leader>bc",
+      "<cmd>Coverage<CR>",
+      { desc = "Coverage", silent = false },
+    },
+    {
       "<leader>bt",
       function()
         require("neotest").overseer.run()
       end,
       { desc = "NeoTest + Overseer", silent = false },
+    },
+    {
+      "<leader>bt",
+      function()
+        require("neotest").overseer.watch()
+      end,
+      { desc = "NeoTest Watch + Overseer", silent = false },
     },
   },
 }
@@ -437,6 +449,16 @@ function M.set_lsp_mapping(bufnr)
         { desc = "Code Action", buffer = bufnr },
       },
       {
+        "<Leader>gl",
+        vim.lsp.codelens.run,
+        { desc = "Code Action", buffer = bufnr },
+      },
+      {
+        "<Leader>gf",
+        vim.lsp.buf.code_action,
+        { desc = "Code Action", buffer = bufnr },
+      },
+      {
         "<leader>gr",
         vim.lsp.buf.rename,
         { desc = "Rename", buffer = bufnr },
@@ -469,7 +491,7 @@ function M.set_lsp_mapping(bufnr)
   for mode, map in pairs(M.lsp) do
     for _, conf in ipairs(map) do
       if conf then
-        vim.keymap.set(mode, conf[1], conf[2])
+        vim.keymap.set(mode, conf[1], conf[2], conf[3])
       end
     end
   end
