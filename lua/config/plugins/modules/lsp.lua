@@ -5,6 +5,11 @@
 local M = {}
 
 M.lsp = {
+  ["VidocqH/lsp-lens.nvim"] = {
+    config = function()
+      require("lsp-lens").setup({})
+    end,
+  },
   ["folke/neoconf.nvim"] = {
     config = true,
     priority = 52, -- needs to load before lspconfig
