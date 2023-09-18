@@ -45,6 +45,9 @@ M.init = function()
     t = {
       name = "Tab Nav",
     },
+    b = {
+      name = "Build/Run/Test",
+    },
   }, { prefix = "<leader>" })
 end
 
