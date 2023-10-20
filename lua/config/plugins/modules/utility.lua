@@ -266,7 +266,7 @@ M.utility = {
   ["folke/todo-comments.nvim"] = {
     config = require("config.plugins.configs.todo").init,
     dependencies = "telescope.nvim",
-    lazy = true,
+    event = "VeryLazy",
   },
   -- INFO:  surround () motion
   ["ur4ltz/surround.nvim"] = {

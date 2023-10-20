@@ -11,12 +11,6 @@ function LSP.on_attach(client, bufnr)
     lsp_status.on_attach(client)
   end
   -- client.server_capabilities.semanticTokensProvider = nil
-
-  require("config.core.mappings").set_lsp_mapping(bufnr)
-  if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint(bufnr, true)
-  end
-
   fn.sign_define(
     "DiagnosticSignError",
     { texthl = "DiagnosticError", text = " " }
@@ -33,6 +27,13 @@ function LSP.on_attach(client, bufnr)
     "DiagnosticSignHint",
     { texthl = "DiagnosticHint", text = " " }
   )
+
+  require("config.core.mappings").set_lsp_mapping(bufnr)
+  if vim.version().minor > 9 then
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint(bufnr, true)
+    end
+  end
 end
 
 -- LSP Settings
