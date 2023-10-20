@@ -5,6 +5,7 @@
 local M = {}
 
 M.ts = {
+  -- INFO: hihglight current chunk
   ["shellRaining/hlchunk.nvim"] = {
     event = "UIEnter",
     config = function()
@@ -21,6 +22,7 @@ M.ts = {
       })
     end,
   },
+  --- TODO: ?
   ["Wansmer/treesj"] = {
     keys = { "<space>m", "<space>j", "<space>s" },
     opts = { use_default_keymaps = false, max_join_length = 150 },
@@ -29,6 +31,7 @@ M.ts = {
       require("treesj").setup({})
     end,
   },
+  --- INFO: refactor plugin
   ["ThePrimeagen/refactoring.nvim"] = {
     config = require("config.plugins.configs.refactoring").init,
     event = "BufRead",
@@ -37,6 +40,7 @@ M.ts = {
       "nvim-lua/plenary.nvim",
     },
   },
+  --- INFO: display cursor syntax struct context in winbar buffer
   ["SmiteshP/nvim-navic"] = {
     dependencies = "neovim/nvim-lspconfig",
     lazy = true,
@@ -51,17 +55,21 @@ M.ts = {
     end,
   },
   ["nvim-treesitter/nvim-treesitter"] = {},
+  --- INFO:  indenter
   ["yioneko/nvim-yati"] = {
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
+  --- INFO: doc generation
   ["danymat/neogen"] = {
     cmd = { "DocGen" },
     config = require("config.plugins.configs.neogen").init,
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
+  --- INFO: treesitter aware commenting
   ["JoosepAlviste/nvim-ts-context-commentstring"] = {
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
+  --- INFO: treesitter aware commenting
   ["winston0410/commented.nvim"] = {
     keys = {
       { "<space>cc", mode = { "n", "v" }, desc = "Comment out line" },
@@ -75,18 +83,22 @@ M.ts = {
       })
     end,
   },
+  -- INFO: textobject movements like change inside argument jump to function
   ["nvim-treesitter/nvim-treesitter-textobjects"] = {
     dependencies = "nvim-treesitter/nvim-treesitter",
     lazy = true,
   },
+  -- INFO: show ts nodes etc
   ["nvim-treesitter/playground"] = {
     cmd = "TSPlaygroundToggle",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
+  -- INFO: textsubject movements
   ["RRethy/nvim-treesitter-textsubjects"] = {
     dependencies = "nvim-treesitter/nvim-treesitter",
     lazy = true,
   },
+  -- INFO: add auto tags
   ["windwp/nvim-ts-autotag"] = {
     dependencies = "nvim-treesitter/nvim-treesitter",
     lazy = true,

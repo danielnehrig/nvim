@@ -5,15 +5,18 @@
 local M = {}
 
 M.navigation = {
+  --- INFO: % motion
   ["andymass/vim-matchup"] = {
     config = function()
       vim.g.matchup_matchparen_offscreen = {}
     end,
   },
+  --- INFO: tmuxish behaviour in vim
   ["hkupty/nvimux"] = {
     keys = { "<C-a>" },
     config = require("config.plugins.configs.nvimux").init,
   },
+  --- INFO: file picker / grep search etc anything fuzzy related
   ["nvim-telescope/telescope.nvim"] = {
     cmd = { "Telescope" },
     config = require("config.plugins.configs.telescope").init,
@@ -28,11 +31,13 @@ M.navigation = {
       { "nvim-telescope/telescope-project.nvim" },
     },
   },
+  --- INFO: drawerboard style file navigator
   ["kyazdani42/nvim-tree.lua"] = {
     dependencies = "kyazdani42/nvim-web-devicons",
     config = require("config.plugins.configs.nvimTree").init,
     cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
   },
+  --- INFO: press tab to get out of ()
   ["abecodes/tabout.nvim"] = {
     config = function()
       require("tabout").setup({

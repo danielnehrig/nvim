@@ -32,7 +32,9 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
+  --- INFO: highlight start of words bold
   ["HampusHauffman/bionic.nvim"] = {},
+  --- INFO: shows indentation scopes with different background highlight making it a block
   ["HampusHauffman/block.nvim"] = {
     config = function()
       require("block").setup({
@@ -54,6 +56,7 @@ M.theme = {
     tag = "v0.0.7",
     lazy = true,
   },
+  --- INFO: highlight function params
   ["m-demare/hlargs.nvim"] = {
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -61,14 +64,17 @@ M.theme = {
       require("hlargs").setup()
     end,
   },
+  --- INFO:  display of emptyspaces/indentations vertical bars
   ["lukas-reineke/indent-blankline.nvim"] = {
     config = require("config.plugins.configs.indent-blankline").init,
     lazy = true,
     event = "BufRead",
   },
+  --- INFO: dashboard plugin
   ["goolord/alpha-nvim"] = {
     config = require("config.plugins.configs.dashboard").dashboard,
   },
+  --- INFO: the statusline builder im using
   ["windwp/windline.nvim"] = {
     event = "VeryLazy",
     config = function()
