@@ -90,9 +90,18 @@ M.utility = {
       require("coverage").setup({
         lang = {
           rust = {
-            coverage_command = "grcov ${cwd} -s ${cwd} --binary-path ./target/llvm-cov-target/ -t coveralls --branch --ignore-not-existing --token NO_TOKEN",
+            -- grcov cargo install grcov
+            coverage_command = "grcov ./ -s ./ --binary-path ./target/llvm-cov-target/ -t coveralls --branch --ignore-not-existing --token NO_TOKEN",
             project_files_only = true,
-            project_files = { "src/*", "tests/*" },
+            project_files = {
+              "src/*",
+              "tests/*",
+              "cortex/src/*",
+              "cortex/examples/*",
+              "cortex/examples",
+              "examples/*",
+              "examples",
+            },
           },
         },
       })

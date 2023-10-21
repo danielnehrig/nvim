@@ -198,8 +198,6 @@ function M.load_options()
   opt.splitbelow = true -- split behavior
   opt.splitright = true -- split behavior
   opt.termguicolors = true -- colors tmux settings
-  go.t_Co = "256" -- colors tmux setting
-  go.t_ut = "" -- colors tmux setting
   -- opt.background = "dark" -- dark
   opt.numberwidth = 2 -- width on number row
 
