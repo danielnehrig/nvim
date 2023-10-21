@@ -91,7 +91,10 @@ M.utility = {
         lang = {
           rust = {
             -- grcov cargo install grcov
-            coverage_command = "grcov ./ -s ./ --binary-path ./target/llvm-cov-target/ -t coveralls --branch --ignore-not-existing --token NO_TOKEN",
+            coverage_command = table.concat({
+              "grcov ./ -s ./ --binary-path ./target/llvm-cov-target/ -t",
+              "coveralls --branch --ignore-not-existing --token NO_TOKEN",
+            }, " "),
             project_files_only = true,
             project_files = {
               "src/*",

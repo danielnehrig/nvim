@@ -1,5 +1,5 @@
 local globals = require("config.core.global")
-local g, opt, go, wo, o = vim.g, vim.opt, vim.go, vim.wo, vim.o
+local g, opt, wo, o = vim.g, vim.opt, vim.go, vim.wo
 local M = {}
 
 --- Toggle fold on click
