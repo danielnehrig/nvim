@@ -62,22 +62,6 @@ TOML.parse = function(toml, options)
     return str:gsub("^%s*(.-)%s*$", "%1")
   end
 
-  -- divide a string into a table around a delimiter
-  local function split(str, delim)
-    if str == "" then
-      return {}
-    end
-    local result = {}
-    local append = delim
-    if delim:match("%%") then
-      append = delim:gsub("%%", "")
-    end
-    for match in (str .. append):gmatch("(.-)" .. delim) do
-      table.insert(result, match)
-    end
-    return result
-  end
-
   -- produce a parsing error message
   -- the error contains the line number of the current position
   local function err(message, strictOnly)
@@ -160,21 +144,21 @@ TOML.parse = function(toml, options)
           }
           -- utf function from http://stackoverflow.com/a/26071044
           -- converts \uXXX into actual unicode
-          local function utf(char)
+          local function utf(char2)
             local bytemarkers =
               { { 0x7ff, 192 }, { 0xffff, 224 }, { 0x1fffff, 240 } }
-            if char < 128 then
-              return string.char(char)
+            if char2 < 128 then
+              return string.char(char2)
             end
             local charbytes = {}
             for bytes, vals in pairs(bytemarkers) do
-              if char <= vals[1] then
+              if char2 <= vals[1] then
                 for b = bytes + 1, 2, -1 do
-                  local mod = char % 64
-                  char = (char - mod) / 64
+                  local mod = char2 % 64
+                  char2 = (char2 - mod) / 64
                   charbytes[b] = string.char(128 + mod)
                 end
-                charbytes[1] = string.char(vals[2] + char)
+                charbytes[1] = string.char(vals[2] + char2)
                 break
               end
             end
@@ -360,7 +344,7 @@ TOML.parse = function(toml, options)
   local function parseInlineTable()
     step() -- skip opening brace
 
-    local buffer = ""
+    local buffer2 = ""
     local quoted = false
     local tbl = {}
 
@@ -368,11 +352,11 @@ TOML.parse = function(toml, options)
       if char() == "}" then
         break
       elseif char() == "'" or char() == '"' then
-        buffer = parseString().value
+        buffer2 = parseString().value
         quoted = true
       elseif char() == "=" then
         if not quoted then
-          buffer = trim(buffer)
+          buffer2 = trim(buffer2)
         end
 
         step() -- skip =
@@ -383,7 +367,7 @@ TOML.parse = function(toml, options)
         end
 
         local v = getValue().value
-        tbl[buffer] = v
+        tbl[buffer2] = v
 
         skipWhitespace()
 
@@ -394,9 +378,9 @@ TOML.parse = function(toml, options)
         end
 
         quoted = false
-        buffer = ""
+        buffer2 = ""
       else
-        buffer = buffer .. char()
+        buffer2 = buffer2 .. char()
         step()
       end
     end
@@ -456,10 +440,6 @@ TOML.parse = function(toml, options)
       end
     end
 
-    if char():match(nl) then
-      -- skip
-    end
-
     if char() == "=" then
       step()
       skipWhitespace()
@@ -473,6 +453,7 @@ TOML.parse = function(toml, options)
 
       if buffer == "" and not quotedKey then
         err("Empty key name")
+        return
       end
 
       local v = getValue()
@@ -597,8 +578,8 @@ TOML.encode = function(tbl)
 
   local cache = {}
 
-  local function parse(tbl)
-    for k, v in pairs(tbl) do
+  local function parse(tbl2)
+    for k, v in pairs(tbl2) do
       if type(v) == "boolean" then
         toml = toml .. k .. " = " .. tostring(v) .. "\n"
       elseif type(v) == "number" then
@@ -640,7 +621,7 @@ TOML.encode = function(tbl)
           if arrayTable then
             -- double bracket syntax go!
             table.insert(cache, k)
-            for kk, vv in pairs(v) do
+            for _, vv in pairs(v) do
               toml = toml .. "[[" .. table.concat(cache, ".") .. "]]\n"
               for k3, v3 in pairs(vv) do
                 if type(v3) ~= "table" then
@@ -655,7 +636,7 @@ TOML.encode = function(tbl)
           else
             -- plain ol boring array
             toml = toml .. k .. " = [\n"
-            for kk, vv in pairs(first) do
+            for _, vv in pairs(first) do
               toml = toml .. tostring(vv) .. ",\n"
             end
             toml = toml .. "]\n"

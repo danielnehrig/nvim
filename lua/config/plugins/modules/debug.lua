@@ -5,6 +5,7 @@
 local M = {}
 
 M.debug = {
+  --- INFO: run tests integrated with overseer for task run
   ["nvim-neotest/neotest"] = {
     cmd = { "Neotest" },
     config = function()
@@ -40,19 +41,24 @@ M.debug = {
       "antoinemadec/FixCursorHold.nvim",
     },
   },
+  --- INFO: lua neovim debug
   ["jbyuki/one-small-step-for-vimkind"] = {},
+  --- INFO: py debug
   ["mfussenegger/nvim-dap-python"] = {
     lazy = true,
     dependencies = { "mfussenegger/nvim-dap" },
   },
+  --- INFO: main debug plug dap
   ["mfussenegger/nvim-dap"] = {
     lazy = true,
     dependencies = { "mfussenegger/nvim-dap" },
   },
+  --- INFO: ui for dap
   ["rcarriga/nvim-dap-ui"] = {
     lazy = true,
     dependencies = { "mfussenegger/nvim-dap" },
   },
+  --- INFO: virt text fot dap
   ["theHamsta/nvim-dap-virtual-text"] = {
     lazy = true,
     dependencies = { "mfussenegger/nvim-dap" },

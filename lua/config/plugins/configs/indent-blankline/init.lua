@@ -8,12 +8,10 @@ function M.init()
   end
   blank.setup({
     enabled = true,
+    scope = {
+      char = "▏",
+    },
     exclude = {
-      buftypes = {
-        "terminal",
-        "dashboard",
-        "notify",
-      },
       filetypes = {
         "help",
         "terminal",
@@ -30,7 +28,8 @@ function M.init()
         "TelescopeResults",
         "lsp-installer",
         "",
-      }
+      },
+      buftypes = { "terminal", "dashboard", "notify" },
     },
   })
 end

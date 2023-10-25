@@ -1,5 +1,5 @@
 local globals = require("config.core.global")
-local g, opt, go, wo, o = vim.g, vim.opt, vim.go, vim.wo, vim.o
+local g, opt, wo, o = vim.g, vim.opt, vim.go, vim.wo
 local M = {}
 
 --- Toggle fold on click
@@ -198,8 +198,6 @@ function M.load_options()
   opt.splitbelow = true -- split behavior
   opt.splitright = true -- split behavior
   opt.termguicolors = true -- colors tmux settings
-  go.t_Co = "256" -- colors tmux setting
-  go.t_ut = "" -- colors tmux setting
   -- opt.background = "dark" -- dark
   opt.numberwidth = 2 -- width on number row
 

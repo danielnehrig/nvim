@@ -4,7 +4,9 @@
 ---@field completion table<string, LazyPluginSpec>
 local M = {}
 M.completion = {
+  --- INFO: ai powered completion github
   ["github/copilot.vim"] = {},
+  --- INFO: completion plugin
   ["hrsh7th/nvim-cmp"] = {
     config = require("config.plugins.configs.cmp").init,
     event = "InsertEnter",

@@ -4,10 +4,12 @@
 ---@field utility table<string, LazyPluginSpec>
 local M = {}
 M.utility = {
+  -- INFO: center the current buffer nice for widescreen
   ["shortcuts/no-neck-pain.nvim"] = {
     cmd = { "NoNeckPain" },
     version = "*",
   },
+  -- INFO: exec async tasks run jobs etc
   ["stevearc/overseer.nvim"] = {
     commit = "3047ede61cc1308069ad1184c0d447ebee92d749", -- Recommended to to avoid breaking changes
     cmd = { "CompilerOpen", "CompilerToggleResults" },
@@ -34,6 +36,7 @@ M.utility = {
       },
     },
   },
+  -- INFO: Handles the fancy floating terms for search/commands
   ["folke/noice.nvim"] = {
     event = "VimEnter",
     enabled = function()
@@ -61,6 +64,7 @@ M.utility = {
       "hrsh7th/nvim-cmp",
     },
   },
+  -- INFO: auto install lsp servers
   ["williamboman/mason.nvim"] = {
     config = function()
       require("mason").setup()
@@ -68,37 +72,45 @@ M.utility = {
     build = ":MasonUpdate", -- :MasonUpdate updates registry contents
     priority = 53,
   },
+  -- INFO: autoinstall lsp servers and configs
   ["williamboman/mason-lspconfig.nvim"] = {
     config = function()
       require("mason-lspconfig").setup()
     end,
     priority = 52,
   },
+  -- INFO: depedencie for some plugins
   ["MunifTanjim/nui.nvim"] = { lazy = true },
+  -- INFO: lua  nvim framework that is a depedencie for most plugins
   ["nvim-lua/plenary.nvim"] = { lazy = true },
+  -- INFO: show coverage info
   ["andythigpen/nvim-coverage"] = {
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("coverage").setup({
         lang = {
           rust = {
-            coverage_command = "grcov ${cwd} -s ${cwd} --binary-path ./target/llvm-cov-target/ -t coveralls --branch --ignore-not-existing --token NO_TOKEN",
+            -- grcov cargo install grcov
+            coverage_command = table.concat({
+              "grcov ./ -s ./ --binary-path ./target/llvm-cov-target/ -t",
+              "coveralls --branch --ignore-not-existing --token NO_TOKEN",
+            }, " "),
             project_files_only = true,
-            project_files = { "src/*", "tests/*" },
+            project_files = {
+              "src/*",
+              "tests/*",
+              "cortex/src/*",
+              "cortex/examples/*",
+              "cortex/examples",
+              "examples/*",
+              "examples",
+            },
           },
         },
       })
     end,
   },
-  ["altermo/ultimate-autopair.nvim"] = {
-    event = { "InsertEnter", "CmdlineEnter" },
-    enabled = false,
-    config = function()
-      require("ultimate-autopair").setup({
-        --Config goes here
-      })
-    end,
-  },
+  -- INFO: handle autopairs ()
   ["windwp/nvim-autopairs"] = {
     dependencies = "nvim-cmp",
     enabled = true,
@@ -106,20 +118,25 @@ M.utility = {
       require("config.plugins.configs.autopairs").init()
     end,
   },
+  -- vimwiki
+  -- INFO: not used anymore (by me)
   ["vimwiki/vimwiki"] = {
     cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
   },
+  -- shows infos of chained commands
   ["folke/which-key.nvim"] = {
     config = function()
       require("config.plugins.configs.which").init()
     end,
   },
+  -- INFO: better normal mode with jj
   ["max397574/better-escape.nvim"] = {
     event = "InsertCharPre",
     config = function()
       require("config.plugins.configs.betterescape").init()
     end,
   },
+  -- INFO: show colors of hex codes
   ["norcalli/nvim-colorizer.lua"] = {
     ft = {
       "css",
@@ -133,6 +150,7 @@ M.utility = {
       require("colorizer").setup()
     end,
   },
+  -- INFO: show all urls in current buffer
   ["axieax/urlview.nvim"] = {
     cmd = "UrlView",
     config = function()
@@ -152,8 +170,11 @@ M.utility = {
       })
     end,
   },
+  -- INFO: write with elevated privilages
   ["lambdalisue/suda.vim"] = { cmd = { "SudaWrite" } }, -- save as root
+  -- INFO: better buffer search
   ["junegunn/vim-slash"] = { keys = { "/" } }, -- better search
+  -- INFO: handles notifications for instance used by noice
   ["rcarriga/nvim-notify"] = {
     lazy = true,
     config = function()
@@ -177,6 +198,7 @@ M.utility = {
       vim.notify = notify
     end,
   }, -- notication pop up
+  -- INFO:  pick your desired window
   ["ten3roberts/window-picker.nvim"] = {
     config = function()
       require("window-picker").setup({
@@ -193,8 +215,11 @@ M.utility = {
       })
     end,
   },
+  -- INFO: better quickfix list shows context for instance of current file
   ["kevinhwang91/nvim-bqf"] = { ft = "qf" }, -- better quickfix
+  -- INFO:  another quickfix tool
   ["yorickpeterse/nvim-pqf"] = { event = "VeryLazy", config = true },
+  -- INFO: no weird buffer jumping/jitters
   ["luukvbaal/stabilize.nvim"] = {
     config = function()
       require("stabilize").setup({
@@ -214,6 +239,7 @@ M.utility = {
       })
     end,
   },
+  -- INFO: discord integration
   ["andweeb/presence.nvim"] = {
     config = function()
       require("presence"):setup({
@@ -239,17 +265,22 @@ M.utility = {
       })
     end,
   },
+  -- INFO: s movement motion
   ["ggandor/lightspeed.nvim"] = {},
+  -- INFO: create folders if do not exist when in buffer
   ["jghauser/mkdir.nvim"] = {
     config = function()
       require("mkdir")
     end,
-  }, -- create folders if not existing
+  },
+  -- INFO: highlight comments like
+  -- TODO: fix this
   ["folke/todo-comments.nvim"] = {
     config = require("config.plugins.configs.todo").init,
     dependencies = "telescope.nvim",
-    cmd = { "TodoQuickFix", "TodoTrouble", "TodoTelescope" },
-  }, -- show todos in qf
+    event = "VeryLazy",
+  },
+  -- INFO:  surround () motion
   ["ur4ltz/surround.nvim"] = {
     config = function()
       require("surround").setup({ mappings_style = "surround" })
