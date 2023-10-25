@@ -11,11 +11,11 @@ LSP.capabilities.textDocument.completion.completionItem.resolveSupport = {
     "additionalTextEdits",
   },
 }
+LSP.capabilities =
+  require("cmp_nvim_lsp").default_capabilities(LSP.capabilities)
 LSP.capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
 }
-LSP.capabilities =
-  require("cmp_nvim_lsp").default_capabilities(LSP.capabilities)
 
 return LSP
