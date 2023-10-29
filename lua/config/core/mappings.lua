@@ -478,6 +478,13 @@ function M.set_lsp_mapping(bufnr)
         "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single', source = 'if_many' })<CR>",
         { desc = "Diagnostic Float", buffer = bufnr },
       },
+      {
+        "<leader>ui",
+        function()
+          vim.lsp.inlay_hint(bufnr, nil)
+        end,
+        { desc = "Inlay Hint Toggle", buffer = bufnr },
+      },
     },
   }
 
