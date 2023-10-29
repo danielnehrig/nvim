@@ -231,9 +231,10 @@ dap.configurations.rust[1].program = function()
   local TOML = require("config.utils.toml")
   local cargotoml = vim.fn.readblob(vim.fn.getcwd() .. "/Cargo.toml")
   local parsed = TOML.parse(cargotoml)
-  return build_path_string(
+  local path = build_path_string(
     vim.fn.getcwd() .. "/target/debug/" .. parsed.package.name
   )
+  return path
 end
 
 dap.configurations.rust[2] = {
