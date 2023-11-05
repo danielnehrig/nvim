@@ -283,3 +283,4 @@ if not dapvt_present then
 else
   dapvt.setup({})
 end
+require("overseer").patch_dap(true)
