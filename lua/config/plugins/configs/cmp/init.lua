@@ -78,10 +78,8 @@ function M.init()
           cmp.select_next_item()
         elseif luasnip and luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
-        elseif present_neogen then
-          if neogen.jumpable() then
-            neogen.jump_next()
-          end
+        elseif present_neogen and neogen.jumpable() then
+          neogen.jump_next()
         else
           fallback()
         end
