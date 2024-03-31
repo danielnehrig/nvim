@@ -7,21 +7,7 @@ function M.init()
     vim.notify("telescope is not installed")
     return
   end
-  local action_set = require("telescope.actions.set")
   telescope.setup({
-    pickers = {
-      find_files = {
-        hidden = true,
-        attach_mappings = function(_)
-          action_set.select:enhance({
-            post = function()
-              vim.cmd(":normal! zx")
-            end,
-          })
-          return true
-        end,
-      },
-    },
     defaults = {
       vimgrep_arguments = {
         "rg",

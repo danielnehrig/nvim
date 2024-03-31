@@ -54,11 +54,6 @@ function M.init()
         ["i;"] = "textsubjects-container-inner",
       },
     },
-    --  context_commentstring = {
-    --  enable = true,
-    --  -- This plugin provided an autocommand option
-    --  enable_autocmd = true,
-    --  },
     textobjects = {
       lsp_interop = {
         enable = true,
@@ -116,8 +111,12 @@ function M.init()
       },
     },
   })
-
-  require("ts_context_commentstring").setup({})
+  require("ts_context_commentstring").setup({
+    enable_autocmd = false,
+    languages = {
+      typescript = "// %s",
+    },
+  })
 end
 
 return M

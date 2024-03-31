@@ -29,11 +29,11 @@ function LSP.on_attach(client, bufnr)
   )
 
   require("config.core.mappings").set_lsp_mapping(bufnr)
-  --  if vim.version().minor > 9 then
-  --  if client.server_capabilities.inlayHintProvider then
-  --  vim.lsp.inlay_hint(bufnr, true)
-  --  end
-  --  end
+  if vim.version().minor > 9 then
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(bufnr, true)
+    end
+  end
 end
 
 -- LSP Settings

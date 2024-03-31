@@ -127,6 +127,11 @@ M.telescope = {
       { desc = "File Browser" },
     },
     {
+      "<Leader>fB",
+      "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
+      { desc = "File Browser Current Buffer" },
+    },
+    {
       "<Leader>fs",
       "<Cmd>Telescope git_status<CR>",
       { desc = "Git Status" },
@@ -477,6 +482,13 @@ function M.set_lsp_mapping(bufnr)
         "<leader>gd",
         "<cmd>lua vim.diagnostic.open_float({focusable = false, border = 'single', source = 'if_many' })<CR>",
         { desc = "Diagnostic Float", buffer = bufnr },
+      },
+      {
+        "<leader>ui",
+        function()
+          vim.lsp.inlay_hint.enable(bufnr, nil)
+        end,
+        { desc = "Inlay Hint Toggle", buffer = bufnr },
       },
     },
   }
