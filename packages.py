@@ -351,15 +351,15 @@ yay: PackageManager = PackageManager(
             "update": "--save --nocleanmenu --nodiffmenu --noconfirm -Yu",
         },
         "packages": [
-            ("nuspell", "nuspell"),
-            ("hunspell-en_us", None),
-            ("hunspell-de", None),
+            #  ("nuspell", "nuspell"),
+            #  ("hunspell-en_us", None),
+            #  ("hunspell-de", None),
             # ("vale-git", "vale"),
-            ("languagetool", "languagetool"),
+            #  ("languagetool", "languagetool"),
             ("jq", "jq"),
-            ("jdtls", "jdtls"),
+            #  ("jdtls", "jdtls"),
             ("lua-language-server", "lua-language-server"),
-            ("dotnet-sdk", "dotnet"),
+            #  ("dotnet-sdk", "dotnet"),
         ],
     }
 )
