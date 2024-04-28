@@ -41,6 +41,8 @@ local hl_groups = {
   "TelescopeResults",
   "TelescopePromptNormal",
   "TelescopePromptPrefix",
+  "WinBar",
+  "WinBarNC",
   "CursorLine",
   "CursorLineNr",
   "Pmenu",

@@ -50,6 +50,14 @@ local dn = {
     bg = blue,
   },
 
+  WinBar = {
+    bg = black,
+  },
+
+  WinBarNC = {
+    bg = black,
+  },
+
   GitIncomingChange = {
     fg = white,
     bg = red,
