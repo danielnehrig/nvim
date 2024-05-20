@@ -486,7 +486,8 @@ function M.set_lsp_mapping(bufnr)
       {
         "<leader>ui",
         function()
-          vim.lsp.inlay_hint.enable(bufnr, nil)
+          local is = vim.lsp.inlay_hint.is_enabled()
+          vim.lsp.inlay_hint.enable(not is, nil)
         end,
         { desc = "Inlay Hint Toggle", buffer = bufnr },
       },
