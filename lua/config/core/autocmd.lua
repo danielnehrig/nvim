@@ -71,8 +71,16 @@ function M.autocmds()
   vim.api.nvim_create_autocmd("LspDetach", {
     group = "LspAttach_inlayhints",
     callback = function(args)
+      if not (args.data and args.data.client_id) then
+        return
+      end
+
       local client = vim.lsp.get_client_by_id(args.data.client_id)
-      vim.api.nvim_del_augroup_by_name("lsp_" .. client.name)
+      -- fixes the case where we do not create augroups when documentHighlight is not supported
+      -- so we check if the client supports it before deleting the augroup to align with the logic in LspAttach
+      if client.supports_method("textDocument/documentHighlight") then
+        vim.api.nvim_del_augroup_by_name("lsp_" .. client.name)
+      end
     end,
   })
 
