@@ -11,8 +11,7 @@ M.get_theme_tb = function(type)
 
   if present1 then
     return default_theme[type]
-  else
-    error("No such theme! " .. default_path)
+    --  error("No such theme! " .. default_path)
   end
 end
 

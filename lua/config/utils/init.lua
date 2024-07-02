@@ -50,29 +50,67 @@ end
 --- @param arg string
 M.switch_theme = function(arg)
   local colorscheme = nil
+  local colorscheme_type = nil
 
   -- local project themes
-  local hl_dir = vim.fn.stdpath("config") .. "/lua/config/themes/hl"
-  local hl_files = require("plenary.scandir").scan_dir(hl_dir, {})
+  local hl_dir_main = vim.fn.stdpath("config") .. "/lua/config/themes/hl"
+  local hl_dir_custom = vim.fn.stdpath("config")
+    .. "/lua/config/custom/themes/hl"
+  local hl_files_main = require("plenary.scandir").scan_dir(hl_dir_main, {})
+  local hl_files_custom = require("plenary.scandir").scan_dir(hl_dir_custom, {})
 
-  for _, file in ipairs(hl_files) do
+  if vim.fn.isdirectory(hl_dir_custom) == 0 then
+    vim.fn.mkdir(hl_dir_custom, "p")
+  end
+
+  for _, file in ipairs(hl_files_main) do
     local a = vim.fn.fnamemodify(file, ":t")
     a = vim.fn.fnamemodify(a, ":r")
     if arg == a then
       colorscheme = a
+      colorscheme_type = "integrated"
+    end
+  end
+
+  if not colorscheme then
+    for _, file in ipairs(hl_files_custom) do
+      local a = vim.fn.fnamemodify(file, ":t")
+      a = vim.fn.fnamemodify(a, ":r")
+      if arg == a then
+        colorscheme = a
+        colorscheme_type = "custom"
+      end
+    end
+  end
+
+  if not colorscheme then
+    for _, data in pairs(themes) do
+      for _, name in pairs(data.colorscheme_name) do
+        if arg == name then
+          colorscheme = name
+          colorscheme_type = "plugin"
+        end
+      end
     end
   end
 
   if colorscheme then
     require("config.core.config").config.ui.colorscheme.name = colorscheme
-    require("config.themes").load_theme()
 
-    require("plenary.reload").reload_module(
-      "config.plugins.configs.statusline.theme." .. config.ui.statusline.name
-    )
-    require("config.plugins.configs.statusline.windline").switch_theme(
-      config.ui.statusline.name
-    )
+    if colorscheme_type == "integrated" or colorscheme_type == "custom" then
+      require("config.themes").load_theme()
+      require("plenary.reload").reload_module(
+        "config.plugins.configs.statusline.theme." .. config.ui.statusline.name
+      )
+      require("config.plugins.configs.statusline.windline").switch_theme(
+        config.ui.statusline.name
+      )
+    end
+
+    if colorscheme_type == "plugin" then
+      vim.cmd("colorscheme " .. colorscheme)
+    end
+
     return
   end
 
@@ -89,6 +127,16 @@ M.get_themes = function()
   ---@type string[]
   local hl_files = require("plenary.scandir").scan_dir(hl_dir, {})
 
+  local hl_dir_custom = vim.fn.stdpath("config")
+    .. "/lua/config/custom/themes/hl"
+
+  if vim.fn.isdirectory(hl_dir_custom) == 0 then
+    vim.fn.mkdir(hl_dir_custom, "p")
+  end
+
+  ---@type string[]
+  local hl_files_custom = require("plenary.scandir").scan_dir(hl_dir_custom, {})
+
   for _, file in ipairs(hl_files) do
     local a = vim.fn.fnamemodify(file, ":t")
     a = vim.fn.fnamemodify(a, ":r")
@@ -97,8 +145,18 @@ M.get_themes = function()
     end
   end
 
-  for theme_name, _ in pairs(themes) do
-    table.insert(res, theme_name)
+  for _, file in ipairs(hl_files_custom) do
+    local a = vim.fn.fnamemodify(file, ":t")
+    a = vim.fn.fnamemodify(a, ":r")
+    if a ~= "types" then
+      table.insert(res, a)
+    end
+  end
+
+  for _, data in pairs(themes) do
+    for _, name in pairs(data.colorscheme_name) do
+      table.insert(res, name)
+    end
   end
 
   return res

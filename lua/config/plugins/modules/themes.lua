@@ -1,7 +1,11 @@
 ---@module 'lazy.types'
 
+---@class PluginColorschemes: LazyPluginSpec
+---@field colorscheme_name string[] this is needed because there is no real way to know the colorscheme name
+
 ---@class themes
 ---@field theme table<string, LazyPluginSpec>
+---@field ts_themes table<string, PluginColorschemes>
 local M = {}
 
 -- globals
@@ -91,22 +95,37 @@ M.theme = {
 
 M.ts_themes = {
   ["sainnhe/sonokai"] = {
+    colorscheme_name = { "sonokai" },
     lazy = true,
+    priority = 1000,
+    opts = {},
   },
   ["ray-x/aurora"] = {
+    colorscheme_name = { "aurora" },
     lazy = true,
+    priority = 1000,
+    opts = {},
   },
   ["Mofiqul/vscode.nvim"] = {
+    colorscheme_name = { "vscode" },
     lazy = true,
+    priority = 1000,
+    opts = {},
   },
   ["marko-cerovac/material.nvim"] = {
+    colorscheme_name = { "material" },
     lazy = true,
+    priority = 1000,
+    opts = {},
     config = function()
-      require("material").setup()
+      require("material").setup({})
     end,
   },
   ["Murtaza-Udaipurwala/gruvqueen"] = {
+    colorscheme_name = { "gruvqueen" },
     lazy = true,
+    priority = 1000,
+    opts = {},
     config = function()
       vim.o.background = "dark"
       require("gruvqueen").setup({
@@ -125,7 +144,16 @@ M.ts_themes = {
     end,
   },
   ["folke/tokyonight.nvim"] = {
+    colorscheme_name = {
+      "tokyonight",
+      "tokyonight-night",
+      "tokyonight-storm",
+      "tokyonight-day",
+      "tokyonight-moon",
+    },
     lazy = true,
+    priority = 1000,
+    opts = {},
   },
 }
 
