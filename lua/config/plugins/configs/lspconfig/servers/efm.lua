@@ -20,6 +20,7 @@ local gofmt = require("config.plugins.configs.lspconfig.efm.gofmt")
 local goimports = require("config.plugins.configs.lspconfig.efm.goimports")
 local golines = require("config.plugins.configs.lspconfig.efm.golines")
 local sql = require("config.plugins.configs.lspconfig.efm.sql")
+local scalafmt = require("config.plugins.configs.lspconfig.efm.scalafmt")
 
 -- formatting and linting with efm
 lspconfig.efm.setup({
@@ -82,6 +83,7 @@ lspconfig.efm.setup({
       python = { python },
       bash = { shellcheck, shfmt },
       sh = { shellcheck, shfmt },
+      scala = { scalafmt },
     },
   },
   filetypes = {
@@ -92,6 +94,7 @@ lspconfig.efm.setup({
     "json",
     "toml",
     "sql",
+    "scala",
     "go",
     "txt",
     "org",

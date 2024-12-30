@@ -11,6 +11,39 @@ M.lsp = {
       require("lsp-lens").setup({})
     end,
   },
+  ["scalameta/nvim-metals"] = {
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    ft = { "scala", "sbt", "java" },
+    opts = function()
+      local metals_config = require("metals").bare_config()
+      metals_config.settings.serverVersion = "1.2.0"
+      local lsp = require("config.plugins.configs.lspconfig")
+      metals_config.on_attach = function(client, bufnr)
+        local n_present, navic = pcall(require, "nvim-navic")
+        if n_present then
+          if client.supports_method("textDocument/documentSymbol") then
+            navic.attach(client, bufnr)
+          end
+        end
+
+        lsp.on_attach(client, bufnr)
+      end
+
+      return metals_config
+    end,
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = self.ft,
+        callback = function()
+          require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+      })
+    end
+  },
   --- INFO: neoconf load lsp specific infos from a conf file used for projects for instance
   ["folke/neoconf.nvim"] = {
     config = true,
