@@ -3,7 +3,7 @@ local capabilities =
   require("config.plugins.configs.lspconfig.capabilities").capabilities
 local lspconfig = require("lspconfig")
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   filetypes = {
     "typescript",
     "typescriptreact",

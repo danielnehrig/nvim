@@ -14,6 +14,7 @@ if not g.vscode then
   require("config.core.options").load_options()
   local config = require("config.core.config").config
   local plug = require("config.plugins")
+  require("config.core.global")
 
   if config == nil then
     vim.notify("Error loading config")
@@ -35,6 +36,7 @@ vim.opt.wildignore:append({
   "node_modules",
   ".git/",
   "dist",
+  "pkg",
   ".next",
   "target",
   "android",

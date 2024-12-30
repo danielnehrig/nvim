@@ -66,17 +66,15 @@ function M.init()
         -- the default case_mode is "smart_case"
       },
       project = {
-        base_dirs = {
-          "~/code",
-          "~/dotfiles",
-          "~/dotfiles/.config/nvim",
-        },
         max_depth = 4,
         hidden_files = true,
       },
     },
   })
-  telescope.load_extension("fzf")
+  local global = require("config.core.global")
+  if not global.is_windows then
+    telescope.load_extension("fzf")
+  end
   telescope.load_extension("project")
   telescope.load_extension("file_browser")
   telescope.load_extension("ui-select")

@@ -7,6 +7,26 @@ function M.init()
     return
   end
 
+  local ensure_installed = {
+      "org",
+      "lua",
+      "rust",
+      "bash",
+      "javascript",
+      "typescript",
+      "jsdoc",
+      "html",
+      "json",
+      "markdown",
+      "markdown_inline",
+      "python",
+    }
+
+  local global = require("config.core.global")
+  if not global.is_windows then
+    table.insert(ensure_installed, "latex")
+  end
+
   treesitter.setup({
     highlight = {
       enable = true,
@@ -30,21 +50,11 @@ function M.init()
         "javascriptreact",
       },
     },
-    ensure_installed = {
-      "org",
-      "lua",
-      "rust",
-      "bash",
-      "javascript",
-      "typescript",
-      "jsdoc",
-      "latex",
-      "html",
-      "json",
-      "markdown",
-      "markdown_inline",
-      "python",
-    },
+    sync_install = false,
+    ignore_install = {},
+    modules = {},
+    auto_install = true,
+    ensure_installed = ensure_installed,
     textsubjects = {
       enable = true,
       prev_selection = ",",

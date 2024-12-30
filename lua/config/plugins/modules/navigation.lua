@@ -23,6 +23,10 @@ M.navigation = {
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
+        enabled = function()
+          local global = require("config.core.global")
+          return not global.is_windows
+        end,
         build = "make",
       },
       { "nvim-telescope/telescope-ui-select.nvim" },

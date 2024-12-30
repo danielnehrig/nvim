@@ -16,14 +16,6 @@ M.lsp = {
     config = true,
     priority = 52, -- needs to load before lspconfig
   },
-  --- INFO: inlay hints
-  --- TODO: remove using build in now
-  ["lvimuser/lsp-inlayhints.nvim"] = {
-    enabled = false,
-    config = function()
-      require("lsp-inlayhints").setup()
-    end,
-  },
   --- INFO: lsp ts aware folding
   ["kevinhwang91/nvim-ufo"] = {
     dependencies = "kevinhwang91/promise-async",

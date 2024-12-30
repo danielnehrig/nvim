@@ -21,55 +21,47 @@ function M.autocmds()
     end,
     group = au_ft,
   })
-  --  vim.api.nvim_create_autocmd({ "WinEnter", "BufRead", "BufEnter" }, {
-  --  pattern = "alpha",
-  --  command = "Alpha",
-  --  group = au_ft,
-  --  })
+
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "alpha",
     command = "set showtabline=0",
     group = au_ft,
   })
   -- lsp
-  vim.api.nvim_create_augroup("LspAttach_inlayhints", { clear = true })
+  vim.api.nvim_create_augroup("LSP_Highlight", { clear = true })
   vim.api.nvim_create_autocmd("LspAttach", {
-    group = "LspAttach_inlayhints",
+    group = "LSP_Highlight",
     callback = function(args)
       if not (args.data and args.data.client_id) then
         return
       end
 
-      -- local bufnr = args.buf
+      local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if client.supports_method("textDocument/documentHighlight") then
-        local ft = "*." .. client.config.filetypes[1]
-        local au_lsp =
-          vim.api.nvim_create_augroup("lsp_" .. client.name, { clear = true })
-        vim.api.nvim_create_autocmd({ "CursorHold" }, {
-          pattern = ft,
-          callback = vim.lsp.buf.document_highlight,
-          desc = "Highlight lsp references",
-          group = au_lsp,
-        })
-        vim.api.nvim_create_autocmd({ "CursorHoldI" }, {
-          pattern = ft,
-          callback = vim.lsp.buf.document_highlight,
-          desc = "Highlight lsp references",
-          group = au_lsp,
-        })
-        vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-          pattern = ft,
-          callback = vim.lsp.buf.clear_references,
-          desc = "Highlight lsp references",
-          group = au_lsp,
-        })
+      if client then
+        if client.supports_method("textDocument/documentHighlight") then
+          local au_lsp = vim.api.nvim_create_augroup("LSPDocumentHighlight", {})
+
+          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            buffer = bufnr,
+            callback = vim.lsp.buf.document_highlight,
+            desc = "Highlight lsp references",
+            group = au_lsp,
+          })
+          vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+            buffer = bufnr,
+            callback = vim.lsp.buf.clear_references,
+            desc = "Clear Highlight lsp references",
+            group = au_lsp,
+          })
+        end
       end
+
     end,
   })
 
   vim.api.nvim_create_autocmd("LspDetach", {
-    group = "LspAttach_inlayhints",
+    group = "LSP_Highlight",
     callback = function(args)
       if not (args.data and args.data.client_id) then
         return
@@ -78,8 +70,10 @@ function M.autocmds()
       local client = vim.lsp.get_client_by_id(args.data.client_id)
       -- fixes the case where we do not create augroups when documentHighlight is not supported
       -- so we check if the client supports it before deleting the augroup to align with the logic in LspAttach
-      if client.supports_method("textDocument/documentHighlight") then
-        vim.api.nvim_del_augroup_by_name("lsp_" .. client.name)
+      if client then
+        if client.supports_method("textDocument/documentHighlight") then
+          vim.api.nvim_del_augroup_by_name("LSPDocumentHighlight")
+        end
       end
     end,
   })
@@ -124,15 +118,6 @@ function M.autocmds()
     end,
   })
 
-  --  vim.api.nvim_create_autocmd("ModeChanged", {
-  --  pattern = { "*:i*", "i*:*" },
-  --  group = au_utils,
-  --  callback = function()
-  --  if vim.bo.filetype ~= "TelescopePrompt" then
-  --  vim.o.relativenumber = vim.v.event.new_mode:match("^i") == nil
-  --  end
-  --  end,
-  --  })
   vim.api.nvim_create_autocmd("WinLeave", {
     callback = function()
       if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
