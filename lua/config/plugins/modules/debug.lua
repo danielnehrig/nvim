@@ -42,7 +42,9 @@ M.debug = {
     },
   },
   --- INFO: lua neovim debug
-  ["jbyuki/one-small-step-for-vimkind"] = {},
+  ["jbyuki/one-small-step-for-vimkind"] = {
+    lazy = true,
+  },
   --- INFO: py debug
   ["mfussenegger/nvim-dap-python"] = {
     lazy = true,

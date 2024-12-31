@@ -7,6 +7,7 @@ local M = {}
 M.lsp = {
   --- INFO: lsp lens integration
   ["VidocqH/lsp-lens.nvim"] = {
+    lazy = true,
     config = function()
       require("lsp-lens").setup({})
     end,
@@ -46,8 +47,8 @@ M.lsp = {
   },
   --- INFO: neoconf load lsp specific infos from a conf file used for projects for instance
   ["folke/neoconf.nvim"] = {
-    config = true,
-    priority = 52, -- needs to load before lspconfig
+    cmd = "Neoconf",
+    opts = {},
   },
   --- INFO: lsp ts aware folding
   ["kevinhwang91/nvim-ufo"] = {
@@ -96,7 +97,11 @@ M.lsp = {
   ["neovim/nvim-lspconfig"] = {
     config = require("config.plugins.configs.lspconfig").init,
     priority = 51,
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    dependencies = {
+      "mason.nvim",
+      { "williamboman/mason-lspconfig.nvim", config = function() end },
+    },
   },
   --- INFO: project wide diagnostic infos
   ["folke/trouble.nvim"] = {
@@ -107,7 +112,9 @@ M.lsp = {
     dependencies = "kyazdani42/nvim-web-devicons",
   },
   --- INFO: shows lsp status loading
-  ["nvim-lua/lsp-status.nvim"] = {},
+  ["nvim-lua/lsp-status.nvim"] = {
+    lazy = true,
+  },
 }
 
 return M

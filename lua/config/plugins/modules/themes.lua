@@ -64,19 +64,10 @@ M.theme = {
   ["m-demare/hlargs.nvim"] = {
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    lazy = true,
     config = function()
       require("hlargs").setup()
     end,
-  },
-  --- INFO:  display of emptyspaces/indentations vertical bars
-  ["lukas-reineke/indent-blankline.nvim"] = {
-    config = require("config.plugins.configs.indent-blankline").init,
-    lazy = true,
-    event = "BufRead",
-  },
-  --- INFO: dashboard plugin
-  ["goolord/alpha-nvim"] = {
-    config = require("config.plugins.configs.dashboard").dashboard,
   },
   --- INFO: the statusline builder im using
   ["windwp/windline.nvim"] = {

@@ -5,7 +5,9 @@
 local M = {}
 M.completion = {
   --- INFO: ai powered completion github
-  ["github/copilot.vim"] = {},
+  ["github/copilot.vim"] = {
+    lazy = true,
+  },
   --- INFO: completion plugin
   ["hrsh7th/nvim-cmp"] = {
     config = require("config.plugins.configs.cmp").init,
