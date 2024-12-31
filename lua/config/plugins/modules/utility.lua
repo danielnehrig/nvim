@@ -394,6 +394,9 @@ M.utility = {
     config = function()
       require("config.plugins.configs.which").init()
     end,
+    opts = {
+      preset = "helix",
+    },
   },
   -- INFO: better normal mode with jj
   ["max397574/better-escape.nvim"] = {
@@ -517,9 +520,17 @@ M.utility = {
       })
     end,
   },
-  -- INFO: s movement motion
-  ["ggandor/lightspeed.nvim"] = {
-    lazy = true,
+  ["folke/flash.nvim"] = {
+    event = "VeryLazy",
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
   },
   -- INFO: create folders if do not exist when in buffer
   ["jghauser/mkdir.nvim"] = {
@@ -531,11 +542,12 @@ M.utility = {
   -- INFO: highlight comments like
   -- TODO: fix this
   ["folke/todo-comments.nvim"] = {
-    optional = true,
+    event = "VeryLazy",
+    opts = {},
   },
   -- INFO:  surround () motion
   ["ur4ltz/surround.nvim"] = {
-    lazy = true,
+    event = "VeryLazy",
     config = function()
       require("surround").setup({ mappings_style = "surround" })
     end,
