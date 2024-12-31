@@ -20,10 +20,8 @@ M.completion = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "danielnehrig/nvim-cmp-lua-latex-symbols",
     },
-  },
-  ["danielnehrig/nvim-cmp-lua-latex-symbols"] = {
-    dependencies = "hrsh7th/nvim-cmp",
   },
   ["kristijanhusak/orgmode.nvim"] = {
     config = function()
@@ -41,12 +39,13 @@ M.completion = {
     dependencies = { "rafamadriz/friendly-snippets" },
     version = "2.*",
     build = "make install_jsregexp",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     config = function()
       require("config.plugins.configs.cmp.luasnip").init()
     end,
   },
   ["onsails/lspkind-nvim"] = {
-    dependencies = "hrsh7th/nvim-cmp",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     config = function()
       require("lspkind").init({
         mode = "symbol_text",

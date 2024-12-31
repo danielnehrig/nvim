@@ -10,7 +10,7 @@ M.init = function()
   require("config.plugins.configs.web-devicons").init()
   require("config.plugins.configs.treesitter").init()
   require("config.plugins.configs.build").init()
-  require("config.plugins.configs.bufferline").init()
+  -- require("config.plugins.configs.bufferline").init()
 end
 
 return M

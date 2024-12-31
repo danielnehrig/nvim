@@ -123,9 +123,8 @@ M.git = {
   },
   --- INFO: Show git conflicts
   ["akinsho/git-conflict.nvim"] = {
-    config = function()
-      require("git-conflict").setup({})
-    end,
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    opts = {}
   },
 }
 return M

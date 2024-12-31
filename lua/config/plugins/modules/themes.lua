@@ -37,24 +37,13 @@ vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
   --- INFO: highlight start of words bold
-  ["HampusHauffman/bionic.nvim"] = {},
+  ["HampusHauffman/bionic.nvim"] = {
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  },
   --- INFO: shows indentation scopes with different background highlight making it a block
   ["HampusHauffman/block.nvim"] = {
-    config = function()
-      require("block").setup({
-        percent = 0.8,
-        depth = 4,
-        colors = nil,
-        automatic = false,
-        --      bg = nil,
-        --      colors = {
-        --          "#ff0000"
-        --          "#00ff00"
-        --          "#0000ff"
-        --      },
-      })
-    end,
-    enabled = true,
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    opts = {}
   },
   ["projekt0n/github-nvim-theme"] = {
     tag = "v0.0.7",
@@ -80,6 +69,10 @@ M.theme = {
     end,
   },
   ["romgrk/barbar.nvim"] = {
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    config = function()
+      require("config.plugins.configs.bufferline").init()
+    end,
     dependencies = { "kyazdani42/nvim-web-devicons" },
   },
 }

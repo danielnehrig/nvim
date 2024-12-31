@@ -173,7 +173,7 @@ M.utility = {
   },
   -- INFO: Handles the fancy floating terms for search/commands
   ["folke/noice.nvim"] = {
-    event = "VimEnter",
+    event = "VeryLazy",
     enabled = function()
       return vim.g.neovide == nil
     end,
@@ -196,7 +196,6 @@ M.utility = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
-      "hrsh7th/nvim-cmp",
     },
   },
   -- INFO: depedencie for some plugins
@@ -229,19 +228,6 @@ M.utility = {
         },
       })
     end,
-  },
-  -- INFO: handle autopairs ()
-  ["windwp/nvim-autopairs"] = {
-    dependencies = "nvim-cmp",
-    enabled = true,
-    config = function()
-      require("config.plugins.configs.autopairs").init()
-    end,
-  },
-  -- vimwiki
-  -- INFO: not used anymore (by me)
-  ["vimwiki/vimwiki"] = {
-    cmd = { "VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote" },
   },
   -- shows infos of chained commands
   ["folke/which-key.nvim"] = {
@@ -320,9 +306,13 @@ M.utility = {
   -- INFO: better quickfix list shows context for instance of current file
   ["kevinhwang91/nvim-bqf"] = { ft = "qf" }, -- better quickfix
   -- INFO:  another quickfix tool
-  ["yorickpeterse/nvim-pqf"] = { event = "VeryLazy", config = true },
+  ["yorickpeterse/nvim-pqf"] = {
+    event = "VeryLazy",
+    opts = {} ,
+  },
   -- INFO: no weird buffer jumping/jitters
   ["luukvbaal/stabilize.nvim"] = {
+    event = "VeryLazy",
     config = function()
       require("stabilize").setup({
         force = true,
