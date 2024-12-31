@@ -7,48 +7,21 @@ M.init = function()
     return
   end
 
-  which.setup({})
-  which.register({
-    g = {
-      name = "Lsp and Grammar",
-    },
-    f = {
-      name = "File",
-    },
-    u = {
-      name = "Utils",
-    },
-    d = {
-      name = "Debug",
-    },
-    q = {
-      name = "QuickfixList",
-    },
-    h = {
-      name = "Gitsigns",
-    },
-    l = {
-      name = "LocList",
-    },
-    m = {
-      name = "Make Test",
-    },
-    o = {
-      name = "Orgmode",
-    },
-    ["]"] = {
-      name = "TS Textobj",
-    },
-    ["c"] = {
-      name = "Commented",
-    },
-    t = {
-      name = "Tab Nav",
-    },
-    b = {
-      name = "Build/Run/Test",
-    },
-  }, { prefix = "<leader>" })
+  which.add({
+    { "<leader>]", group = "TS Textobj" },
+    { "<leader>b", group = "Build/Run/Test" },
+    { "<leader>c", group = "Commented" },
+    { "<leader>d", group = "Debug" },
+    { "<leader>f", group = "File" },
+    { "<leader>g", group = "Lsp and Grammar" },
+    { "<leader>h", group = "Gitsigns" },
+    { "<leader>l", group = "LocList" },
+    { "<leader>m", group = "Make Test" },
+    { "<leader>o", group = "Orgmode" },
+    { "<leader>q", group = "QuickfixList" },
+    { "<leader>t", group = "Tab Nav" },
+    { "<leader>u", group = "Utils" },
+  })
 end
 
 return M

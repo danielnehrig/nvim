@@ -57,6 +57,7 @@ M.ts = {
   ["nvim-treesitter/nvim-treesitter"] = {},
   --- INFO:  indenter
   ["yioneko/nvim-yati"] = {
+    event = "VeryLazy",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   --- INFO: doc generation
@@ -72,7 +73,7 @@ M.ts = {
   --- INFO: treesitter aware commenting
   ["winston0410/commented.nvim"] = {
     keys = {
-      { "<space>cc", mode = { "n", "v" }, desc = "Comment out line" },
+      { "gcc", mode = { "n", "v" }, desc = "Comment out line" },
     },
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()

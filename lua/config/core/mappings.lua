@@ -244,40 +244,6 @@ M.diag = {
   },
 }
 
-M.gram = {
-  n = {
-    {
-      "<leader>ggf",
-      "<Plug>(grammarous-fixall)",
-      { desc = "Grammer Fix All", silent = false },
-    },
-    {
-      "<leader>ggo",
-      "<Plug>(grammarous-open-info-window)",
-      { desc = "Grammer Open", silent = false },
-    },
-    {
-      "<leader>ggn",
-      "<Plug>(grammarous-move-to-next-error)",
-      { desc = "Grammer Go Next", silent = false },
-    },
-    {
-      "<leader>ggp",
-      "<Plug>(grammarous-move-to-previous-error)",
-      { desc = "Grammer Go Prev", silent = false },
-    },
-    {
-      "<leader>ggi",
-      "<Plug>(grammarous-fixit)",
-      { desc = "Grammer Fix It", silent = false },
-    },
-    {
-      "<leader>ggc",
-      "<cmd>GrammarousCheck<CR>",
-      { desc = "Grammer Check", silent = false },
-    },
-  },
-}
 
 M.run = {
   v = {
@@ -329,7 +295,6 @@ M.map = {
   M.util,
   M.tree,
   M.diag,
-  M.gram,
 }
 
 M.vscode_file = {
