@@ -22,6 +22,7 @@ function _G.click_fold()
 end
 
 --- Toggle breakpoint on click
+--- tag: debug
 function _G.click_num()
   local lnum_cursor = vim.fn.getmousepos().line
   local lnum_pos = vim.fn.getpos(".")[2]
@@ -128,7 +129,7 @@ M.StatusColumn = {
       [[ ]],
     },
     sign_column = {
-      [[%s]],
+      [[ %s]],
     },
     folds = {
       [[%#FoldColumn#]], -- HL
@@ -267,22 +268,6 @@ end
 --- toggle the fold column
 M.fold_column_toggle = function()
   g.status_col_fold = not g.status_col_fold
-end
-
---- toggle the relative number from relative to absolute
-M.relative_position_toggle = function()
-  wo.relativenumber = not wo.relativenumber
-end
-
---- toggle the number from relative to absolute
-M.number_toggle = function()
-  wo.number = not wo.number
-  wo.relativenumber = wo.number
-end
-
---- toggle the spell check
-M.spell_toggle = function()
-  wo.spell = not wo.spell
 end
 
 --- toggle the sign column

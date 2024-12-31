@@ -5,26 +5,8 @@
 local M = {}
 
 M.ts = {
-  -- INFO: hihglight current chunk
-  ["shellRaining/hlchunk.nvim"] = {
-    event = "UIEnter",
-    config = function()
-      require("hlchunk").setup({
-        blank = {
-          enable = false,
-        },
-        line_num = {
-          enable = false,
-        },
-        indent = {
-          enable = false,
-        },
-      })
-    end,
-  },
-  --- TODO: ?
   ["Wansmer/treesj"] = {
-    keys = { "<space>m", "<space>j", "<space>s" },
+    keys = { "]j" },
     opts = { use_default_keymaps = false, max_join_length = 150 },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()

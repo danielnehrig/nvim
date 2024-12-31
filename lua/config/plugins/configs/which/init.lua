@@ -16,7 +16,6 @@ M.init = function()
     { "<leader>g", group = "Lsp and Grammar" },
     { "<leader>h", group = "Gitsigns" },
     { "<leader>l", group = "LocList" },
-    { "<leader>m", group = "Make Test" },
     { "<leader>o", group = "Orgmode" },
     { "<leader>q", group = "QuickfixList" },
     { "<leader>t", group = "Tab Nav" },

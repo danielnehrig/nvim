@@ -124,7 +124,7 @@ M.git = {
   --- INFO: Show git conflicts
   ["akinsho/git-conflict.nvim"] = {
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    opts = {}
+    opts = {},
   },
 }
 return M
