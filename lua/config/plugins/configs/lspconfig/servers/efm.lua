@@ -30,7 +30,9 @@ lspconfig.efm.setup({
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
         callback = function()
-          vim.lsp.buf.format({ async = false, timeout_ms = 7000 })
+          if vim.g.autoformat then
+            vim.lsp.buf.format({ async = false, timeout_ms = 7000 })
+          end
         end,
         group = au_lsp,
       })

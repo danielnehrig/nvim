@@ -9,6 +9,7 @@
 ---@field [1] string key binding
 ---@field [2] string|fun() command
 ---@field [3] MapOptions options for the mapping
+---@field [4] string|nil type snack
 
 ---@class MapOptions
 ---@field noremap? boolean
@@ -244,7 +245,6 @@ M.diag = {
   },
 }
 
-
 M.run = {
   v = {
     {
@@ -399,6 +399,22 @@ function M.set_lsp_mapping(bufnr)
         { desc = "Diagnostic Float", buffer = bufnr },
       },
       {
+        "<leader>uP",
+        function()
+          return Snacks.toggle({
+            name = "Auto Format (Global)",
+            get = function()
+              return vim.g.autoformat
+            end,
+            set = function(state)
+              vim.g.autoformat = state
+            end,
+          })
+        end,
+        { desc = "Toggle Auto Format" },
+        "toggle",
+      },
+      {
         "<leader>ui",
         function()
           local is = vim.lsp.inlay_hint.is_enabled()
@@ -412,7 +428,13 @@ function M.set_lsp_mapping(bufnr)
   for mode, map in pairs(M.lsp) do
     for _, conf in ipairs(map) do
       if conf then
-        vim.keymap.set(mode, conf[1], conf[2], conf[3])
+        if conf[4] then
+          if conf[4] == "toggle" then
+            conf[2]():map(conf[1])
+          end
+        elseif conf[3] then
+          vim.keymap.set(mode, conf[1], conf[2], conf[3])
+        end
       end
     end
   end

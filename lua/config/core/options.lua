@@ -192,6 +192,7 @@ function M.load_options()
   })
 
   g.mapleader = " " -- space leader
+  g.autoformat = true
 
   opt.hidden = true -- buffer hidden
   opt.ignorecase = true -- case sens ignore search
