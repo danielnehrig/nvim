@@ -391,12 +391,21 @@ M.utility = {
   -- shows infos of chained commands
   ["folke/which-key.nvim"] = {
     event = "VeryLazy",
-    config = function()
-      require("config.plugins.configs.which").init()
-    end,
     opts = {
       preset = "helix",
     },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+    config = function()
+      require("config.plugins.configs.which").init()
+    end,
   },
   -- INFO: better normal mode with jj
   ["max397574/better-escape.nvim"] = {
@@ -520,6 +529,7 @@ M.utility = {
       })
     end,
   },
+  -- INFO: movement plugin
   ["folke/flash.nvim"] = {
     event = "VeryLazy",
     opts = {},
@@ -540,7 +550,6 @@ M.utility = {
     end,
   },
   -- INFO: highlight comments like
-  -- TODO: fix this
   ["folke/todo-comments.nvim"] = {
     event = "VeryLazy",
     opts = {},

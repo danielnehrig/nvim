@@ -24,6 +24,15 @@ M.git = {
         topdelete = { text = "" },
         changedelete = { text = "▎" },
       },
+      current_line_blame = true,
+      preview_config = {
+        -- Options passed to nvim_open_win
+        border = "single",
+        style = "minimal",
+        relative = "cursor",
+        row = 0,
+        col = 1,
+      },
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
 
@@ -53,7 +62,7 @@ M.git = {
         map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
         map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
         map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-        map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
+        map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk Inline")
         map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
         map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
         map("n", "<leader>ghd", gs.diffthis, "Diff This")
