@@ -336,21 +336,17 @@ M.utility = {
     enabled = function()
       return vim.g.neovide == nil
     end,
-    config = function()
-      if not vim.g.neovide then
-        require("noice").setup({
-          presets = {
-            -- you can enable a preset by setting it to true, or a table that will override the preset config
-            -- you can also add custom presets that you can enable/disable with enabled=true
-            bottom_search = false, -- use a classic bottom cmdline for search
-            command_palette = false, -- position the cmdline and popupmenu together
-            long_message_to_split = false, -- long messages will be sent to a split
-            inc_rename = false, -- enables an input dialog for inc-rename.nvim
-            lsp_doc_border = true, -- add a border to hover docs and signature help
-          },
-        })
-      end
-    end,
+    opts = {
+      presets = {
+        -- you can enable a preset by setting it to true, or a table that will override the preset config
+        -- you can also add custom presets that you can enable/disable with enabled=true
+        bottom_search = false, -- use a classic bottom cmdline for search
+        command_palette = false, -- position the cmdline and popupmenu together
+        long_message_to_split = false, -- long messages will be sent to a split
+        inc_rename = false, -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = true, -- add a border to hover docs and signature help
+      },
+    },
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
@@ -555,11 +551,19 @@ M.utility = {
     opts = {},
   },
   -- INFO:  surround () motion
-  ["ur4ltz/surround.nvim"] = {
+  ["echasnovski/mini.surround"] = {
     event = "VeryLazy",
-    config = function()
-      require("surround").setup({ mappings_style = "surround" })
-    end,
+    opts = {
+      mappings = {
+        add = "gsa", -- Add surrounding in Normal and Visual modes
+        delete = "gsd", -- Delete surrounding
+        find = "gsf", -- Find surrounding (to the right)
+        find_left = "gsF", -- Find surrounding (to the left)
+        highlight = "gsh", -- Highlight surrounding
+        replace = "gsr", -- Replace surrounding
+        update_n_lines = "gsn", -- Update `n_lines`
+      },
+    },
   },
 }
 

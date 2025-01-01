@@ -34,11 +34,11 @@ M.debug = {
       })
     end,
     dependencies = {
+      "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "haydenmeade/neotest-jest",
       "rouge8/neotest-rust",
       "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
     },
   },
   --- INFO: lua neovim debug
@@ -53,7 +53,6 @@ M.debug = {
   --- INFO: main debug plug dap
   ["mfussenegger/nvim-dap"] = {
     lazy = true,
-    dependencies = { "mfussenegger/nvim-dap" },
   },
   --- INFO: ui for dap
   ["rcarriga/nvim-dap-ui"] = {

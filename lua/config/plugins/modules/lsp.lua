@@ -7,10 +7,8 @@ local M = {}
 M.lsp = {
   --- INFO: lsp lens integration
   ["VidocqH/lsp-lens.nvim"] = {
-    lazy = true,
-    config = function()
-      require("lsp-lens").setup({})
-    end,
+    event = "VeryLazy",
+    opts = {},
   },
   ["scalameta/nvim-metals"] = {
     dependencies = {
@@ -100,8 +98,7 @@ M.lsp = {
     priority = 51,
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     dependencies = {
-      "mason.nvim",
-      { "williamboman/mason-lspconfig.nvim", config = function() end },
+      "lsp-status.nvim",
     },
   },
   --- INFO: project wide diagnostic infos

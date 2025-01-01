@@ -8,11 +8,6 @@ vim.g.languagetool_server_jar =
   "/usr/local/opt/languagetool/libexec/languagetool-server.jar"
 
 M.language = {
-  ["rhysd/vim-grammarous"] = {
-    cmd = {
-      "GrammarousCheck",
-    },
-  },
   --- INFO: java lsp stuff
   ["mfussenegger/nvim-jdtls"] = { lazy = true },
   --- INFO: rust crates info for cargo toml
