@@ -159,6 +159,7 @@ M.utility = {
                 .. "/"
                 .. config.ui.logo,
               gap = 1,
+              padding = 1,
             }
           else
             header = {
@@ -167,7 +168,13 @@ M.utility = {
           end
           return {
             header,
-            { section = "keys", gap = 1, padding = 1 },
+            {
+              title = "Keymaps",
+              indent = 2,
+              section = "keys",
+              gap = 1,
+              padding = 1,
+            },
             {
               icon = " ",
               title = "Projects",
