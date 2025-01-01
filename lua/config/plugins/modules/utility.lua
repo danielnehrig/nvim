@@ -1,4 +1,8 @@
+local config = require("config.core.config").config
+local config_path = vim.fn.stdpath("config")
+
 ---@module 'lazy.types'
+---
 
 ---@class utility
 ---@field utility table<string, LazyPluginSpec>
@@ -43,7 +47,7 @@ M.utility = {
       bigfile = { enabled = true },
       dashboard = {
         enabled = true,
-        width = 60,
+        width = 76,
         row = nil, -- dashboard position. nil for center
         col = nil, -- dashboard position. nil for center
         pane_gap = 4, -- empty columns between vertical panes
@@ -105,12 +109,12 @@ M.utility = {
           },
           -- Used by the `header` section
           header = [[
-      ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-      ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-      ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-      ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-      ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-      ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
         },
         -- item field formatters
         formats = {
@@ -118,7 +122,7 @@ M.utility = {
             if
               item.file and item.icon == "file" or item.icon == "directory"
             then
-              return M.icon(item.file, item.icon)
+              -- return M.icon(item.file, item.icon)
             end
             return { item.icon, width = 2, hl = "icon" }
           end,
@@ -143,11 +147,50 @@ M.utility = {
               or { { fname, hl = "file" } }
           end,
         },
-        sections = {
-          { section = "header" },
-          { section = "keys", gap = 1, padding = 1 },
-          { section = "startup" },
-        },
+        sections = function()
+          local global = require("config.core.global")
+          local header
+          if not global.is_windows then
+            header = {
+              pane = 1,
+              section = "terminal",
+              cmd = "cat | lolcat --seed=24 "
+                .. config_path
+                .. "/"
+                .. config.ui.logo,
+              gap = 1,
+            }
+          else
+            header = {
+              section = "header",
+            }
+          end
+          return {
+            header,
+            { section = "keys", gap = 1, padding = 1 },
+            {
+              icon = " ",
+              title = "Projects",
+              section = "projects",
+              indent = 2,
+              padding = 1,
+            },
+            {
+              icon = " ",
+              title = "Git Status",
+              section = "terminal",
+              enabled = function()
+                return Snacks.git.get_root() ~= nil
+              end,
+              cmd = "git status --short --branch --renames",
+              height = 5,
+              padding = 1,
+              ttl = 5 * 60,
+              indent = 3,
+            },
+            { section = "startup" },
+          }
+        end,
       },
       indent = { enabled = true },
       input = { enabled = true },
