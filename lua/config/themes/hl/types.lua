@@ -1,5 +1,12 @@
 ---@meta
 
+--- @class HighlightTheme
+--- @field fg? string
+--- @field bg? string
+--- @field sp? string
+--- @field style? string
+--- @field link? string
+
 ---@alias Flavor
 ---| '"dark"'
 ---| '"light"'
@@ -7,7 +14,7 @@
 ---@class ColorScheme
 ---@field base_30 BASE_30
 ---@field base_16 BASE_16
----@field polish_hl? table<string, Highlight>
+---@field polish_hl? table<string, table<string, HighlightTheme>>
 ---@field type? Flavor
 
 ---@class BASE_30
@@ -16,6 +23,7 @@
 ---@field black string
 ---@field black2 string
 ---@field one_bg string
+---@field lavender string
 ---@field one_bg2 string
 ---@field one_bg3 string
 ---@field grey string

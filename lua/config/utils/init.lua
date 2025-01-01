@@ -46,7 +46,7 @@ end
 
 --- combines plugin manager colorschemes
 --- with internal colorschemes
---- @todo add support for custom colorschemes
+--- @TODO: add support for custom colorschemes
 --- @param arg string
 M.switch_theme = function(arg)
   local colorscheme = nil
