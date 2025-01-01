@@ -8,19 +8,19 @@ function M.init()
   end
 
   local ensure_installed = {
-      "org",
-      "lua",
-      "rust",
-      "bash",
-      "javascript",
-      "typescript",
-      "jsdoc",
-      "html",
-      "json",
-      "markdown",
-      "markdown_inline",
-      "python",
-    }
+    "org",
+    "lua",
+    "rust",
+    "bash",
+    "javascript",
+    "typescript",
+    "jsdoc",
+    "html",
+    "json",
+    "markdown",
+    "markdown_inline",
+    "python",
+  }
 
   local global = require("config.core.global")
   if not global.is_windows then

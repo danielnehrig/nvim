@@ -43,7 +43,7 @@ M.theme = {
   --- INFO: shows indentation scopes with different background highlight making it a block
   ["HampusHauffman/block.nvim"] = {
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    opts = {}
+    opts = {},
   },
   ["projekt0n/github-nvim-theme"] = {
     tag = "v0.0.7",

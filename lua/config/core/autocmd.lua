@@ -31,7 +31,10 @@ function M.autocmds()
       local client = vim.lsp.get_client_by_id(args.data.client_id)
       if client then
         if client.supports_method("textDocument/documentHighlight") then
-          local au_lsp = vim.api.nvim_create_augroup("LSPDocumentHighlight", { clear = true })
+          local au_lsp = vim.api.nvim_create_augroup(
+            "LSPDocumentHighlight",
+            { clear = true }
+          )
 
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = bufnr,
@@ -47,7 +50,6 @@ function M.autocmds()
           })
         end
       end
-
     end,
   })
 
