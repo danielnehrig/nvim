@@ -4,9 +4,22 @@
 ---@field completion table<string, LazyPluginSpec>
 local M = {}
 M.completion = {
+  -- TODO: manage config of this by user cfg
+  ["jackMort/ChatGPT.nvim"] = {
+    event = "VeryLazy",
+    enabled = false,
+    opts = {
+      api_key_cmd = "op read op://Employee/openai/password --no-newline",
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
   --- INFO: ai powered completion github
   ["github/copilot.vim"] = {
-    lazy = true,
+    event = "VeryLazy",
   },
   --- INFO: completion plugin
   ["hrsh7th/nvim-cmp"] = {

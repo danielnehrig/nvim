@@ -8,6 +8,18 @@ local config_path = vim.fn.stdpath("config")
 ---@field utility table<string, LazyPluginSpec>
 local M = {}
 M.utility = {
+  ["echasnovski/mini.pairs"] = {
+    event = "VeryLazy",
+    opts = {},
+  },
+  ["MeanderingProgrammer/render-markdown.nvim"] = {
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "echasnovski/mini.icons",
+    }, -- if you use standalone mini plugins
+    opts = {},
+  },
   -- INFO: center the current buffer nice for widescreen
   ["shortcuts/no-neck-pain.nvim"] = {
     cmd = { "NoNeckPain" },
