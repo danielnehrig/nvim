@@ -1,6 +1,6 @@
 ---@module 'config.core.config.type'
 
----@type Config
+---@class ConfigSetup
 local default_config = {}
 
 default_config.ui = {
