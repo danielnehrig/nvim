@@ -257,18 +257,11 @@ M.utility = {
         desc = "Select Scratch Buffer",
       },
       {
-        "<leader>n",
+        "<leader>N",
         function()
           Snacks.notifier.show_history()
         end,
         desc = "Notification History",
-      },
-      {
-        "<leader>bd",
-        function()
-          Snacks.bufdelete()
-        end,
-        desc = "Delete Buffer",
       },
       {
         "<leader>cR",
@@ -293,7 +286,7 @@ M.utility = {
         desc = "Git Blame Line",
       },
       {
-        "<leader>gf",
+        "<leader>gF",
         function()
           Snacks.lazygit.log_file()
         end,
@@ -307,7 +300,7 @@ M.utility = {
         desc = "Lazygit",
       },
       {
-        "<leader>gl",
+        "<leader>gL",
         function()
           Snacks.lazygit.log()
         end,

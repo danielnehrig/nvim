@@ -7,7 +7,7 @@ M.completion = {
   -- TODO: manage config of this by user cfg
   ["jackMort/ChatGPT.nvim"] = {
     event = "VeryLazy",
-    enabled = false,
+    enabled = true,
     opts = {
       api_key_cmd = "op read op://Employee/openai/password --no-newline",
     },

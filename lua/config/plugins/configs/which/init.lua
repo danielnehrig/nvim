@@ -45,7 +45,6 @@ M.init = function()
     },
     { "<leader>]", group = "TS Textobj" },
     { "<leader>b", group = "Build/Run/Test" },
-    { "<leader>c", group = "Commented" },
     { "<leader>d", group = "Debug" },
     { "<leader>f", group = "File" },
     { "<leader>g", group = "Lsp and Grammar" },
