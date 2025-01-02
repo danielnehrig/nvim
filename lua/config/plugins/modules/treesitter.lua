@@ -36,7 +36,11 @@ M.ts = {
       })
     end,
   },
-  ["nvim-treesitter/nvim-treesitter"] = {},
+  ["nvim-treesitter/nvim-treesitter"] = {
+    config = function()
+      require("config.plugins.configs.treesitter").init()
+    end,
+  },
   --- INFO:  indenter
   ["yioneko/nvim-yati"] = {
     event = "VeryLazy",
@@ -60,6 +64,7 @@ M.ts = {
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("commented").setup({
+        keybindings = { n = "gc", v = "gc", nl = "gcc" },
         hooks = {
           before_comment = require("ts_context_commentstring.internal").update_commentstring,
         },
