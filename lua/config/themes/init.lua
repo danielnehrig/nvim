@@ -7,11 +7,10 @@ local M = {}
 M.get_theme_tb = function(type)
   local default_path = "config.themes.hl." .. config.ui.colorscheme.name
 
-  local present1, default_theme = pcall(require, default_path)
+  local theme_exists, selected_theme = pcall(require, default_path)
 
-  if present1 then
-    return default_theme[type]
-    --  error("No such theme! " .. default_path)
+  if theme_exists then
+    return selected_theme[type]
   end
 end
 
