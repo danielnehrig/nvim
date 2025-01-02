@@ -1,33 +1,18 @@
 local colors = require("config.themes").get_colors("base_16")
 
-local term = {
-  "base01",
-  "base08",
-  "base0B",
-  "base0A",
-  "base0D",
-  "base0E",
-  "base0C",
-  "base05",
-  "base03",
-  "base08",
-  "base0B",
-  "base0A",
-  "base0D",
-  "base0E",
-  "base0C",
-  "base07",
-}
-
-local result = ""
-
-for i = 0, 15 do
-  result = result
-    .. "vim.g.terminal_color_"
-    .. i
-    .. "='"
-    .. colors[term[i + 1]]
-    .. "' "
-end
-
-return result
+vim.g.terminal_color_0 = "#" .. colors.base00
+vim.g.terminal_color_1 = "#" .. colors.base08
+vim.g.terminal_color_2 = "#" .. colors.base0B
+vim.g.terminal_color_3 = "#" .. colors.base0A
+vim.g.terminal_color_4 = "#" .. colors.base0D
+vim.g.terminal_color_5 = "#" .. colors.base0E
+vim.g.terminal_color_6 = "#" .. colors.base0C
+vim.g.terminal_color_7 = "#" .. colors.base05
+vim.g.terminal_color_8 = "#" .. colors.base03
+vim.g.terminal_color_9 = "#" .. colors.base08
+vim.g.terminal_color_10 = "#" .. colors.base0B
+vim.g.terminal_color_11 = "#" .. colors.base0A
+vim.g.terminal_color_12 = "#" .. colors.base0D
+vim.g.terminal_color_13 = "#" .. colors.base0E
+vim.g.terminal_color_14 = "#" .. colors.base0C
+vim.g.terminal_color_15 = "#" .. colors.base07
