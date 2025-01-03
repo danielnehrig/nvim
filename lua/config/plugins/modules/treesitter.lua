@@ -5,14 +5,6 @@
 local M = {}
 
 M.ts = {
-  ["Wansmer/treesj"] = {
-    keys = { "]j" },
-    opts = { use_default_keymaps = false, max_join_length = 150 },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("treesj").setup({})
-    end,
-  },
   --- INFO: refactor plugin
   ["ThePrimeagen/refactoring.nvim"] = {
     config = require("config.plugins.configs.refactoring").init,
@@ -39,6 +31,19 @@ M.ts = {
   ["nvim-treesitter/nvim-treesitter"] = {
     config = function()
       require("config.plugins.configs.treesitter").init()
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "RRethy/nvim-treesitter-textsubjects",
+      "windwp/nvim-ts-autotag",
+    },
+  },
+  ["Wansmer/treesj"] = {
+    event = "VeryLazy",
+    opts = { use_default_keymaps = false, max_join_length = 150 },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("treesj").setup({})
     end,
   },
   --- INFO:  indenter
@@ -71,25 +76,10 @@ M.ts = {
       })
     end,
   },
-  -- INFO: textobject movements like change inside argument jump to function
-  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = true,
-  },
   -- INFO: show ts nodes etc
   ["nvim-treesitter/playground"] = {
     cmd = "TSPlaygroundToggle",
     dependencies = "nvim-treesitter/nvim-treesitter",
-  },
-  -- INFO: textsubject movements
-  ["RRethy/nvim-treesitter-textsubjects"] = {
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = true,
-  },
-  -- INFO: add auto tags
-  ["windwp/nvim-ts-autotag"] = {
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = true,
   },
 }
 

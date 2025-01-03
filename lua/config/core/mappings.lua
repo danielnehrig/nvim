@@ -354,12 +354,12 @@ function M.set_lsp_mapping(bufnr)
       {
         "<leader>gw",
         vim.lsp.buf.document_symbol,
-        { desc = "Doc Symb", buffer = bufnr },
+        { desc = "Doc Symbol", buffer = bufnr },
       },
       {
         "<leader>gW",
         vim.lsp.buf.workspace_symbol,
-        { desc = "Workspace Symbok", buffer = bufnr },
+        { desc = "Workspace Symbol", buffer = bufnr },
       },
       {
         "<Leader>gf",
