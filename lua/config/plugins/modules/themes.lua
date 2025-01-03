@@ -36,6 +36,13 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
+  ["sphamba/smear-cursor.nvim"] = {
+    event = "VeryLazy",
+    enabled = function()
+      return not vim.g.neovide
+    end,
+    opts = {},
+  },
   --- INFO: highlight start of words bold
   ["HampusHauffman/bionic.nvim"] = {
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
