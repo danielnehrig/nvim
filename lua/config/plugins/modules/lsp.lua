@@ -13,13 +13,48 @@ M.lsp = {
   ["scalameta/nvim-metals"] = {
     dependencies = {
       "nvim-lua/plenary.nvim",
+      {
+        "j-hui/fidget.nvim",
+        opts = {},
+      },
+      {
+        "mfussenegger/nvim-dap",
+        config = function(self, opts)
+          -- Debug settings if you're using nvim-dap
+          local dap = require("dap")
+
+          dap.configurations.scala = {
+            {
+              type = "scala",
+              request = "launch",
+              name = "RunOrTest",
+              metals = {
+                runType = "runOrTestFile",
+                --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+              },
+            },
+            {
+              type = "scala",
+              request = "launch",
+              name = "Test Target",
+              metals = {
+                runType = "testTarget",
+              },
+            },
+          }
+        end,
+      },
     },
     ft = { "scala", "sbt", "java" },
     opts = function()
       local metals_config = require("metals").bare_config()
       metals_config.settings.serverVersion = "1.2.0"
+      local capabilities =
+        require("config.plugins.configs.lspconfig.capabilities").capabilities
+      metals_config.capabilities = capabilities
       local lsp = require("config.plugins.configs.lspconfig")
       metals_config.on_attach = function(client, bufnr)
+        require("metals").setup_dap()
         local n_present, navic = pcall(require, "nvim-navic")
         if n_present then
           if client.supports_method("textDocument/documentSymbol") then

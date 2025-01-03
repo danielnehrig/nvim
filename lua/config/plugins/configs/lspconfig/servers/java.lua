@@ -1,5 +1,6 @@
 local lsp = require("config.plugins.configs.lspconfig")
-local capabilities = require("config.plugins.configs.lspconfig").capabilities
+local capabilities =
+  require("config.plugins.configs.lspconfig.capabilities").capabilities
 local lspconfig = require("lspconfig")
 local build_path_string = require("config.utils").build_path_string
 
