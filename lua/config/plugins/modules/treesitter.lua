@@ -36,6 +36,7 @@ M.ts = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
       "windwp/nvim-ts-autotag",
+      "nvim-treesitter/nvim-treesitter-context",
     },
   },
   ["Wansmer/treesj"] = {
