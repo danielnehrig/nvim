@@ -25,6 +25,11 @@
 ---@field ui ConfigUi the ui config
 ---@field plugins ConfigPlugins the plugin config
 ---@field mappings MapModes the mapping config
+---@field ai_options? ConfigAi the ai config
+
+---@class ConfigAi
+---@field openai_key? string
+---@field copilot_key? string
 
 ---@alias StatuslineThemes
 ---| '"slanted_lsp"'

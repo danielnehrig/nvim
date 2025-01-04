@@ -8,6 +8,15 @@ local config_path = vim.fn.stdpath("config")
 ---@field utility table<string, LazyPluginSpec>
 local M = {}
 M.utility = {
+  ["nvzone/timerly"] = {
+    cmd = "TimerlyToggle",
+  },
+  ["nvzone/minty"] = {
+    cmd = { "Shades", "Huefy" },
+    dependencies = {
+      "nvzone/volt"
+    }
+  },
   ["echasnovski/mini.pairs"] = {
     event = "VeryLazy",
     opts = {},

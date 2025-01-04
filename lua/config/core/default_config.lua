@@ -49,4 +49,9 @@ default_config.plugins = {
   },
 }
 
+default_config.ai_options = {
+  openai_key = nil,
+  copilot_key = nil,
+}
+
 return default_config

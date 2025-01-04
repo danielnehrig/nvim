@@ -7,9 +7,9 @@ M.completion = {
   -- TODO: manage config of this by user cfg
   ["jackMort/ChatGPT.nvim"] = {
     event = "VeryLazy",
-    enabled = true,
+    enabled = require("config.core.config").config.ai_options.openai_key == nil or require("config.core.config").config.ai_options.openai_key == "",
     opts = {
-      api_key_cmd = "op read op://Employee/openai/password --no-newline",
+      api_key_cmd = require("config.core.config").config.ai_options.openai_key,
       openai_params = {
         model = "gpt-4-1106-preview",
         frequency_penalty = 0,
