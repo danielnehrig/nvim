@@ -89,13 +89,11 @@ M.ts_themes = {
     colorscheme_name = { "sonokai" },
     lazy = true,
     priority = 1000,
-    opts = {},
   },
   ["ray-x/aurora"] = {
     colorscheme_name = { "aurora" },
     lazy = true,
     priority = 1000,
-    opts = {},
   },
   ["Mofiqul/vscode.nvim"] = {
     colorscheme_name = { "vscode" },
