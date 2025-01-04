@@ -4,8 +4,32 @@
 ---@field completion table<string, LazyPluginSpec>
 local M = {}
 M.completion = {
+  -- TODO: manage config of this by user cfg
+  ["jackMort/ChatGPT.nvim"] = {
+    event = "VeryLazy",
+    enabled = require("config.core.config").config.ai_options.openai_key == nil or require("config.core.config").config.ai_options.openai_key == "",
+    opts = {
+      api_key_cmd = require("config.core.config").config.ai_options.openai_key,
+      openai_params = {
+        model = "gpt-4-1106-preview",
+        frequency_penalty = 0,
+        presence_penalty = 0,
+        max_tokens = 4095,
+        temperature = 0.2,
+        top_p = 0.1,
+        n = 1,
+      },
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
   --- INFO: ai powered completion github
-  ["github/copilot.vim"] = {},
+  ["github/copilot.vim"] = {
+    event = "VeryLazy",
+  },
   --- INFO: completion plugin
   ["hrsh7th/nvim-cmp"] = {
     config = require("config.plugins.configs.cmp").init,
@@ -18,10 +42,8 @@ M.completion = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "danielnehrig/nvim-cmp-lua-latex-symbols",
     },
-  },
-  ["danielnehrig/nvim-cmp-lua-latex-symbols"] = {
-    dependencies = "hrsh7th/nvim-cmp",
   },
   ["kristijanhusak/orgmode.nvim"] = {
     config = function()
@@ -39,12 +61,13 @@ M.completion = {
     dependencies = { "rafamadriz/friendly-snippets" },
     version = "2.*",
     build = "make install_jsregexp",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     config = function()
       require("config.plugins.configs.cmp.luasnip").init()
     end,
   },
   ["onsails/lspkind-nvim"] = {
-    dependencies = "hrsh7th/nvim-cmp",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     config = function()
       require("lspkind").init({
         mode = "symbol_text",

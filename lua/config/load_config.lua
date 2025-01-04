@@ -8,9 +8,7 @@ M.__index = M
 M.init = function()
   require("config.themes").load_theme()
   require("config.plugins.configs.web-devicons").init()
-  require("config.plugins.configs.treesitter").init()
   require("config.plugins.configs.build").init()
-  require("config.plugins.configs.bufferline").init()
 end
 
 return M

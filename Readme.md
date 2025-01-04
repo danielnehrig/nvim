@@ -211,7 +211,8 @@ see `mappings.lua` for more info
 _you are probably better of using these since they are community driven I'm the sole maintainer of this config_
 
 - Lvim
-- nvchad and module suite
+- LazyVim
+- nvchad UI style
   - Theme based solution
   - If the theme modules wouldn't be strictly written for nvchad I would have used their module
 - base16

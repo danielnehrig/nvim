@@ -62,12 +62,14 @@ M.base_16 = {
 }
 
 M.polish_hl = {
-  ["@parameter"] = { fg = M.base_30.blue },
-  ["@keyword"] = { fg = M.base_30.blue },
-  ["@variable"] = { fg = M.base_30.cyan },
-  ["@field.key"] = { fg = M.base_30.green1 },
-  ["@keyword.return"] = { fg = M.base_16.base0E },
-  ["@keyword.function"] = { fg = M.base_30.teal },
+  treesitter = {
+    ["@parameter"] = { fg = M.base_30.blue },
+    ["@keyword"] = { fg = M.base_30.blue },
+    ["@variable"] = { fg = M.base_30.cyan },
+    ["@field.key"] = { fg = M.base_30.green1 },
+    ["@keyword.return"] = { fg = M.base_16.base0E },
+    ["@keyword.function"] = { fg = M.base_30.teal },
+  },
 }
 
 M.type = "dark"

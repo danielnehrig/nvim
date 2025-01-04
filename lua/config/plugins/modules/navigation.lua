@@ -7,14 +7,10 @@ local M = {}
 M.navigation = {
   --- INFO: % motion
   ["andymass/vim-matchup"] = {
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     config = function()
       vim.g.matchup_matchparen_offscreen = {}
     end,
-  },
-  --- INFO: tmuxish behaviour in vim
-  ["hkupty/nvimux"] = {
-    keys = { "<C-a>" },
-    config = require("config.plugins.configs.nvimux").init,
   },
   --- INFO: file picker / grep search etc anything fuzzy related
   ["nvim-telescope/telescope.nvim"] = {

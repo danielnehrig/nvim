@@ -1,6 +1,6 @@
 ---@module 'config.core.config.type'
 
----@type Config
+---@class ConfigSetup
 local default_config = {}
 
 default_config.ui = {
@@ -47,6 +47,11 @@ default_config.plugins = {
   remove = {
     --  "hkupty/nvimux",
   },
+}
+
+default_config.ai_options = {
+  openai_key = nil,
+  copilot_key = nil,
 }
 
 return default_config

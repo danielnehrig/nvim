@@ -1,143 +1,114 @@
-  Startuptime: 83.18ms
+  Startuptime: 47.15ms
 
   Based on the actual CPU time of the Neovim process till UIEnter.
   This is more accurate than `nvim --startuptime`.
-    LazyStart 6.54ms
-    LazyDone  49.51ms (+42.97ms)
-    UIEnter   83.18ms (+33.67ms)
+    LazyStart 14.22ms
+    LazyDone  27.97ms (+13.75ms)
+    UIEnter   47.15ms (+19.18ms)
 
   Profile
 
   You can press <C-s> to change sorting between chronological order & time taken.
   Press <C-f> to filter profiling entries that took more time than a given threshold
 
-    ●   lazy.nvim 2.92ms
-      ➜   module 0.21ms
-      ➜   config 0.12ms
-      ➜   spec 1.54ms
-      ➜   state 0.18ms
-      ➜   install 0.05ms
-      ➜   handlers 0.8ms
-        ★   rust.vim/ftdetect/rust.vim 0.03ms
-    ●  startup 36.32ms
-      ➜   runtime/filetype.lua 0.05ms
-      ➜  init 0.02ms
-      ➜  start 33.94ms
-        ★  start   nvim-ts-context-commentstring 1.35ms
-          ‒   nvim-treesitter 1.2ms
-            ●   nvim-treesitter/plugin/nvim-treesitter.lua 1.14ms
-          ‒   nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim 0.08ms
-        ★  start   filetype.nvim 0.01ms
-        ★  start   window-picker.nvim 0.3ms
-          ‒   window-picker.nvim/plugin/window-picker.vim 0.02ms
-        ★  start   gitlinker.nvim 0.02ms
-        ★  start   nvim-ts-autotag 0.33ms
-          ‒   nvim-ts-autotag/plugin/nvim-ts-autotag.vim 0.25ms
-        ★  start   orgmode.nvim 3.92ms
-          ‒   nvim-cmp 3.29ms
-            ●   nvim-cmp/plugin/cmp.lua 0.55ms
-          ‒   orgmode.nvim/plugin/orgmode.vim 0.02ms
-        ★  start   one-small-step-for-vimkind 0.04ms
-        ★  start   barbar.nvim 2.45ms
-          ‒   nvim-web-devicons 0.08ms
-            ●   nvim-web-devicons/plugin/nvim-web-devicons.vim 0.03ms
-          ‒   barbar.nvim/plugin/barbar.lua 2.29ms
-        ★  start   lightspeed.nvim 0.47ms
-          ‒   lightspeed.nvim/plugin/init.lua 0.44ms
-        ★  start   lsp-status.nvim 0.1ms
-        ★  start   git-conflict.nvim 0.5ms
-        ★  start   alpha-nvim 0.93ms
-        ★  start   nvim-ts-rainbow 0.25ms
-          ‒   nvim-ts-rainbow/plugin/rainbow.vim 0.2ms
-        ★  start   stabilize.nvim 0.3ms
-        ★  start   nvim-treesitter-textobjects 1.24ms
-          ‒   nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim 1.15ms
-        ★  start   neotest 2.68ms
-          ‒   plenary.nvim 0.11ms
-            ●   plenary.nvim/plugin/plenary.vim 0.03ms
-          ‒   neotest-jest 0.08ms
-          ‒   neotest-rust 0.06ms
-          ‒   FixCursorHold.nvim 0.16ms
-            ●   FixCursorHold.nvim/plugin/fix_cursorhold_nvim.vim 0.04ms
-          ‒   neotest/plugin/neotest.lua 0.04ms
-        ★  start   nvim-gps 0.42ms
-          ‒   nvim-gps/plugin/nvim-gps.vim 0.19ms
-        ★  start   nvim-treesitter-textsubjects 0.2ms
-          ‒   nvim-treesitter-textsubjects/plugin/nvim-treesitter-textsubjects.vim 0.17ms
-        ★  start   vim-matchup 1.44ms
-          ‒   vim-matchup/plugin/matchup.vim 1.4ms
-        ★  start   lspkind-nvim 0.26ms
-        ★  start   lsp-inlayhints.nvim 0.3ms
-        ★  start   cmp_luasnip 0.02ms
-        ★  start   LuaSnip 9.61ms
-          ‒   friendly-snippets 0.08ms
-          ‒   LuaSnip/plugin/luasnip.lua 3.01ms
-          ‒   LuaSnip/plugin/luasnip.vim 0.03ms
-        ★  start   nvim-autopairs 0.54ms
-        ★  start   cmp-spell 0.03ms
-        ★  start   cmp-nvim-lsp 0.18ms
-        ★  start   presence.nvim 1.95ms
-          ‒   presence.nvim/plugin/presence.vim 1.26ms
-        ★  start   cmp-cmdline 0.08ms
-        ★  start   mkdir.nvim 0.39ms
-          ‒   mkdir.nvim/plugin/mkdir.lua 0.04ms
-        ★  start   cmp-nvim-lsp-signature-help 0.05ms
-        ★  start   cmp-buffer 0.15ms
-        ★  start   nvim-jdtls 0.14ms
-          ‒   nvim-jdtls/plugin/nvim_jdtls.vim 0.03ms
-        ★  start   nvim-yati 0.43ms
-          ‒   nvim-yati/plugin/nvim-yati.vim 0.3ms
-        ★  start   surround.nvim 0.54ms
-        ★  start   cmp-path 0.08ms
-        ★  start   lsp-colors.nvim 0.64ms
-          ‒   lsp-colors.nvim/plugin/lsp-colors.vim 0.5ms
-        ★  start   copilot.vim 0.66ms
-          ‒   copilot.vim/plugin/copilot.vim 0.62ms
-        ★  start   which-key.nvim 0.64ms
-          ‒   which-key.nvim/plugin/which-key.vim 0.01ms
-      ➜  rtp plugins 1.54ms
-        ★   runtime/plugin/editorconfig.lua 0.03ms
-        ★   runtime/plugin/gzip.vim 0.01ms
-        ★   runtime/plugin/man.lua 0.03ms
-        ★   runtime/plugin/matchit.vim 0.01ms
-        ★   runtime/plugin/matchparen.vim 0.01ms
-        ★   runtime/plugin/netrwPlugin.vim 0.01ms
-        ★   runtime/plugin/nvim.lua 0.12ms
-        ★   runtime/plugin/rplugin.vim 0.14ms
-        ★   runtime/plugin/shada.vim 1.03ms
-        ★   runtime/plugin/spellfile.vim 0.01ms
-        ★   runtime/plugin/tarPlugin.vim 0.01ms
-        ★   runtime/plugin/tohtml.vim 0.01ms
-        ★   runtime/plugin/tutor.vim 0.01ms
-        ★   runtime/plugin/zipPlugin.vim 0.01ms
-      ➜  after 0.73ms
-        ★   after/plugin/cmp_path.lua 0.11ms
-        ★   after/plugin/cmp_buffer.lua 0.15ms
-        ★   after/plugin/cmp_nvim_lsp_signature_help.lua 0.05ms
-        ★   after/plugin/cmp_cmdline.lua 0.07ms
-        ★   after/plugin/cmp_nvim_lsp.lua 0.06ms
-        ★   after/plugin/cmp-spell.lua 0.04ms
-        ★   after/plugin/cmp_luasnip.lua 0.1ms
-        ★   after/plugin/matchit.vim 0.01ms
-    ●   windline.nvim 0.05ms
-    ●  VimEnter 1.52ms
-      ➜   noice.nvim 1.46ms
-        ★   nui.nvim 0.23ms
-        ★   nvim-notify 0.95ms
-    ●   nvim-navic 60.85ms
-      ➜   nvim-lspconfig 60.58ms
-        ★   nvim-lspconfig/plugin/lspconfig.lua 0.59ms
-        ★   neodev.nvim 0.05ms
-    ●  VeryLazy 30.04ms
-      ➜   nvimux 1.43ms
-      ➜   tokyonight.nvim 0.08ms
-      ➜   sonokai 0.18ms
-      ➜   hlargs.nvim 1.15ms
-      ➜   tabout.nvim 1.16ms
-        ★   tabout.nvim/plugin/tabout.vim 0.05ms
-      ➜   telescope.nvim 25.99ms
-        ★   telescope-fzf-native.nvim 0.24ms
-        ★   telescope-ui-select.nvim 0.24ms
-        ★   telescope-file-browser.nvim 0.22ms
-        ★   telescope-project.nvim 0.18ms
-        ★   telescope.nvim/plugin/telescope.lua 0.15ms
+    ●  lazy.nvim 6.38ms
+      ➜  module 0.94ms
+      ➜  config 0.13ms
+      ➜  spec 2.7ms
+        ★  pkg 0.06ms
+        ★  resolve plugins 0.69ms
+      ➜  state 0.32ms
+      ➜  install 0.04ms
+      ➜  handlers 1.98ms
+        ★  rust.vim/ftdetect/rust.vim 0.08ms
+    ●  startup 7.43ms
+      ➜  runtime/filetype.lua 0.2ms
+      ➜  init 0.06ms
+        ★  init  snacks.nvim 0ms
+      ➜  start 6.35ms
+        ★  start  snacks.nvim 0.69ms
+          ‒  snacks.nvim/plugin/snacks.lua 0.38ms
+        ★  start  nvim-treesitter 4.24ms
+          ‒  nvim-treesitter/plugin/nvim-treesitter.lua 2.58ms
+          ‒  nvim-ts-context-commentstring 0.14ms
+            ●  nvim-ts-context-commentstring/plugin/ts_context_commentstring.lua 0.09ms
+        ★  start  nvim-coverage 1.37ms
+          ‒  plenary.nvim 0.18ms
+            ●  plenary.nvim/plugin/plenary.vim 0.05ms
+      ➜  rtp plugins 0.78ms
+        ★  runtime/plugin/editorconfig.lua 0.06ms
+        ★  runtime/plugin/gzip.vim 0.03ms
+        ★  runtime/plugin/man.lua 0.06ms
+        ★  runtime/plugin/matchit.vim 0.03ms
+        ★  runtime/plugin/matchparen.vim 0.09ms
+        ★  runtime/plugin/netrwPlugin.vim 0.03ms
+        ★  runtime/plugin/osc52.lua 0.06ms
+        ★  runtime/plugin/rplugin.vim 0.1ms
+        ★  runtime/plugin/shada.vim 0.05ms
+        ★  runtime/plugin/spellfile.vim 0.03ms
+        ★  runtime/plugin/tarPlugin.vim 0.03ms
+        ★  runtime/plugin/tohtml.lua 0.07ms
+        ★  runtime/plugin/tutor.vim 0.03ms
+        ★  runtime/plugin/zipPlugin.vim 0.05ms
+      ➜  after 0.03ms
+    ●  nvim-web-devicons 0.12ms
+      ➜  nvim-web-devicons/plugin/nvim-web-devicons.vim 0.06ms
+    ●  startuptime 47.15ms
+    ●  VeryLazy 42.56ms
+      ➜  render-markdown.nvim 9.53ms
+        ★  mini.icons 0.12ms
+        ★  render-markdown.nvim/plugin/render-markdown.lua 9.34ms
+          ‒  nvim-cmp 6.33ms
+            ●  cmp_luasnip 2.59ms
+              ➜  after/plugin/cmp_luasnip.lua 2.41ms
+            ●  cmp-spell 0.38ms
+              ➜  after/plugin/cmp-spell.lua 0.33ms
+            ●  cmp-path 0.35ms
+              ➜  after/plugin/cmp_path.lua 0.27ms
+            ●  cmp-nvim-lsp 0.44ms
+              ➜  after/plugin/cmp_nvim_lsp.lua 0.34ms
+            ●  cmp-buffer 0.52ms
+              ➜  after/plugin/cmp_buffer.lua 0.45ms
+            ●  cmp-cmdline 0.45ms
+              ➜  after/plugin/cmp_cmdline.lua 0.4ms
+            ●  cmp-nvim-lsp-signature-help 0.34ms
+              ➜  after/plugin/cmp_nvim_lsp_signature_help.lua 0.28ms
+            ●  nvim-cmp-lua-latex-symbols 0.45ms
+              ➜  after/plugin/cmp-lua-latex-symbols.lua 0.4ms
+            ●  nvim-cmp/plugin/cmp.lua 0.21ms
+      ➜  smear-cursor.nvim 0.62ms
+      ➜  noice.nvim 1.17ms
+        ★  nui.nvim 0.24ms
+        ★  nvim-notify 0.18ms
+      ➜  windline.nvim 2ms
+      ➜  todo-comments.nvim 0.88ms
+        ★  todo-comments.nvim/plugin/todo.vim 0.05ms
+      ➜  hlargs.nvim 1.11ms
+      ➜  gitsigns.nvim 1.32ms
+      ➜  mini.surround 0.82ms
+      ➜  mini.pairs 1.33ms
+      ➜  copilot.vim 0.37ms
+        ★  copilot.vim/plugin/copilot.vim 0.23ms
+      ➜  lsp-lens.nvim 1.79ms
+      ➜  which-key.nvim 0.54ms
+        ★  which-key.nvim/plugin/which-key.lua 0.06ms
+      ➜  ChatGPT.nvim 14.41ms
+        ★  telescope.nvim 8.67ms
+          ‒  telescope-fzf-native.nvim 0.2ms
+          ‒  telescope-ui-select.nvim 0.22ms
+          ‒  telescope-file-browser.nvim 0.19ms
+          ‒  telescope-project.nvim 0.21ms
+          ‒  telescope.nvim/plugin/telescope.lua 0.15ms
+        ★  ChatGPT.nvim/plugin/chatgpt.lua 0.09ms
+        ★  trouble.nvim 1.4ms
+      ➜  nvim-yati 0.76ms
+        ★  nvim-yati/plugin/nvim-yati.vim 0.65ms
+      ➜  gitlinker.nvim 0.04ms
+      ➜  tabout.nvim 1.19ms
+        ★  tabout.nvim/plugin/tabout.lua 0.08ms
+      ➜  nvim-pqf 0.6ms
+      ➜  stabilize.nvim 0.58ms
+      ➜  flash.nvim 1.82ms
+      ➜  cmp_luasnip 0.01ms
+      ➜  Stabilize 0ms
+    ●  lspkind-nvim 1.98ms

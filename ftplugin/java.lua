@@ -1,7 +1,8 @@
 require("config.plugins.configs.dap.attach").init()
 local global = require("config.core.global")
 local build_path_string = require("config.utils").build_path_string
-local capabilities = require("config.plugins.configs.lspconfig").capabilities
+local capabilities =
+  require("config.plugins.configs.lspconfig.capabilities").capabilities
 local lsp = require("config.plugins.configs.lspconfig")
 local map = vim.keymap.set
 

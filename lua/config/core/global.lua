@@ -8,7 +8,7 @@ local home = function()
     return os.getenv("USERPROFILE") --[[@as string]]
   end
 
-    return os.getenv("HOME") --[[@as string]]
+  return os.getenv("HOME") --[[@as string]]
 end
 
 ---@class Global

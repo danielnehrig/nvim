@@ -9,6 +9,7 @@
 ---@field [1] string key binding
 ---@field [2] string|fun() command
 ---@field [3] MapOptions options for the mapping
+---@field [4] string|nil type snack
 
 ---@class MapOptions
 ---@field noremap? boolean
@@ -89,7 +90,6 @@ M.others = {
       { desc = "GitLinker" },
     },
     { "<Leader>gt", "<Cmd>Trouble<CR>", { desc = "Trouble LSP" } },
-    { "<Leader>nf", "<Cmd>DocGen<CR>", { desc = "DocGen" } },
     { "<Leader>w", "<Cmd>WindowPick<CR>", { desc = "WindowPick" } },
   },
   v = {
@@ -223,50 +223,6 @@ M.util = {
       require("config.core.options").fold_column_toggle,
       { desc = "Toggle Fold", silent = true },
     },
-    {
-      "<leader>ud",
-      vim.diagnostic.disable,
-      { desc = "Toggle Diagnostic 0", silent = true },
-    },
-    {
-      "<leader>ut",
-      vim.diagnostic.enable,
-      { desc = "Toggle Diagnostic 1", silent = true },
-    },
-
-    {
-      "<leader>ur",
-      require("config.core.options").relative_position_toggle,
-      {
-        desc = "Toggle Relative",
-        silent = true,
-      },
-    },
-
-    {
-      "<leader>un",
-      require("config.core.options").number_toggle,
-      {
-        desc = "Toggle Numbers",
-        silent = true,
-      },
-    },
-    {
-      "<leader>us",
-      require("config.core.options").spell_toggle,
-      {
-        desc = "Toggle Spell",
-        silent = true,
-      },
-    },
-    {
-      "<leader>ux",
-      require("config.core.options").toggle_signcolumn,
-      {
-        desc = "Toggle Signcolumn",
-        silent = true,
-      },
-    },
   },
 }
 
@@ -285,41 +241,6 @@ M.diag = {
         vim.diagnostic.goto_prev()
       end,
       { desc = "Goto Previous Diagnostic Item", silent = false },
-    },
-  },
-}
-
-M.gram = {
-  n = {
-    {
-      "<leader>ggf",
-      "<Plug>(grammarous-fixall)",
-      { desc = "Grammer Fix All", silent = false },
-    },
-    {
-      "<leader>ggo",
-      "<Plug>(grammarous-open-info-window)",
-      { desc = "Grammer Open", silent = false },
-    },
-    {
-      "<leader>ggn",
-      "<Plug>(grammarous-move-to-next-error)",
-      { desc = "Grammer Go Next", silent = false },
-    },
-    {
-      "<leader>ggp",
-      "<Plug>(grammarous-move-to-previous-error)",
-      { desc = "Grammer Go Prev", silent = false },
-    },
-    {
-      "<leader>ggi",
-      "<Plug>(grammarous-fixit)",
-      { desc = "Grammer Fix It", silent = false },
-    },
-    {
-      "<leader>ggc",
-      "<cmd>GrammarousCheck<CR>",
-      { desc = "Grammer Check", silent = false },
     },
   },
 }
@@ -374,7 +295,6 @@ M.map = {
   M.util,
   M.tree,
   M.diag,
-  M.gram,
 }
 
 M.vscode_file = {
@@ -434,12 +354,12 @@ function M.set_lsp_mapping(bufnr)
       {
         "<leader>gw",
         vim.lsp.buf.document_symbol,
-        { desc = "Doc Symb", buffer = bufnr },
+        { desc = "Doc Symbol", buffer = bufnr },
       },
       {
         "<leader>gW",
         vim.lsp.buf.workspace_symbol,
-        { desc = "Workspace Symbok", buffer = bufnr },
+        { desc = "Workspace Symbol", buffer = bufnr },
       },
       {
         "<Leader>gf",
@@ -449,12 +369,7 @@ function M.set_lsp_mapping(bufnr)
       {
         "<Leader>gl",
         vim.lsp.codelens.run,
-        { desc = "Code Action", buffer = bufnr },
-      },
-      {
-        "<Leader>gf",
-        vim.lsp.buf.code_action,
-        { desc = "Code Action", buffer = bufnr },
+        { desc = "Code Lens", buffer = bufnr },
       },
       {
         "<leader>gr",
@@ -484,6 +399,22 @@ function M.set_lsp_mapping(bufnr)
         { desc = "Diagnostic Float", buffer = bufnr },
       },
       {
+        "<leader>uP",
+        function()
+          return Snacks.toggle({
+            name = "Auto Format (Global)",
+            get = function()
+              return vim.g.autoformat
+            end,
+            set = function(state)
+              vim.g.autoformat = state
+            end,
+          })
+        end,
+        { desc = "Toggle Auto Format" },
+        "toggle",
+      },
+      {
         "<leader>ui",
         function()
           local is = vim.lsp.inlay_hint.is_enabled()
@@ -497,7 +428,13 @@ function M.set_lsp_mapping(bufnr)
   for mode, map in pairs(M.lsp) do
     for _, conf in ipairs(map) do
       if conf then
-        vim.keymap.set(mode, conf[1], conf[2], conf[3])
+        if conf[4] then
+          if conf[4] == "toggle" then
+            conf[2]():map(conf[1])
+          end
+        elseif conf[3] then
+          vim.keymap.set(mode, conf[1], conf[2], conf[3])
+        end
       end
     end
   end
