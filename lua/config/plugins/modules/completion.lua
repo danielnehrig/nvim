@@ -1,3 +1,5 @@
+local config = require("config.core.config").config
+print(config.ai_options.openai_key)
 ---@module 'lazy.types'
 
 ---@class completion
@@ -7,9 +9,18 @@ M.completion = {
   -- TODO: manage config of this by user cfg
   ["jackMort/ChatGPT.nvim"] = {
     event = "VeryLazy",
-    enabled = require("config.core.config").config.ai_options.openai_key == nil or require("config.core.config").config.ai_options.openai_key == "",
+    enabled = function()
+      if config.ai_options.openai_key == "" then
+        return false
+      end
+      if config.ai_options.openai_key == nil then
+        return false
+      end
+
+      return true
+    end,
     opts = {
-      api_key_cmd = require("config.core.config").config.ai_options.openai_key,
+      api_key_cmd = config.ai_options.openai_key,
       openai_params = {
         model = "gpt-4-1106-preview",
         frequency_penalty = 0,
