@@ -1,5 +1,4 @@
 local config = require("config.core.config").config
-print(config.ai_options.openai_key)
 ---@module 'lazy.types'
 
 ---@class completion
