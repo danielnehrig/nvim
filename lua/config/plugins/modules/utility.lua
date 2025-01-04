@@ -14,8 +14,8 @@ M.utility = {
   ["nvzone/minty"] = {
     cmd = { "Shades", "Huefy" },
     dependencies = {
-      "nvzone/volt"
-    }
+      "nvzone/volt",
+    },
   },
   ["echasnovski/mini.pairs"] = {
     event = "VeryLazy",
