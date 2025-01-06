@@ -19,7 +19,7 @@ M.lsp = {
       },
       {
         "mfussenegger/nvim-dap",
-        config = function(self, opts)
+        config = function(_, _)
           -- Debug settings if you're using nvim-dap
           local dap = require("dap")
 

@@ -3,6 +3,7 @@ local M = {}
 function M.autocmds()
   local au_ft = vim.api.nvim_create_augroup("ft", { clear = true })
   local au_cmp = vim.api.nvim_create_augroup("cmp", { clear = true })
+  local au_utils = vim.api.nvim_create_augroup("utils", { clear = true })
 
   -- ft
   vim.api.nvim_create_autocmd("FileType", {
