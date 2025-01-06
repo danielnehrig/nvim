@@ -8,17 +8,6 @@ vim.g.languagetool_server_jar =
   "/usr/local/opt/languagetool/libexec/languagetool-server.jar"
 
 M.language = {
-  --- INFO: live  server
-  --- TODO: does this still  work ?
-  ["barrett-ruth/live-server.nvim"] = {
-    build = "yarn global add live-server",
-    config = true,
-  },
-  ["rhysd/vim-grammarous"] = {
-    cmd = {
-      "GrammarousCheck",
-    },
-  },
   --- INFO: java lsp stuff
   ["mfussenegger/nvim-jdtls"] = { lazy = true },
   --- INFO: rust crates info for cargo toml

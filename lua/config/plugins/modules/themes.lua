@@ -36,25 +36,21 @@ vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1"
 
 M.theme = {
+  ["sphamba/smear-cursor.nvim"] = {
+    event = "VeryLazy",
+    enabled = function()
+      return not vim.g.neovide
+    end,
+    opts = {},
+  },
   --- INFO: highlight start of words bold
-  ["HampusHauffman/bionic.nvim"] = {},
+  ["HampusHauffman/bionic.nvim"] = {
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  },
   --- INFO: shows indentation scopes with different background highlight making it a block
   ["HampusHauffman/block.nvim"] = {
-    config = function()
-      require("block").setup({
-        percent = 0.8,
-        depth = 4,
-        colors = nil,
-        automatic = false,
-        --      bg = nil,
-        --      colors = {
-        --          "#ff0000"
-        --          "#00ff00"
-        --          "#0000ff"
-        --      },
-      })
-    end,
-    enabled = true,
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    opts = {},
   },
   ["projekt0n/github-nvim-theme"] = {
     tag = "v0.0.7",
@@ -64,19 +60,10 @@ M.theme = {
   ["m-demare/hlargs.nvim"] = {
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    lazy = true,
     config = function()
       require("hlargs").setup()
     end,
-  },
-  --- INFO:  display of emptyspaces/indentations vertical bars
-  ["lukas-reineke/indent-blankline.nvim"] = {
-    config = require("config.plugins.configs.indent-blankline").init,
-    lazy = true,
-    event = "BufRead",
-  },
-  --- INFO: dashboard plugin
-  ["goolord/alpha-nvim"] = {
-    config = require("config.plugins.configs.dashboard").dashboard,
   },
   --- INFO: the statusline builder im using
   ["windwp/windline.nvim"] = {
@@ -89,6 +76,10 @@ M.theme = {
     end,
   },
   ["romgrk/barbar.nvim"] = {
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    config = function()
+      require("config.plugins.configs.bufferline").init()
+    end,
     dependencies = { "kyazdani42/nvim-web-devicons" },
   },
 }
@@ -98,13 +89,11 @@ M.ts_themes = {
     colorscheme_name = { "sonokai" },
     lazy = true,
     priority = 1000,
-    opts = {},
   },
   ["ray-x/aurora"] = {
     colorscheme_name = { "aurora" },
     lazy = true,
     priority = 1000,
-    opts = {},
   },
   ["Mofiqul/vscode.nvim"] = {
     colorscheme_name = { "vscode" },

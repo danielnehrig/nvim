@@ -5,32 +5,6 @@
 local M = {}
 
 M.ts = {
-  -- INFO: hihglight current chunk
-  ["shellRaining/hlchunk.nvim"] = {
-    event = "UIEnter",
-    config = function()
-      require("hlchunk").setup({
-        blank = {
-          enable = false,
-        },
-        line_num = {
-          enable = false,
-        },
-        indent = {
-          enable = false,
-        },
-      })
-    end,
-  },
-  --- TODO: ?
-  ["Wansmer/treesj"] = {
-    keys = { "<space>m", "<space>j", "<space>s" },
-    opts = { use_default_keymaps = false, max_join_length = 150 },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("treesj").setup({})
-    end,
-  },
   --- INFO: refactor plugin
   ["ThePrimeagen/refactoring.nvim"] = {
     config = require("config.plugins.configs.refactoring").init,
@@ -54,9 +28,28 @@ M.ts = {
       })
     end,
   },
-  ["nvim-treesitter/nvim-treesitter"] = {},
+  ["nvim-treesitter/nvim-treesitter"] = {
+    config = function()
+      require("config.plugins.configs.treesitter").init()
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "RRethy/nvim-treesitter-textsubjects",
+      "windwp/nvim-ts-autotag",
+      "nvim-treesitter/nvim-treesitter-context",
+    },
+  },
+  ["Wansmer/treesj"] = {
+    event = "VeryLazy",
+    opts = { use_default_keymaps = false, max_join_length = 150 },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("treesj").setup({})
+    end,
+  },
   --- INFO:  indenter
   ["yioneko/nvim-yati"] = {
+    event = "VeryLazy",
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   --- INFO: doc generation
@@ -72,36 +65,22 @@ M.ts = {
   --- INFO: treesitter aware commenting
   ["winston0410/commented.nvim"] = {
     keys = {
-      { "<space>cc", mode = { "n", "v" }, desc = "Comment out line" },
+      { "gcc", mode = { "n", "v" }, desc = "Comment out line" },
     },
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("commented").setup({
+        keybindings = { n = "gc", v = "gc", nl = "gcc" },
         hooks = {
           before_comment = require("ts_context_commentstring.internal").update_commentstring,
         },
       })
     end,
   },
-  -- INFO: textobject movements like change inside argument jump to function
-  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = true,
-  },
   -- INFO: show ts nodes etc
   ["nvim-treesitter/playground"] = {
     cmd = "TSPlaygroundToggle",
     dependencies = "nvim-treesitter/nvim-treesitter",
-  },
-  -- INFO: textsubject movements
-  ["RRethy/nvim-treesitter-textsubjects"] = {
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = true,
-  },
-  -- INFO: add auto tags
-  ["windwp/nvim-ts-autotag"] = {
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = true,
   },
 }
 

@@ -59,12 +59,14 @@ M.base_16 = {
 }
 
 M.polish_hl = {
-  ["@variable"] = { fg = M.base_16.base05 },
-  ["@punctuation.bracket"] = { fg = M.base_30.purple },
-  ["@method.call"] = { fg = M.base_30.red },
-  ["@function.call"] = { fg = M.base_30.blue },
-  ["@constant"] = { fg = M.base_30.orange },
-  ["@parameter"] = { fg = M.base_30.orange },
+  treesitter = {
+    ["@variable"] = { fg = M.base_16.base05 },
+    ["@punctuation.bracket"] = { fg = M.base_30.purple },
+    ["@function.method.call"] = { fg = M.base_30.red },
+    ["@function.call"] = { fg = M.base_30.blue },
+    ["@constant"] = { fg = M.base_30.orange },
+    ["@variable.parameter"] = { fg = M.base_30.orange },
+  },
 }
 
 M.type = "dark"

@@ -17,17 +17,18 @@ for _, file in ipairs(hl_files) do
   ---@type table<string, Highlight>
   local integration = require("config.themes.integrations." .. a)
   highlights = merge_tb("force", highlights, integration)
+
+  -- polish theme specific highlights
+  local polish_hl = require("config.themes").get_colors("polish_hl")
+
+  -- polish themes
+  if polish_hl and polish_hl[a] then
+    highlights = merge_tb("force", highlights, polish_hl[a])
+  end
 end
 
 -- term colors
 require("config.themes.termhl")
-
--- polish theme specific highlights
-local polish_hl = require("config.themes").get_colors("polish_hl")
-
-if polish_hl then
-  highlights = merge_tb("force", highlights, polish_hl)
-end
 
 if ui.transparent then
   highlights = merge_tb("force", highlights, require("config.themes.glassy"))
