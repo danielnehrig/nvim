@@ -73,6 +73,7 @@ function LSP.init()
     "rust",
     "python",
     "css",
+    "r",
     "cs",
     "go",
     "json",

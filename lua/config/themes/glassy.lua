@@ -17,6 +17,7 @@ local M = {
 ---@type string[]
 local hl_groups = {
   "NormalFloat",
+  "ColorColumn",
   "Normal",
   "Folded",
   "FoldColumn",

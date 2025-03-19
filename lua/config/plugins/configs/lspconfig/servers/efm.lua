@@ -46,6 +46,7 @@ lspconfig.efm.setup({
     ".eslintrc",
     ".eslintrc.json",
     ".prettierrc",
+    "pyproject.toml",
     ".prettierrc.json",
     "stylua.toml",
     ".luacheck",
@@ -62,6 +63,7 @@ lspconfig.efm.setup({
   settings = {
     rootMarkers = {
       "package.json",
+      "pyproject.toml",
       "go.mod",
       ".git/",
       ".zshrc",

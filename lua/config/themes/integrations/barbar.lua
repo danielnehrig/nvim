@@ -2,11 +2,10 @@ local theme = require("config.themes").get_colors("base_30")
 local theme_16 = require("config.themes").get_colors("base_16")
 local util = require("config.themes.util")
 
----@type table<string, Highlight>
 local barbar = {
   BufferCurrent = { bg = theme.darker_black, fg = theme.white },
   BufferCurrentNumber = { bg = theme.darker_black, fg = theme.white },
-  BufferCurrentIcon = { bg = theme.darker_black },
+  BufferCurrentIcon = { bg = theme.statusline_bg },
   BufferCurrentERROR = { bg = theme.darker_black, fg = theme.red },
   BufferCurrentHINT = { bg = theme.darker_black, fg = theme.blue },
   BufferCurrentINFO = { bg = theme.darker_black, fg = theme.blue },
@@ -15,11 +14,11 @@ local barbar = {
   BufferCurrentMod = { bg = theme.darker_black, fg = theme.orange },
   BufferCurrentSign = { bg = theme.darker_black, fg = theme_16.base0F },
   BufferCurrentSignRight = {
-    bg = theme.darker_black,
+    bg = theme.statusline_bg,
     --fg = theme_16.base0F
     fg = theme.yellow,
   },
-  BufferCurrentTarget = { bg = theme.darker_black, fg = theme.red },
+  BufferCurrentTarget = { bg = theme.statusline_bg, fg = theme.red },
   BufferAlternate = { bg = theme.grey_fg, fg = theme.white },
   BufferAlternateIcon = { bg = theme.grey_fg },
   BufferAlternateERROR = { bg = theme.grey_fg, fg = theme.red },

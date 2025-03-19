@@ -39,14 +39,26 @@ function M.autocmds()
 
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = bufnr,
-            callback = vim.lsp.buf.document_highlight,
-            desc = "Highlight lsp references",
+            callback = function(_)
+              if client then
+                if client.supports_method("textDocument/documentHighlight") then
+                  vim.lsp.buf.document_highlight()
+                end
+              end
+            end,
+            desc = "Highlight Document Language Symbols",
             group = au_lsp,
           })
           vim.api.nvim_create_autocmd({ "CursorMoved" }, {
             buffer = bufnr,
-            callback = vim.lsp.buf.clear_references,
-            desc = "Clear Highlight lsp references",
+            callback = function(_)
+              if client then
+                if client.supports_method("textDocument/documentHighlight") then
+                  vim.lsp.buf.clear_references()
+                end
+              end
+            end,
+            desc = "Clear Document Highlight",
             group = au_lsp,
           })
         end

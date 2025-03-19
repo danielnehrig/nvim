@@ -5,7 +5,6 @@ local config = require("config.core.config").config
 ---@field completion table<string, LazyPluginSpec>
 local M = {}
 M.completion = {
-  -- TODO: manage config of this by user cfg
   ["jackMort/ChatGPT.nvim"] = {
     event = "VeryLazy",
     enabled = function()
@@ -24,7 +23,7 @@ M.completion = {
         model = "gpt-4-1106-preview",
         frequency_penalty = 0,
         presence_penalty = 0,
-        max_tokens = 4095,
+        max_tokens = 32095,
         temperature = 0.2,
         top_p = 0.1,
         n = 1,

@@ -86,7 +86,7 @@ class PackageManagerDict(TypedDict):
     # on a package manager and the value is the command passed to the package manager
     modes: Modes
     # package listing string
-    package_listing: list[str] | None
+    package_listing: Union[list[str], None]
 
 
 # This Manager offers the ability to use custom installers as well as generic cones
@@ -475,7 +475,7 @@ class Log:
         st: str = self.buildLogString("WARNING", Colors.WARNING)
         print(st.format(self.now(), user, arrow, string))
 
-    def Debug(self, string: str | CliOptions) -> None:
+    def Debug(self, string: Union[str, CliOptions]) -> None:
         if cli_options["debug"]:
             st: str = self.buildLogString("DEBUG", Colors.WARNING)
             print(st.format(self.now(), user, arrow + arrow, string))

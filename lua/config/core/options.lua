@@ -200,7 +200,6 @@ function M.load_options()
   opt.splitbelow = true -- split behavior
   opt.splitright = true -- split behavior
   opt.termguicolors = true -- colors tmux settings
-  -- opt.background = "dark" -- dark
   opt.numberwidth = 2 -- width on number row
 
   opt.mouse = "a" -- mouse on don't use mouse

@@ -459,7 +459,11 @@ function M.mappings()
     for mode, map in pairs(section) do
       for _, conf in ipairs(map) do
         if conf then
-          if conf[3] then
+          if conf[4] then
+            if conf[4] == "toggle" then
+              conf[2]():map(conf[1])
+            end
+          elseif conf[3] then
             vim.keymap.set(mode, conf[1], conf[2], conf[3])
           else
             vim.keymap.set(mode, conf[1], conf[2])
