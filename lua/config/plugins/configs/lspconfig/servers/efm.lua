@@ -21,6 +21,7 @@ local goimports = require("config.plugins.configs.lspconfig.efm.goimports")
 local golines = require("config.plugins.configs.lspconfig.efm.golines")
 local sql = require("config.plugins.configs.lspconfig.efm.sql")
 local scalafmt = require("config.plugins.configs.lspconfig.efm.scalafmt")
+local nixfmt = require("config.plugins.configs.lspconfig.efm.nixfmt")
 
 -- formatting and linting with efm
 lspconfig.efm.setup({
@@ -80,6 +81,7 @@ lspconfig.efm.setup({
       go = { gofmt, goimports, golines },
       markdown = { dprint, vale },
       txt = { vale },
+      nix = { nixfmt },
       org = { vale },
       sql = { sql },
       json = { json_prettier, jq },
@@ -96,6 +98,7 @@ lspconfig.efm.setup({
     "bash",
     "sh",
     "json",
+    "nix",
     "toml",
     "sql",
     "scala",
