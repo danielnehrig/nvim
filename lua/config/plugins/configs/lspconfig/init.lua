@@ -77,6 +77,7 @@ function LSP.init()
     "cs",
     "go",
     "json",
+    "nix",
     "sql",
     "emmet",
     "docker",
