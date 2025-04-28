@@ -48,7 +48,8 @@ M.lsp = {
     ft = { "scala", "sbt", "java" },
     opts = function()
       local metals_config = require("metals").bare_config()
-      metals_config.settings.serverVersion = "1.2.0"
+      -- metals_config.settings.serverVersion = "1.2.0"
+      metals_config.settings.serverVersion = "1.3.5"
       local capabilities =
         require("config.plugins.configs.lspconfig.capabilities").capabilities
       metals_config.capabilities = capabilities

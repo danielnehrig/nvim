@@ -12,7 +12,6 @@ local prettier = require("config.plugins.configs.lspconfig.efm.prettier")
 local stylua = require("config.plugins.configs.lspconfig.efm.stylua")
 local luacheck = require("config.plugins.configs.lspconfig.efm.luacheck")
 local rustfmt = require("config.plugins.configs.lspconfig.efm.rustfmt")
-local python = require("config.plugins.configs.lspconfig.efm.python")
 local dprint = require("config.plugins.configs.lspconfig.efm.dprint")
 local shellcheck = require("config.plugins.configs.lspconfig.efm.shellcheck")
 local shfmt = require("config.plugins.configs.lspconfig.efm.shfmt")
@@ -21,6 +20,7 @@ local goimports = require("config.plugins.configs.lspconfig.efm.goimports")
 local golines = require("config.plugins.configs.lspconfig.efm.golines")
 local sql = require("config.plugins.configs.lspconfig.efm.sql")
 local scalafmt = require("config.plugins.configs.lspconfig.efm.scalafmt")
+local ruff = require("config.plugins.configs.lspconfig.efm.ruff")
 
 -- formatting and linting with efm
 lspconfig.efm.setup({
@@ -84,7 +84,7 @@ lspconfig.efm.setup({
       sql = { sql },
       json = { json_prettier, jq },
       toml = { dprint },
-      python = { python },
+      python = { ruff },
       bash = { shellcheck, shfmt },
       sh = { shellcheck, shfmt },
       scala = { scalafmt },

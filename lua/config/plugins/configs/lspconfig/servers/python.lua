@@ -14,6 +14,23 @@ local config = {
   }),
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
+    if client.server_capabilities.documentFormattingProvider then
+      local au_lsp =
+        vim.api.nvim_create_augroup("pyright_lsp", { clear = true })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.buf.format({ async = false })
+        end,
+        group = au_lsp,
+      })
+    end
+    local n_present, navic = pcall(require, "nvim-navic")
+    if n_present then
+      if client.supports_method("textDocument/documentSymbol") then
+        navic.attach(client, bufnr)
+      end
+    end
     lsp.on_attach(client, bufnr)
   end,
 }
@@ -37,6 +54,7 @@ function M.get_python_interpreters()
     "which -a python2.7",
     "which -a python2",
     "which -a python3.9",
+    "which -a python3.12",
     "which -a python3",
     is_home_dir() and "" or "find . -name python",
   }
