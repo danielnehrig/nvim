@@ -1,9 +1,8 @@
 local lsp = require("config.plugins.configs.lspconfig")
 local capabilities =
   require("config.plugins.configs.lspconfig.capabilities").capabilities
-local lspconfig = require("lspconfig")
 
-lspconfig.intelephense.setup({
+vim.lsp.config("intelephense", {
   capabilities = capabilities,
   flags = { debounce_text_changes = 500 },
   on_attach = function(client, bufnr)

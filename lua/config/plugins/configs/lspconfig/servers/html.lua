@@ -1,7 +1,6 @@
-local lspconfig = require("lspconfig")
 local lsp = require("config.plugins.configs.lspconfig")
 
-lspconfig.html.setup({
+vim.lsp.config("html", {
   on_attach = function(client, bufnr)
     lsp.on_attach(client, bufnr)
   end,

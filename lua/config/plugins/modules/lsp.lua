@@ -58,7 +58,7 @@ M.lsp = {
         require("metals").setup_dap()
         local n_present, navic = pcall(require, "nvim-navic")
         if n_present then
-          if client.supports_method("textDocument/documentSymbol") then
+          if client:supports_method("textDocument/documentSymbol") then
             navic.attach(client, bufnr)
           end
         end

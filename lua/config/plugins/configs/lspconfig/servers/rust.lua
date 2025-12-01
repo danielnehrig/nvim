@@ -1,9 +1,8 @@
-local lspconfig = require("lspconfig")
 local lsp = require("config.plugins.configs.lspconfig")
 local capabilities =
   require("config.plugins.configs.lspconfig.capabilities").capabilities
 
-lspconfig.rust_analyzer.setup({
+vim.lsp.config("rust_analyzer", {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
@@ -18,7 +17,7 @@ lspconfig.rust_analyzer.setup({
     end
     local n_present, navic = pcall(require, "nvim-navic")
     if n_present then
-      if client.supports_method("textDocument/documentSymbol") then
+      if client:supports_method("textDocument/documentSymbol") then
         navic.attach(client, bufnr)
       end
     end
@@ -51,3 +50,5 @@ lspconfig.rust_analyzer.setup({
     },
   },
 })
+
+vim.lsp.enable("rust_analyzer")

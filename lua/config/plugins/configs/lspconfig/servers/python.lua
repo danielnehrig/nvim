@@ -1,17 +1,9 @@
-local lspconfig = require("lspconfig")
 local lsp = require("config.plugins.configs.lspconfig")
 local capabilities =
   require("config.plugins.configs.lspconfig.capabilities").capabilities
 
 local config = {
   capabilities = capabilities,
-  settings = vim.tbl_extend("force", { lspconfig.pyright.settings }, {
-    pyright = {
-      analysis = {
-        typeCheckingMode = "strict",
-      },
-    },
-  }),
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     if client.server_capabilities.documentFormattingProvider then
@@ -27,7 +19,7 @@ local config = {
     end
     local n_present, navic = pcall(require, "nvim-navic")
     if n_present then
-      if client.supports_method("textDocument/documentSymbol") then
+      if client:supports_method("textDocument/documentSymbol") then
         navic.attach(client, bufnr)
       end
     end
@@ -39,7 +31,7 @@ local M = {}
 function M.change_python_interpreter(path)
   vim.lsp.stop_client(vim.lsp.get_active_clients())
   config.settings.python.pythonPath = path
-  lspconfig.pyright.setup(config)
+  vim.lsp.config("pyright", config)
   vim.cmd("e%")
 end
 
@@ -76,7 +68,7 @@ function M.get_python_interpreters()
   return res
 end
 
-lspconfig.pyright.setup(config)
+vim.lsp.config("pyright", config)
 
 vim.api.nvim_create_user_command("PythonInterpreter", function(tbl)
   M.change_python_interpreter(tbl.args)

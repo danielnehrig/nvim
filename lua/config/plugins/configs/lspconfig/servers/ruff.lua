@@ -1,4 +1,3 @@
-local lspconfig = require("lspconfig")
 local lsp = require("config.plugins.configs.lspconfig")
 local capabilities =
   require("config.plugins.configs.lspconfig.capabilities").capabilities
@@ -18,7 +17,7 @@ local config = {
     end
     local n_present, navic = pcall(require, "nvim-navic")
     if n_present then
-      if client.supports_method("textDocument/documentSymbol") then
+      if client:supports_method("textDocument/documentSymbol") then
         navic.attach(client, bufnr)
       end
     end
@@ -26,4 +25,4 @@ local config = {
   end,
 }
 
-lspconfig.ruff_lsp.setup(config)
+vim.lsp.config("ruff_lsp", config)

@@ -31,7 +31,7 @@ function M.autocmds()
       local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
       if client then
-        if client.supports_method("textDocument/documentHighlight") then
+        if client:supports_method("textDocument/documentHighlight") then
           local au_lsp = vim.api.nvim_create_augroup(
             "LSPDocumentHighlight",
             { clear = true }
@@ -41,7 +41,7 @@ function M.autocmds()
             buffer = bufnr,
             callback = function(_)
               if client then
-                if client.supports_method("textDocument/documentHighlight") then
+                if client:supports_method("textDocument/documentHighlight") then
                   vim.lsp.buf.document_highlight()
                 end
               end
@@ -53,7 +53,7 @@ function M.autocmds()
             buffer = bufnr,
             callback = function(_)
               if client then
-                if client.supports_method("textDocument/documentHighlight") then
+                if client:supports_method("textDocument/documentHighlight") then
                   vim.lsp.buf.clear_references()
                 end
               end
@@ -93,7 +93,7 @@ function M.autocmds()
   vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
     callback = function()
-      vim.highlight.on_yank()
+      vim.hl.on_yank()
     end,
     desc = "Highlight yank",
     group = au_utils,

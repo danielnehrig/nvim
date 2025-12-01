@@ -1,4 +1,3 @@
-local lspconfig = require("lspconfig")
 local lsp = require("config.plugins.configs.lspconfig")
 
 -- efm setups
@@ -24,9 +23,9 @@ local ruff = require("config.plugins.configs.lspconfig.efm.ruff")
 local nixfmt = require("config.plugins.configs.lspconfig.efm.nixfmt")
 
 -- formatting and linting with efm
-lspconfig.efm.setup({
+vim.lsp.config("efm", {
   on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
       local au_lsp = vim.api.nvim_create_augroup("efm_lsp", { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
@@ -112,3 +111,4 @@ lspconfig.efm.setup({
     "typescript",
   },
 })
+vim.lsp.enable('efm')

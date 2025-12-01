@@ -1,7 +1,6 @@
 local lsp = require("config.plugins.configs.lspconfig")
 local capabilities =
   require("config.plugins.configs.lspconfig.capabilities").capabilities
-local lspconfig = require("lspconfig")
 local build_path_string = require("config.utils").build_path_string
 
 local home = require("config.core.global").home
@@ -10,7 +9,7 @@ local workspace = build_path_string(home .. "/code/workspace/" .. workspace_dir)
 
 -- jdtls is a sh script in path which bootsup jdtls
 -- yay -S jdtls (for pacman based systems)
-lspconfig.jdtls.setup({
+vim.lsp.config("jdtls", {
   filetypes = { "java" },
   autostart = false,
   cmd = { "jdtls", "-data", workspace },

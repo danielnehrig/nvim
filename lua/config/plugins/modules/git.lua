@@ -84,13 +84,6 @@ M.git = {
       }):map("<leader>uG")
     end,
   },
-  --- INFO: scrollbar and gutter/diagnostic display
-  ["lewis6991/satellite.nvim"] = {
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("satellite").setup()
-    end,
-  },
   --- INFO: old vim git integration
   ["tpope/vim-fugitive"] = {
     cmd = { "Git", "Git mergetool" },

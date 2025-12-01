@@ -1,9 +1,8 @@
-local lspconfig = require("lspconfig")
 local lsp = require("config.plugins.configs.lspconfig")
 local capabilities =
   require("config.plugins.configs.lspconfig.capabilities").capabilities
 
-lspconfig.cssls.setup({
+vim.lsp.config("cssls", {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     lsp.on_attach(client, bufnr)
